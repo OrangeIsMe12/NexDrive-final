@@ -47,11 +47,20 @@
         }
         
          ::-webkit-scrollbar {
-            width: 3px;
+            width: 7px;
         }
         
+         ::-webkit-scrollbar-track {
+            background: rgba(10, 22, 40, 0.08);
+        }
+
          ::-webkit-scrollbar-thumb {
             background: var(--electric);
+            border-radius: 4px;
+        }
+
+         ::-webkit-scrollbar-thumb:hover {
+            background: var(--elec-l);
         }
         
         #sc {
@@ -387,7 +396,7 @@
         }
         
         .mpf {
-            padding: 20px 24px;
+            padding: 16px 24px;
             border-top: 1px solid #C8D8E8;
             flex-shrink: 0;
             background: linear-gradient(180deg, #D8E4F0 0%, #C8D8E8 100%);
@@ -400,28 +409,6 @@
         .mpn.open .mpf {
             opacity: 1;
             transform: translateY(0);
-        }
-        
-        .mr {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            background: var(--navy);
-            color: #fff;
-            padding: 13px;
-            border-radius: 9px;
-            font-size: .86rem;
-            font-weight: 500;
-            text-decoration: none;
-            margin-bottom: 12px;
-            transition: all .25s;
-            box-shadow: 0 4px 18px rgba(10, 22, 40, .2);
-        }
-        
-        .mr:hover {
-            background: var(--navy2);
-            transform: translateY(-1px);
         }
         
         .mf {
@@ -1383,9 +1370,6 @@
                 <a href="#a-propos" class="ma" onclick="closeMob()">
                     <div class="mn-left">
                         <div class="mn-icon">🏢</div><span class="mn-lbl">À propos</span></div><span class="mn-arr">→</span></a>
-                <a href="#services" class="ma" onclick="closeMob()">
-                    <div class="mn-left">
-                        <div class="mn-icon">⚙️</div><span class="mn-lbl">Services</span></div><span class="mn-arr">→</span></a>
                 <a href="#partenaires" class="ma" onclick="closeMob()">
                     <div class="mn-left">
                         <div class="mn-icon">🤝</div><span class="mn-lbl">Partenaires</span></div><span class="mn-arr">→</span></a>
@@ -1398,9 +1382,6 @@
                 <a href="mon-compte.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
                         <div class="mn-icon">👤</div><span class="mn-lbl">Mon compte</span></div><span class="mn-arr">→</span></a>
-                <a href="login.html" class="ma" onclick="closeMob()">
-                    <div class="mn-left">
-                        <div class="mn-icon">🔑</div><span class="mn-lbl">Connexion</span></div><span class="mn-arr">→</span></a>
             </div>
             <div class="mn-sec">
                 <div class="mn-heading">Légal</div>
@@ -1413,7 +1394,6 @@
             </div>
         </div>
         <div class="mpf">
-            <a href="fleet.html" class="mr">Voir la flotte <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             <div class="mf">NexDrive — Québec © 2026</div>
         </div>
     </div>
