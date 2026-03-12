@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Locations NexDrive — Véhicules Premium | Québec</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="logo/ChatGPT Image 10 mars 2026, 16_59_33 (1).png" />
-    <link rel="apple-touch-icon" href="logo/ChatGPT Image 10 mars 2026, 16_59_33 (1).png" />
     <style>
         *,
         *::before,
@@ -49,18 +47,18 @@
         }
         
          ::-webkit-scrollbar {
-            width: 7px;
+            width: 8px;
         }
         
          ::-webkit-scrollbar-track {
-            background: rgba(10, 22, 40, 0.08);
+            background: #0a1628;
         }
-
+        
          ::-webkit-scrollbar-thumb {
             background: var(--electric);
             border-radius: 4px;
         }
-
+        
          ::-webkit-scrollbar-thumb:hover {
             background: var(--elec-l);
         }
@@ -117,61 +115,13 @@
             gap: 10px;
             text-decoration: none;
         }
-        
-        .lm {
-            width: 34px;
-            height: 34px;
-            border-radius: 8px;
-            background: var(--navy);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(10, 22, 40, 0.15);
-        }
-        
-        .lm::before {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: -6px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--chrome3), var(--elec-l));
-            opacity: .5;
-        }
-        
-        .ln {
-            font-family: var(--serif);
-            font-size: 1.1rem;
-            color: #fff;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .lt {
-            font-family: var(--serif);
-            font-size: 1.3rem;
-            font-weight: 400;
-            letter-spacing: .5px;
-            color: #fff;
-        }
-        
-        .lt em {
-            font-style: normal;
-            background: linear-gradient(90deg, var(--elec-l), var(--chrome3));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        /* ── HAMBURGER BUTTON ── */
         
         .hbg {
             -webkit-appearance: none;
             appearance: none;
             background: transparent;
-            border: none;
+            border: 1px solid rgba(255, 255, 255, 0.12);
             padding: 0;
             display: flex;
             width: 44px;
@@ -182,7 +132,7 @@
             justify-content: center;
             gap: 5px;
             border-radius: 10px;
-            transition: background .2s;
+            transition: all .25s;
             flex-shrink: 0;
             z-index: 200;
         }
@@ -192,12 +142,13 @@
         }
         
         .hbg:hover {
-            background: rgba(255, 255, 255, .08);
+            background: rgba(41, 121, 255, 0.12);
+            border-color: rgba(91, 159, 255, 0.4);
         }
         
         .hb {
             display: block;
-            width: 22px;
+            width: 20px;
             height: 1.5px;
             border-radius: 2px;
             background: #fff;
@@ -205,8 +156,9 @@
             transition: transform .38s cubic-bezier(.68, -.55, .265, 1.55), opacity .25s;
         }
         
-        .hbg.open .hb {
-            background: var(--electric);
+        .hbg.open {
+            background: rgba(41, 121, 255, 0.18);
+            border-color: rgba(41, 121, 255, 0.5);
         }
         
         .hbg.open .hb:nth-child(1) {
@@ -221,14 +173,14 @@
         .hbg.open .hb:nth-child(3) {
             transform: translateY(-6.5px) rotate(-45deg);
         }
-        /* ── HAMBURGER PANEL ── */
+        /* ── HAMBURGER BACKDROP ── */
         
         .mbd {
             position: fixed;
             inset: 0;
             z-index: 140;
-            background: rgba(10, 22, 40, .45);
-            backdrop-filter: blur(4px);
+            background: rgba(5, 10, 20, 0.6);
+            backdrop-filter: blur(6px);
             opacity: 0;
             pointer-events: none;
             transition: opacity .4s;
@@ -238,51 +190,53 @@
             opacity: 1;
             pointer-events: all;
         }
+        /* ── HAMBURGER PANEL — Modèle 4 Glassmorphism ── */
         
         .mpn {
             position: fixed;
             top: 0;
             right: 0;
             bottom: 0;
-            width: min(360px, 100vw);
+            width: min(320px, 100vw);
             z-index: 150;
-            background: linear-gradient(180deg, #EEF4FA 0%, #D8E4F0 100%);
-            backdrop-filter: blur(24px);
-            border-left: 1px solid #C8D8E8;
+            background: rgba(10, 18, 36, 0.88);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border-left: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: -20px 0 60px rgba(0, 0, 0, 0.45), inset 1px 0 0 rgba(255, 255, 255, 0.05);
             transform: translateX(110%);
             transition: transform .55s cubic-bezier(.77, 0, .175, 1);
             display: flex;
             flex-direction: column;
-            box-shadow: -12px 0 60px rgba(10, 22, 40, .18);
             overflow: hidden;
         }
         
         .mpn.open {
             transform: translateX(0);
         }
+        /* panel header */
         
         .mph {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px 28px;
-            border-bottom: 1px solid rgba(41, 121, 255, 0.25);
+            padding: 18px 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
             flex-shrink: 0;
-            background: linear-gradient(180deg, #0e1e3a 0%, #0a1628 100%);
         }
         
         .mph-close {
-            width: 36px;
-            height: 36px;
+            width: 34px;
+            height: 34px;
             border-radius: 8px;
             background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: .95rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: .9rem;
             transition: all .2s;
         }
         
@@ -291,42 +245,46 @@
             color: #fff;
             background: rgba(41, 121, 255, 0.15);
         }
+        /* panel nav */
         
         .mn {
             flex: 1;
             overflow-y: auto;
-            padding: 20px 24px;
+            padding: 14px 14px;
             display: flex;
             flex-direction: column;
             gap: 0;
-            background: linear-gradient(180deg, #EEF4FA 0%, #D8E4F0 60%, #C8D8E8 100%);
+            scrollbar-width: none;
+        }
+        
+        .mn::-webkit-scrollbar {
+            display: none;
         }
         
         .mn-sec {
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         
         .mn-heading {
             font-size: .59rem;
             font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
-            color: var(--ink3);
-            opacity: .6;
-            padding: 14px 12px 8px;
-            border-bottom: 1px solid var(--border2);
-            margin-bottom: 4px;
+            color: rgba(255, 255, 255, 0.2);
+            padding: 12px 10px 7px;
+            margin-bottom: 2px;
         }
         
         .ma {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 11px 12px;
-            border-radius: 9px;
+            padding: 11px 10px;
+            border-radius: 10px;
             text-decoration: none;
             margin-bottom: 2px;
-            transition: background .18s, padding-left .2s;
+            transition: all .18s;
+            border: 1px solid transparent;
             opacity: 0;
             transform: translateX(16px);
         }
@@ -337,17 +295,13 @@
         }
         
         .ma:hover {
-            background: rgba(10, 22, 40, .06);
-            padding-left: 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.08);
         }
         
         .ma.active {
-            background: rgba(41, 121, 255, .09);
-            border: 1px solid rgba(41, 121, 255, .14);
-        }
-        
-        .ma.active .mn-lbl {
-            color: var(--electric);
+            background: rgba(41, 121, 255, 0.15);
+            border-color: rgba(41, 121, 255, 0.3);
         }
         
         .mn-left {
@@ -357,52 +311,59 @@
         }
         
         .mn-icon {
-            width: 34px;
-            height: 34px;
+            width: 32px;
+            height: 32px;
             border-radius: 8px;
-            background: rgba(221, 227, 236, 0.8);
-            border: 1px solid var(--border2);
+            background: rgba(255, 255, 255, 0.07);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: .85rem;
+            font-size: .8rem;
             flex-shrink: 0;
-            transition: background .18s, border-color .18s;
+            transition: background .18s;
         }
         
-        .ma:hover .mn-icon,
         .ma.active .mn-icon {
-            background: rgba(41, 121, 255, .08);
-            border-color: rgba(41, 121, 255, .2);
+            background: rgba(41, 121, 255, 0.22);
         }
         
         .mn-lbl {
             font-family: var(--serif);
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 400;
-            color: var(--navy);
+            color: rgba(255, 255, 255, 0.7);
             line-height: 1;
+            transition: color .18s;
+        }
+        
+        .ma.active .mn-lbl {
+            color: #fff;
+        }
+        
+        .ma:hover .mn-lbl {
+            color: rgba(255, 255, 255, 0.95);
         }
         
         .mn-arr {
-            color: var(--ink3);
+            color: rgba(255, 255, 255, 0.2);
             font-size: .75rem;
-            opacity: .4;
             transition: transform .22s, color .18s, opacity .18s;
         }
         
         .ma:hover .mn-arr {
             transform: translateX(4px);
-            color: var(--electric);
-            opacity: 1;
+            color: var(--elec-l);
         }
         
+        .ma.active .mn-arr {
+            color: rgba(91, 159, 255, 0.6);
+        }
+        /* panel footer */
+        
         .mpf {
-            padding: 16px 24px;
-            border-top: 1px solid #C8D8E8;
+            padding: 16px 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
             flex-shrink: 0;
-            background: linear-gradient(180deg, #D8E4F0 0%, #C8D8E8 100%);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
             opacity: 0;
             transform: translateY(8px);
             transition: opacity .4s ease .3s, transform .4s ease .3s;
@@ -413,9 +374,34 @@
             transform: translateY(0);
         }
         
+        .mr {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            background: linear-gradient(135deg, #1454d4, #2979ff);
+            color: #fff;
+            padding: 13px;
+            border-radius: 10px;
+            font-size: .86rem;
+            font-weight: 500;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: all .25s;
+            box-shadow: 0 4px 20px rgba(41, 121, 255, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .mr:hover {
+            background: linear-gradient(135deg, #1a5fe8, #3d8bff);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 28px rgba(41, 121, 255, 0.4);
+        }
+        
         .mf {
             font-size: .68rem;
-            color: var(--ink3);
+            color: rgba(255, 255, 255, 0.25);
             text-align: center;
         }
         /* ── HERO ── */
@@ -1353,11 +1339,15 @@
         <button class="hbg" id="hbBtn" type="button" aria-label="Menu"><span class="hb"></span><span class="hb"></span><span class="hb"></span></button>
     </nav>
 
-    <!-- HAMBURGER -->
+    <!-- HAMBURGER BACKDROP -->
     <div class="mbd" id="mobBack"></div>
+
+    <!-- HAMBURGER PANEL — Modèle 4 Glassmorphism -->
     <div class="mpn" id="mobPanel">
         <div class="mph">
-            <a href="index.html" class="logo" onclick="closeMob()"><img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:60px;width:auto;object-fit:contain;filter:drop-shadow(0 0 6px rgba(41,121,255,0.4));" /></a>
+            <a href="index.html" class="logo" onclick="closeMob()">
+                <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:52px;width:auto;object-fit:contain;filter:drop-shadow(0 0 6px rgba(41,121,255,0.4));" />
+            </a>
             <button class="mph-close" onclick="closeMob()" aria-label="Fermer">✕</button>
         </div>
         <div class="mn">
@@ -1365,34 +1355,42 @@
                 <div class="mn-heading">Navigation</div>
                 <a href="index.html" class="ma active" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">🏠</div><span class="mn-lbl">Accueil</span></div><span class="mn-arr">→</span></a>
-                <a href="fleet.html" class="ma" onclick="closeMob()">
+                        <div class="mn-icon">🏠</div><span class="mn-lbl">Accueil</span></div><span class="mn-arr">→</span>
+                </a>
+                <a href="vehicules.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">🚗</div><span class="mn-lbl">Notre flotte</span></div><span class="mn-arr">→</span></a>
-                <a href="#a-propos" class="ma" onclick="closeMob()">
+                        <div class="mn-icon">🚗</div><span class="mn-lbl">Notre flotte</span></div><span class="mn-arr">→</span>
+                </a>
+                <a href="apropos.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">🏢</div><span class="mn-lbl">À propos</span></div><span class="mn-arr">→</span></a>
-                <a href="#partenaires" class="ma" onclick="closeMob()">
+                        <div class="mn-icon">🏢</div><span class="mn-lbl">À propos</span></div><span class="mn-arr">→</span>
+                </a>
+                <a href="partenaires" class="ma" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">🤝</div><span class="mn-lbl">Partenaires</span></div><span class="mn-arr">→</span></a>
-                <a href="#faq" class="ma" onclick="closeMob()">
+                        <div class="mn-icon">🤝</div><span class="mn-lbl">Partenaires</span></div><span class="mn-arr">→</span>
+                </a>
+                <a href="faq" class="ma" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">❓</div><span class="mn-lbl">FAQ</span></div><span class="mn-arr">→</span></a>
+                        <div class="mn-icon">❓</div><span class="mn-lbl">FAQ</span></div><span class="mn-arr">→</span>
+                </a>
             </div>
             <div class="mn-sec">
                 <div class="mn-heading">Mon espace</div>
-                <a href="mon-compte.html" class="ma" onclick="closeMob()">
+                <a href="compte.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">👤</div><span class="mn-lbl">Mon compte</span></div><span class="mn-arr">→</span></a>
+                        <div class="mn-icon">👤</div><span class="mn-lbl">Mon compte</span></div><span class="mn-arr">→</span>
+                </a>
             </div>
             <div class="mn-sec">
                 <div class="mn-heading">Légal</div>
                 <a href="confidentialite.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">🔒</div><span class="mn-lbl">Confidentialité</span></div><span class="mn-arr">→</span></a>
+                        <div class="mn-icon">🔒</div><span class="mn-lbl">Confidentialité</span></div><span class="mn-arr">→</span>
+                </a>
                 <a href="conditions.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">📄</div><span class="mn-lbl">Conditions</span></div><span class="mn-arr">→</span></a>
+                        <div class="mn-icon">📄</div><span class="mn-lbl">Conditions</span></div><span class="mn-arr">→</span>
+                </a>
             </div>
         </div>
         <div class="mpf">
@@ -1411,8 +1409,8 @@
         </h1>
         <p class="hs">Une flotte de véhicules haut de gamme, une réservation en quelques clics, un contrat envoyé automatiquement.</p>
         <div class="hb2">
-            <a href="fleet.html" class="bn">Voir la flotte <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            <a href="mon-compte.html" class="bg2">Mon compte →</a>
+            <a href="vehicules.html" class="bn">Voir la flotte <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a href="compte.html" class="bg2">Mon compte →</a>
         </div>
         <div class="hst" style="max-width:700px;width:100%;">
             <div class="stat">
@@ -1445,7 +1443,6 @@
             <span class="ticker-item">Automatic Contract<span class="ticker-dot"></span></span>
             <span class="ticker-item accent">All over Quebec<span class="ticker-dot"></span></span>
             <span class="ticker-item">Online Booking<span class="ticker-dot"></span></span>
-            <!-- duplicate for seamless loop -->
             <span class="ticker-item accent">Véhicules Premium<span class="ticker-dot"></span></span>
             <span class="ticker-item">Contrat Automatique<span class="ticker-dot"></span></span>
             <span class="ticker-item accent">Tout le Québec<span class="ticker-dot"></span></span>
@@ -1608,8 +1605,8 @@
         <h2 class="ctah reveal">Réservez <em>maintenant</em></h2>
         <p class="ctap reveal">Accédez à la meilleure flotte de véhicules premium au Québec.<br>Réservation en ligne, contrat automatique.</p>
         <div class="ctab reveal">
-            <a href="fleet.html" class="bw">Voir la flotte <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            <a href="mon-compte.html" class="bow">Mon compte →</a>
+            <a href="vehicules.html" class="bw">Voir la flotte <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            <a href="compte.html" class="bow">Mon compte →</a>
         </div>
     </section>
 
@@ -1623,15 +1620,15 @@
             <div class="fc">
                 <h4>Navigation</h4>
                 <a href="index.html">Accueil</a>
-                <a href="fleet.html">Flotte</a>
-                <a href="#a-propos">À propos</a>
-                <a href="#services">Services</a>
-                <a href="#partenaires">Partenaires</a>
-                <a href="#faq">FAQ</a>
+                <a href="vehicules.html">Flotte</a>
+                <a href="apropos.html">À propos</a>
+                <a href="services.html">Services</a>
+                <a href="partenaires.html">Partenaires</a>
+                <a href="faq.html">FAQ</a>
             </div>
             <div class="fc">
                 <h4>Mon espace</h4>
-                <a href="mon-compte.html">Mon compte</a>
+                <a href="compte.html">Mon compte</a>
                 <a href="login.html">Connexion</a>
             </div>
             <div class="fc">
@@ -1655,7 +1652,7 @@
                 raf, last = 0;
 
             function rnd(a, b) {
-                return a + Math.random() * (b - a);
+                return a + Math.random() * (b - a)
             }
 
             function resize() {
@@ -1728,8 +1725,8 @@
                 x.arc(s.x, s.y, s.r * .8, 0, Math.PI * 2);
                 x.fill();
                 if (s.spike) {
-                    var angles = [0, Math.PI / 2, Math.PI / 4, Math.PI * 3 / 4];
-                    var lens = [s.r * 8, s.r * 6, s.r * 4.5, s.r * 4.5];
+                    var angles = [0, Math.PI / 2, Math.PI / 4, Math.PI * 3 / 4],
+                        lens = [s.r * 8, s.r * 6, s.r * 4.5, s.r * 4.5];
                     for (var i = 0; i < 4; i++) {
                         var lg = x.createLinearGradient(s.x + Math.cos(angles[i]) * lens[i], s.y + Math.sin(angles[i]) * lens[i], s.x - Math.cos(angles[i]) * lens[i], s.y - Math.sin(angles[i]) * lens[i]);
                         lg.addColorStop(0, 'rgba(' + s.col + ',0)');
@@ -1907,6 +1904,7 @@
             mobB.classList.remove('open');
             document.body.style.overflow = '';
         }
+
         hbBtn.addEventListener('click', function() {
             mobP.classList.contains('open') ? closeMob() : openMob();
         });
@@ -1914,6 +1912,7 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') closeMob();
         });
+
         (function() {
             var links = mobP.querySelectorAll('.ma');
             var mo = new MutationObserver(function() {
