@@ -1,6 +1,3 @@
-ng soon · JS
-Copier
-
 (function() {
     // Injecter les fonts si pas déjà présentes
     if (!document.querySelector('link[href*="Playfair"]')) {
