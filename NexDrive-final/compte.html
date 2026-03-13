@@ -1,281 +1,2172 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Mon Compte — NexDrive | Québec</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<link rel="icon" type="image/png" href="logo/ChatGPT Image 10 mars 2026, 16_59_33 (1).png" />
-<link rel="apple-touch-icon" href="logo/ChatGPT Image 10 mars 2026, 16_59_33 (1).png" />
-<style>
-
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --white:rgba(238,241,246,0.82);--off:rgba(230,234,241,0.78);--off2:rgba(221,227,236,0.80);
-  --navy:#0a1628;--navy2:#0f2040;--blue:#1454d4;
-  --electric:#2979ff;--elec-l:#5b9fff;
-  --chrome:#7a9ab8;--chrome3:#c4d8e8;
-  --ink2:#3a5068;--ink3:#6a8aa8;
-  --border:rgba(10,22,40,0.1);--border2:rgba(10,22,40,0.06);
-  --serif:'Cormorant Garamond',Georgia,serif;
-  --sans:'DM Sans',sans-serif;
-}
-html{scroll-behavior:smooth;}
-body{background:#eef1f6;color:var(--navy);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:var(--electric);}
-nav,section,footer,.pb,.tb{position:relative;z-index:1;}
-
-
-nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(41,121,255,0.2) 15%,rgba(91,159,255,0.5) 35%,rgba(120,180,255,0.7) 50%,rgba(91,159,255,0.5) 65%,rgba(41,121,255,0.2) 85%,transparent 100%);pointer-events:none;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:linear-gradient(180deg,#0e1e3a 0%,#0a1628 100%);border-bottom:1px solid rgba(41,121,255,0.2);background-clip:padding-box;backdrop-filter:blur(24px);box-shadow:0 0 0 1px rgba(41,121,255,0.08),0 4px 32px rgba(10,22,40,0.5),0 0 60px rgba(41,121,255,0.08);}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.lm{width:34px;height:34px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(10,22,40,0.15);}
-.lm::before{content:'';position:absolute;top:-6px;left:-6px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--chrome3),var(--elec-l));opacity:.5;}
-.ln{font-family:var(--serif);font-size:1.1rem;color:#fff;position:relative;z-index:1;}
-.lt{font-family:var(--serif);font-size:1.3rem;font-weight:400;letter-spacing:.5px;color:#fff;}
-.lt em{font-style:normal;background:linear-gradient(90deg,var(--electric),var(--chrome));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.hbg{-webkit-appearance:none;appearance:none;background:transparent;border:none;padding:0;display:flex;width:44px;height:44px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;border-radius:10px;transition:background .2s;flex-shrink:0;z-index:200;}
-.hbg:focus{outline:none;}.hbg:hover{background:rgba(255,255,255,.08);}
-.hb{display:block;border-radius:2px;background:#fff;pointer-events:none;transition:transform .38s cubic-bezier(.68,-.55,.265,1.55),opacity .25s,width .3s;}
-.hb:nth-child(1){width:22px;height:1.5px;}.hb:nth-child(2){width:14px;height:1.5px;}.hb:nth-child(3){width:22px;height:1.5px;}
-.hbg.open .hb{background:var(--electric);}
-.hbg.open .hb:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
-.hbg.open .hb:nth-child(2){opacity:0;transform:scaleX(0);}
-.hbg.open .hb:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
-.mbd{position:fixed;inset:0;z-index:140;background:rgba(10,22,40,.45);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .4s;}
-.mbd.open{opacity:1;pointer-events:all;}
-.mpn{position:fixed;top:0;right:0;bottom:0;width:min(360px,100vw);z-index:150;background:rgba(238,241,246,0.97);backdrop-filter:blur(24px);border-left:1px solid rgba(10,22,40,0.12);transform:translateX(110%);transition:transform .55s cubic-bezier(.77,0,.175,1);display:flex;flex-direction:column;box-shadow:-12px 0 60px rgba(10,22,40,.18);overflow:hidden;}
-.mpn.open{transform:translateX(0);}
-.mph{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid var(--border2);flex-shrink:0;}
-.mph-close{width:36px;height:36px;border-radius:8px;background:transparent;border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink3);font-size:.95rem;transition:all .2s;}
-.mph-close:hover{border-color:var(--navy);color:var(--navy);background:var(--off2);}
-.mn{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:0;}
-.mn-sec{margin-bottom:6px;}
-.mn-heading{font-size:.59rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);opacity:.6;padding:14px 12px 8px;border-bottom:1px solid var(--border2);margin-bottom:4px;}
-.ma{display:flex;align-items:center;justify-content:space-between;padding:11px 12px;border-radius:9px;text-decoration:none;margin-bottom:2px;transition:background .18s,padding-left .2s;opacity:0;transform:translateX(16px);}
-.mpn.open .ma{opacity:1;transform:translateX(0);}
-.ma:hover{background:var(--off2);padding-left:16px;}
-.ma.active{background:rgba(41,121,255,.09);border:1px solid rgba(41,121,255,.14);}
-.ma.active .mn-lbl{color:var(--electric);}
-.ma-accent .mn-icon{background:rgba(41,121,255,.1)!important;border-color:rgba(41,121,255,.2)!important;}
-.mn-left{display:flex;align-items:center;gap:12px;}
-.mn-icon{width:34px;height:34px;border-radius:8px;background:var(--off2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;transition:background .18s,border-color .18s;}
-.ma:hover .mn-icon{background:rgba(41,121,255,.07);border-color:rgba(41,121,255,.15);}
-.ma.active .mn-icon{background:rgba(41,121,255,.1);border-color:rgba(41,121,255,.2);}
-.mn-lbl{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--navy);transition:color .18s;line-height:1;}
-.ma:hover .mn-lbl{color:var(--navy2);}
-.mn-arr{color:var(--ink3);font-size:.75rem;opacity:.4;transition:transform .22s,color .18s,opacity .18s;}
-.ma:hover .mn-arr{transform:translateX(4px);color:var(--electric);opacity:1;}
-.mpf{padding:20px 24px;border-top:1px solid var(--border2);flex-shrink:0;opacity:0;transform:translateY(8px);transition:opacity .4s ease .3s,transform .4s ease .3s;}
-.mpn.open .mpf{opacity:1;transform:translateY(0);}
-.mr{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--navy);color:#fff;padding:13px;border-radius:9px;font-size:.86rem;font-weight:500;text-decoration:none;margin-bottom:12px;transition:all .25s;box-shadow:0 4px 18px rgba(10,22,40,.2);}
-.mr:hover{background:var(--navy2);transform:translateY(-1px);}
-.mf{font-size:.68rem;color:var(--ink3);text-align:center;}
-
-
-.pb{padding:140px 64px 80px;}
-.pb-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:20px;animation:fu .8s ease .1s both;}
-.pb-eyebrow::before{content:'';width:20px;height:1px;background:var(--electric);}
-.pb-tw{display:block;overflow:hidden;}
-.pb-title{display:block;font-family:var(--serif);font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;letter-spacing:-1px;color:var(--navy);animation:su .9s cubic-bezier(.16,1,.3,1) .15s both;}
-.pb-title em{font-style:italic;background:linear-gradient(105deg,var(--electric),var(--blue),var(--chrome));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.pb-sub{max-width:540px;margin-top:24px;font-size:.98rem;font-weight:300;line-height:1.85;color:var(--ink2);animation:fu .8s ease .35s both;}
-.sl2{display:inline-flex;align-items:center;gap:8px;font-size:.62rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--electric);margin-bottom:14px;}
-.sl2::before{content:'';width:14px;height:1px;background:var(--electric);}
-.sh{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:300;color:var(--navy);line-height:1.1;letter-spacing:-.5px;margin-bottom:14px;}
-.sh em{font-style:italic;color:var(--blue);}
-footer{background:#0a1628;border-top:1px solid rgba(255,255,255,.06);padding:56px 64px 32px;position:relative;z-index:1;}
-.ftt{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:48px;margin-bottom:48px;}
-.fb{font-family:var(--serif);font-size:1.3rem;color:#fff;margin-bottom:12px;}
-.fb em{font-style:normal;color:var(--elec-l);}
-.fd{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.75;max-width:220px;}
-.fc h4{font-size:.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:16px;}
-.fc a{display:block;font-size:.82rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none;margin-bottom:11px;transition:color .2s;}
-.fc a:hover{color:rgba(255,255,255,.8);}
-.ftb{border-top:1px solid rgba(255,255,255,.06);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-.ftc,.ftr{font-size:.75rem;color:rgba(255,255,255,.25);}
-.ftr a{color:var(--elec-l);text-decoration:none;}
-@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-@keyframes su{from{transform:translateY(110%)}to{transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
-.reveal.vis{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
-@media(max-width:900px){
-  nav{padding:0 20px;height:60px;}
-  .pb{padding:96px 20px 56px;}
-  footer{padding:40px 20px 24px;}
-  .ftt{grid-template-columns:1fr;gap:28px;}
-  .ftb{flex-direction:column;text-align:center;gap:8px;}
-}
-@media(max-width:420px){nav{padding:0 16px;}.pb{padding-left:16px;padding-right:16px;}footer{padding:32px 16px 20px;}}
-
-
-.dash{padding:100px 64px 120px;max-width:1100px;}
-.dash-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:48px;flex-wrap:wrap;gap:20px;}
-.dash-welcome{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(--navy);}
-.dash-welcome em{font-style:italic;background:linear-gradient(90deg,var(--electric),var(--chrome));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.dash-btn{display:flex;align-items:center;gap:8px;background:var(--navy);color:#fff;padding:11px 24px;border-radius:8px;font-size:.84rem;font-weight:500;text-decoration:none;transition:all .25s;}
-.dash-btn:hover{background:var(--navy2);transform:translateY(-1px);}
-.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px;}
-.kpi{background:rgba(238,241,246,0.85);border:1px solid var(--border2);border-radius:14px;padding:22px 22px 20px;transition:border-color .3s,transform .3s;}
-.kpi:hover{border-color:rgba(41,121,255,.2);transform:translateY(-3px);}
-.kpi-icon{font-size:1.2rem;margin-bottom:10px;}
-.kpi-val{font-family:var(--serif);font-size:2.4rem;font-weight:300;color:var(--navy);line-height:1;margin-bottom:4px;}
-.kpi-val span{background:linear-gradient(90deg,var(--electric),var(--chrome));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.kpi-lbl{font-size:.75rem;color:var(--ink3);}
-.dash-cols{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;}
-.dash-card{background:rgba(238,241,246,0.85);border:1px solid var(--border2);border-radius:16px;padding:26px;}
-.dc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
-.dc-title{font-size:.88rem;font-weight:500;color:var(--navy);}
-.dc-more{font-size:.74rem;color:var(--electric);text-decoration:none;}
-.res-item{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border2);}
-.res-item:last-child{border-bottom:none;}
-.res-icon{width:40px;height:40px;border-radius:10px;background:rgba(41,121,255,.08);border:1px solid rgba(41,121,255,.12);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
-.res-info{flex:1;}
-.res-name{font-size:.88rem;font-weight:500;color:var(--navy);margin-bottom:2px;}
-.res-date{font-size:.74rem;color:var(--ink3);}
-.res-badge{font-size:.67rem;padding:3px 10px;border-radius:100px;font-weight:500;}
-.rb-active{background:rgba(22,163,74,.12);color:#16a34a;}
-.rb-done{background:rgba(10,22,40,.06);color:var(--ink3);}
-.rb-upcoming{background:rgba(41,121,255,.1);color:var(--electric);}
-.notif-item{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border2);}
-.notif-item:last-child{border-bottom:none;}
-.notif-dot{width:8px;height:8px;border-radius:50%;background:var(--electric);flex-shrink:0;margin-top:5px;}
-.notif-dot.read{background:var(--border);}
-.notif-t{font-size:.82rem;font-weight:500;color:var(--navy);margin-bottom:2px;}
-.notif-d{font-size:.74rem;color:var(--ink3);}
-.profile-row{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--border2);}
-.profile-row:last-child{border-bottom:none;}
-.profile-lbl{font-size:.78rem;color:var(--ink3);width:100px;flex-shrink:0;}
-.profile-val{font-size:.86rem;font-weight:500;color:var(--navy);}
-.edit-btn{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;color:var(--electric);text-decoration:none;margin-top:16px;}
-
-@media(max-width:1100px){.kpi-row{grid-template-columns:repeat(2,1fr);}.dash-cols{grid-template-columns:1fr;}}
-@media(max-width:900px){.dash{padding:96px 20px 80px;}}
-@media(max-width:420px){.dash{padding:84px 16px 60px;}}
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon Compte — NexDrive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+         :root {
+            --L: #0a1628;
+            --L2: #0d1f3a;
+            --L3: #0f2448;
+            --B: #2979ff;
+            --Bl: #5b9fff;
+            --Bll: #a8cbff;
+            --W: #fff;
+            --W2: rgba(255, 255, 255, 0.72);
+            --W3: rgba(255, 255, 255, 0.38);
+            --W4: rgba(255, 255, 255, 0.1);
+            --G: #34d399;
+            --A: #fbbf24;
+            --R: #f87171;
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'DM Sans', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: var(--L);
+            color: var(--W);
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+         ::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background: rgba(41, 121, 255, 0.4);
+            border-radius: 4px;
+        }
+        /* ══ NAV ══ */
+        
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 300;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            background: rgba(8, 14, 26, 0.92);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(41, 121, 255, 0.14);
+        }
+        
+        .nav::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(91, 159, 255, 0.55) 50%, transparent);
+            pointer-events: none;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .nav-r {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nib {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--W4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: .8rem;
+            transition: all .2s;
+            position: relative;
+        }
+        
+        .nib:hover {
+            background: rgba(41, 121, 255, 0.14);
+            border-color: rgba(91, 159, 255, 0.3);
+        }
+        
+        .nib .dot {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--B);
+            border: 2px solid #080e1a;
+        }
+        
+        .nav-av {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--B), #071020);
+            border: 2px solid rgba(91, 159, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif);
+            font-size: .8rem;
+            cursor: pointer;
+        }
+        
+        .hbg {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            width: 38px;
+            height: 38px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            border-radius: 8px;
+            transition: all .22s;
+            flex-shrink: 0;
+        }
+        
+        .hbg:focus {
+            outline: none;
+        }
+        
+        .hbg:hover {
+            background: rgba(41, 121, 255, 0.12);
+        }
+        
+        .hb {
+            display: block;
+            width: 16px;
+            height: 1.5px;
+            border-radius: 2px;
+            background: #fff;
+            pointer-events: none;
+            transition: transform .35s cubic-bezier(.68, -.55, .265, 1.55), opacity .22s;
+        }
+        
+        .hbg.open .hb:nth-child(1) {
+            transform: translateY(5.5px) rotate(45deg);
+        }
+        
+        .hbg.open .hb:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hbg.open .hb:nth-child(3) {
+            transform: translateY(-5.5px) rotate(-45deg);
+        }
+        
+        .mbd {
+            position: fixed;
+            inset: 0;
+            z-index: 350;
+            background: rgba(3, 8, 18, 0.7);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .3s;
+        }
+        
+        .mbd.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .mpn {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: min(290px, 100vw);
+            z-index: 400;
+            background: rgba(7, 14, 26, 0.97);
+            backdrop-filter: blur(32px);
+            border-left: 1px solid rgba(91, 159, 255, 0.1);
+            transform: translateX(110%);
+            transition: transform .5s cubic-bezier(.77, 0, .175, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .mpn.open {
+            transform: translateX(0);
+        }
+        
+        .mph {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 18px;
+            border-bottom: 1px solid rgba(91, 159, 255, 0.1);
+        }
+        
+        .mph-x {
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.35);
+            font-size: .8rem;
+            transition: all .18s;
+        }
+        
+        .mph-x:hover {
+            color: #fff;
+            background: rgba(41, 121, 255, 0.14);
+        }
+        
+        .mn {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            scrollbar-width: none;
+        }
+        
+        .mn::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .mn-h {
+            font-size: .52rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(91, 159, 255, 0.3);
+            padding: 12px 9px 5px;
+        }
+        
+        .ma {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 10px 9px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-bottom: 2px;
+            transition: all .17s;
+            border: 1px solid transparent;
+            opacity: 0;
+            transform: translateX(12px);
+        }
+        
+        .mpn.open .ma {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .ma:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+        
+        .ma.active {
+            background: rgba(41, 121, 255, 0.13);
+            border-color: rgba(41, 121, 255, 0.25);
+        }
+        
+        .mi {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .72rem;
+            flex-shrink: 0;
+        }
+        
+        .ma.active .mi {
+            background: rgba(41, 121, 255, 0.2);
+        }
+        
+        .ml {
+            font-family: var(--serif);
+            font-size: .95rem;
+            color: rgba(255, 255, 255, 0.55);
+        }
+        
+        .ma.active .ml,
+        .ma:hover .ml {
+            color: #fff;
+        }
+        
+        .mpf {
+            padding: 12px;
+            border-top: 1px solid rgba(91, 159, 255, 0.1);
+        }
+        
+        .mr {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            background: linear-gradient(135deg, #1454d4, #2979ff);
+            color: #fff;
+            padding: 11px;
+            border-radius: 8px;
+            font-size: .82rem;
+            font-weight: 500;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(41, 121, 255, 0.3);
+            transition: all .22s;
+        }
+        
+        .mr:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(41, 121, 255, 0.45);
+        }
+        
+        .mpff {
+            font-size: .6rem;
+            color: rgba(255, 255, 255, 0.16);
+            text-align: center;
+            margin-top: 8px;
+        }
+        /* ══ SPLIT ══ */
+        
+        .split {
+            display: grid;
+            grid-template-columns: 360px 1fr;
+            height: 100vh;
+            padding-top: 60px;
+        }
+        /* ══ LEFT ══ */
+        
+        .left {
+            background: var(--L2);
+            border-right: 1px solid rgba(41, 121, 255, 0.14);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .left::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 240px;
+            background: radial-gradient(ellipse 120% 80% at 50% 0%, rgba(41, 121, 255, 0.18) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .left-scroll {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px 28px 24px;
+            scrollbar-width: none;
+        }
+        
+        .left-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .pf-hero {
+            text-align: center;
+            margin-bottom: 28px;
+            position: relative;
+        }
+        
+        .pf-av-ring {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(41, 121, 255, 0.5), rgba(91, 159, 255, 0.1));
+            padding: 3px;
+            margin: 0 auto 14px;
+            position: relative;
+        }
+        
+        .pf-av {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--B) 0%, #071020 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif);
+            font-size: 2rem;
+            color: #fff;
+        }
+        
+        .pf-status {
+            position: absolute;
+            bottom: 3px;
+            right: 3px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--G);
+            border: 3px solid var(--L2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .44rem;
+        }
+        
+        .pf-name {
+            font-family: var(--serif);
+            font-size: 1.45rem;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 3px;
+        }
+        
+        .pf-name em {
+            font-style: italic;
+            color: var(--Bl);
+        }
+        
+        .pf-since {
+            font-size: .7rem;
+            color: var(--W3);
+            margin-bottom: 10px;
+        }
+        
+        .pf-stars {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3px;
+            margin-bottom: 12px;
+        }
+        
+        .pf-star {
+            color: var(--A);
+            font-size: .72rem;
+        }
+        
+        .pf-score {
+            font-size: .72rem;
+            color: var(--W3);
+            margin-left: 5px;
+        }
+        
+        .pf-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .62rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 100px;
+            background: rgba(52, 211, 153, 0.12);
+            color: var(--G);
+            border: 1px solid rgba(52, 211, 153, 0.22);
+        }
+        
+        .pf-badge-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--G);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 0 5px rgba(52, 211, 153, 0);
+            }
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        
+        .stat {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(91, 159, 255, 0.1);
+            border-radius: 12px;
+            padding: 16px 14px;
+            transition: all .2s;
+            cursor: default;
+        }
+        
+        .stat:hover {
+            background: rgba(41, 121, 255, 0.1);
+            border-color: rgba(91, 159, 255, 0.22);
+        }
+        
+        .stat-val {
+            font-family: var(--serif);
+            font-size: 2rem;
+            font-weight: 300;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 3px;
+        }
+        
+        .stat-lbl {
+            font-size: .67rem;
+            color: var(--W3);
+        }
+        
+        .stat-trend {
+            font-size: .62rem;
+            margin-top: 5px;
+        }
+        
+        .st-up {
+            color: var(--G);
+        }
+        
+        .st-dn {
+            color: var(--R);
+        }
+        
+        .st-neu {
+            color: var(--Bl);
+        }
+        
+        .info-rows {
+            margin-bottom: 24px;
+        }
+        
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(41, 121, 255, 0.09);
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        
+        .ir-icon {
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            background: rgba(41, 121, 255, 0.12);
+            border: 1px solid rgba(91, 159, 255, 0.14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .65rem;
+            flex-shrink: 0;
+        }
+        
+        .ir-lbl {
+            font-size: .63rem;
+            color: var(--W3);
+        }
+        
+        .ir-val {
+            font-size: .8rem;
+            font-weight: 500;
+            color: #fff;
+        }
+        
+        .ir-edit {
+            margin-left: auto;
+            font-size: .62rem;
+            color: var(--Bl);
+            opacity: 0;
+            transition: opacity .18s;
+            padding: 3px 8px;
+            border-radius: 5px;
+            background: rgba(41, 121, 255, 0.1);
+            text-decoration: none;
+        }
+        
+        .info-row:hover .ir-edit {
+            opacity: 1;
+        }
+        
+        .left-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            margin-bottom: 20px;
+        }
+        
+        .ln {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 9px;
+            text-decoration: none;
+            transition: all .18s;
+            border: 1px solid transparent;
+        }
+        
+        .ln:hover {
+            background: rgba(255, 255, 255, 0.04);
+        }
+        
+        .ln.active {
+            background: rgba(41, 121, 255, 0.14);
+            border-color: rgba(41, 121, 255, 0.25);
+        }
+        
+        .ln-ico {
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .74rem;
+            flex-shrink: 0;
+        }
+        
+        .ln.active .ln-ico {
+            background: rgba(41, 121, 255, 0.22);
+        }
+        
+        .ln-label {
+            font-size: .81rem;
+            font-weight: 500;
+            color: var(--W3);
+            flex: 1;
+        }
+        
+        .ln.active .ln-label,
+        .ln:hover .ln-label {
+            color: #fff;
+        }
+        
+        .ln-badge {
+            font-size: .58rem;
+            padding: 2px 7px;
+            border-radius: 100px;
+            background: rgba(41, 121, 255, 0.2);
+            color: var(--Bl);
+            border: 1px solid rgba(41, 121, 255, 0.28);
+            font-weight: 600;
+        }
+        
+        .left-actions {
+            padding: 18px 28px 24px;
+            border-top: 1px solid rgba(41, 121, 255, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        
+        .la {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: .75rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: 1px solid;
+            text-decoration: none;
+            transition: all .18s;
+        }
+        
+        .la-p {
+            background: rgba(41, 121, 255, 0.13);
+            color: var(--Bl);
+            border-color: rgba(91, 159, 255, 0.2);
+        }
+        
+        .la-p:hover {
+            background: rgba(41, 121, 255, 0.22);
+        }
+        
+        .la-d {
+            background: rgba(239, 68, 68, 0.07);
+            color: #f87171;
+            border-color: rgba(239, 68, 68, 0.15);
+        }
+        
+        .la-d:hover {
+            background: rgba(239, 68, 68, 0.14);
+        }
+        /* ══ RIGHT ══ */
+        
+        .right {
+            overflow-y: auto;
+            background: var(--L);
+            padding: 36px 40px 60px;
+        }
+        
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            margin-top: 36px;
+        }
+        
+        .section-head:first-child {
+            margin-top: 0;
+        }
+        
+        .sh-title {
+            font-family: var(--serif);
+            font-size: 1.55rem;
+            font-weight: 300;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sh-title em {
+            font-style: italic;
+            color: var(--Bl);
+        }
+        
+        .sh-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(41, 121, 255, 0.2), transparent);
+            margin-left: 16px;
+            margin-right: 16px;
+        }
+        
+        .sh-link {
+            font-size: .72rem;
+            color: var(--Bl);
+            text-decoration: none;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .sh-link:hover {
+            color: #fff;
+        }
+        /* ── RENTAL CARD — FIX: rc-body align-items center, rc-right centered ── */
+        
+        .rental-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.13) 0%, rgba(41, 121, 255, 0.07) 60%, transparent 100%);
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            border-radius: 16px;
+            padding: 28px 30px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 36px;
+        }
+        
+        .rental-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.4) 40%, rgba(91, 159, 255, 0.3) 70%, transparent);
+        }
+        
+        .rental-card::after {
+            content: '';
+            position: absolute;
+            right: -6%;
+            top: -20%;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(41, 121, 255, 0.1), transparent 70%);
+            pointer-events: none;
+        }
+        
+        .rc-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .59rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 100px;
+            background: rgba(52, 211, 153, 0.13);
+            color: var(--G);
+            border: 1px solid rgba(52, 211, 153, 0.22);
+            margin-bottom: 14px;
+        }
+        
+        .rc-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--G);
+            animation: pulse 2s infinite;
+        }
+        /* FIX 1: was flex-end, now center so "3" aligns properly with left content */
+        
+        .rc-body {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        .rc-vehicle {
+            font-family: var(--serif);
+            font-size: 1.9rem;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 6px;
+            line-height: 1.1;
+        }
+        
+        .rc-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: .77rem;
+            color: var(--W2);
+            flex-wrap: wrap;
+        }
+        
+        .rc-sep {
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            background: rgba(91, 159, 255, 0.3);
+        }
+        /* FIX 2: rc-right — positionné en absolu en haut à droite */
+        
+        .rc-right {
+            position: absolute;
+            top: 24px;
+            right: 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        
+        .rc-days {
+            font-family: var(--serif);
+            font-size: 3.8rem;
+            font-weight: 300;
+            color: var(--G);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .rc-dlbl {
+            font-size: .62rem;
+            color: rgba(52, 211, 153, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .rc-progress {
+            margin-top: 18px;
+        }
+        
+        .rc-pt {
+            display: flex;
+            justify-content: space-between;
+            font-size: .67rem;
+            color: var(--W3);
+            margin-bottom: 7px;
+        }
+        
+        .rc-bar {
+            height: 3px;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .rc-fill {
+            height: 100%;
+            width: 33%;
+            background: linear-gradient(90deg, #059669, var(--G));
+            border-radius: 3px;
+        }
+        
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        
+        .grid3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        
+        .card {
+            background: var(--L2);
+            border: 1px solid rgba(41, 121, 255, 0.1);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: border-color .25s;
+        }
+        
+        .card:hover {
+            border-color: rgba(91, 159, 255, 0.2);
+        }
+        
+        .card-h {
+            padding: 18px 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .ch-l {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+        
+        .ci {
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .76rem;
+            flex-shrink: 0;
+            border: 1px solid;
+        }
+        
+        .ci-b {
+            background: rgba(41, 121, 255, 0.16);
+            border-color: rgba(41, 121, 255, 0.26);
+        }
+        
+        .ci-g {
+            background: rgba(52, 211, 153, 0.13);
+            border-color: rgba(52, 211, 153, 0.22);
+        }
+        
+        .ci-a {
+            background: rgba(251, 191, 36, 0.13);
+            border-color: rgba(251, 191, 36, 0.22);
+        }
+        
+        .ci-v {
+            background: rgba(168, 85, 247, 0.13);
+            border-color: rgba(168, 85, 247, 0.22);
+        }
+        
+        .ct {
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--W);
+        }
+        
+        .cs {
+            font-size: .66rem;
+            color: var(--W3);
+            margin-top: 1px;
+        }
+        
+        .c-action {
+            font-size: .68rem;
+            color: var(--Bl);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .c-action:hover {
+            color: #fff;
+        }
+        
+        .card-b {
+            padding: 14px 20px 18px;
+        }
+        /* FIX 3: res hover — prevent layout jump with padding compensation */
+        
+        .res {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 6px;
+            border-bottom: 1px solid rgba(41, 121, 255, 0.08);
+            border-radius: 9px;
+            transition: background .15s;
+        }
+        
+        .res:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+        
+        .res:hover {
+            background: rgba(41, 121, 255, 0.06);
+        }
+        
+        .res-th {
+            width: 48px;
+            height: 37px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(41, 121, 255, 0.16), rgba(5, 10, 20, 0.6));
+            border: 1px solid rgba(91, 159, 255, 0.14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        
+        .res-n {
+            font-size: .83rem;
+            font-weight: 500;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 2px;
+        }
+        
+        .res-d {
+            font-size: .68rem;
+            color: var(--W3);
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+        
+        .res-ds {
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background: rgba(91, 159, 255, 0.3);
+        }
+        
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: .6rem;
+            padding: 3px 8px;
+            border-radius: 100px;
+            font-weight: 600;
+        }
+        
+        .badge::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+        }
+        
+        .b-on {
+            background: rgba(52, 211, 153, 0.11);
+            color: var(--G);
+            border: 1px solid rgba(52, 211, 153, 0.2);
+        }
+        
+        .b-on::before {
+            background: var(--G);
+            animation: blink 2s infinite;
+        }
+        
+        .b-off {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--W3);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        
+        .b-off::before {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1
+            }
+            50% {
+                opacity: .3
+            }
+        }
+        
+        .res-p {
+            font-size: .73rem;
+            color: var(--W3);
+            margin-top: 3px;
+        }
+        
+        .notif {
+            display: flex;
+            gap: 10px;
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(41, 121, 255, 0.08);
+        }
+        
+        .notif:last-child {
+            border-bottom: none;
+        }
+        
+        .ni {
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .74rem;
+            flex-shrink: 0;
+            border: 1px solid;
+            margin-top: 1px;
+        }
+        
+        .ni-b {
+            background: rgba(41, 121, 255, 0.15);
+            border-color: rgba(41, 121, 255, 0.24);
+        }
+        
+        .ni-g {
+            background: rgba(52, 211, 153, 0.12);
+            border-color: rgba(52, 211, 153, 0.2);
+        }
+        
+        .ni-a {
+            background: rgba(251, 191, 36, 0.12);
+            border-color: rgba(251, 191, 36, 0.2);
+        }
+        
+        .ni-x {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.07);
+        }
+        
+        .nt {
+            font-size: .79rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        
+        .nt.r {
+            color: var(--W3);
+            font-weight: 400;
+        }
+        
+        .nd {
+            font-size: .66rem;
+            color: var(--W3);
+        }
+        
+        .n-u {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--B);
+            flex-shrink: 0;
+            margin-top: 5px;
+            box-shadow: 0 0 5px rgba(41, 121, 255, 0.6);
+        }
+        
+        .doc {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(41, 121, 255, 0.08);
+        }
+        
+        .doc:last-child {
+            border-bottom: none;
+        }
+        
+        .doc-i {
+            width: 32px;
+            height: 32px;
+            border-radius: 7px;
+            background: rgba(41, 121, 255, 0.13);
+            border: 1px solid rgba(91, 159, 255, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+            flex-shrink: 0;
+        }
+        
+        .doc-n {
+            font-size: .79rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 1px;
+        }
+        
+        .doc-m {
+            font-size: .65rem;
+            color: var(--W3);
+        }
+        
+        .doc-dl {
+            font-size: .68rem;
+            color: var(--Bl);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            background: rgba(41, 121, 255, 0.1);
+            border: 1px solid rgba(91, 159, 255, 0.17);
+            transition: all .18s;
+            font-weight: 500;
+            margin-left: auto;
+            flex-shrink: 0;
+        }
+        
+        .doc-dl:hover {
+            background: rgba(41, 121, 255, 0.2);
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 0 8px;
+        }
+        
+        .r-val {
+            font-family: var(--serif);
+            font-size: 3.8rem;
+            font-weight: 300;
+            color: #fff;
+            line-height: 1;
+        }
+        
+        .r-r {
+            flex: 1;
+        }
+        
+        .r-stars {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 4px;
+        }
+        
+        .r-s {
+            color: var(--A);
+            font-size: .9rem;
+        }
+        
+        .r-c {
+            font-size: .68rem;
+            color: var(--W3);
+        }
+        
+        .rbars {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        
+        .rb {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        
+        .rb-l {
+            font-size: .6rem;
+            color: var(--W3);
+            width: 8px;
+        }
+        
+        .rb-t {
+            flex: 1;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .rb-f {
+            height: 100%;
+            border-radius: 2px;
+            background: linear-gradient(90deg, #d97706, var(--A));
+            transition: width 1.6s cubic-bezier(.22, .68, 0, 1.2);
+        }
+        
+        .pref {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 11px 0;
+            border-bottom: 1px solid rgba(41, 121, 255, 0.08);
+        }
+        
+        .pref:last-child {
+            border-bottom: none;
+        }
+        
+        .pref-i {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            background: rgba(41, 121, 255, 0.11);
+            border: 1px solid rgba(91, 159, 255, 0.14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .7rem;
+            flex-shrink: 0;
+        }
+        
+        .pref-n {
+            font-size: .79rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 1px;
+        }
+        
+        .pref-d {
+            font-size: .65rem;
+            color: var(--W3);
+        }
+        
+        .tg {
+            position: relative;
+            width: 34px;
+            height: 19px;
+            flex-shrink: 0;
+        }
+        
+        .tg input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            position: absolute;
+        }
+        
+        .tg-s {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.09);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: background .2s;
+            border: 1px solid rgba(255, 255, 255, 0.09);
+        }
+        
+        .tg-s::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #fff;
+            transition: left .2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tg input:checked+.tg-s {
+            background: rgba(41, 121, 255, 0.62);
+            border-color: rgba(91, 159, 255, 0.4);
+        }
+        
+        .tg input:checked+.tg-s::before {
+            left: calc(100% - 15px);
+        }
+        
+        .turo {
+            background: linear-gradient(125deg, rgba(41, 121, 255, 0.18) 0%, rgba(10, 22, 40, 0.9) 100%);
+            border: 1px solid rgba(41, 121, 255, 0.22);
+            border-radius: 16px;
+            padding: 30px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+            margin-top: 36px;
+        }
+        
+        .turo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(91, 159, 255, 0.48) 50%, transparent);
+        }
+        
+        .turo::after {
+            content: '';
+            position: absolute;
+            right: -5%;
+            bottom: -30%;
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(41, 121, 255, 0.12), transparent 70%);
+            pointer-events: none;
+        }
+        
+        .turo-ey {
+            font-size: .56rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--Bl);
+            margin-bottom: 8px;
+        }
+        
+        .turo-h {
+            font-family: var(--serif);
+            font-size: 1.65rem;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 6px;
+            line-height: 1.2;
+        }
+        
+        .turo-p {
+            font-size: .79rem;
+            color: var(--W2);
+            line-height: 1.6;
+            max-width: 380px;
+        }
+        
+        .turo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: linear-gradient(135deg, #1454d4, #2979ff);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 9px;
+            font-size: .82rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all .22s;
+            box-shadow: 0 4px 18px rgba(41, 121, 255, 0.38);
+            flex-shrink: 0;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .turo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 28px rgba(41, 121, 255, 0.52);
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity .55s ease, transform .55s ease;
+        }
+        
+        .reveal.vis {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .d1 {
+            transition-delay: .07s
+        }
+        
+        .d2 {
+            transition-delay: .14s
+        }
+        
+        .d3 {
+            transition-delay: .21s
+        }
+        /* ── FOOTER ── */
+        
+        .foot {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(41, 121, 255, 0.1);
+        }
+        
+        .foot-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .fb {
+            font-family: var(--serif);
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .fb em {
+            font-style: normal;
+            color: var(--Bl);
+        }
+        
+        .fd {
+            font-size: .75rem;
+            color: rgba(255, 255, 255, .25);
+            line-height: 1.7;
+            max-width: 170px;
+        }
+        
+        .fc h4 {
+            font-size: .54rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .14);
+            margin-bottom: 10px;
+        }
+        
+        .fc a {
+            display: block;
+            font-size: .75rem;
+            color: rgba(255, 255, 255, .25);
+            text-decoration: none;
+            margin-bottom: 8px;
+            transition: color .18s;
+        }
+        
+        .fc a:hover {
+            color: rgba(255, 255, 255, .7);
+        }
+        
+        .foot-bot {
+            display: flex;
+            justify-content: space-between;
+            font-size: .68rem;
+            color: rgba(255, 255, 255, .16);
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .foot-bot a {
+            color: var(--Bl);
+            text-decoration: none;
+        }
+        /* ══ RESPONSIVE ══ */
+        
+        @media(max-width:960px) {
+            body {
+                overflow: auto;
+            }
+            .split {
+                display: block;
+                height: auto;
+                overflow: visible;
+            }
+            .left {
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid rgba(41, 121, 255, 0.12);
+            }
+            .left-scroll {
+                padding: 24px 20px 16px;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .right {
+                padding: 24px 20px 40px;
+                overflow: visible;
+            }
+            .grid2,
+            .grid3 {
+                grid-template-columns: 1fr;
+            }
+            .foot-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media(max-width:540px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .left-actions {
+                grid-template-columns: 1fr;
+            }
+            .turo {
+                flex-direction: column;
+            }
+            .foot-grid {
+                grid-template-columns: 1fr;
+            }
+            .foot-bot {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<nav>
-  <a href="index.html" class="logo">
-    <div class="lm"><span class="ln">N</span></div>
-    <div class="lt">Nex<em>Drive</em></div>
-  </a>
-  <button class="hbg" id="hbBtn" type="button" aria-label="Menu">
-    <span class="hb"></span><span class="hb"></span><span class="hb"></span>
-  </button>
-</nav>
-<div class="mbd" id="mobBack"></div>
-<div class="mpn" id="mobPanel">
-  <div class="mph">
-    <a href="index.html" class="logo" onclick="closeMob()">
-      <div class="lm"><span class="ln">N</span></div>
-      <div class="lt">Nex<em>Drive</em></div>
-    </a>
-    <button class="mph-close" onclick="closeMob()" aria-label="Fermer">✕</button>
-  </div>
-  <div class="mn">
-    <div class="mn-sec"><div class="mn-heading">Navigation</div>
-      <a href="vehicules.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🚗</div><span class="mn-lbl">Véhicules</span></div><span class="mn-arr">→</span></a>
-      <a href="engagement.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">✦</div><span class="mn-lbl">Engagement</span></div><span class="mn-arr">→</span></a>
-      <a href="processus.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🗝️</div><span class="mn-lbl">Processus</span></div><span class="mn-arr">→</span></a>
-    </div>
-    <div class="mn-sec"><div class="mn-heading">Mon espace</div>
-      <a href="compte.html" class="ma active ma-accent" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">👤</div><span class="mn-lbl">Mon compte</span></div><span class="mn-arr">→</span></a>
-    </div>
-    <div class="mn-sec"><div class="mn-heading">Informations</div>
-      <a href="apropos.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🏢</div><span class="mn-lbl">À propos</span></div><span class="mn-arr">→</span></a>
-      <a href="services.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">⚙️</div><span class="mn-lbl">Services</span></div><span class="mn-arr">→</span></a>
-      <a href="partenaires.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🤝</div><span class="mn-lbl">Partenaires</span></div><span class="mn-arr">→</span></a>
-      <a href="faq.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">❓</div><span class="mn-lbl">FAQ</span></div><span class="mn-arr">→</span></a>
-    </div>
-    <div class="mn-sec"><div class="mn-heading">Légal</div>
-      <a href="confidentialite.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🔒</div><span class="mn-lbl">Confidentialité</span></div><span class="mn-arr">→</span></a>
-    </div>
-  </div>
-  <div class="mpf">
-    <a href="https://turo.com/VOTRE-LIEN-ICI" target="_blank" class="mr">Réserver sur Turo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-    <div class="mf">NexDrive — Québec © 2026</div>
-  </div>
-</div>
+    <!-- NAV -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:76px;width:auto;object-fit:contain;filter:drop-shadow(0 0 7px rgba(41,121,255,0.5));" />
+        </a>
+        <div class="nav-r">
+            <div class="nib">🔔
+                <div class="dot"></div>
+            </div>
+            <div class="nav-av">M</div>
+            <button class="hbg" id="hbBtn" type="button"><span class="hb"></span><span class="hb"></span><span class="hb"></span></button>
+        </div>
+    </nav>
 
-<div class="dash">
-  <div class="dash-top">
-    <div><div class="pb-eyebrow" style="animation:none;margin-bottom:10px;">Tableau de bord</div><div class="dash-welcome">Bonjour, <em>Utilisateur</em> 👋</div></div>
-    <a href="https://turo.com/VOTRE-LIEN-ICI" target="_blank" class="dash-btn">Nouvelle réservation →</a>
-  </div>
-  <div class="kpi-row">
-    <div class="kpi reveal"><div class="kpi-icon">🚗</div><div class="kpi-val"><span>3</span></div><div class="kpi-lbl">Réservations totales</div></div>
-    <div class="kpi reveal d1"><div class="kpi-icon">⭐</div><div class="kpi-val"><span>5.0</span></div><div class="kpi-lbl">Note moyenne donnée</div></div>
-    <div class="kpi reveal d2"><div class="kpi-icon">📅</div><div class="kpi-val"><span>12</span></div><div class="kpi-lbl">Jours de location</div></div>
-    <div class="kpi reveal d3"><div class="kpi-icon">💰</div><div class="kpi-val"><span>$890</span></div><div class="kpi-lbl">Total dépensé</div></div>
-  </div>
-  <div class="dash-cols">
-    <div>
-      <div class="dash-card reveal" style="margin-bottom:20px;">
-        <div class="dc-head"><div class="dc-title">Mes réservations</div><a href="#" class="dc-more">Voir tout →</a></div>
-        <div class="res-item"><div class="res-icon">🚗</div><div class="res-info"><div class="res-name">Voiture 1 — Berline</div><div class="res-date">15–18 mars 2026</div></div><span class="res-badge rb-upcoming">À venir</span></div>
-        <div class="res-item"><div class="res-icon">🚙</div><div class="res-info"><div class="res-name">Voiture 2 — SUV</div><div class="res-date">2–5 févr. 2026</div></div><span class="res-badge rb-done">Terminée</span></div>
-        <div class="res-item"><div class="res-icon">⚡</div><div class="res-info"><div class="res-name">Voiture 3 — Premium</div><div class="res-date">10–12 janv. 2026</div></div><span class="res-badge rb-done">Terminée</span></div>
-      </div>
-      <div class="dash-card reveal d1">
-        <div class="dc-head"><div class="dc-title">Mon profil</div></div>
-        <div class="profile-row"><div class="profile-lbl">Nom</div><div class="profile-val">Prénom Nom</div></div>
-        <div class="profile-row"><div class="profile-lbl">Courriel</div><div class="profile-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="cbaeb3aea6bba7ae8baea6aaa2a7e5a8a4a6">[email&#160;protected]</a></div></div>
-        <div class="profile-row"><div class="profile-lbl">Téléphone</div><div class="profile-val">+1 (514) 000-0000</div></div>
-        <div class="profile-row"><div class="profile-lbl">Membre depuis</div><div class="profile-val">Janvier 2026</div></div>
-        <a href="#" class="edit-btn">✏️ Modifier le profil</a>
-      </div>
+    <!-- MENU MOBILE -->
+    <div class="mbd" id="mobBack"></div>
+    <div class="mpn" id="mobPanel">
+        <div class="mph">
+            <a href="index.html" class="nav-logo" onclick="closeMob()">
+                <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:44px;width:auto;filter:drop-shadow(0 0 6px rgba(41,121,255,0.4));" />
+            </a>
+            <button class="mph-x" onclick="closeMob()">✕</button>
+        </div>
+        <div class="mn">
+            <div class="mn-h">Navigation</div>
+            <a href="index.html" class="ma" onclick="closeMob()">
+                <div class="mi">🏠</div><span class="ml">Accueil</span></a>
+            <a href="vehicules.html" class="ma" onclick="closeMob()">
+                <div class="mi">🚗</div><span class="ml">Notre flotte</span></a>
+            <a href="apropos.html" class="ma" onclick="closeMob()">
+                <div class="mi">🏢</div><span class="ml">À propos</span></a>
+            <a href="faq.html" class="ma" onclick="closeMob()">
+                <div class="mi">❓</div><span class="ml">FAQ</span></a>
+            <div class="mn-h">Mon espace</div>
+            <a href="compte.html" class="ma active" onclick="closeMob()">
+                <div class="mi">👤</div><span class="ml">Mon compte</span></a>
+            <div class="mn-h">Légal</div>
+            <a href="confidentialite.html" class="ma" onclick="closeMob()">
+                <div class="mi">🔒</div><span class="ml">Confidentialité</span></a>
+            <a href="conditions.html" class="ma" onclick="closeMob()">
+                <div class="mi">📄</div><span class="ml">Conditions</span></a>
+        </div>
+        <div class="mpf">
+            <a href="vehicules.html" class="mr">Voir la flotte →</a>
+            <div class="mpff">NexDrive — Québec © 2026</div>
+        </div>
     </div>
-    <div>
-      <div class="dash-card reveal d2">
-        <div class="dc-head"><div class="dc-title">Notifications</div><a href="#" class="dc-more">Tout marquer lu</a></div>
-        <div class="notif-item"><div class="notif-dot"></div><div><div class="notif-t">Votre réservation est confirmée</div><div class="notif-d">Voiture 1 · 15 mars 2026 · Il y a 2h</div></div></div>
-        <div class="notif-item"><div class="notif-dot"></div><div><div class="notif-t">Rappel : retour demain</div><div class="notif-d">Voiture 2 · Hier à 18h00</div></div></div>
-        <div class="notif-item"><div class="notif-dot read"></div><div><div class="notif-t">Merci pour votre avis 5 étoiles !</div><div class="notif-d">Il y a 3 jours</div></div></div>
-        <div class="notif-item"><div class="notif-dot read"></div><div><div class="notif-t">Bienvenue chez NexDrive</div><div class="notif-d">Il y a 2 mois</div></div></div>
-      </div>
+
+    <!-- SPLIT -->
+    <div class="split">
+
+        <!-- ══ GAUCHE ══ -->
+        <aside class="left">
+            <div class="left-scroll">
+                <div class="pf-hero">
+                    <div class="pf-av-ring">
+                        <div class="pf-av">M</div>
+                        <div class="pf-status">✓</div>
+                    </div>
+                    <div class="pf-name"><em>Marie-Claude</em> T.</div>
+                    <div class="pf-since">Membre depuis janvier 2026</div>
+                    <div class="pf-stars">
+                        <span class="pf-star">★</span><span class="pf-star">★</span><span class="pf-star">★</span><span class="pf-star">★</span><span class="pf-star">★</span>
+                        <span class="pf-score">5.0 · 3 avis</span>
+                    </div>
+                    <div class="pf-badge"><span class="pf-badge-dot"></span>Permis vérifié</div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat">
+                        <div class="stat-val">3</div>
+                        <div class="stat-lbl">Réservations</div>
+                        <div class="stat-trend st-neu">↑ +1 ce mois</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-val">12</div>
+                        <div class="stat-lbl">Jours loués</div>
+                        <div class="stat-trend st-neu">+3 →</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-val">5.0</div>
+                        <div class="stat-lbl">Note</div>
+                        <div class="stat-trend st-up">✓ Parfait</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-val">$890</div>
+                        <div class="stat-lbl">Total</div>
+                        <div class="stat-trend st-dn">− $210</div>
+                    </div>
+                </div>
+
+                <div class="info-rows">
+                    <div class="info-row">
+                        <div class="ir-icon">📧</div>
+                        <div>
+                            <div class="ir-lbl">Courriel</div>
+                            <div class="ir-val">m.tremblay@email.com</div>
+                        </div>
+                        <a href="#" class="ir-edit">✏️</a>
+                    </div>
+                    <div class="info-row">
+                        <div class="ir-icon">📱</div>
+                        <div>
+                            <div class="ir-lbl">Téléphone</div>
+                            <div class="ir-val">+1 (819) 555-0142</div>
+                        </div>
+                        <a href="#" class="ir-edit">✏️</a>
+                    </div>
+                    <div class="info-row">
+                        <div class="ir-icon">📍</div>
+                        <div>
+                            <div class="ir-lbl">Ville</div>
+                            <div class="ir-val">Drummondville, QC</div>
+                        </div>
+                        <a href="#" class="ir-edit">✏️</a>
+                    </div>
+                </div>
+
+                <div class="left-nav">
+                    <a href="#overview" class="ln active">
+                        <div class="ln-ico">📊</div>
+                        <div class="ln-label">Vue d'ensemble</div>
+                    </a>
+                    <a href="#reservations" class="ln">
+                        <div class="ln-ico">🗓️</div>
+                        <div class="ln-label">Réservations</div><span class="ln-badge">1</span></a>
+                    <a href="#documents" class="ln">
+                        <div class="ln-ico">📋</div>
+                        <div class="ln-label">Mes contrats</div>
+                    </a>
+                    <a href="#evaluations" class="ln">
+                        <div class="ln-ico">⭐</div>
+                        <div class="ln-label">Évaluations</div>
+                    </a>
+                    <a href="#preferences" class="ln">
+                        <div class="ln-ico">⚙️</div>
+                        <div class="ln-label">Préférences</div>
+                    </a>
+                    <a href="faq.html" class="ln">
+                        <div class="ln-ico">💬</div>
+                        <div class="ln-label">Support</div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="left-actions">
+                <a href="#" class="la la-p">✏️ Modifier</a>
+                <a href="#" class="la la-d">🚪 Déconnexion</a>
+            </div>
+        </aside>
+
+        <!-- ══ DROITE ══ -->
+        <main class="right" id="mainRight">
+
+            <div id="overview">
+                <div class="section-head">
+                    <div class="sh-title">Location <em>en cours</em></div>
+                    <div class="sh-line"></div>
+                </div>
+                <div class="rental-card reveal">
+                    <div class="rc-tag"><span class="rc-dot"></span>Active maintenant</div>
+                    <div class="rc-body">
+                        <div class="rc-left">
+                            <div class="rc-vehicle">Berline Premium<br>Classe A</div>
+                            <div class="rc-meta">
+                                15 mars 2026 <span class="rc-sep"></span> 18 mars 2026
+                                <span class="rc-sep"></span> Drummondville, QC
+                                <span class="rc-sep"></span> $285
+                            </div>
+                        </div>
+                        <div class="rc-right">
+                            <div class="rc-days">3</div>
+                            <div class="rc-dlbl">jours restants</div>
+                        </div>
+                    </div>
+                    <div class="rc-progress">
+                        <div class="rc-pt"><span>Jour 1 sur 3</span><span>Retour le 18 mars</span></div>
+                        <div class="rc-bar">
+                            <div class="rc-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reservations">
+                <div class="section-head">
+                    <div class="sh-title">Mes <em>réservations</em></div>
+                    <div class="sh-line"></div>
+                    <a href="#" class="sh-link">Voir tout →</a>
+                </div>
+                <div class="card reveal">
+                    <div class="card-b">
+                        <div class="res">
+                            <div class="res-th">🚗</div>
+                            <div style="flex:1;min-width:0;">
+                                <div class="res-n">Berline Premium — Classe A</div>
+                                <div class="res-d">15–18 mars 2026 <span class="res-ds"></span> Drummondville</div>
+                            </div>
+                            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+                                <span class="badge b-on">En cours</span>
+                                <div class="res-p">$285 · 3 jours</div>
+                            </div>
+                        </div>
+                        <div class="res">
+                            <div class="res-th">🚙</div>
+                            <div style="flex:1;min-width:0;">
+                                <div class="res-n">SUV Prestige — Classe B</div>
+                                <div class="res-d">2–5 févr. 2026 <span class="res-ds"></span> Montréal</div>
+                            </div>
+                            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+                                <span class="badge b-off">Terminée</span>
+                                <div class="res-p">$360 · 3 jours</div>
+                            </div>
+                        </div>
+                        <div class="res">
+                            <div class="res-th">⚡</div>
+                            <div style="flex:1;min-width:0;">
+                                <div class="res-n">Coupé Sport — Électrique</div>
+                                <div class="res-d">10–12 janv. 2026 <span class="res-ds"></span> Québec</div>
+                            </div>
+                            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+                                <span class="badge b-off">Terminée</span>
+                                <div class="res-p">$245 · 2 jours</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="documents">
+                <div class="section-head" style="margin-top:36px;">
+                    <div class="sh-title">Contrats <em>&amp;</em> notifications</div>
+                    <div class="sh-line"></div>
+                </div>
+            </div>
+            <div class="grid2">
+                <div class="card reveal">
+                    <div class="card-h">
+                        <div class="ch-l">
+                            <div class="ci ci-g">📋</div>
+                            <div>
+                                <div class="ct">Mes contrats</div>
+                                <div class="cs">4 documents</div>
+                            </div>
+                        </div>
+                        <a href="#" class="c-action">Tout →</a>
+                    </div>
+                    <div class="card-b">
+                        <div class="doc">
+                            <div class="doc-i">📋</div>
+                            <div>
+                                <div class="doc-n">Contrat · Berline Classe A</div>
+                                <div class="doc-m">Mars 2026 · PDF</div>
+                            </div><a href="#" class="doc-dl">↓ PDF</a></div>
+                        <div class="doc">
+                            <div class="doc-i">📋</div>
+                            <div>
+                                <div class="doc-n">Contrat · SUV Prestige</div>
+                                <div class="doc-m">Févr. 2026 · PDF</div>
+                            </div><a href="#" class="doc-dl">↓ PDF</a></div>
+                        <div class="doc">
+                            <div class="doc-i">📋</div>
+                            <div>
+                                <div class="doc-n">Contrat · Coupé Sport</div>
+                                <div class="doc-m">Janv. 2026 · PDF</div>
+                            </div><a href="#" class="doc-dl">↓ PDF</a></div>
+                        <div class="doc">
+                            <div class="doc-i">🪪</div>
+                            <div>
+                                <div class="doc-n">Permis de conduire</div>
+                                <div class="doc-m">Vérifié · Exp. déc. 2028</div>
+                            </div><a href="#" class="doc-dl">↓ Voir</a></div>
+                    </div>
+                </div>
+                <div class="card reveal d1">
+                    <div class="card-h">
+                        <div class="ch-l">
+                            <div class="ci ci-v">🔔</div>
+                            <div>
+                                <div class="ct">Notifications</div>
+                                <div class="cs">2 non lues</div>
+                            </div>
+                        </div>
+                        <a href="#" class="c-action">Tout lire</a>
+                    </div>
+                    <div class="card-b">
+                        <div class="notif">
+                            <div class="ni ni-b">📋</div>
+                            <div class="notif-body">
+                                <div class="nt">Votre contrat est prêt</div>
+                                <div class="nd">Berline Classe A · Il y a 1h</div>
+                            </div>
+                            <div class="n-u"></div>
+                        </div>
+                        <div class="notif">
+                            <div class="ni ni-g">✅</div>
+                            <div class="notif-body">
+                                <div class="nt">Réservation confirmée</div>
+                                <div class="nd">15 mars 2026 · Il y a 3h</div>
+                            </div>
+                            <div class="n-u"></div>
+                        </div>
+                        <div class="notif">
+                            <div class="ni ni-a">⭐</div>
+                            <div class="notif-body">
+                                <div class="nt r">Merci pour votre 5 étoiles !</div>
+                                <div class="nd">Il y a 5 jours</div>
+                            </div>
+                        </div>
+                        <div class="notif">
+                            <div class="ni ni-x">🎉</div>
+                            <div class="notif-body">
+                                <div class="nt r">Bienvenue chez NexDrive !</div>
+                                <div class="nd">Il y a 2 mois</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="evaluations">
+                <div class="section-head" style="margin-top:36px;">
+                    <div class="sh-title"><em>Évaluations</em> &amp; préférences</div>
+                    <div class="sh-line"></div>
+                </div>
+            </div>
+            <div class="grid2">
+                <div class="card reveal" id="preferences">
+                    <div class="card-h">
+                        <div class="ch-l">
+                            <div class="ci ci-a">⭐</div>
+                            <div>
+                                <div class="ct">Mes évaluations</div>
+                                <div class="cs">via Turo</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-b">
+                        <div class="rating">
+                            <div class="r-val">5.0</div>
+                            <div class="r-r">
+                                <div class="r-stars"><span class="r-s">★</span><span class="r-s">★</span><span class="r-s">★</span><span class="r-s">★</span><span class="r-s">★</span></div>
+                                <div class="r-c">3 avis · 5.0 / 5.0</div>
+                                <div class="rbars">
+                                    <div class="rb">
+                                        <div class="rb-l">5</div>
+                                        <div class="rb-t">
+                                            <div class="rb-f" style="width:0%" data-width="100%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="rb">
+                                        <div class="rb-l">4</div>
+                                        <div class="rb-t">
+                                            <div class="rb-f" style="width:0%" data-width="0%"></div>
+                                        </div>
+                                    </div>
+                                    <div class="rb">
+                                        <div class="rb-l">3</div>
+                                        <div class="rb-t">
+                                            <div class="rb-f" style="width:0%" data-width="0%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card reveal d1">
+                    <div class="card-h">
+                        <div class="ch-l">
+                            <div class="ci ci-b">⚙️</div>
+                            <div>
+                                <div class="ct">Préférences</div>
+                                <div class="cs">Notifications</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-b">
+                        <div class="pref">
+                            <div class="pref-i">📧</div>
+                            <div>
+                                <div class="pref-n">Rappels par courriel</div>
+                                <div class="pref-d">24h avant la location</div>
+                            </div><label class="tg"><input type="checkbox" checked/><span class="tg-s"></span></label></div>
+                        <div class="pref">
+                            <div class="pref-i">📱</div>
+                            <div>
+                                <div class="pref-n">SMS de confirmation</div>
+                                <div class="pref-d">À chaque réservation</div>
+                            </div><label class="tg"><input type="checkbox" checked/><span class="tg-s"></span></label></div>
+                        <div class="pref">
+                            <div class="pref-i">🔔</div>
+                            <div>
+                                <div class="pref-n">Offres &amp; promotions</div>
+                                <div class="pref-d">Nouveautés NexDrive</div>
+                            </div><label class="tg"><input type="checkbox"/><span class="tg-s"></span></label></div>
+                        <div class="pref">
+                            <div class="pref-i">🌐</div>
+                            <div>
+                                <div class="pref-n">Langue</div>
+                                <div class="pref-d">Français (Canada)</div>
+                            </div><label class="tg"><input type="checkbox" checked/><span class="tg-s"></span></label></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="turo reveal">
+                <div>
+                    <div class="turo-ey">Réservez via Turo</div>
+                    <div class="turo-h">Prêt pour votre<br>prochaine aventure ?</div>
+                    <div class="turo-p">Toute notre flotte est disponible sur Turo — assurance incluse, processus 100 % en ligne, contrat envoyé automatiquement.</div>
+                </div>
+                <a href="vehicules.html" class="turo-btn">Voir la flotte <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+            </div>
+
+            <footer class="foot">
+                <div class="foot-grid">
+                    <div>
+                        <div class="fb">Nex<em>Drive</em></div>
+                        <p class="fd">Location de véhicules premium au Québec, Canada.</p>
+                    </div>
+                    <div class="fc">
+                        <h4>Navigation</h4><a href="index.html">Accueil</a><a href="vehicules.html">Flotte</a><a href="apropos.html">À propos</a><a href="faq.html">FAQ</a></div>
+                    <div class="fc">
+                        <h4>Mon espace</h4><a href="compte.html">Mon compte</a><a href="login.html">Connexion</a></div>
+                    <div class="fc">
+                        <h4>Légal</h4><a href="confidentialite.html">Confidentialité</a><a href="conditions.html">Conditions</a></div>
+                </div>
+                <div class="foot-bot">
+                    <span>© 2026 NexDrive — Québec, Canada.</span>
+                    <span>Réservations via <a href="https://turo.com" target="_blank">Turo</a></span>
+                </div>
+            </footer>
+
+        </main>
     </div>
-  </div>
-</div>
 
-<footer>
-  <div class="ftt">
-    <div><div class="fb">Nex<em>Drive</em></div><p class="fd">Location de véhicules premium au Québec. Réservation via Turo, assurance incluse.</p></div>
-    <div class="fc"><h4>Navigation</h4>
-      <a href="vehicules.html">Véhicules</a>
-      <a href="engagement.html">Engagement</a>
-      <a href="processus.html">Processus</a>
-      <a href="compte.html">Mon compte</a>
-    </div>
-    <div class="fc"><h4>Infos & Légal</h4>
-      <a href="apropos.html">À propos</a>
-      <a href="services.html">Services</a>
-      <a href="partenaires.html">Partenaires</a>
-      <a href="faq.html">FAQ</a>
-      <a href="confidentialite.html">Confidentialité</a>
-    </div>
-  </div>
-  <div class="ftb"><div class="ftc">© 2026 NexDrive — Québec, Canada.</div><div class="ftr">Réservations via <a href="https://turo.com" target="_blank">Turo</a></div></div>
-</footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
-</script><script>
+    <script>
+        var hbBtn = document.getElementById('hbBtn'),
+            mobB = document.getElementById('mobBack'),
+            mobP = document.getElementById('mobPanel');
 
-(function(){var c=document.getElementById('sc'),x=c.getContext('2d'),W,H,stars=[],raf,last=0;
-function rnd(a,b){return a+Math.random()*(b-a);}
-function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;stars=[];var n=Math.min(Math.max(Math.floor(W*H/4000),80),260);for(var i=0;i<n;i++)stars.push(mk());}
-function mk(){var t=Math.random(),r,col,bA;if(t<.55){r=rnd(.8,2);col='15,35,70';bA=rnd(.45,.75);}else if(t<.8){r=rnd(.6,1.6);col='30,100,220';bA=rnd(.35,.65);}else if(t<.93){r=rnd(1,2.2);col='60,90,130';bA=rnd(.3,.55);}else{r=rnd(1.2,2);col='10,40,90';bA=rnd(.4,.65);}return{x:Math.random()*W,y:Math.random()*H,r:r,bA:bA,al:bA,col:col,vx:(Math.random()-.5)*rnd(.08,.28),vy:(Math.random()-.5)*rnd(.08,.28),ph:Math.random()*Math.PI*2,spd:rnd(.4,1.1),sparkle:t>=.93};}
-function d4(px,py,r,a,col){x.save();x.translate(px,py);x.rotate(Math.PI/4);x.globalAlpha=a;x.strokeStyle='rgb('+col+')';x.lineWidth=.7;for(var i=0;i<4;i++){x.beginPath();x.moveTo(0,0);x.lineTo(0,r*2.8);x.stroke();x.rotate(Math.PI/2);}x.beginPath();x.arc(0,0,r*.45,0,Math.PI*2);x.fillStyle='rgb('+col+')';x.fill();x.restore();}
-function loop(ts){var dt=Math.min((ts-last)/16,2);last=ts;x.clearRect(0,0,W,H);for(var s of stars){s.x+=s.vx*dt;s.y+=s.vy*dt;if(s.x<-5)s.x=W+5;if(s.x>W+5)s.x=-5;if(s.y<-5)s.y=H+5;if(s.y>H+5)s.y=-5;s.ph+=s.spd*.014*dt;s.al=s.bA*(.5+.5*Math.sin(s.ph));if(s.sparkle)d4(s.x,s.y,s.r*1.5,s.al,s.col);else{x.globalAlpha=s.al;x.beginPath();x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fillStyle='rgb('+s.col+')';x.fill();}}x.globalAlpha=1;raf=requestAnimationFrame(loop);}
-window.addEventListener('resize',function(){cancelAnimationFrame(raf);resize();raf=requestAnimationFrame(loop);});resize();raf=requestAnimationFrame(loop);})();
+        function openMob() {
+            hbBtn.classList.add('open');
+            mobP.classList.add('open');
+            mobB.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
 
+        function closeMob() {
+            hbBtn.classList.remove('open');
+            mobP.classList.remove('open');
+            mobB.classList.remove('open');
+            document.body.style.overflow = '';
+        }
 
-var hbBtn=document.getElementById('hbBtn'),mobB=document.getElementById('mobBack'),mobP=document.getElementById('mobPanel');
-function openMob(){hbBtn.classList.add('open');mobP.classList.add('open');mobB.classList.add('open');document.body.style.overflow='hidden';}
-function closeMob(){hbBtn.classList.remove('open');mobP.classList.remove('open');mobB.classList.remove('open');document.body.style.overflow='';}
-hbBtn.addEventListener('click',function(){mobP.classList.contains('open')?closeMob():openMob();});
-mobB.addEventListener('click',closeMob);
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMob();});
-(function(){var links=mobP.querySelectorAll('.ma');var mo=new MutationObserver(function(){var open=mobP.classList.contains('open');links.forEach(function(l,i){l.style.transitionDelay=open?(.06+i*.05)+'s':'0s';});});mo.observe(mobP,{attributes:true,attributeFilter:['class']});})();
-var obs=new IntersectionObserver(function(
+        hbBtn.addEventListener('click', function() {
+            mobP.classList.contains('open') ? closeMob() : openMob();
+        });
+        mobB.addEventListener('click', closeMob);
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeMob();
+        });
+
+        (function() {
+            var links = mobP.querySelectorAll('.ma');
+            var mo = new MutationObserver(function() {
+                var open = mobP.classList.contains('open');
+                links.forEach(function(l, i) {
+                    l.style.transitionDelay = open ? (.05 + i * .045) + 's' : '0s';
+                });
+            });
+            mo.observe(mobP, {
+                attributes: true,
+                attributeFilter: ['class']
+            });
+        })();
+
+        document.querySelectorAll('.ln').forEach(function(l) {
+            l.addEventListener('click', function() {
+                document.querySelectorAll('.ln').forEach(function(x) {
+                    x.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        var rightPanel = document.getElementById('mainRight');
+        var obs = new IntersectionObserver(function(es) {
+            es.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('vis');
+                    obs.unobserve(e.target);
+                }
+            });
+        }, {
+            threshold: .06,
+            root: rightPanel
+        });
+        document.querySelectorAll('.reveal').forEach(function(r) {
+            obs.observe(r);
+        });
+
+        setTimeout(function() {
+            document.querySelectorAll('[data-width]').forEach(function(b) {
+                b.style.width = b.getAttribute('data-width');
+            });
+        }, 500);
+    </script>
+</body>
+
+</html>
