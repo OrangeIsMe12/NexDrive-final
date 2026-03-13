@@ -550,6 +550,5 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMob();}
 var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:.08});
 document.querySelectorAll('.reveal').forEach(function(r){obs.observe(r);});
 </script>
-  <script src="coming-soon (1).js"></script>
 </body>
 </html>
