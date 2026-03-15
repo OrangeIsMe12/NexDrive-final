@@ -204,11 +204,15 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
   }
 });
  
-// Si déjà connecté → rediriger en gardant les params véhicule
+// Si déjà connecté ET qu'il y a des params véhicule → aller à confirmation directement
+// Sinon on laisse l'utilisateur sur la page login (évite la boucle avec compte.html)
 sb.auth.getSession().then(function(res) {
   if (res.data && res.data.session) {
     var params = window.location.search;
-    window.location.href = params ? 'confirmation.html' + params : 'compte.html';
+    if (params) {
+      window.location.href = 'confirmation.html' + params;
+    }
+    // Pas de redirect vers compte.html ici — évite la boucle
   }
 });
  
