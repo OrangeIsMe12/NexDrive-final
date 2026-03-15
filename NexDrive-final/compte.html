@@ -423,7 +423,32 @@
                     <div class="card-h"><div class="ch-l"><div class="ci ci-b">⚙️</div><div><div class="ct">Préférences</div><div class="cs">Notifications</div></div></div></div>
                     <div class="card-b">
                         <div class="pref"><div class="pref-i">📧</div><div><div class="pref-n">Rappels par courriel</div><div class="pref-d">24h avant la location</div></div><label class="tg"><input type="checkbox" checked/><span class="tg-s"></span></label></div>
-                        <div class="pref"><div class="pref-i">🔔</div><div><div class="pref-n">Offres &amp; promotions</div><div class="pref-d">Nouveautés NexDrive</div></div><label class="tg"><input type="checkbox"/><span class="tg-s"></span></label></div>
+                        <div class="pref"><div class="pref-i">🔔</div><div><div class="pref-n">Notifications push</div><div class="pref-d">Sur votre appareil</div></div><label class="tg"><input type="checkbox" checked/><span class="tg-s"></span></label></div>
+                        <div class="pref"><div class="pref-i">🚗</div><div><div class="pref-n">Alertes disponibilité</div><div class="pref-d">Quand un véhicule se libère</div></div><label class="tg"><input type="checkbox" checked/><span class="tg-s"></span></label></div>
+                        <div class="pref" style="align-items:center">
+                            <div class="pref-i">🌐</div>
+                            <div style="flex:1"><div class="pref-n">Langue</div><div class="pref-d">Language</div></div>
+                            <select style="background:rgba(41,121,255,0.1);border:1px solid rgba(91,159,255,0.2);color:#fff;border-radius:7px;padding:5px 10px;font-family:var(--sans);font-size:.75rem;cursor:pointer;outline:none">
+                                <option value="fr" style="background:#0d1f3a">Français</option>
+                                <option value="en" style="background:#0d1f3a">English</option>
+                            </select>
+                        </div>
+                        <div class="pref" style="align-items:center">
+                            <div class="pref-i">💵</div>
+                            <div style="flex:1"><div class="pref-n">Devise</div><div class="pref-d">Currency</div></div>
+                            <select style="background:rgba(41,121,255,0.1);border:1px solid rgba(91,159,255,0.2);color:#fff;border-radius:7px;padding:5px 10px;font-family:var(--sans);font-size:.75rem;cursor:pointer;outline:none">
+                                <option value="cad" style="background:#0d1f3a">CAD $</option>
+                                <option value="usd" style="background:#0d1f3a">USD $</option>
+                            </select>
+                        </div>
+                        <div class="pref" style="align-items:center">
+                            <div class="pref-i">🌙</div>
+                            <div style="flex:1"><div class="pref-n">Thème</div><div class="pref-d">Apparence de l'interface</div></div>
+                            <select id="themeSelect" style="background:rgba(41,121,255,0.1);border:1px solid rgba(91,159,255,0.2);color:#fff;border-radius:7px;padding:5px 10px;font-family:var(--sans);font-size:.75rem;cursor:pointer;outline:none">
+                                <option value="dark" style="background:#0d1f3a">🌙 Sombre</option>
+                                <option value="light" style="background:#0d1f3a">☀️ Clair</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -511,6 +536,37 @@
             await sb.auth.signOut();
             window.location.replace('login.html');
         });
+ 
+        // ── Thème sombre/clair ──
+        var themeSelect = document.getElementById('themeSelect');
+        var savedTheme = localStorage.getItem('nexdrive-theme') || 'dark';
+        themeSelect.value = savedTheme;
+        applyTheme(savedTheme);
+ 
+        themeSelect.addEventListener('change', function() {
+            localStorage.setItem('nexdrive-theme', this.value);
+            applyTheme(this.value);
+        });
+ 
+        function applyTheme(theme) {
+            if (theme === 'light') {
+                document.documentElement.style.setProperty('--L', '#f0f4fa');
+                document.documentElement.style.setProperty('--L2', '#e4eaf4');
+                document.documentElement.style.setProperty('--W', '#0a1628');
+                document.documentElement.style.setProperty('--W2', 'rgba(10,22,40,0.72)');
+                document.documentElement.style.setProperty('--W3', 'rgba(10,22,40,0.45)');
+                document.documentElement.style.setProperty('--W4', 'rgba(10,22,40,0.08)');
+                document.body.style.background = '#f0f4fa';
+            } else {
+                document.documentElement.style.setProperty('--L', '#0a1628');
+                document.documentElement.style.setProperty('--L2', '#0d1f3a');
+                document.documentElement.style.setProperty('--W', '#fff');
+                document.documentElement.style.setProperty('--W2', 'rgba(255,255,255,0.72)');
+                document.documentElement.style.setProperty('--W3', 'rgba(255,255,255,0.38)');
+                document.documentElement.style.setProperty('--W4', 'rgba(255,255,255,0.1)');
+                document.body.style.background = '#0a1628';
+            }
+        }
  
         // ── Hamburger ──
         var hbBtn = document.getElementById('hbBtn'),
