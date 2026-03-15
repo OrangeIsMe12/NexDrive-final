@@ -431,50 +431,20 @@
  
         // ── VÉHICULES ──────────────────────────────────────────────────────────────────────
         const vehicles = [
-            // BERLINE
-            { cat:'berline', tier:'essentiel', dispo:true,  icon:'🚗', slides:1, title:'Toyota Corolla',      sub:'Berline · 2023', specs:['5 places','Auto','Éco'],     price:'65$',   delay:'',   turo:'https://turo.com' },
-            { cat:'berline', tier:'essentiel', dispo:true,  icon:'🚗', slides:1, title:'Honda Civic',         sub:'Berline · 2023', specs:['5 places','Auto','Éco'],     price:'65$',   delay:'d1', turo:'https://turo.com' },
-            { cat:'berline', tier:'confort',   dispo:true,  icon:'🚗', slides:1, title:'Toyota Camry',        sub:'Berline · 2024', specs:['5 places','Auto','Hybride'], price:'85$',   delay:'',   turo:'https://turo.com' },
-            { cat:'berline', tier:'confort',   dispo:true,  icon:'🚗', slides:1, title:'Honda Accord',        sub:'Berline · 2024', specs:['5 places','Auto','Hybride'], price:'90$',   delay:'d1', turo:'https://turo.com' },
-            { cat:'berline', tier:'premium',   dispo:true,  icon:'🚗', slides:1, title:'BMW Série 5',         sub:'Berline · 2024', specs:['5 places','Auto','330 ch'],  price:'120$',  delay:'',   turo:'https://turo.com' },
-            { cat:'berline', tier:'premium',   dispo:true,  icon:'🚗', slides:1, title:'Mercedes Classe E',   sub:'Berline · 2024', specs:['5 places','Auto','300 ch'],  price:'130$',  delay:'d1', turo:'https://turo.com' },
-            { cat:'berline', tier:'luxe',      dispo:true,  icon:'🚗', slides:1, title:'BMW Série 7',         sub:'Berline · 2024', specs:['5 places','Auto','AWD'],     price:'220$',  delay:'',   turo:'https://turo.com' },
-            { cat:'berline', tier:'luxe',      dispo:true,  icon:'🚗', slides:1, title:'Mercedes Classe S',   sub:'Berline · 2024', specs:['5 places','Auto','AWD'],     price:'240$',  delay:'d1', turo:'https://turo.com' },
-            { cat:'berline', tier:'prestige',  dispo:true,  icon:'🚗', slides:1, title:'Rolls-Royce Ghost',   sub:'Berline · 2023', specs:['5 places','Auto','AWD'],     price:'650$',  delay:'',   turo:'https://turo.com' },
-            { cat:'berline', tier:'prestige',  dispo:true,  icon:'🚗', slides:1, title:'Bentley Flying Spur', sub:'Berline · 2023', specs:['5 places','Auto','AWD'],     price:'580$',  delay:'d1', turo:'https://turo.com' },
-            // VUS
-            { cat:'vus', tier:'essentiel', dispo:true,  icon:'🚙', slides:1, title:'Toyota RAV4',        sub:'VUS · 2023', specs:['5 places','Auto','AWD'], price:'80$',   delay:'',   turo:'https://turo.com' },
-            { cat:'vus', tier:'essentiel', dispo:true,  icon:'🚙', slides:1, title:'Honda CR-V',         sub:'VUS · 2023', specs:['5 places','Auto','AWD'], price:'80$',   delay:'d1', turo:'https://turo.com' },
-            { cat:'vus', tier:'confort',   dispo:true,  icon:'🚙', slides:1, title:'Toyota Highlander',  sub:'VUS · 2024', specs:['7 places','Auto','AWD'], price:'105$',  delay:'',   turo:'https://turo.com' },
-            { cat:'vus', tier:'confort',   dispo:true,  icon:'🚙', slides:1, title:'Nissan Pathfinder',  sub:'VUS · 2024', specs:['7 places','Auto','AWD'], price:'100$',  delay:'d1', turo:'https://turo.com' },
-            { cat:'vus', tier:'premium',   dispo:true,  icon:'🚙', slides:1, title:'BMW X5',             sub:'VUS · 2024', specs:['5 places','Auto','AWD'], price:'155$',  delay:'',   turo:'https://turo.com' },
-            { cat:'vus', tier:'premium',   dispo:true,  icon:'🚙', slides:1, title:'Audi Q5',            sub:'VUS · 2024', specs:['5 places','Auto','AWD'], price:'145$',  delay:'d1', turo:'https://turo.com' },
-            { cat:'vus', tier:'luxe',      dispo:true,  icon:'🚙', slides:1, title:'Mercedes GLE',       sub:'VUS · 2024', specs:['7 places','Auto','AWD'], price:'195$',  delay:'',   turo:'https://turo.com' },
-            { cat:'vus', tier:'luxe',      dispo:true,  icon:'🚙', slides:1, title:'Range Rover Sport',  sub:'VUS · 2023', specs:['5 places','Auto','AWD'], price:'210$',  delay:'d1', turo:'https://turo.com' },
-            { cat:'vus', tier:'luxe',      dispo:true,  icon:'🚙', slides:1, title:'Audi Q8',            sub:'VUS · 2024', specs:['5 places','Auto','AWD'], price:'175$',  delay:'d2', turo:'https://turo.com' },
-            { cat:'vus', tier:'prestige',  dispo:true,  icon:'🚙', slides:1, title:'Lamborghini Urus',   sub:'VUS · 2023', specs:['5 places','Auto','AWD'], price:'750$',  delay:'',   turo:'https://turo.com' },
-            { cat:'vus', tier:'prestige',  dispo:true,  icon:'🚙', slides:1, title:'Bentley Bentayga',   sub:'VUS · 2023', specs:['5 places','Auto','AWD'], price:'680$',  delay:'d1', turo:'https://turo.com' },
-            // SPORT
-            { cat:'sport',     tier:'essentiel', dispo:true,  icon:'🏎️', slides:1, title:'Mazda MX-5',         sub:'Sport · 2023',     specs:['2 places','Manuel','184 ch'], price:'90$',   delay:'',   turo:'https://turo.com' },
-            { cat:'sport',     tier:'confort',   dispo:true,  icon:'🏎️', slides:1, title:'Ford Mustang',        sub:'Sport · 2024',     specs:['4 places','Auto','450 ch'],   price:'115$',  delay:'',   turo:'https://turo.com' },
-            { cat:'sport',     tier:'confort',   dispo:true,  icon:'🏎️', slides:1, title:'Chevrolet Camaro',    sub:'Sport · 2024',     specs:['4 places','Auto','455 ch'],   price:'110$',  delay:'d1', turo:'https://turo.com' },
-            { cat:'sport',     tier:'premium',   dispo:true,  icon:'🏎️', slides:1, title:'Porsche 718',         sub:'Sport · 2023',     specs:['2 places','Auto','300 ch'],   price:'195$',  delay:'',   turo:'https://turo.com' },
-            { cat:'sport',     tier:'premium',   dispo:true,  icon:'🏎️', slides:1, title:'BMW M4',              sub:'Sport · 2024',     specs:['4 places','Auto','AWD'],      price:'210$',  delay:'d1', turo:'https://turo.com' },
-            { cat:'sport vus', tier:'luxe',      dispo:false, icon:'🏎️', slides:1, title:'Porsche Cayenne',     sub:'VUS Sport · 2023', specs:['5 places','Auto','AWD'],      price:'320$',  delay:'',   turo:'https://turo.com' },
-            { cat:'sport',     tier:'luxe',      dispo:true,  icon:'🏎️', slides:1, title:'Porsche 911',         sub:'Sport · 2023',     specs:['4 places','Auto','385 ch'],   price:'380$',  delay:'d1', turo:'https://turo.com' },
-            { cat:'sport',     tier:'prestige',  dispo:true,  icon:'🏎️', slides:1, title:'Lamborghini Huracán', sub:'Sport · 2023',     specs:['2 places','Auto','610 ch'],   price:'950$',  delay:'',   turo:'https://turo.com' },
-            { cat:'sport',     tier:'prestige',  dispo:true,  icon:'🏎️', slides:1, title:'Ferrari 296 GTB',     sub:'Sport · 2023',     specs:['2 places','Auto','830 ch'],   price:'1100$', delay:'d1', turo:'https://turo.com' },
-            // ÉLECTRIQUE
-            { cat:'electrique',     tier:'essentiel', dispo:true, icon:'⚡', slides:1, title:'Chevrolet Bolt',  sub:'Électrique · 2023',     specs:['5 places','Auto','417 km'], price:'70$',   delay:'',   turo:'https://turo.com' },
-            { cat:'electrique',     tier:'essentiel', dispo:true, icon:'⚡', slides:1, title:'Nissan Leaf',     sub:'Électrique · 2023',     specs:['5 places','Auto','340 km'], price:'65$',   delay:'d1', turo:'https://turo.com' },
+            // BERLINE (2)
+            { cat:'berline', tier:'essentiel', dispo:true,  icon:'🚗', slides:1, title:'Toyota Corolla',    sub:'Berline · 2023', specs:['5 places','Auto','Éco'],    price:'65$',  delay:'',   turo:'https://turo.com' },
+            { cat:'berline', tier:'premium',   dispo:true,  icon:'🚗', slides:1, title:'BMW Série 5',       sub:'Berline · 2024', specs:['5 places','Auto','330 ch'], price:'120$', delay:'d1', turo:'https://turo.com' },
+            // VUS (3)
+            { cat:'vus', tier:'essentiel', dispo:true,  icon:'🚙', slides:1, title:'Toyota RAV4',       sub:'VUS · 2023',     specs:['5 places','Auto','AWD'], price:'80$',  delay:'',   turo:'https://turo.com' },
+            { cat:'vus', tier:'premium',   dispo:true,  icon:'🚙', slides:1, title:'BMW X5',            sub:'VUS · 2024',     specs:['5 places','Auto','AWD'], price:'155$', delay:'d1', turo:'https://turo.com' },
+            { cat:'vus', tier:'prestige',  dispo:true,  icon:'🚙', slides:1, title:'Lamborghini Urus',  sub:'VUS · 2023',     specs:['5 places','Auto','AWD'], price:'750$', delay:'d2', turo:'https://turo.com' },
+            // SPORT (2)
+            { cat:'sport', tier:'confort',   dispo:true,  icon:'🏎️', slides:1, title:'Ford Mustang',      sub:'Sport · 2024', specs:['4 places','Auto','450 ch'],   price:'115$', delay:'',   turo:'https://turo.com' },
+            { cat:'sport', tier:'prestige',  dispo:true,  icon:'🏎️', slides:1, title:'Ferrari 296 GTB',   sub:'Sport · 2023', specs:['2 places','Auto','830 ch'],   price:'1100$',delay:'d1', turo:'https://turo.com' },
+            // ÉLECTRIQUE (3)
             { cat:'electrique',     tier:'confort',   dispo:true, imgs:['voiture/tesla/image.png','voiture/tesla/image copy.png','voiture/tesla/image copy 3.png','voiture/tesla/image copy 2.png'], title:'Tesla Model 3', sub:'Électrique · 2021', specs:['5 places','Auto','400 km'], price:'110$', delay:'', turo:'https://turo.com/fr-ca/search' },
-            { cat:'electrique',     tier:'confort',   dispo:true, icon:'⚡', slides:1, title:'Hyundai Ioniq 6', sub:'Électrique · 2024',     specs:['5 places','Auto','385 km'], price:'105$',  delay:'d1', turo:'https://turo.com' },
-            { cat:'electrique vus', tier:'premium',   dispo:true, icon:'⚡', slides:1, title:'Tesla Model Y',   sub:'VUS Électrique · 2024', specs:['5 places','Auto','533 km'], price:'130$',  delay:'',   turo:'https://turo.com' },
-            { cat:'electrique',     tier:'premium',   dispo:true, icon:'⚡', slides:1, title:'BMW i4',          sub:'Électrique · 2024',     specs:['5 places','Auto','590 km'], price:'145$',  delay:'d1', turo:'https://turo.com' },
-            { cat:'electrique',     tier:'luxe',      dispo:true, icon:'⚡', slides:1, title:'Tesla Model S',   sub:'Électrique · 2024',     specs:['5 places','Auto','670 km'], price:'230$',  delay:'',   turo:'https://turo.com' },
-            { cat:'electrique',     tier:'luxe',      dispo:true, icon:'⚡', slides:1, title:'Porsche Taycan',  sub:'Électrique · 2024',     specs:['4 places','Auto','AWD'],    price:'295$',  delay:'d1', turo:'https://turo.com' },
-            { cat:'electrique',     tier:'prestige',  dispo:true, icon:'⚡', slides:1, title:'Lucid Air',       sub:'Électrique · 2024',     specs:['5 places','Auto','837 km'], price:'520$',  delay:'',   turo:'https://turo.com' },
-            { cat:'electrique',     tier:'prestige',  dispo:true, icon:'⚡', slides:1, title:'Rimac Nevera',    sub:'Électrique · 2024',     specs:['2 places','Auto','AWD'],    price:'1800$', delay:'d1', turo:'https://turo.com' }
+            { cat:'electrique vus', tier:'premium',   dispo:true, icon:'⚡', slides:1, title:'Tesla Model Y',   sub:'VUS Électrique · 2024', specs:['5 places','Auto','533 km'], price:'130$', delay:'d1', turo:'https://turo.com' },
+            { cat:'electrique',     tier:'luxe',      dispo:true, icon:'⚡', slides:1, title:'Porsche Taycan',  sub:'Électrique · 2024',     specs:['4 places','Auto','AWD'],    price:'295$', delay:'d2', turo:'https://turo.com' }
         ];
  
         // ── SUPABASE SESSION ───────────────────────────────────────────────────────────────
