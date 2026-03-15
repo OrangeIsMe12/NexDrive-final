@@ -1,182 +1,218 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>NexDrive — Confirmation</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--navy:#0a1628;--electric:#2979ff;--elec-l:#5b9fff;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif}
-html{scroll-behavior:smooth}
-body{background:#0a1628;color:#fff;font-family:var(--sans);min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-#sc{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:linear-gradient(180deg,#0e1e3a 0%,#0a1628 100%);border-bottom:1px solid rgba(41,121,255,0.2);backdrop-filter:blur(24px);box-shadow:0 0 0 1px rgba(41,121,255,0.08),0 4px 32px rgba(10,22,40,0.5)}
-nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(41,121,255,0.2) 15%,rgba(91,159,255,0.5) 35%,rgba(120,180,255,0.7) 50%,rgba(91,159,255,0.5) 65%,rgba(41,121,255,0.2) 85%,transparent 100%);pointer-events:none}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.back-link{display:flex;align-items:center;gap:8px;font-size:.82rem;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
-.back-link:hover{color:rgba(255,255,255,.85)}
-.glow-bg{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(ellipse,rgba(41,121,255,0.1),transparent 65%);pointer-events:none;z-index:0}
-main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px 20px 60px;position:relative;z-index:1}
-
-.conf-card{width:100%;max-width:480px;background:rgba(14,22,42,0.88);border:1px solid rgba(41,121,255,0.15);border-radius:20px;overflow:hidden;backdrop-filter:blur(24px);box-shadow:0 0 0 1px rgba(41,121,255,0.06),0 24px 80px rgba(0,0,0,0.5),0 0 60px rgba(41,121,255,0.08);animation:fu .7s cubic-bezier(.16,1,.3,1) both}
-@keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-
-/* success banner */
-.conf-banner{background:linear-gradient(135deg,rgba(22,163,74,0.18),rgba(22,163,74,0.08));border-bottom:1px solid rgba(22,163,74,0.2);padding:18px 32px;display:flex;align-items:center;gap:14px}
-.conf-check{width:36px;height:36px;border-radius:50%;background:rgba(22,163,74,0.2);border:1px solid rgba(22,163,74,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.conf-check svg{color:#4ade80}
-.conf-banner-txt{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.5}
-.conf-banner-txt strong{display:block;color:#4ade80;font-size:.88rem;margin-bottom:2px}
-
-/* car summary */
-.conf-body{padding:32px}
-.conf-eyebrow{font-size:.6rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--electric);margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.conf-eyebrow::before{content:'';width:14px;height:1px;background:var(--electric)}
-.conf-title{font-family:var(--serif);font-size:1.9rem;font-weight:300;line-height:1.15;margin-bottom:4px}
-.conf-title em{font-style:italic;color:var(--elec-l)}
-.conf-sub{font-size:.82rem;color:rgba(255,255,255,.38);margin-bottom:24px}
-
-.conf-info{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px 20px;margin-bottom:28px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.conf-info-left{font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.8}
-.conf-info-left span{display:block;color:rgba(255,255,255,.8);font-weight:500;font-size:.92rem}
-.conf-price{font-family:var(--serif);font-size:2rem;font-weight:700;color:#fff;text-align:right;line-height:1}
-.conf-price small{display:block;font-family:var(--sans);font-size:.72rem;font-weight:300;color:rgba(255,255,255,.3);margin-top:3px}
-
-/* steps */
-.conf-steps{margin-bottom:28px}
-.conf-steps-title{font-size:.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:14px}
-.step{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
-.step-num{width:26px;height:26px;border-radius:50%;background:rgba(41,121,255,0.15);border:1px solid rgba(41,121,255,0.3);display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:600;color:var(--elec-l);flex-shrink:0;margin-top:1px}
-.step-txt{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.6}
-.step-txt strong{color:rgba(255,255,255,.85);display:block;margin-bottom:2px;font-weight:500}
-
-/* buttons */
-.btn-turo{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:15px;border-radius:12px;background:linear-gradient(135deg,#1454d4,#2979ff);border:none;color:#fff;font-family:var(--sans);font-size:.95rem;font-weight:500;cursor:pointer;text-decoration:none;transition:all .3s;box-shadow:0 4px 24px rgba(41,121,255,.35);letter-spacing:.3px;margin-bottom:12px}
-.btn-turo:hover{background:linear-gradient(135deg,#1a65f0,#3d8bff);transform:translateY(-2px);box-shadow:0 8px 32px rgba(41,121,255,.45)}
-.btn-turo svg{opacity:.7}
-.btn-back{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,.5);font-family:var(--sans);font-size:.85rem;cursor:pointer;text-decoration:none;transition:all .25s}
-.btn-back:hover{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.8)}
-
-.conf-note{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06);font-size:.7rem;color:rgba(255,255,255,.18);text-align:center;line-height:1.6}
-
-@media(max-width:520px){
-  nav{padding:0 20px;height:60px}
-  main{padding:88px 16px 40px}
-  .conf-body{padding:24px 20px}
-  .conf-title{font-size:1.6rem}
-  .conf-info{flex-direction:column;align-items:flex-start}
-  .conf-price{text-align:left}
-}
-</style>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>NexDrive — Confirmation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --navy: #0a1628; --electric: #2979ff; --elec-l: #5b9fff; --serif: 'Playfair Display', Georgia, serif; --sans: 'DM Sans', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background: #0a1628; color: #fff; font-family: var(--sans); min-height: 100vh; display: flex; flex-direction: column; -webkit-font-smoothing: antialiased; }
+ 
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 68px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; background: linear-gradient(180deg, #0e1e3a 0%, #0a1628 100%); border-bottom: 1px solid rgba(41,121,255,0.2); backdrop-filter: blur(24px); box-shadow: 0 4px 32px rgba(10,22,40,0.5); }
+        nav::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(91,159,255,0.5) 50%, transparent); pointer-events: none; }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .back-link { display: flex; align-items: center; gap: 8px; font-size: .82rem; color: rgba(255,255,255,.45); text-decoration: none; transition: color .2s; }
+        .back-link:hover { color: rgba(255,255,255,.85); }
+ 
+        .glow-bg { position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(ellipse, rgba(41,121,255,0.08), transparent 65%); pointer-events: none; z-index: 0; }
+ 
+        main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 100px 20px 60px; position: relative; z-index: 1; }
+ 
+        .conf-card { width: 100%; max-width: 480px; background: rgba(14,22,42,0.92); border: 1px solid rgba(41,121,255,0.15); border-radius: 20px; overflow: hidden; backdrop-filter: blur(24px); box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 60px rgba(41,121,255,0.06); animation: fu .7s cubic-bezier(.16,1,.3,1) both; }
+        @keyframes fu { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+ 
+        /* Banner succès */
+        .conf-banner { background: linear-gradient(135deg, rgba(22,163,74,0.15), rgba(22,163,74,0.06)); border-bottom: 1px solid rgba(22,163,74,0.2); padding: 16px 28px; display: flex; align-items: center; gap: 14px; }
+        .conf-check { width: 36px; height: 36px; border-radius: 50%; background: rgba(22,163,74,0.2); border: 1px solid rgba(22,163,74,0.4); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .conf-banner-txt strong { display: block; color: #4ade80; font-size: .88rem; margin-bottom: 2px; }
+        .conf-banner-txt span { font-size: .8rem; color: rgba(255,255,255,.5); }
+ 
+        .conf-body { padding: 28px; }
+ 
+        .conf-eyebrow { font-size: .6rem; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--electric); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+        .conf-eyebrow::before { content: ''; width: 14px; height: 1px; background: var(--electric); }
+ 
+        .conf-title { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; line-height: 1.15; margin-bottom: 4px; }
+        .conf-title em { font-style: italic; color: var(--elec-l); }
+        .conf-sub { font-size: .82rem; color: rgba(255,255,255,.38); margin-bottom: 22px; }
+ 
+        /* Récap véhicule */
+        .conf-info { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 16px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .conf-info-left { font-size: .8rem; color: rgba(255,255,255,.4); line-height: 2; }
+        .conf-info-left span { display: block; color: rgba(255,255,255,.85); font-weight: 500; font-size: .9rem; }
+        .conf-price { font-family: var(--serif); font-size: 2rem; font-weight: 700; color: #fff; text-align: right; line-height: 1; }
+        .conf-price small { display: block; font-family: var(--sans); font-size: .72rem; font-weight: 300; color: rgba(255,255,255,.3); margin-top: 3px; }
+ 
+        /* Profil client connecté */
+        .user-info { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: rgba(41,121,255,0.06); border: 1px solid rgba(41,121,255,0.15); border-radius: 10px; margin-bottom: 22px; }
+        .user-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #1454d4, #2979ff); display: flex; align-items: center; justify-content: center; font-size: .9rem; font-weight: 600; flex-shrink: 0; }
+        .user-name { font-size: .88rem; font-weight: 500; color: rgba(255,255,255,.85); }
+        .user-email { font-size: .75rem; color: rgba(255,255,255,.35); margin-top: 2px; }
+ 
+        /* Étapes */
+        .steps { margin-bottom: 24px; }
+        .steps-title { font-size: .62rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.2); margin-bottom: 12px; }
+        .step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+        .step-num { width: 24px; height: 24px; border-radius: 50%; background: rgba(41,121,255,0.15); border: 1px solid rgba(41,121,255,0.3); display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 600; color: var(--elec-l); flex-shrink: 0; margin-top: 1px; }
+        .step-txt { font-size: .82rem; color: rgba(255,255,255,.5); line-height: 1.6; }
+        .step-txt strong { color: rgba(255,255,255,.85); display: block; margin-bottom: 2px; font-weight: 500; }
+ 
+        /* Boutons */
+        .btn-turo { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 15px; border-radius: 12px; background: linear-gradient(135deg, #1454d4, #2979ff); border: none; color: #fff; font-family: var(--sans); font-size: .95rem; font-weight: 500; cursor: pointer; text-decoration: none; transition: all .3s; box-shadow: 0 4px 24px rgba(41,121,255,.35); margin-bottom: 10px; }
+        .btn-turo:hover { background: linear-gradient(135deg, #1a65f0, #3d8bff); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(41,121,255,.45); }
+        .btn-turo svg { opacity: .7; }
+        .btn-secondary { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; border-radius: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,.5); font-family: var(--sans); font-size: .85rem; cursor: pointer; text-decoration: none; transition: all .25s; margin-bottom: 8px; }
+        .btn-secondary:hover { border-color: rgba(255,255,255,.25); color: rgba(255,255,255,.8); }
+ 
+        .btn-logout { background: none; border: none; color: rgba(255,255,255,.2); font-family: var(--sans); font-size: .75rem; cursor: pointer; width: 100%; text-align: center; padding: 6px; transition: color .2s; }
+        .btn-logout:hover { color: rgba(220,38,38,.6); }
+ 
+        .conf-note { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.06); font-size: .7rem; color: rgba(255,255,255,.18); text-align: center; line-height: 1.6; }
+ 
+        /* Loading state */
+        .loading-state { text-align: center; padding: 40px 28px; }
+        .spinner { width: 32px; height: 32px; border: 3px solid rgba(41,121,255,.2); border-top-color: var(--electric); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 16px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+ 
+        @media (max-width: 520px) {
+            nav { padding: 0 20px; height: 60px; }
+            .conf-body { padding: 20px; }
+            .conf-info { flex-direction: column; align-items: flex-start; }
+            .conf-price { text-align: left; }
+        }
+    </style>
 </head>
 <body>
-<canvas id="sc"></canvas>
 <div class="glow-bg"></div>
-
+ 
 <nav>
-  <a href="index.html" class="logo">
-    <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:100px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(41,121,255,0.45))"/>
-  </a>
-  <a href="vehicules.html" class="back-link">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-    Retour à la flotte
-  </a>
+    <a href="index.html" class="logo">
+        <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:100px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(41,121,255,0.45))"/>
+    </a>
+    <a href="vehicules.html" class="back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Retour à la flotte
+    </a>
 </nav>
-
+ 
 <main>
-  <div class="conf-card">
-    <div class="conf-banner">
-      <div class="conf-check">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <div class="conf-banner-txt">
-        <strong>Compte créé avec succès !</strong>
-        Vous êtes maintenant connecté à NexDrive.
-      </div>
+    <div class="conf-card" id="confCard">
+        <!-- Loading -->
+        <div class="loading-state" id="loadingState">
+            <div class="spinner"></div>
+            <div style="font-size:.88rem;color:rgba(255,255,255,.35)">Vérification en cours...</div>
+        </div>
     </div>
-
-    <div class="conf-body">
-      <div class="conf-eyebrow">Votre sélection</div>
-      <h1 class="conf-title" id="carTitle">Chargement...</h1>
-      <p class="conf-sub" id="carSub"></p>
-
-      <div class="conf-info">
-        <div class="conf-info-left">
-          Prix par jour<span id="carPrice">—</span>
-          Plateforme<span>Turo · Québec</span>
-        </div>
-        <div class="conf-price" id="carPriceLarge">—<small>/jour</small></div>
-      </div>
-
-      <div class="conf-steps">
-        <div class="conf-steps-title">Prochaines étapes</div>
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-txt"><strong>Cliquez sur Réserver sur Turo</strong>Vous serez redirigé vers la page du véhicule sur Turo.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-txt"><strong>Choisissez vos dates</strong>Sélectionnez vos dates de prise en charge et de retour.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-txt"><strong>Confirmez la réservation</strong>Votre réservation apparaîtra dans votre tableau de bord NexDrive.</div>
-        </div>
-      </div>
-
-      <a href="#" class="btn-turo" id="btnTuro">
-        Réserver sur Turo
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-      </a>
-      <a href="vehicules.html" class="btn-back">
-        ← Retour à la flotte
-      </a>
-
-      <div class="conf-note">En cliquant sur Réserver sur Turo, vous quittez NexDrive et serez redirigé vers la plateforme Turo pour finaliser votre réservation.</div>
-    </div>
-  </div>
 </main>
-
+ 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-// Lire les paramètres URL
-const p = new URLSearchParams(window.location.search);
-const titre = p.get('voiture') || 'Véhicule';
-const prix = p.get('prix') || '—';
-const sub = p.get('sub') || '';
-const turo = p.get('turo') || 'https://turo.com';
-
-document.getElementById('carTitle').innerHTML = titre.replace(/([A-Za-z]+)(\s\d)/, '$1<em>$2</em>');
-document.getElementById('carSub').textContent = sub;
-document.getElementById('carPrice').textContent = prix;
-document.getElementById('carPriceLarge').innerHTML = prix + '<small>/jour</small>';
-document.getElementById('btnTuro').href = turo;
-
-// Starfield
-(function(){
-  var c=document.getElementById('sc'),x=c.getContext('2d'),W,H,stars=[],raf,last=0;
-  function rnd(a,b){return a+Math.random()*(b-a)}
-  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;stars=[];var n=Math.min(Math.max(Math.floor(W*H/2200),140),380);for(var i=0;i<n;i++)stars.push(mk())}
-  function mk(){var t=Math.random(),r,col,bA,spike;
-    if(t<.5){r=rnd(.2,.5);col='10,20,40';bA=rnd(.06,.16);spike=false}
-    else if(t<.78){r=rnd(.4,.8);col='8,18,36';bA=rnd(.10,.22);spike=false}
-    else if(t<.92){r=rnd(.7,1.2);col='5,15,30';bA=rnd(.16,.30);spike=false}
-    else{r=rnd(1.1,1.8);col='2,10,25';bA=rnd(.25,.42);spike=true}
-    return{x:Math.random()*W,y:Math.random()*H,r:r,bA:bA,al:bA,col:col,vx:(Math.random()-.5)*rnd(.12,.38),vy:(Math.random()-.5)*rnd(.12,.38),ph:Math.random()*Math.PI*2,spd:rnd(.5,1.4),spike:spike,twinkleAmt:rnd(.25,.6)}
-  }
-  function drawStar(s){var a=s.al;x.save();
-    if(s.r>1.5){var g=x.createRadialGradient(s.x,s.y,0,s.x,s.y,s.r*5);g.addColorStop(0,'rgba('+s.col+','+(a*.6)+')');g.addColorStop(0.35,'rgba('+s.col+','+(a*.18)+')');g.addColorStop(1,'rgba('+s.col+',0)');x.globalAlpha=1;x.fillStyle=g;x.beginPath();x.arc(s.x,s.y,s.r*5,0,Math.PI*2);x.fill()}
-    x.shadowBlur=s.r*7;x.shadowColor='rgba('+s.col+','+a+')';x.globalAlpha=a;x.fillStyle='rgba('+s.col+',1)';x.beginPath();x.arc(s.x,s.y,s.r*.8,0,Math.PI*2);x.fill();
-    if(s.spike){var angles=[0,Math.PI/2,Math.PI/4,Math.PI*3/4],lens=[s.r*8,s.r*6,s.r*4.5,s.r*4.5];for(var i=0;i<4;i++){var lg=x.createLinearGradient(s.x+Math.cos(angles[i])*lens[i],s.y+Math.sin(angles[i])*lens[i],s.x-Math.cos(angles[i])*lens[i],s.y-Math.sin(angles[i])*lens[i]);lg.addColorStop(0,'rgba('+s.col+',0)');lg.addColorStop(0.5,'rgba('+s.col+','+(a*.85)+')');lg.addColorStop(1,'rgba('+s.col+',0)');x.strokeStyle=lg;x.lineWidth=s.r*.35;x.beginPath();x.moveTo(s.x+Math.cos(angles[i])*lens[i],s.y+Math.sin(angles[i])*lens[i]);x.lineTo(s.x-Math.cos(angles[i])*lens[i],s.y-Math.sin(angles[i])*lens[i]);x.stroke()}}
-    x.restore()
-  }
-  function loop(ts){var dt=Math.min((ts-last)/16,2);last=ts;x.clearRect(0,0,W,H);
-    for(var s of stars){s.x+=s.vx*dt;s.y+=s.vy*dt;if(s.x<-10)s.x=W+10;if(s.x>W+10)s.x=-10;if(s.y<-10)s.y=H+10;if(s.y>H+10)s.y=-10;s.ph+=s.spd*.013*dt;var tw=s.bA*(1-s.twinkleAmt)+s.bA*s.twinkleAmt*Math.max(0,Math.sin(s.ph)*Math.sin(s.ph*2.1+0.9));s.al=Math.max(0.06,tw);drawStar(s)}
-    x.globalAlpha=1;raf=requestAnimationFrame(loop)
-  }
-  window.addEventListener('resize',function(){cancelAnimationFrame(raf);resize();raf=requestAnimationFrame(loop)});
-  resize();raf=requestAnimationFrame(loop)
-})();
+    const SUPABASE_URL = 'https://igftridkkchvjaxtburi.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnZnRyaWRra2NodmpheHRidXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODcxMzgsImV4cCI6MjA4ODY2MzEzOH0.SuUO_seWElDPnm3lnGEEn8OwflJhbocyJjVF8nvrf4Y';
+    const { createClient } = supabase;
+    const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+ 
+    const p        = new URLSearchParams(window.location.search);
+    const voiture  = p.get('voiture') || '';
+    const prix     = p.get('prix')    || '—';
+    const sub      = p.get('sub')     || '';
+    const turoURL  = p.get('turo')    || 'https://turo.com';
+ 
+    async function init() {
+        // Supabase gère le hash token automatiquement (magic link / OAuth)
+        const { data: { session } } = await sb.auth.getSession();
+ 
+        if (!session) {
+            // Pas connecté → retour login
+            window.location.href = 'login.html' + window.location.search;
+            return;
+        }
+ 
+        renderPage(session.user);
+    }
+ 
+    function getInitials(user) {
+        var name = user.user_metadata?.full_name || user.email || '';
+        var parts = name.trim().split(' ');
+        return parts.length >= 2
+            ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+            : name.slice(0, 2).toUpperCase();
+    }
+ 
+    function renderPage(user) {
+        var displayName = user.user_metadata?.full_name || user.user_metadata?.name || user.email || 'Client';
+        var displayEmail = user.email || user.phone || '';
+        var initials = getInitials(user);
+ 
+        var userInfoHTML = `
+            <div class="user-info">
+                <div class="user-avatar">${initials}</div>
+                <div>
+                    <div class="user-name">${displayName}</div>
+                    <div class="user-email">${displayEmail}</div>
+                </div>
+            </div>`;
+ 
+        var vehicleHTML = voiture ? `
+            <div class="conf-eyebrow">Votre sélection</div>
+            <div class="conf-title">${voiture.replace(/(.+?)(\s\d)/, '$1<em>$2</em>')}</div>
+            <p class="conf-sub">${sub}</p>
+            <div class="conf-info">
+                <div class="conf-info-left">
+                    Prix par jour<span>${prix}</span>
+                    Plateforme<span>Turo · Québec</span>
+                </div>
+                <div class="conf-price">${prix}<small>/jour</small></div>
+            </div>` : `
+            <div class="conf-eyebrow">Votre flotte</div>
+            <div class="conf-title">Choisissez votre <em>véhicule</em></div>
+            <p class="conf-sub">Parcourez la flotte et sélectionnez votre véhicule.</p>`;
+ 
+        var turoBtn = voiture ? `
+            <a href="${turoURL}" target="_blank" class="btn-turo">
+                Réserver sur Turo
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>` : `
+            <a href="vehicules.html" class="btn-turo">
+                Voir la flotte →
+            </a>`;
+ 
+        document.getElementById('confCard').innerHTML = `
+            <div class="conf-banner">
+                <div class="conf-check">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div class="conf-banner-txt">
+                    <strong>Connecté avec succès !</strong>
+                    <span>Bienvenue sur NexDrive, ${displayName.split(' ')[0]}.</span>
+                </div>
+            </div>
+            <div class="conf-body">
+                ${userInfoHTML}
+                ${vehicleHTML}
+                ${voiture ? `
+                <div class="steps">
+                    <div class="steps-title">Prochaines étapes</div>
+                    <div class="step"><div class="step-num">1</div><div class="step-txt"><strong>Cliquer sur Réserver sur Turo</strong>Vous serez redirigé vers la page du véhicule.</div></div>
+                    <div class="step"><div class="step-num">2</div><div class="step-txt"><strong>Choisir vos dates</strong>Sélectionnez vos dates de prise en charge et retour.</div></div>
+                    <div class="step"><div class="step-num">3</div><div class="step-txt"><strong>Confirmer la réservation</strong>Vous recevrez un contrat automatique par courriel.</div></div>
+                </div>` : ''}
+                ${turoBtn}
+                <a href="vehicules.html" class="btn-secondary">← Retour à la flotte</a>
+                <button class="btn-logout" onclick="logout()">Se déconnecter</button>
+                ${voiture ? '<div class="conf-note">En cliquant sur Réserver sur Turo, vous quittez NexDrive et serez redirigé vers Turo pour finaliser.</div>' : ''}
+            </div>`;
+    }
+ 
+    async function logout() {
+        await sb.auth.signOut();
+        window.location.href = 'login.html';
+    }
+ 
+    init();
 </script>
 </body>
 </html>
