@@ -319,8 +319,8 @@
                 <a href="index.html"         class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🏠</div><span class="mn-lbl">Accueil</span></div><span class="mn-arr">→</span></a>
                 <a href="vehicules.html"      class="ma active" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🚗</div><span class="mn-lbl">Notre flotte</span></div><span class="mn-arr">→</span></a>
                 <a href="apropos.html"        class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🏢</div><span class="mn-lbl">À propos</span></div><span class="mn-arr">→</span></a>
-                <a href="partenaires"         class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🤝</div><span class="mn-lbl">Partenaires</span></div><span class="mn-arr">→</span></a>
-                <a href="faq"                 class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">❓</div><span class="mn-lbl">FAQ</span></div><span class="mn-arr">→</span></a>
+                <a href="partenaires.html"    class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🤝</div><span class="mn-lbl">Partenaires</span></div><span class="mn-arr">→</span></a>
+                <a href="faq.html"            class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">❓</div><span class="mn-lbl">FAQ</span></div><span class="mn-arr">→</span></a>
             </div>
             <div class="mn-sec">
                 <div class="mn-heading">Mon espace</div>
@@ -431,7 +431,6 @@
  
         // ── VÉHICULES ──────────────────────────────────────────────────────────────────────
         const vehicles = [
- 
             // BERLINE
             { cat:'berline', tier:'essentiel', dispo:true,  icon:'🚗', slides:1, title:'Toyota Corolla',      sub:'Berline · 2023', specs:['5 places','Auto','Éco'],     price:'65$',   delay:'',   turo:'https://turo.com' },
             { cat:'berline', tier:'essentiel', dispo:true,  icon:'🚗', slides:1, title:'Honda Civic',         sub:'Berline · 2023', specs:['5 places','Auto','Éco'],     price:'65$',   delay:'d1', turo:'https://turo.com' },
@@ -443,7 +442,6 @@
             { cat:'berline', tier:'luxe',      dispo:true,  icon:'🚗', slides:1, title:'Mercedes Classe S',   sub:'Berline · 2024', specs:['5 places','Auto','AWD'],     price:'240$',  delay:'d1', turo:'https://turo.com' },
             { cat:'berline', tier:'prestige',  dispo:true,  icon:'🚗', slides:1, title:'Rolls-Royce Ghost',   sub:'Berline · 2023', specs:['5 places','Auto','AWD'],     price:'650$',  delay:'',   turo:'https://turo.com' },
             { cat:'berline', tier:'prestige',  dispo:true,  icon:'🚗', slides:1, title:'Bentley Flying Spur', sub:'Berline · 2023', specs:['5 places','Auto','AWD'],     price:'580$',  delay:'d1', turo:'https://turo.com' },
- 
             // VUS
             { cat:'vus', tier:'essentiel', dispo:true,  icon:'🚙', slides:1, title:'Toyota RAV4',        sub:'VUS · 2023', specs:['5 places','Auto','AWD'], price:'80$',   delay:'',   turo:'https://turo.com' },
             { cat:'vus', tier:'essentiel', dispo:true,  icon:'🚙', slides:1, title:'Honda CR-V',         sub:'VUS · 2023', specs:['5 places','Auto','AWD'], price:'80$',   delay:'d1', turo:'https://turo.com' },
@@ -456,7 +454,6 @@
             { cat:'vus', tier:'luxe',      dispo:true,  icon:'🚙', slides:1, title:'Audi Q8',            sub:'VUS · 2024', specs:['5 places','Auto','AWD'], price:'175$',  delay:'d2', turo:'https://turo.com' },
             { cat:'vus', tier:'prestige',  dispo:true,  icon:'🚙', slides:1, title:'Lamborghini Urus',   sub:'VUS · 2023', specs:['5 places','Auto','AWD'], price:'750$',  delay:'',   turo:'https://turo.com' },
             { cat:'vus', tier:'prestige',  dispo:true,  icon:'🚙', slides:1, title:'Bentley Bentayga',   sub:'VUS · 2023', specs:['5 places','Auto','AWD'], price:'680$',  delay:'d1', turo:'https://turo.com' },
- 
             // SPORT
             { cat:'sport',     tier:'essentiel', dispo:true,  icon:'🏎️', slides:1, title:'Mazda MX-5',         sub:'Sport · 2023',     specs:['2 places','Manuel','184 ch'], price:'90$',   delay:'',   turo:'https://turo.com' },
             { cat:'sport',     tier:'confort',   dispo:true,  icon:'🏎️', slides:1, title:'Ford Mustang',        sub:'Sport · 2024',     specs:['4 places','Auto','450 ch'],   price:'115$',  delay:'',   turo:'https://turo.com' },
@@ -467,7 +464,6 @@
             { cat:'sport',     tier:'luxe',      dispo:true,  icon:'🏎️', slides:1, title:'Porsche 911',         sub:'Sport · 2023',     specs:['4 places','Auto','385 ch'],   price:'380$',  delay:'d1', turo:'https://turo.com' },
             { cat:'sport',     tier:'prestige',  dispo:true,  icon:'🏎️', slides:1, title:'Lamborghini Huracán', sub:'Sport · 2023',     specs:['2 places','Auto','610 ch'],   price:'950$',  delay:'',   turo:'https://turo.com' },
             { cat:'sport',     tier:'prestige',  dispo:true,  icon:'🏎️', slides:1, title:'Ferrari 296 GTB',     sub:'Sport · 2023',     specs:['2 places','Auto','830 ch'],   price:'1100$', delay:'d1', turo:'https://turo.com' },
- 
             // ÉLECTRIQUE
             { cat:'electrique',     tier:'essentiel', dispo:true, icon:'⚡', slides:1, title:'Chevrolet Bolt',  sub:'Électrique · 2023',     specs:['5 places','Auto','417 km'], price:'70$',   delay:'',   turo:'https://turo.com' },
             { cat:'electrique',     tier:'essentiel', dispo:true, icon:'⚡', slides:1, title:'Nissan Leaf',     sub:'Électrique · 2023',     specs:['5 places','Auto','340 km'], price:'65$',   delay:'d1', turo:'https://turo.com' },
@@ -485,7 +481,6 @@
         const SUPABASE_URL = 'https://igftridkkchvjaxtburi.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnZnRyaWRra2NodmpheHRidXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODcxMzgsImV4cCI6MjA4ODY2MzEzOH0.SuUO_seWElDPnm3lnGEEn8OwflJhbocyJjVF8nvrf4Y';
  
-        // Charger Supabase et vérifier session
         var sbSession = null;
         var sbScript = document.createElement('script');
         sbScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
@@ -493,7 +488,6 @@
             var sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
             var { data: { session } } = await sb.auth.getSession();
             sbSession = session;
-            // Mettre à jour le bouton nav si connecté
             if (session) {
                 var user = session.user;
                 var name = user.user_metadata?.full_name || user.email || '';
@@ -509,22 +503,24 @@
         };
         document.head.appendChild(sbScript);
  
+        // ✅ CORRECTION — fonction reserver() complète
+        function reserver(title, price, sub, turo) {
+            var params = '?voiture=' + encodeURIComponent(title) +
+                         '&prix='    + encodeURIComponent(price) +
+                         '&sub='     + encodeURIComponent(sub)   +
+                         '&turo='    + encodeURIComponent(turo);
+            if (sbSession) {
+                window.location.href = 'confirmation.html' + params;
+            } else {
+                window.location.href = 'login.html' + params;
+            }
+        }
+ 
         function goCompte() {
             if (sbSession) {
                 window.location.href = 'compte.html';
             } else {
                 window.location.href = 'login.html';
-            }
-        }
-            var params = '?voiture=' + encodeURIComponent(title) +
-                         '&prix='    + encodeURIComponent(price) +
-                         '&sub='     + encodeURIComponent(sub)   +
-                         '&turo='    + encodeURIComponent(turo);
-            // Si déjà connecté → directement confirmation, sinon → login
-            if (sbSession) {
-                window.location.href = 'confirmation.html' + params;
-            } else {
-                window.location.href = 'login.html' + params;
             }
         }
  
