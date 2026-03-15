@@ -1,2172 +1,906 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Mon Compte — NexDrive</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
     <style>
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-         :root {
-            --L: #0a1628;
-            --L2: #0d1f3a;
-            --L3: #0f2448;
-            --B: #2979ff;
-            --Bl: #5b9fff;
-            --Bll: #a8cbff;
-            --W: #fff;
-            --W2: rgba(255, 255, 255, 0.72);
-            --W3: rgba(255, 255, 255, 0.38);
-            --W4: rgba(255, 255, 255, 0.1);
-            --G: #34d399;
-            --A: #fbbf24;
-            --R: #f87171;
-            --serif: 'Playfair Display', Georgia, serif;
-            --sans: 'DM Sans', sans-serif;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            background: var(--L);
-            color: var(--W);
-            font-family: var(--sans);
-            -webkit-font-smoothing: antialiased;
-            overflow: hidden;
-            height: 100vh;
-        }
-        
-         ::-webkit-scrollbar {
-            width: 4px;
-        }
-        
-         ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        
-         ::-webkit-scrollbar-thumb {
-            background: rgba(41, 121, 255, 0.4);
-            border-radius: 4px;
-        }
-        /* ══ NAV ══ */
-        
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 300;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 32px;
-            background: rgba(8, 14, 26, 0.92);
-            backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(41, 121, 255, 0.14);
-        }
-        
-        .nav::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(91, 159, 255, 0.55) 50%, transparent);
-            pointer-events: none;
-        }
-        
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
-        
-        .nav-r {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .nib {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: var(--W4);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: .8rem;
-            transition: all .2s;
-            position: relative;
-        }
-        
-        .nib:hover {
-            background: rgba(41, 121, 255, 0.14);
-            border-color: rgba(91, 159, 255, 0.3);
-        }
-        
-        .nib .dot {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--B);
-            border: 2px solid #080e1a;
-        }
-        
-        .nav-av {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--B), #071020);
-            border: 2px solid rgba(91, 159, 255, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--serif);
-            font-size: .8rem;
-            cursor: pointer;
-        }
-        
-        .hbg {
-            -webkit-appearance: none;
-            appearance: none;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.09);
-            width: 38px;
-            height: 38px;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
-            border-radius: 8px;
-            transition: all .22s;
-            flex-shrink: 0;
-        }
-        
-        .hbg:focus {
-            outline: none;
-        }
-        
-        .hbg:hover {
-            background: rgba(41, 121, 255, 0.12);
-        }
-        
-        .hb {
-            display: block;
-            width: 16px;
-            height: 1.5px;
-            border-radius: 2px;
-            background: #fff;
-            pointer-events: none;
-            transition: transform .35s cubic-bezier(.68, -.55, .265, 1.55), opacity .22s;
-        }
-        
-        .hbg.open .hb:nth-child(1) {
-            transform: translateY(5.5px) rotate(45deg);
-        }
-        
-        .hbg.open .hb:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hbg.open .hb:nth-child(3) {
-            transform: translateY(-5.5px) rotate(-45deg);
-        }
-        
-        .mbd {
-            position: fixed;
-            inset: 0;
-            z-index: 350;
-            background: rgba(3, 8, 18, 0.7);
-            backdrop-filter: blur(8px);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .3s;
-        }
-        
-        .mbd.open {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .mpn {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: min(290px, 100vw);
-            z-index: 400;
-            background: rgba(7, 14, 26, 0.97);
-            backdrop-filter: blur(32px);
-            border-left: 1px solid rgba(91, 159, 255, 0.1);
-            transform: translateX(110%);
-            transition: transform .5s cubic-bezier(.77, 0, .175, 1);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .mpn.open {
-            transform: translateX(0);
-        }
-        
-        .mph {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 18px;
-            border-bottom: 1px solid rgba(91, 159, 255, 0.1);
-        }
-        
-        .mph-x {
-            width: 30px;
-            height: 30px;
-            border-radius: 7px;
-            border: 1px solid rgba(255, 255, 255, 0.09);
-            background: transparent;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255, 255, 255, 0.35);
-            font-size: .8rem;
-            transition: all .18s;
-        }
-        
-        .mph-x:hover {
-            color: #fff;
-            background: rgba(41, 121, 255, 0.14);
-        }
-        
-        .mn {
-            flex: 1;
-            overflow-y: auto;
-            padding: 10px;
-            scrollbar-width: none;
-        }
-        
-        .mn::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .mn-h {
-            font-size: .52rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: rgba(91, 159, 255, 0.3);
-            padding: 12px 9px 5px;
-        }
-        
-        .ma {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            padding: 10px 9px;
-            border-radius: 8px;
-            text-decoration: none;
-            margin-bottom: 2px;
-            transition: all .17s;
-            border: 1px solid transparent;
-            opacity: 0;
-            transform: translateX(12px);
-        }
-        
-        .mpn.open .ma {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .ma:hover {
-            background: rgba(255, 255, 255, 0.04);
-        }
-        
-        .ma.active {
-            background: rgba(41, 121, 255, 0.13);
-            border-color: rgba(41, 121, 255, 0.25);
-        }
-        
-        .mi {
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .72rem;
-            flex-shrink: 0;
-        }
-        
-        .ma.active .mi {
-            background: rgba(41, 121, 255, 0.2);
-        }
-        
-        .ml {
-            font-family: var(--serif);
-            font-size: .95rem;
-            color: rgba(255, 255, 255, 0.55);
-        }
-        
-        .ma.active .ml,
-        .ma:hover .ml {
-            color: #fff;
-        }
-        
-        .mpf {
-            padding: 12px;
-            border-top: 1px solid rgba(91, 159, 255, 0.1);
-        }
-        
-        .mr {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 7px;
-            background: linear-gradient(135deg, #1454d4, #2979ff);
-            color: #fff;
-            padding: 11px;
-            border-radius: 8px;
-            font-size: .82rem;
-            font-weight: 500;
-            text-decoration: none;
-            box-shadow: 0 4px 16px rgba(41, 121, 255, 0.3);
-            transition: all .22s;
-        }
-        
-        .mr:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 24px rgba(41, 121, 255, 0.45);
-        }
-        
-        .mpff {
-            font-size: .6rem;
-            color: rgba(255, 255, 255, 0.16);
-            text-align: center;
-            margin-top: 8px;
-        }
-        /* ══ SPLIT ══ */
-        
-        .split {
-            display: grid;
-            grid-template-columns: 360px 1fr;
-            height: 100vh;
-            padding-top: 60px;
-        }
-        /* ══ LEFT ══ */
-        
-        .left {
-            background: var(--L2);
-            border-right: 1px solid rgba(41, 121, 255, 0.14);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .left::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 240px;
-            background: radial-gradient(ellipse 120% 80% at 50% 0%, rgba(41, 121, 255, 0.18) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        
-        .left-scroll {
-            flex: 1;
-            overflow-y: auto;
-            padding: 32px 28px 24px;
-            scrollbar-width: none;
-        }
-        
-        .left-scroll::-webkit-scrollbar {
-            display: none;
-        }
-        
-        .pf-hero {
-            text-align: center;
-            margin-bottom: 28px;
-            position: relative;
-        }
-        
-        .pf-av-ring {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(41, 121, 255, 0.5), rgba(91, 159, 255, 0.1));
-            padding: 3px;
-            margin: 0 auto 14px;
-            position: relative;
-        }
-        
-        .pf-av {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--B) 0%, #071020 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--serif);
-            font-size: 2rem;
-            color: #fff;
-        }
-        
-        .pf-status {
-            position: absolute;
-            bottom: 3px;
-            right: 3px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--G);
-            border: 3px solid var(--L2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .44rem;
-        }
-        
-        .pf-name {
-            font-family: var(--serif);
-            font-size: 1.45rem;
-            font-weight: 300;
-            color: #fff;
-            margin-bottom: 3px;
-        }
-        
-        .pf-name em {
-            font-style: italic;
-            color: var(--Bl);
-        }
-        
-        .pf-since {
-            font-size: .7rem;
-            color: var(--W3);
-            margin-bottom: 10px;
-        }
-        
-        .pf-stars {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 3px;
-            margin-bottom: 12px;
-        }
-        
-        .pf-star {
-            color: var(--A);
-            font-size: .72rem;
-        }
-        
-        .pf-score {
-            font-size: .72rem;
-            color: var(--W3);
-            margin-left: 5px;
-        }
-        
-        .pf-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: .62rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            padding: 5px 12px;
-            border-radius: 100px;
-            background: rgba(52, 211, 153, 0.12);
-            color: var(--G);
-            border: 1px solid rgba(52, 211, 153, 0.22);
-        }
-        
-        .pf-badge-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--G);
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 0 5px rgba(52, 211, 153, 0);
-            }
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 24px;
-        }
-        
-        .stat {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(91, 159, 255, 0.1);
-            border-radius: 12px;
-            padding: 16px 14px;
-            transition: all .2s;
-            cursor: default;
-        }
-        
-        .stat:hover {
-            background: rgba(41, 121, 255, 0.1);
-            border-color: rgba(91, 159, 255, 0.22);
-        }
-        
-        .stat-val {
-            font-family: var(--serif);
-            font-size: 2rem;
-            font-weight: 300;
-            color: #fff;
-            line-height: 1;
-            margin-bottom: 3px;
-        }
-        
-        .stat-lbl {
-            font-size: .67rem;
-            color: var(--W3);
-        }
-        
-        .stat-trend {
-            font-size: .62rem;
-            margin-top: 5px;
-        }
-        
-        .st-up {
-            color: var(--G);
-        }
-        
-        .st-dn {
-            color: var(--R);
-        }
-        
-        .st-neu {
-            color: var(--Bl);
-        }
-        
-        .info-rows {
-            margin-bottom: 24px;
-        }
-        
-        .info-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 11px 0;
-            border-bottom: 1px solid rgba(41, 121, 255, 0.09);
-        }
-        
-        .info-row:last-child {
-            border-bottom: none;
-        }
-        
-        .ir-icon {
-            width: 26px;
-            height: 26px;
-            border-radius: 6px;
-            background: rgba(41, 121, 255, 0.12);
-            border: 1px solid rgba(91, 159, 255, 0.14);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .65rem;
-            flex-shrink: 0;
-        }
-        
-        .ir-lbl {
-            font-size: .63rem;
-            color: var(--W3);
-        }
-        
-        .ir-val {
-            font-size: .8rem;
-            font-weight: 500;
-            color: #fff;
-        }
-        
-        .ir-edit {
-            margin-left: auto;
-            font-size: .62rem;
-            color: var(--Bl);
-            opacity: 0;
-            transition: opacity .18s;
-            padding: 3px 8px;
-            border-radius: 5px;
-            background: rgba(41, 121, 255, 0.1);
-            text-decoration: none;
-        }
-        
-        .info-row:hover .ir-edit {
-            opacity: 1;
-        }
-        
-        .left-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            margin-bottom: 20px;
-        }
-        
-        .ln {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 12px;
-            border-radius: 9px;
-            text-decoration: none;
-            transition: all .18s;
-            border: 1px solid transparent;
-        }
-        
-        .ln:hover {
-            background: rgba(255, 255, 255, 0.04);
-        }
-        
-        .ln.active {
-            background: rgba(41, 121, 255, 0.14);
-            border-color: rgba(41, 121, 255, 0.25);
-        }
-        
-        .ln-ico {
-            width: 28px;
-            height: 28px;
-            border-radius: 7px;
-            background: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .74rem;
-            flex-shrink: 0;
-        }
-        
-        .ln.active .ln-ico {
-            background: rgba(41, 121, 255, 0.22);
-        }
-        
-        .ln-label {
-            font-size: .81rem;
-            font-weight: 500;
-            color: var(--W3);
-            flex: 1;
-        }
-        
-        .ln.active .ln-label,
-        .ln:hover .ln-label {
-            color: #fff;
-        }
-        
-        .ln-badge {
-            font-size: .58rem;
-            padding: 2px 7px;
-            border-radius: 100px;
-            background: rgba(41, 121, 255, 0.2);
-            color: var(--Bl);
-            border: 1px solid rgba(41, 121, 255, 0.28);
-            font-weight: 600;
-        }
-        
-        .left-actions {
-            padding: 18px 28px 24px;
-            border-top: 1px solid rgba(41, 121, 255, 0.1);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-        
-        .la {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: .75rem;
-            font-weight: 500;
-            cursor: pointer;
-            border: 1px solid;
-            text-decoration: none;
-            transition: all .18s;
-        }
-        
-        .la-p {
-            background: rgba(41, 121, 255, 0.13);
-            color: var(--Bl);
-            border-color: rgba(91, 159, 255, 0.2);
-        }
-        
-        .la-p:hover {
-            background: rgba(41, 121, 255, 0.22);
-        }
-        
-        .la-d {
-            background: rgba(239, 68, 68, 0.07);
-            color: #f87171;
-            border-color: rgba(239, 68, 68, 0.15);
-        }
-        
-        .la-d:hover {
-            background: rgba(239, 68, 68, 0.14);
-        }
-        /* ══ RIGHT ══ */
-        
-        .right {
-            overflow-y: auto;
-            background: var(--L);
-            padding: 36px 40px 60px;
-        }
-        
-        .section-head {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            margin-bottom: 18px;
-            margin-top: 36px;
-        }
-        
-        .section-head:first-child {
-            margin-top: 0;
-        }
-        
-        .sh-title {
-            font-family: var(--serif);
-            font-size: 1.55rem;
-            font-weight: 300;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .sh-title em {
-            font-style: italic;
-            color: var(--Bl);
-        }
-        
-        .sh-line {
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, rgba(41, 121, 255, 0.2), transparent);
-            margin-left: 16px;
-            margin-right: 16px;
-        }
-        
-        .sh-link {
-            font-size: .72rem;
-            color: var(--Bl);
-            text-decoration: none;
-            font-weight: 500;
-            white-space: nowrap;
-        }
-        
-        .sh-link:hover {
-            color: #fff;
-        }
-        /* ── RENTAL CARD — FIX: rc-body align-items center, rc-right centered ── */
-        
-        .rental-card {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.13) 0%, rgba(41, 121, 255, 0.07) 60%, transparent 100%);
-            border: 1px solid rgba(52, 211, 153, 0.2);
-            border-radius: 16px;
-            padding: 28px 30px;
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 36px;
-        }
-        
-        .rental-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(52, 211, 153, 0.4) 40%, rgba(91, 159, 255, 0.3) 70%, transparent);
-        }
-        
-        .rental-card::after {
-            content: '';
-            position: absolute;
-            right: -6%;
-            top: -20%;
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(41, 121, 255, 0.1), transparent 70%);
-            pointer-events: none;
-        }
-        
-        .rc-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-size: .59rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 4px 12px;
-            border-radius: 100px;
-            background: rgba(52, 211, 153, 0.13);
-            color: var(--G);
-            border: 1px solid rgba(52, 211, 153, 0.22);
-            margin-bottom: 14px;
-        }
-        
-        .rc-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--G);
-            animation: pulse 2s infinite;
-        }
-        /* FIX 1: was flex-end, now center so "3" aligns properly with left content */
-        
-        .rc-body {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        
-        .rc-vehicle {
-            font-family: var(--serif);
-            font-size: 1.9rem;
-            font-weight: 300;
-            color: #fff;
-            margin-bottom: 6px;
-            line-height: 1.1;
-        }
-        
-        .rc-meta {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: .77rem;
-            color: var(--W2);
-            flex-wrap: wrap;
-        }
-        
-        .rc-sep {
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background: rgba(91, 159, 255, 0.3);
-        }
-        /* FIX 2: rc-right — positionné en absolu en haut à droite */
-        
-        .rc-right {
-            position: absolute;
-            top: 24px;
-            right: 30px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-        }
-        
-        .rc-days {
-            font-family: var(--serif);
-            font-size: 3.8rem;
-            font-weight: 300;
-            color: var(--G);
-            line-height: 1;
-            margin-bottom: 10px;
-        }
-        
-        .rc-dlbl {
-            font-size: .62rem;
-            color: rgba(52, 211, 153, 0.6);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .rc-progress {
-            margin-top: 18px;
-        }
-        
-        .rc-pt {
-            display: flex;
-            justify-content: space-between;
-            font-size: .67rem;
-            color: var(--W3);
-            margin-bottom: 7px;
-        }
-        
-        .rc-bar {
-            height: 3px;
-            background: rgba(255, 255, 255, 0.07);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-        
-        .rc-fill {
-            height: 100%;
-            width: 33%;
-            background: linear-gradient(90deg, #059669, var(--G));
-            border-radius: 3px;
-        }
-        
-        .grid2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 14px;
-        }
-        
-        .grid3 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 14px;
-        }
-        
-        .card {
-            background: var(--L2);
-            border: 1px solid rgba(41, 121, 255, 0.1);
-            border-radius: 14px;
-            overflow: hidden;
-            transition: border-color .25s;
-        }
-        
-        .card:hover {
-            border-color: rgba(91, 159, 255, 0.2);
-        }
-        
-        .card-h {
-            padding: 18px 20px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .ch-l {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-        }
-        
-        .ci {
-            width: 30px;
-            height: 30px;
-            border-radius: 7px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .76rem;
-            flex-shrink: 0;
-            border: 1px solid;
-        }
-        
-        .ci-b {
-            background: rgba(41, 121, 255, 0.16);
-            border-color: rgba(41, 121, 255, 0.26);
-        }
-        
-        .ci-g {
-            background: rgba(52, 211, 153, 0.13);
-            border-color: rgba(52, 211, 153, 0.22);
-        }
-        
-        .ci-a {
-            background: rgba(251, 191, 36, 0.13);
-            border-color: rgba(251, 191, 36, 0.22);
-        }
-        
-        .ci-v {
-            background: rgba(168, 85, 247, 0.13);
-            border-color: rgba(168, 85, 247, 0.22);
-        }
-        
-        .ct {
-            font-size: .82rem;
-            font-weight: 500;
-            color: var(--W);
-        }
-        
-        .cs {
-            font-size: .66rem;
-            color: var(--W3);
-            margin-top: 1px;
-        }
-        
-        .c-action {
-            font-size: .68rem;
-            color: var(--Bl);
-            text-decoration: none;
-            font-weight: 500;
-        }
-        
-        .c-action:hover {
-            color: #fff;
-        }
-        
-        .card-b {
-            padding: 14px 20px 18px;
-        }
-        /* FIX 3: res hover — prevent layout jump with padding compensation */
-        
-        .res {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 6px;
-            border-bottom: 1px solid rgba(41, 121, 255, 0.08);
-            border-radius: 9px;
-            transition: background .15s;
-        }
-        
-        .res:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-        
-        .res:hover {
-            background: rgba(41, 121, 255, 0.06);
-        }
-        
-        .res-th {
-            width: 48px;
-            height: 37px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, rgba(41, 121, 255, 0.16), rgba(5, 10, 20, 0.6));
-            border: 1px solid rgba(91, 159, 255, 0.14);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-        
-        .res-n {
-            font-size: .83rem;
-            font-weight: 500;
-            color: #fff;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            margin-bottom: 2px;
-        }
-        
-        .res-d {
-            font-size: .68rem;
-            color: var(--W3);
-            display: flex;
-            gap: 5px;
-            align-items: center;
-        }
-        
-        .res-ds {
-            width: 2px;
-            height: 2px;
-            border-radius: 50%;
-            background: rgba(91, 159, 255, 0.3);
-        }
-        
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            font-size: .6rem;
-            padding: 3px 8px;
-            border-radius: 100px;
-            font-weight: 600;
-        }
-        
-        .badge::before {
-            content: '';
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-        }
-        
-        .b-on {
-            background: rgba(52, 211, 153, 0.11);
-            color: var(--G);
-            border: 1px solid rgba(52, 211, 153, 0.2);
-        }
-        
-        .b-on::before {
-            background: var(--G);
-            animation: blink 2s infinite;
-        }
-        
-        .b-off {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--W3);
-            border: 1px solid rgba(255, 255, 255, 0.07);
-        }
-        
-        .b-off::before {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        @keyframes blink {
-            0%,
-            100% {
-                opacity: 1
-            }
-            50% {
-                opacity: .3
-            }
-        }
-        
-        .res-p {
-            font-size: .73rem;
-            color: var(--W3);
-            margin-top: 3px;
-        }
-        
-        .notif {
-            display: flex;
-            gap: 10px;
-            padding: 11px 0;
-            border-bottom: 1px solid rgba(41, 121, 255, 0.08);
-        }
-        
-        .notif:last-child {
-            border-bottom: none;
-        }
-        
-        .ni {
-            width: 30px;
-            height: 30px;
-            border-radius: 7px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .74rem;
-            flex-shrink: 0;
-            border: 1px solid;
-            margin-top: 1px;
-        }
-        
-        .ni-b {
-            background: rgba(41, 121, 255, 0.15);
-            border-color: rgba(41, 121, 255, 0.24);
-        }
-        
-        .ni-g {
-            background: rgba(52, 211, 153, 0.12);
-            border-color: rgba(52, 211, 153, 0.2);
-        }
-        
-        .ni-a {
-            background: rgba(251, 191, 36, 0.12);
-            border-color: rgba(251, 191, 36, 0.2);
-        }
-        
-        .ni-x {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.07);
-        }
-        
-        .nt {
-            font-size: .79rem;
-            font-weight: 500;
-            color: #fff;
-            margin-bottom: 2px;
-        }
-        
-        .nt.r {
-            color: var(--W3);
-            font-weight: 400;
-        }
-        
-        .nd {
-            font-size: .66rem;
-            color: var(--W3);
-        }
-        
-        .n-u {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: var(--B);
-            flex-shrink: 0;
-            margin-top: 5px;
-            box-shadow: 0 0 5px rgba(41, 121, 255, 0.6);
-        }
-        
-        .doc {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            padding: 11px 0;
-            border-bottom: 1px solid rgba(41, 121, 255, 0.08);
-        }
-        
-        .doc:last-child {
-            border-bottom: none;
-        }
-        
-        .doc-i {
-            width: 32px;
-            height: 32px;
-            border-radius: 7px;
-            background: rgba(41, 121, 255, 0.13);
-            border: 1px solid rgba(91, 159, 255, 0.18);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .8rem;
-            flex-shrink: 0;
-        }
-        
-        .doc-n {
-            font-size: .79rem;
-            font-weight: 500;
-            color: #fff;
-            margin-bottom: 1px;
-        }
-        
-        .doc-m {
-            font-size: .65rem;
-            color: var(--W3);
-        }
-        
-        .doc-dl {
-            font-size: .68rem;
-            color: var(--Bl);
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 6px;
-            background: rgba(41, 121, 255, 0.1);
-            border: 1px solid rgba(91, 159, 255, 0.17);
-            transition: all .18s;
-            font-weight: 500;
-            margin-left: auto;
-            flex-shrink: 0;
-        }
-        
-        .doc-dl:hover {
-            background: rgba(41, 121, 255, 0.2);
-        }
-        
-        .rating {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 12px 0 8px;
-        }
-        
-        .r-val {
-            font-family: var(--serif);
-            font-size: 3.8rem;
-            font-weight: 300;
-            color: #fff;
-            line-height: 1;
-        }
-        
-        .r-r {
-            flex: 1;
-        }
-        
-        .r-stars {
-            display: flex;
-            gap: 2px;
-            margin-bottom: 4px;
-        }
-        
-        .r-s {
-            color: var(--A);
-            font-size: .9rem;
-        }
-        
-        .r-c {
-            font-size: .68rem;
-            color: var(--W3);
-        }
-        
-        .rbars {
-            margin-top: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-        
-        .rb {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-        }
-        
-        .rb-l {
-            font-size: .6rem;
-            color: var(--W3);
-            width: 8px;
-        }
-        
-        .rb-t {
-            flex: 1;
-            height: 3px;
-            background: rgba(255, 255, 255, 0.07);
-            border-radius: 2px;
-            overflow: hidden;
-        }
-        
-        .rb-f {
-            height: 100%;
-            border-radius: 2px;
-            background: linear-gradient(90deg, #d97706, var(--A));
-            transition: width 1.6s cubic-bezier(.22, .68, 0, 1.2);
-        }
-        
-        .pref {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            padding: 11px 0;
-            border-bottom: 1px solid rgba(41, 121, 255, 0.08);
-        }
-        
-        .pref:last-child {
-            border-bottom: none;
-        }
-        
-        .pref-i {
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            background: rgba(41, 121, 255, 0.11);
-            border: 1px solid rgba(91, 159, 255, 0.14);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: .7rem;
-            flex-shrink: 0;
-        }
-        
-        .pref-n {
-            font-size: .79rem;
-            font-weight: 500;
-            color: #fff;
-            margin-bottom: 1px;
-        }
-        
-        .pref-d {
-            font-size: .65rem;
-            color: var(--W3);
-        }
-        
-        .tg {
-            position: relative;
-            width: 34px;
-            height: 19px;
-            flex-shrink: 0;
-        }
-        
-        .tg input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-            position: absolute;
-        }
-        
-        .tg-s {
-            position: absolute;
-            inset: 0;
-            background: rgba(255, 255, 255, 0.09);
-            border-radius: 100px;
-            cursor: pointer;
-            transition: background .2s;
-            border: 1px solid rgba(255, 255, 255, 0.09);
-        }
-        
-        .tg-s::before {
-            content: '';
-            position: absolute;
-            left: 2px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 13px;
-            height: 13px;
-            border-radius: 50%;
-            background: #fff;
-            transition: left .2s;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        }
-        
-        .tg input:checked+.tg-s {
-            background: rgba(41, 121, 255, 0.62);
-            border-color: rgba(91, 159, 255, 0.4);
-        }
-        
-        .tg input:checked+.tg-s::before {
-            left: calc(100% - 15px);
-        }
-        
-        .turo {
-            background: linear-gradient(125deg, rgba(41, 121, 255, 0.18) 0%, rgba(10, 22, 40, 0.9) 100%);
-            border: 1px solid rgba(41, 121, 255, 0.22);
-            border-radius: 16px;
-            padding: 30px 32px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-            flex-wrap: wrap;
-            position: relative;
-            overflow: hidden;
-            margin-top: 36px;
-        }
-        
-        .turo::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(91, 159, 255, 0.48) 50%, transparent);
-        }
-        
-        .turo::after {
-            content: '';
-            position: absolute;
-            right: -5%;
-            bottom: -30%;
-            width: 210px;
-            height: 210px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(41, 121, 255, 0.12), transparent 70%);
-            pointer-events: none;
-        }
-        
-        .turo-ey {
-            font-size: .56rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--Bl);
-            margin-bottom: 8px;
-        }
-        
-        .turo-h {
-            font-family: var(--serif);
-            font-size: 1.65rem;
-            font-weight: 300;
-            color: #fff;
-            margin-bottom: 6px;
-            line-height: 1.2;
-        }
-        
-        .turo-p {
-            font-size: .79rem;
-            color: var(--W2);
-            line-height: 1.6;
-            max-width: 380px;
-        }
-        
-        .turo-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 7px;
-            background: linear-gradient(135deg, #1454d4, #2979ff);
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 9px;
-            font-size: .82rem;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all .22s;
-            box-shadow: 0 4px 18px rgba(41, 121, 255, 0.38);
-            flex-shrink: 0;
-            z-index: 1;
-            position: relative;
-        }
-        
-        .turo-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 28px rgba(41, 121, 255, 0.52);
-        }
-        
-        .reveal {
-            opacity: 0;
-            transform: translateY(18px);
-            transition: opacity .55s ease, transform .55s ease;
-        }
-        
-        .reveal.vis {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .d1 {
-            transition-delay: .07s
-        }
-        
-        .d2 {
-            transition-delay: .14s
-        }
-        
-        .d3 {
-            transition-delay: .21s
-        }
-        /* ── FOOTER ── */
-        
-        .foot {
-            margin-top: 48px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(41, 121, 255, 0.1);
-        }
-        
-        .foot-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin-bottom: 20px;
-        }
-        
-        .fb {
-            font-family: var(--serif);
-            font-size: 1.1rem;
-            color: #fff;
-            margin-bottom: 8px;
-        }
-        
-        .fb em {
-            font-style: normal;
-            color: var(--Bl);
-        }
-        
-        .fd {
-            font-size: .75rem;
-            color: rgba(255, 255, 255, .25);
-            line-height: 1.7;
-            max-width: 170px;
-        }
-        
-        .fc h4 {
-            font-size: .54rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .14);
-            margin-bottom: 10px;
-        }
-        
-        .fc a {
-            display: block;
-            font-size: .75rem;
-            color: rgba(255, 255, 255, .25);
-            text-decoration: none;
-            margin-bottom: 8px;
-            transition: color .18s;
-        }
-        
-        .fc a:hover {
-            color: rgba(255, 255, 255, .7);
-        }
-        
-        .foot-bot {
-            display: flex;
-            justify-content: space-between;
-            font-size: .68rem;
-            color: rgba(255, 255, 255, .16);
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-        
-        .foot-bot a {
-            color: var(--Bl);
-            text-decoration: none;
-        }
-        /* ══ RESPONSIVE ══ */
-        
-        @media(max-width:960px) {
-            body {
-                overflow: auto;
-            }
-            .split {
-                display: block;
-                height: auto;
-                overflow: visible;
-            }
-            .left {
-                height: auto;
-                border-right: none;
-                border-bottom: 1px solid rgba(41, 121, 255, 0.12);
-            }
-            .left-scroll {
-                padding: 24px 20px 16px;
-            }
-            .stats-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            .right {
-                padding: 24px 20px 40px;
-                overflow: visible;
-            }
-            .grid2,
-            .grid3 {
-                grid-template-columns: 1fr;
-            }
-            .foot-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        @media(max-width:540px) {
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .left-actions {
-                grid-template-columns: 1fr;
-            }
-            .turo {
-                flex-direction: column;
-            }
-            .foot-grid {
-                grid-template-columns: 1fr;
-            }
-            .foot-bot {
-                flex-direction: column;
-                text-align: center;
-            }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --L:#0a1628;--L2:#0d1f3a;--L3:#0f2448;
+            --B:#2979ff;--Bl:#5b9fff;--Bll:#a8cbff;
+            --W:#fff;--W2:rgba(255,255,255,0.72);--W3:rgba(255,255,255,0.38);--W4:rgba(255,255,255,0.1);
+            --G:#34d399;--A:#fbbf24;--R:#f87171;
+            --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif;
+        }
+        html{scroll-behavior:smooth}
+        body{background:var(--L);color:var(--W);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh}
+        ::-webkit-scrollbar{width:4px}
+        ::-webkit-scrollbar-track{background:transparent}
+        ::-webkit-scrollbar-thumb{background:rgba(41,121,255,0.4);border-radius:4px}
+ 
+        /* NAV */
+        .nav{position:fixed;top:0;left:0;right:0;z-index:300;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(8,14,26,0.92);backdrop-filter:blur(24px);border-bottom:1px solid rgba(41,121,255,0.14)}
+        .nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(91,159,255,0.55) 50%,transparent);pointer-events:none}
+        .nav-logo{display:flex;align-items:center;text-decoration:none}
+        .nav-r{display:flex;align-items:center;gap:8px}
+        .nib{width:36px;height:36px;border-radius:8px;background:var(--W4);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.8rem;transition:all .2s;position:relative}
+        .nib:hover{background:rgba(41,121,255,0.14);border-color:rgba(91,159,255,0.3)}
+        .nib .dot{position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:var(--B);border:2px solid #080e1a}
+        .nav-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--B),#071020);border:2px solid rgba(91,159,255,0.4);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.8rem;cursor:pointer;font-weight:600}
+        .hbg{-webkit-appearance:none;appearance:none;background:transparent;border:1px solid rgba(255,255,255,0.09);width:38px;height:38px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border-radius:8px;transition:all .22s;flex-shrink:0}
+        .hbg:focus{outline:none}
+        .hbg:hover{background:rgba(41,121,255,0.12)}
+        .hb{display:block;width:16px;height:1.5px;border-radius:2px;background:#fff;pointer-events:none;transition:transform .35s cubic-bezier(.68,-.55,.265,1.55),opacity .22s}
+        .hbg.open .hb:nth-child(1){transform:translateY(5.5px) rotate(45deg)}
+        .hbg.open .hb:nth-child(2){opacity:0}
+        .hbg.open .hb:nth-child(3){transform:translateY(-5.5px) rotate(-45deg)}
+        .mbd{position:fixed;inset:0;z-index:350;background:rgba(3,8,18,0.7);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .3s}
+        .mbd.open{opacity:1;pointer-events:all}
+        .mpn{position:fixed;top:0;right:0;bottom:0;width:min(290px,100vw);z-index:400;background:rgba(7,14,26,0.97);backdrop-filter:blur(32px);border-left:1px solid rgba(91,159,255,0.1);transform:translateX(110%);transition:transform .5s cubic-bezier(.77,0,.175,1);display:flex;flex-direction:column}
+        .mpn.open{transform:translateX(0)}
+        .mph{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid rgba(91,159,255,0.1)}
+        .mph-x{width:30px;height:30px;border-radius:7px;border:1px solid rgba(255,255,255,0.09);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.35);font-size:.8rem;transition:all .18s}
+        .mph-x:hover{color:#fff;background:rgba(41,121,255,0.14)}
+        .mn{flex:1;overflow-y:auto;padding:10px;scrollbar-width:none}
+        .mn::-webkit-scrollbar{display:none}
+        .mn-h{font-size:.52rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(91,159,255,0.3);padding:12px 9px 5px}
+        .ma{display:flex;align-items:center;gap:11px;padding:10px 9px;border-radius:8px;text-decoration:none;margin-bottom:2px;transition:all .17s;border:1px solid transparent;opacity:0;transform:translateX(12px)}
+        .mpn.open .ma{opacity:1;transform:translateX(0)}
+        .ma:hover{background:rgba(255,255,255,0.04)}
+        .ma.active{background:rgba(41,121,255,0.13);border-color:rgba(41,121,255,0.25)}
+        .mi{width:28px;height:28px;border-radius:6px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:.72rem;flex-shrink:0}
+        .ma.active .mi{background:rgba(41,121,255,0.2)}
+        .ml{font-family:var(--serif);font-size:.95rem;color:rgba(255,255,255,0.55)}
+        .ma.active .ml,.ma:hover .ml{color:#fff}
+        .mpf{padding:12px;border-top:1px solid rgba(91,159,255,0.1)}
+        .mr{display:flex;align-items:center;justify-content:center;gap:7px;background:linear-gradient(135deg,#1454d4,#2979ff);color:#fff;padding:11px;border-radius:8px;font-size:.82rem;font-weight:500;text-decoration:none;box-shadow:0 4px 16px rgba(41,121,255,0.3);transition:all .22s}
+        .mr:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(41,121,255,0.45)}
+        .mpff{font-size:.6rem;color:rgba(255,255,255,0.16);text-align:center;margin-top:8px}
+ 
+        /* SPLIT */
+        .split{display:grid;grid-template-columns:360px 1fr;height:100vh;padding-top:60px}
+ 
+        /* LEFT */
+        .left{background:var(--L2);border-right:1px solid rgba(41,121,255,0.14);display:flex;flex-direction:column;overflow:hidden;position:relative}
+        .left::before{content:'';position:absolute;top:0;left:0;right:0;height:240px;background:radial-gradient(ellipse 120% 80% at 50% 0%,rgba(41,121,255,0.18) 0%,transparent 70%);pointer-events:none}
+        .left-scroll{flex:1;overflow-y:auto;padding:32px 28px 24px;scrollbar-width:none}
+        .left-scroll::-webkit-scrollbar{display:none}
+        .pf-hero{text-align:center;margin-bottom:28px;position:relative}
+        .pf-av-ring{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,rgba(41,121,255,0.5),rgba(91,159,255,0.1));padding:3px;margin:0 auto 14px;position:relative}
+        .pf-av{width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,var(--B) 0%,#071020 100%);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:2rem;color:#fff;overflow:hidden}
+        .pf-av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+        .pf-status{position:absolute;bottom:3px;right:3px;width:20px;height:20px;border-radius:50%;background:var(--G);border:3px solid var(--L2);display:flex;align-items:center;justify-content:center;font-size:.44rem}
+        .pf-name{font-family:var(--serif);font-size:1.45rem;font-weight:300;color:#fff;margin-bottom:3px}
+        .pf-name em{font-style:italic;color:var(--Bl)}
+        .pf-since{font-size:.7rem;color:var(--W3);margin-bottom:10px}
+        .pf-badge{display:inline-flex;align-items:center;gap:5px;font-size:.62rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:100px;background:rgba(52,211,153,0.12);color:var(--G);border:1px solid rgba(52,211,153,0.22)}
+        .pf-badge-dot{width:5px;height:5px;border-radius:50%;background:var(--G);animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(52,211,153,0.3)}50%{box-shadow:0 0 0 5px rgba(52,211,153,0)}}
+        .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+        .stat{background:rgba(255,255,255,0.04);border:1px solid rgba(91,159,255,0.1);border-radius:12px;padding:16px 14px;transition:all .2s;cursor:default}
+        .stat:hover{background:rgba(41,121,255,0.1);border-color:rgba(91,159,255,0.22)}
+        .stat-val{font-family:var(--serif);font-size:2rem;font-weight:300;color:#fff;line-height:1;margin-bottom:3px}
+        .stat-lbl{font-size:.67rem;color:var(--W3)}
+        .stat-trend{font-size:.62rem;margin-top:5px}
+        .st-up{color:var(--G)}.st-dn{color:var(--R)}.st-neu{color:var(--Bl)}
+        .info-rows{margin-bottom:24px}
+        .info-row{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid rgba(41,121,255,0.09)}
+        .info-row:last-child{border-bottom:none}
+        .ir-icon{width:26px;height:26px;border-radius:6px;background:rgba(41,121,255,0.12);border:1px solid rgba(91,159,255,0.14);display:flex;align-items:center;justify-content:center;font-size:.65rem;flex-shrink:0}
+        .ir-lbl{font-size:.63rem;color:var(--W3)}
+        .ir-val{font-size:.8rem;font-weight:500;color:#fff}
+        .left-nav{display:flex;flex-direction:column;gap:2px;margin-bottom:20px}
+        .ln{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;text-decoration:none;transition:all .18s;border:1px solid transparent}
+        .ln:hover{background:rgba(255,255,255,0.04)}
+        .ln.active{background:rgba(41,121,255,0.14);border-color:rgba(41,121,255,0.25)}
+        .ln-ico{width:28px;height:28px;border-radius:7px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;font-size:.74rem;flex-shrink:0}
+        .ln.active .ln-ico{background:rgba(41,121,255,0.22)}
+        .ln-label{font-size:.81rem;font-weight:500;color:var(--W3);flex:1}
+        .ln.active .ln-label,.ln:hover .ln-label{color:#fff}
+        .ln-badge{font-size:.58rem;padding:2px 7px;border-radius:100px;background:rgba(41,121,255,0.2);color:var(--Bl);border:1px solid rgba(41,121,255,0.28);font-weight:600}
+        .left-actions{padding:18px 28px 24px;border-top:1px solid rgba(41,121,255,0.1);display:grid;grid-template-columns:1fr 1fr;gap:8px;flex-shrink:0}
+        .la{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;border-radius:8px;font-size:.75rem;font-weight:500;cursor:pointer;border:1px solid;text-decoration:none;transition:all .18s;background:none;font-family:var(--sans)}
+        .la-p{background:rgba(41,121,255,0.13);color:var(--Bl);border-color:rgba(91,159,255,0.2)}
+        .la-p:hover{background:rgba(41,121,255,0.22)}
+        .la-d{background:rgba(239,68,68,0.07);color:#f87171;border-color:rgba(239,68,68,0.15)}
+        .la-d:hover{background:rgba(239,68,68,0.14)}
+ 
+        /* RIGHT */
+        .right{overflow-y:auto;background:var(--L);padding:36px 40px 60px}
+        .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;margin-top:36px}
+        .section-head:first-child{margin-top:0}
+        .sh-title{font-family:var(--serif);font-size:1.55rem;font-weight:300;color:#fff;display:flex;align-items:center;gap:10px}
+        .sh-title em{font-style:italic;color:var(--Bl)}
+        .sh-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(41,121,255,0.2),transparent);margin-left:16px;margin-right:16px}
+        .sh-link{font-size:.72rem;color:var(--Bl);text-decoration:none;font-weight:500;white-space:nowrap}
+        .sh-link:hover{color:#fff}
+ 
+        /* RENTAL CARD */
+        .rental-card{background:linear-gradient(135deg,rgba(16,185,129,0.13) 0%,rgba(41,121,255,0.07) 60%,transparent 100%);border:1px solid rgba(52,211,153,0.2);border-radius:16px;padding:28px 30px;position:relative;overflow:hidden;margin-bottom:36px}
+        .rental-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(52,211,153,0.4) 40%,rgba(91,159,255,0.3) 70%,transparent)}
+        .rental-card::after{content:'';position:absolute;right:-6%;top:-20%;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(41,121,255,0.1),transparent 70%);pointer-events:none}
+        .rc-tag{display:inline-flex;align-items:center;gap:6px;font-size:.59rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:100px;background:rgba(52,211,153,0.13);color:var(--G);border:1px solid rgba(52,211,153,0.22);margin-bottom:14px}
+        .rc-dot{width:5px;height:5px;border-radius:50%;background:var(--G);animation:pulse 2s infinite}
+        .rc-body{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+        .rc-vehicle{font-family:var(--serif);font-size:1.9rem;font-weight:300;color:#fff;margin-bottom:6px;line-height:1.1}
+        .rc-meta{display:flex;align-items:center;gap:10px;font-size:.77rem;color:var(--W2);flex-wrap:wrap}
+        .rc-sep{width:3px;height:3px;border-radius:50%;background:rgba(91,159,255,0.3)}
+        .rc-right{position:absolute;top:24px;right:30px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px}
+        .rc-days{font-family:var(--serif);font-size:3.8rem;font-weight:300;color:var(--G);line-height:1;margin-bottom:10px}
+        .rc-dlbl{font-size:.62rem;color:rgba(52,211,153,0.6);text-transform:uppercase;letter-spacing:2px}
+        .rc-progress{margin-top:18px}
+        .rc-pt{display:flex;justify-content:space-between;font-size:.67rem;color:var(--W3);margin-bottom:7px}
+        .rc-bar{height:3px;background:rgba(255,255,255,0.07);border-radius:3px;overflow:hidden}
+        .rc-fill{height:100%;background:linear-gradient(90deg,#059669,var(--G));border-radius:3px;transition:width 1s ease}
+ 
+        /* EMPTY STATE */
+        .empty{text-align:center;padding:40px 20px;color:var(--W3)}
+        .empty-icon{font-size:2.5rem;margin-bottom:12px;opacity:.5}
+        .empty-txt{font-size:.85rem;line-height:1.7}
+        .empty-btn{display:inline-flex;align-items:center;gap:7px;margin-top:16px;background:rgba(41,121,255,0.13);color:var(--Bl);border:1px solid rgba(91,159,255,0.2);padding:9px 20px;border-radius:8px;text-decoration:none;font-size:.82rem;font-weight:500;transition:all .2s}
+        .empty-btn:hover{background:rgba(41,121,255,0.22)}
+ 
+        /* GRID */
+        .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+ 
+        /* CARD */
+        .card{background:var(--L2);border:1px solid rgba(41,121,255,0.1);border-radius:14px;overflow:hidden;transition:border-color .25s}
+        .card:hover{border-color:rgba(91,159,255,0.2)}
+        .card-h{padding:18px 20px 0;display:flex;align-items:center;justify-content:space-between}
+        .ch-l{display:flex;align-items:center;gap:9px}
+        .ci{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.76rem;flex-shrink:0;border:1px solid}
+        .ci-b{background:rgba(41,121,255,0.16);border-color:rgba(41,121,255,0.26)}
+        .ci-g{background:rgba(52,211,153,0.13);border-color:rgba(52,211,153,0.22)}
+        .ci-a{background:rgba(251,191,36,0.13);border-color:rgba(251,191,36,0.22)}
+        .ci-v{background:rgba(168,85,247,0.13);border-color:rgba(168,85,247,0.22)}
+        .ct{font-size:.82rem;font-weight:500;color:var(--W)}
+        .cs{font-size:.66rem;color:var(--W3);margin-top:1px}
+        .c-action{font-size:.68rem;color:var(--Bl);text-decoration:none;font-weight:500}
+        .c-action:hover{color:#fff}
+        .card-b{padding:14px 20px 18px}
+ 
+        /* RES */
+        .res{display:flex;align-items:center;gap:12px;padding:12px 6px;border-bottom:1px solid rgba(41,121,255,0.08);border-radius:9px;transition:background .15s}
+        .res:last-child{border-bottom:none;padding-bottom:0}
+        .res:hover{background:rgba(41,121,255,0.06)}
+        .res-th{width:48px;height:37px;border-radius:8px;background:linear-gradient(135deg,rgba(41,121,255,0.16),rgba(5,10,20,0.6));border:1px solid rgba(91,159,255,0.14);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+        .res-n{font-size:.83rem;font-weight:500;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+        .res-d{font-size:.68rem;color:var(--W3);display:flex;gap:5px;align-items:center}
+        .res-ds{width:2px;height:2px;border-radius:50%;background:rgba(91,159,255,0.3)}
+        .badge{display:inline-flex;align-items:center;gap:3px;font-size:.6rem;padding:3px 8px;border-radius:100px;font-weight:600}
+        .badge::before{content:'';width:4px;height:4px;border-radius:50%}
+        .b-on{background:rgba(52,211,153,0.11);color:var(--G);border:1px solid rgba(52,211,153,0.2)}
+        .b-on::before{background:var(--G);animation:blink 2s infinite}
+        .b-pend{background:rgba(251,191,36,0.11);color:var(--A);border:1px solid rgba(251,191,36,0.2)}
+        .b-pend::before{background:var(--A)}
+        .b-off{background:rgba(255,255,255,0.05);color:var(--W3);border:1px solid rgba(255,255,255,0.07)}
+        .b-off::before{background:rgba(255,255,255,0.2)}
+        @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+        .res-p{font-size:.73rem;color:var(--W3);margin-top:3px}
+ 
+        /* NOTIF */
+        .notif{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid rgba(41,121,255,0.08)}
+        .notif:last-child{border-bottom:none}
+        .ni{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.74rem;flex-shrink:0;border:1px solid;margin-top:1px}
+        .ni-b{background:rgba(41,121,255,0.15);border-color:rgba(41,121,255,0.24)}
+        .ni-g{background:rgba(52,211,153,0.12);border-color:rgba(52,211,153,0.2)}
+        .ni-a{background:rgba(251,191,36,0.12);border-color:rgba(251,191,36,0.2)}
+        .ni-x{background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.07)}
+        .nt{font-size:.79rem;font-weight:500;color:#fff;margin-bottom:2px}
+        .nt.r{color:var(--W3);font-weight:400}
+        .nd{font-size:.66rem;color:var(--W3)}
+        .n-u{width:5px;height:5px;border-radius:50%;background:var(--B);flex-shrink:0;margin-top:5px;box-shadow:0 0 5px rgba(41,121,255,0.6)}
+ 
+        /* DOC */
+        .doc{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid rgba(41,121,255,0.08)}
+        .doc:last-child{border-bottom:none}
+        .doc-i{width:32px;height:32px;border-radius:7px;background:rgba(41,121,255,0.13);border:1px solid rgba(91,159,255,0.18);display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0}
+        .doc-n{font-size:.79rem;font-weight:500;color:#fff;margin-bottom:1px}
+        .doc-m{font-size:.65rem;color:var(--W3)}
+        .doc-dl{font-size:.68rem;color:var(--Bl);text-decoration:none;padding:5px 10px;border-radius:6px;background:rgba(41,121,255,0.1);border:1px solid rgba(91,159,255,0.17);transition:all .18s;font-weight:500;margin-left:auto;flex-shrink:0}
+        .doc-dl:hover{background:rgba(41,121,255,0.2)}
+ 
+        /* PREF */
+        .pref{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid rgba(41,121,255,0.08)}
+        .pref:last-child{border-bottom:none}
+        .pref-i{width:28px;height:28px;border-radius:6px;background:rgba(41,121,255,0.11);border:1px solid rgba(91,159,255,0.14);display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0}
+        .pref-n{font-size:.79rem;font-weight:500;color:#fff;margin-bottom:1px}
+        .pref-d{font-size:.65rem;color:var(--W3)}
+        .tg{position:relative;width:34px;height:19px;flex-shrink:0}
+        .tg input{opacity:0;width:0;height:0;position:absolute}
+        .tg-s{position:absolute;inset:0;background:rgba(255,255,255,0.09);border-radius:100px;cursor:pointer;transition:background .2s;border:1px solid rgba(255,255,255,0.09)}
+        .tg-s::before{content:'';position:absolute;left:2px;top:50%;transform:translateY(-50%);width:13px;height:13px;border-radius:50%;background:#fff;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,0.3)}
+        .tg input:checked+.tg-s{background:rgba(41,121,255,0.62);border-color:rgba(91,159,255,0.4)}
+        .tg input:checked+.tg-s::before{left:calc(100% - 15px)}
+ 
+        /* RATING */
+        .rating{display:flex;align-items:center;gap:16px;padding:12px 0 8px}
+        .r-val{font-family:var(--serif);font-size:3.8rem;font-weight:300;color:#fff;line-height:1}
+        .r-r{flex:1}
+        .r-stars{display:flex;gap:2px;margin-bottom:4px}
+        .r-s{color:var(--A);font-size:.9rem}
+        .r-c{font-size:.68rem;color:var(--W3)}
+        .rbars{margin-top:8px;display:flex;flex-direction:column;gap:3px}
+        .rb{display:flex;align-items:center;gap:7px}
+        .rb-l{font-size:.6rem;color:var(--W3);width:8px}
+        .rb-t{flex:1;height:3px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden}
+        .rb-f{height:100%;border-radius:2px;background:linear-gradient(90deg,#d97706,var(--A));transition:width 1.6s cubic-bezier(.22,.68,0,1.2)}
+ 
+        /* TURO */
+        .turo{background:linear-gradient(125deg,rgba(41,121,255,0.18) 0%,rgba(10,22,40,0.9) 100%);border:1px solid rgba(41,121,255,0.22);border-radius:16px;padding:30px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;position:relative;overflow:hidden;margin-top:36px}
+        .turo::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(91,159,255,0.48) 50%,transparent)}
+        .turo-ey{font-size:.56rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--Bl);margin-bottom:8px}
+        .turo-h{font-family:var(--serif);font-size:1.65rem;font-weight:300;color:#fff;margin-bottom:6px;line-height:1.2}
+        .turo-p{font-size:.79rem;color:var(--W2);line-height:1.6;max-width:380px}
+        .turo-btn{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#1454d4,#2979ff);color:#fff;padding:12px 24px;border-radius:9px;font-size:.82rem;font-weight:500;text-decoration:none;transition:all .22s;box-shadow:0 4px 18px rgba(41,121,255,0.38);flex-shrink:0;z-index:1;position:relative}
+        .turo-btn:hover{transform:translateY(-2px);box-shadow:0 7px 28px rgba(41,121,255,0.52)}
+ 
+        /* SPINNER */
+        .spinner{width:32px;height:32px;border:3px solid rgba(41,121,255,.2);border-top-color:var(--B);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .loading-center{text-align:center;padding:40px;color:var(--W3);font-size:.85rem}
+ 
+        /* TOAST */
+        .toast{position:fixed;bottom:24px;right:24px;z-index:999;background:rgba(14,22,42,0.96);border:1px solid rgba(52,211,153,0.3);border-radius:10px;padding:12px 18px;font-size:.82rem;color:var(--G);box-shadow:0 8px 32px rgba(0,0,0,0.4);transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none}
+        .toast.show{transform:translateY(0);opacity:1}
+ 
+        /* REVEAL */
+        .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+        .reveal.vis{opacity:1;transform:translateY(0)}
+        .d1{transition-delay:.07s}.d2{transition-delay:.14s}.d3{transition-delay:.21s}
+ 
+        /* FOOTER */
+        .foot{margin-top:48px;padding-top:24px;border-top:1px solid rgba(41,121,255,0.1)}
+        .foot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:20px}
+        .fb{font-family:var(--serif);font-size:1.1rem;color:#fff;margin-bottom:8px}
+        .fb em{font-style:normal;color:var(--Bl)}
+        .fd{font-size:.75rem;color:rgba(255,255,255,.25);line-height:1.7;max-width:170px}
+        .fc h4{font-size:.54rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.14);margin-bottom:10px}
+        .fc a{display:block;font-size:.75rem;color:rgba(255,255,255,.25);text-decoration:none;margin-bottom:8px;transition:color .18s}
+        .fc a:hover{color:rgba(255,255,255,.7)}
+        .foot-bot{display:flex;justify-content:space-between;font-size:.68rem;color:rgba(255,255,255,.16);flex-wrap:wrap;gap:6px}
+        .foot-bot a{color:var(--Bl);text-decoration:none}
+ 
+        /* RESPONSIVE */
+        @media(max-width:960px){
+            body{overflow:auto}
+            .split{display:block;height:auto;overflow:visible}
+            .left{height:auto;border-right:none;border-bottom:1px solid rgba(41,121,255,0.12)}
+            .left-scroll{padding:24px 20px 16px}
+            .stats-grid{grid-template-columns:repeat(4,1fr)}
+            .right{padding:24px 20px 40px;overflow:visible}
+            .grid2{grid-template-columns:1fr}
+            .foot-grid{grid-template-columns:1fr 1fr}
+        }
+        @media(max-width:540px){
+            .stats-grid{grid-template-columns:1fr 1fr}
+            .left-actions{grid-template-columns:1fr}
+            .turo{flex-direction:column}
+            .foot-grid{grid-template-columns:1fr}
+            .foot-bot{flex-direction:column;text-align:center}
         }
     </style>
 </head>
-
 <body>
-
-    <!-- NAV -->
-    <nav class="nav">
-        <a href="index.html" class="nav-logo">
-            <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:76px;width:auto;object-fit:contain;filter:drop-shadow(0 0 7px rgba(41,121,255,0.5));" />
+ 
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+ 
+<!-- NAV -->
+<nav class="nav">
+    <a href="index.html" class="nav-logo">
+        <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:76px;width:auto;object-fit:contain;filter:drop-shadow(0 0 7px rgba(41,121,255,0.5))"/>
+    </a>
+    <div class="nav-r">
+        <div class="nib">🔔<div class="dot" id="notifDot" style="display:none"></div></div>
+        <div class="nav-av" id="navAv">?</div>
+        <button class="hbg" id="hbBtn" type="button"><span class="hb"></span><span class="hb"></span><span class="hb"></span></button>
+    </div>
+</nav>
+ 
+<!-- MENU MOBILE -->
+<div class="mbd" id="mobBack"></div>
+<div class="mpn" id="mobPanel">
+    <div class="mph">
+        <a href="index.html" class="nav-logo" onclick="closeMob()">
+            <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:44px;width:auto;filter:drop-shadow(0 0 6px rgba(41,121,255,0.4))"/>
         </a>
-        <div class="nav-r">
-            <div class="nib">🔔
-                <div class="dot"></div>
-            </div>
-            <div class="nav-av">M</div>
-            <button class="hbg" id="hbBtn" type="button"><span class="hb"></span><span class="hb"></span><span class="hb"></span></button>
-        </div>
-    </nav>
-
-    <!-- MENU MOBILE -->
-    <div class="mbd" id="mobBack"></div>
-    <div class="mpn" id="mobPanel">
-        <div class="mph">
-            <a href="index.html" class="nav-logo" onclick="closeMob()">
-                <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:44px;width:auto;filter:drop-shadow(0 0 6px rgba(41,121,255,0.4));" />
-            </a>
-            <button class="mph-x" onclick="closeMob()">✕</button>
-        </div>
-        <div class="mn">
-            <div class="mn-h">Navigation</div>
-            <a href="index.html" class="ma" onclick="closeMob()">
-                <div class="mi">🏠</div><span class="ml">Accueil</span></a>
-            <a href="vehicules.html" class="ma" onclick="closeMob()">
-                <div class="mi">🚗</div><span class="ml">Notre flotte</span></a>
-            <a href="apropos.html" class="ma" onclick="closeMob()">
-                <div class="mi">🏢</div><span class="ml">À propos</span></a>
-            <a href="faq.html" class="ma" onclick="closeMob()">
-                <div class="mi">❓</div><span class="ml">FAQ</span></a>
-            <div class="mn-h">Mon espace</div>
-            <a href="compte.html" class="ma active" onclick="closeMob()">
-                <div class="mi">👤</div><span class="ml">Mon compte</span></a>
-            <div class="mn-h">Légal</div>
-            <a href="confidentialite.html" class="ma" onclick="closeMob()">
-                <div class="mi">🔒</div><span class="ml">Confidentialité</span></a>
-            <a href="conditions.html" class="ma" onclick="closeMob()">
-                <div class="mi">📄</div><span class="ml">Conditions</span></a>
-        </div>
-        <div class="mpf">
-            <a href="vehicules.html" class="mr">Voir la flotte →</a>
-            <div class="mpff">NexDrive — Québec © 2026</div>
-        </div>
+        <button class="mph-x" onclick="closeMob()">✕</button>
     </div>
-
-    <!-- SPLIT -->
-    <div class="split">
-
-        <!-- ══ GAUCHE ══ -->
-        <aside class="left">
-            <div class="left-scroll">
-                <div class="pf-hero">
-                    <div class="pf-av-ring">
-                        <div class="pf-av">M</div>
-                        <div class="pf-status">✓</div>
-                    </div>
-                    <div class="pf-name"><em>Marie-Claude</em> T.</div>
-                    <div class="pf-since">Membre depuis janvier 2026</div>
-                    <div class="pf-stars">
-                        <span class="pf-star">★</span><span class="pf-star">★</span><span class="pf-star">★</span><span class="pf-star">★</span><span class="pf-star">★</span>
-                        <span class="pf-score">5.0 · 3 avis</span>
-                    </div>
-                    <div class="pf-badge"><span class="pf-badge-dot"></span>Permis vérifié</div>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat">
-                        <div class="stat-val">3</div>
-                        <div class="stat-lbl">Réservations</div>
-                        <div class="stat-trend st-neu">↑ +1 ce mois</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-val">12</div>
-                        <div class="stat-lbl">Jours loués</div>
-                        <div class="stat-trend st-neu">+3 →</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-val">5.0</div>
-                        <div class="stat-lbl">Note</div>
-                        <div class="stat-trend st-up">✓ Parfait</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-val">$890</div>
-                        <div class="stat-lbl">Total</div>
-                        <div class="stat-trend st-dn">− $210</div>
-                    </div>
-                </div>
-
-                <div class="info-rows">
-                    <div class="info-row">
-                        <div class="ir-icon">📧</div>
-                        <div>
-                            <div class="ir-lbl">Courriel</div>
-                            <div class="ir-val">m.tremblay@email.com</div>
-                        </div>
-                        <a href="#" class="ir-edit">✏️</a>
-                    </div>
-                    <div class="info-row">
-                        <div class="ir-icon">📱</div>
-                        <div>
-                            <div class="ir-lbl">Téléphone</div>
-                            <div class="ir-val">+1 (819) 555-0142</div>
-                        </div>
-                        <a href="#" class="ir-edit">✏️</a>
-                    </div>
-                    <div class="info-row">
-                        <div class="ir-icon">📍</div>
-                        <div>
-                            <div class="ir-lbl">Ville</div>
-                            <div class="ir-val">Drummondville, QC</div>
-                        </div>
-                        <a href="#" class="ir-edit">✏️</a>
-                    </div>
-                </div>
-
-                <div class="left-nav">
-                    <a href="#overview" class="ln active">
-                        <div class="ln-ico">📊</div>
-                        <div class="ln-label">Vue d'ensemble</div>
-                    </a>
-                    <a href="#reservations" class="ln">
-                        <div class="ln-ico">🗓️</div>
-                        <div class="ln-label">Réservations</div><span class="ln-badge">1</span></a>
-                    <a href="#documents" class="ln">
-                        <div class="ln-ico">📋</div>
-                        <div class="ln-label">Mes contrats</div>
-                    </a>
-                    <a href="#evaluations" class="ln">
-                        <div class="ln-ico">⭐</div>
-                        <div class="ln-label">Évaluations</div>
-                    </a>
-                    <a href="#preferences" class="ln">
-                        <div class="ln-ico">⚙️</div>
-                        <div class="ln-label">Préférences</div>
-                    </a>
-                    <a href="faq.html" class="ln">
-                        <div class="ln-ico">💬</div>
-                        <div class="ln-label">Support</div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="left-actions">
-                <a href="#" class="la la-p">✏️ Modifier</a>
-                <a href="#" class="la la-d">🚪 Déconnexion</a>
-            </div>
-        </aside>
-
-        <!-- ══ DROITE ══ -->
-        <main class="right" id="mainRight">
-
-            <div id="overview">
-                <div class="section-head">
-                    <div class="sh-title">Location <em>en cours</em></div>
-                    <div class="sh-line"></div>
-                </div>
-                <div class="rental-card reveal">
-                    <div class="rc-tag"><span class="rc-dot"></span>Active maintenant</div>
-                    <div class="rc-body">
-                        <div class="rc-left">
-                            <div class="rc-vehicle">Berline Premium<br>Classe A</div>
-                            <div class="rc-meta">
-                                15 mars 2026 <span class="rc-sep"></span> 18 mars 2026
-                                <span class="rc-sep"></span> Drummondville, QC
-                                <span class="rc-sep"></span> $285
-                            </div>
-                        </div>
-                        <div class="rc-right">
-                            <div class="rc-days">3</div>
-                            <div class="rc-dlbl">jours restants</div>
-                        </div>
-                    </div>
-                    <div class="rc-progress">
-                        <div class="rc-pt"><span>Jour 1 sur 3</span><span>Retour le 18 mars</span></div>
-                        <div class="rc-bar">
-                            <div class="rc-fill"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="reservations">
-                <div class="section-head">
-                    <div class="sh-title">Mes <em>réservations</em></div>
-                    <div class="sh-line"></div>
-                    <a href="#" class="sh-link">Voir tout →</a>
-                </div>
-                <div class="card reveal">
-                    <div class="card-b">
-                        <div class="res">
-                            <div class="res-th">🚗</div>
-                            <div style="flex:1;min-width:0;">
-                                <div class="res-n">Berline Premium — Classe A</div>
-                                <div class="res-d">15–18 mars 2026 <span class="res-ds"></span> Drummondville</div>
-                            </div>
-                            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
-                                <span class="badge b-on">En cours</span>
-                                <div class="res-p">$285 · 3 jours</div>
-                            </div>
-                        </div>
-                        <div class="res">
-                            <div class="res-th">🚙</div>
-                            <div style="flex:1;min-width:0;">
-                                <div class="res-n">SUV Prestige — Classe B</div>
-                                <div class="res-d">2–5 févr. 2026 <span class="res-ds"></span> Montréal</div>
-                            </div>
-                            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
-                                <span class="badge b-off">Terminée</span>
-                                <div class="res-p">$360 · 3 jours</div>
-                            </div>
-                        </div>
-                        <div class="res">
-                            <div class="res-th">⚡</div>
-                            <div style="flex:1;min-width:0;">
-                                <div class="res-n">Coupé Sport — Électrique</div>
-                                <div class="res-d">10–12 janv. 2026 <span class="res-ds"></span> Québec</div>
-                            </div>
-                            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
-                                <span class="badge b-off">Terminée</span>
-                                <div class="res-p">$245 · 2 jours</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="documents">
-                <div class="section-head" style="margin-top:36px;">
-                    <div class="sh-title">Contrats <em>&amp;</em> notifications</div>
-                    <div class="sh-line"></div>
-                </div>
-            </div>
-            <div class="grid2">
-                <div class="card reveal">
-                    <div class="card-h">
-                        <div class="ch-l">
-                            <div class="ci ci-g">📋</div>
-                            <div>
-                                <div class="ct">Mes contrats</div>
-                                <div class="cs">4 documents</div>
-                            </div>
-                        </div>
-                        <a href="#" class="c-action">Tout →</a>
-                    </div>
-                    <div class="card-b">
-                        <div class="doc">
-                            <div class="doc-i">📋</div>
-                            <div>
-                                <div class="doc-n">Contrat · Berline Classe A</div>
-                                <div class="doc-m">Mars 2026 · PDF</div>
-                            </div><a href="#" class="doc-dl">↓ PDF</a></div>
-                        <div class="doc">
-                            <div class="doc-i">📋</div>
-                            <div>
-                                <div class="doc-n">Contrat · SUV Prestige</div>
-                                <div class="doc-m">Févr. 2026 · PDF</div>
-                            </div><a href="#" class="doc-dl">↓ PDF</a></div>
-                        <div class="doc">
-                            <div class="doc-i">📋</div>
-                            <div>
-                                <div class="doc-n">Contrat · Coupé Sport</div>
-                                <div class="doc-m">Janv. 2026 · PDF</div>
-                            </div><a href="#" class="doc-dl">↓ PDF</a></div>
-                        <div class="doc">
-                            <div class="doc-i">🪪</div>
-                            <div>
-                                <div class="doc-n">Permis de conduire</div>
-                                <div class="doc-m">Vérifié · Exp. déc. 2028</div>
-                            </div><a href="#" class="doc-dl">↓ Voir</a></div>
-                    </div>
-                </div>
-                <div class="card reveal d1">
-                    <div class="card-h">
-                        <div class="ch-l">
-                            <div class="ci ci-v">🔔</div>
-                            <div>
-                                <div class="ct">Notifications</div>
-                                <div class="cs">2 non lues</div>
-                            </div>
-                        </div>
-                        <a href="#" class="c-action">Tout lire</a>
-                    </div>
-                    <div class="card-b">
-                        <div class="notif">
-                            <div class="ni ni-b">📋</div>
-                            <div class="notif-body">
-                                <div class="nt">Votre contrat est prêt</div>
-                                <div class="nd">Berline Classe A · Il y a 1h</div>
-                            </div>
-                            <div class="n-u"></div>
-                        </div>
-                        <div class="notif">
-                            <div class="ni ni-g">✅</div>
-                            <div class="notif-body">
-                                <div class="nt">Réservation confirmée</div>
-                                <div class="nd">15 mars 2026 · Il y a 3h</div>
-                            </div>
-                            <div class="n-u"></div>
-                        </div>
-                        <div class="notif">
-                            <div class="ni ni-a">⭐</div>
-                            <div class="notif-body">
-                                <div class="nt r">Merci pour votre 5 étoiles !</div>
-                                <div class="nd">Il y a 5 jours</div>
-                            </div>
-                        </div>
-                        <div class="notif">
-                            <div class="ni ni-x">🎉</div>
-                            <div class="notif-body">
-                                <div class="nt r">Bienvenue chez NexDrive !</div>
-                                <div class="nd">Il y a 2 mois</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="evaluations">
-                <div class="section-head" style="margin-top:36px;">
-                    <div class="sh-title"><em>Évaluations</em> &amp; préférences</div>
-                    <div class="sh-line"></div>
-                </div>
-            </div>
-            <div class="grid2">
-                <div class="card reveal" id="preferences">
-                    <div class="card-h">
-                        <div class="ch-l">
-                            <div class="ci ci-a">⭐</div>
-                            <div>
-                                <div class="ct">Mes évaluations</div>
-                                <div class="cs">via Turo</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-b">
-                        <div class="rating">
-                            <div class="r-val">5.0</div>
-                            <div class="r-r">
-                                <div class="r-stars"><span class="r-s">★</span><span class="r-s">★</span><span class="r-s">★</span><span class="r-s">★</span><span class="r-s">★</span></div>
-                                <div class="r-c">3 avis · 5.0 / 5.0</div>
-                                <div class="rbars">
-                                    <div class="rb">
-                                        <div class="rb-l">5</div>
-                                        <div class="rb-t">
-                                            <div class="rb-f" style="width:0%" data-width="100%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="rb">
-                                        <div class="rb-l">4</div>
-                                        <div class="rb-t">
-                                            <div class="rb-f" style="width:0%" data-width="0%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="rb">
-                                        <div class="rb-l">3</div>
-                                        <div class="rb-t">
-                                            <div class="rb-f" style="width:0%" data-width="0%"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card reveal d1">
-                    <div class="card-h">
-                        <div class="ch-l">
-                            <div class="ci ci-b">⚙️</div>
-                            <div>
-                                <div class="ct">Préférences</div>
-                                <div class="cs">Notifications</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-b">
-                        <div class="pref">
-                            <div class="pref-i">📧</div>
-                            <div>
-                                <div class="pref-n">Rappels par courriel</div>
-                                <div class="pref-d">24h avant la location</div>
-                            </div><label class="tg"><input type="checkbox" checked/><span class="tg-s"></span></label></div>
-                        <div class="pref">
-                            <div class="pref-i">📱</div>
-                            <div>
-                                <div class="pref-n">SMS de confirmation</div>
-                                <div class="pref-d">À chaque réservation</div>
-                            </div><label class="tg"><input type="checkbox" checked/><span class="tg-s"></span></label></div>
-                        <div class="pref">
-                            <div class="pref-i">🔔</div>
-                            <div>
-                                <div class="pref-n">Offres &amp; promotions</div>
-                                <div class="pref-d">Nouveautés NexDrive</div>
-                            </div><label class="tg"><input type="checkbox"/><span class="tg-s"></span></label></div>
-                        <div class="pref">
-                            <div class="pref-i">🌐</div>
-                            <div>
-                                <div class="pref-n">Langue</div>
-                                <div class="pref-d">Français (Canada)</div>
-                            </div><label class="tg"><input type="checkbox" checked/><span class="tg-s"></span></label></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="turo reveal">
-                <div>
-                    <div class="turo-ey">Réservez via Turo</div>
-                    <div class="turo-h">Prêt pour votre<br>prochaine aventure ?</div>
-                    <div class="turo-p">Toute notre flotte est disponible sur Turo — assurance incluse, processus 100 % en ligne, contrat envoyé automatiquement.</div>
-                </div>
-                <a href="vehicules.html" class="turo-btn">Voir la flotte <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-            </div>
-
-            <footer class="foot">
-                <div class="foot-grid">
-                    <div>
-                        <div class="fb">Nex<em>Drive</em></div>
-                        <p class="fd">Location de véhicules premium au Québec, Canada.</p>
-                    </div>
-                    <div class="fc">
-                        <h4>Navigation</h4><a href="index.html">Accueil</a><a href="vehicules.html">Flotte</a><a href="apropos.html">À propos</a><a href="faq.html">FAQ</a></div>
-                    <div class="fc">
-                        <h4>Mon espace</h4><a href="compte.html">Mon compte</a><a href="login.html">Connexion</a></div>
-                    <div class="fc">
-                        <h4>Légal</h4><a href="confidentialite.html">Confidentialité</a><a href="conditions.html">Conditions</a></div>
-                </div>
-                <div class="foot-bot">
-                    <span>© 2026 NexDrive — Québec, Canada.</span>
-                    <span>Réservations via <a href="https://turo.com" target="_blank">Turo</a></span>
-                </div>
-            </footer>
-
-        </main>
+    <div class="mn">
+        <div class="mn-h">Navigation</div>
+        <a href="index.html" class="ma" onclick="closeMob()"><div class="mi">🏠</div><span class="ml">Accueil</span></a>
+        <a href="vehicules.html" class="ma" onclick="closeMob()"><div class="mi">🚗</div><span class="ml">Notre flotte</span></a>
+        <a href="apropos.html" class="ma" onclick="closeMob()"><div class="mi">🏢</div><span class="ml">À propos</span></a>
+        <a href="faq.html" class="ma" onclick="closeMob()"><div class="mi">❓</div><span class="ml">FAQ</span></a>
+        <div class="mn-h">Mon espace</div>
+        <a href="compte.html" class="ma active" onclick="closeMob()"><div class="mi">👤</div><span class="ml">Mon compte</span></a>
+        <div class="mn-h">Légal</div>
+        <a href="confidentialite.html" class="ma" onclick="closeMob()"><div class="mi">🔒</div><span class="ml">Confidentialité</span></a>
+        <a href="conditions.html" class="ma" onclick="closeMob()"><div class="mi">📄</div><span class="ml">Conditions</span></a>
     </div>
-
-    <script>
-        var hbBtn = document.getElementById('hbBtn'),
-            mobB = document.getElementById('mobBack'),
-            mobP = document.getElementById('mobPanel');
-
-        function openMob() {
-            hbBtn.classList.add('open');
-            mobP.classList.add('open');
-            mobB.classList.add('open');
-            document.body.style.overflow = 'hidden';
+    <div class="mpf">
+        <a href="vehicules.html" class="mr">Voir la flotte →</a>
+        <div class="mpff">NexDrive — Québec © 2026</div>
+    </div>
+</div>
+ 
+<!-- SPLIT -->
+<div class="split">
+ 
+    <!-- GAUCHE -->
+    <aside class="left">
+        <div class="left-scroll">
+            <div class="pf-hero">
+                <div class="pf-av-ring">
+                    <div class="pf-av" id="pfAv">?</div>
+                    <div class="pf-status">✓</div>
+                </div>
+                <div class="pf-name" id="pfName"><em>Chargement...</em></div>
+                <div class="pf-since" id="pfSince">—</div>
+                <div class="pf-badge"><span class="pf-badge-dot"></span>Compte actif</div>
+            </div>
+ 
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-val" id="statRes">—</div>
+                    <div class="stat-lbl">Réservations</div>
+                    <div class="stat-trend st-neu" id="statResTrend">—</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val" id="statJours">—</div>
+                    <div class="stat-lbl">Jours loués</div>
+                    <div class="stat-trend st-neu">total</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val">5.0</div>
+                    <div class="stat-lbl">Note Turo</div>
+                    <div class="stat-trend st-up">✓ Parfait</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-val" id="statTotal">—</div>
+                    <div class="stat-lbl">Total loué</div>
+                    <div class="stat-trend st-neu">TTC</div>
+                </div>
+            </div>
+ 
+            <div class="info-rows" id="infoRows">
+                <div class="info-row">
+                    <div class="ir-icon">📧</div>
+                    <div><div class="ir-lbl">Courriel</div><div class="ir-val" id="irEmail">—</div></div>
+                </div>
+                <div class="info-row">
+                    <div class="ir-icon">📱</div>
+                    <div><div class="ir-lbl">Téléphone</div><div class="ir-val" id="irPhone">—</div></div>
+                </div>
+                <div class="info-row">
+                    <div class="ir-icon">🔐</div>
+                    <div><div class="ir-lbl">Connexion via</div><div class="ir-val" id="irProvider">—</div></div>
+                </div>
+            </div>
+ 
+            <div class="left-nav">
+                <a href="#overview" class="ln active"><div class="ln-ico">📊</div><div class="ln-label">Vue d'ensemble</div></a>
+                <a href="#reservations" class="ln"><div class="ln-ico">🗓️</div><div class="ln-label">Réservations</div><span class="ln-badge" id="lnBadge" style="display:none">0</span></a>
+                <a href="#documents" class="ln"><div class="ln-ico">📋</div><div class="ln-label">Mes contrats</div></a>
+                <a href="#preferences" class="ln"><div class="ln-ico">⚙️</div><div class="ln-label">Préférences</div></a>
+                <a href="faq.html" class="ln"><div class="ln-ico">💬</div><div class="ln-label">Support</div></a>
+            </div>
+        </div>
+ 
+        <div class="left-actions">
+            <a href="vehicules.html" class="la la-p">🚗 Louer</a>
+            <button class="la la-d" onclick="logout()">🚪 Déconnexion</button>
+        </div>
+    </aside>
+ 
+    <!-- DROITE -->
+    <main class="right" id="mainRight">
+ 
+        <div id="overview">
+            <div class="section-head">
+                <div class="sh-title">Location <em>en cours</em></div>
+                <div class="sh-line"></div>
+            </div>
+            <div id="activeRentalWrap"></div>
+        </div>
+ 
+        <div id="reservations">
+            <div class="section-head">
+                <div class="sh-title">Mes <em>réservations</em></div>
+                <div class="sh-line"></div>
+                <a href="#" class="sh-link">Voir tout →</a>
+            </div>
+            <div class="card reveal">
+                <div class="card-b" id="resList">
+                    <div class="loading-center"><div class="spinner"></div>Chargement...</div>
+                </div>
+            </div>
+        </div>
+ 
+        <div id="documents">
+            <div class="section-head" style="margin-top:36px">
+                <div class="sh-title">Contrats <em>&amp;</em> notifications</div>
+                <div class="sh-line"></div>
+            </div>
+        </div>
+        <div class="grid2">
+            <div class="card reveal">
+                <div class="card-h">
+                    <div class="ch-l"><div class="ci ci-g">📋</div><div><div class="ct">Mes contrats</div><div class="cs" id="contractCount">0 documents</div></div></div>
+                </div>
+                <div class="card-b" id="contractList">
+                    <div class="loading-center"><div class="spinner"></div></div>
+                </div>
+            </div>
+            <div class="card reveal d1">
+                <div class="card-h">
+                    <div class="ch-l"><div class="ci ci-v">🔔</div><div><div class="ct">Notifications</div><div class="cs">Activité récente</div></div></div>
+                </div>
+                <div class="card-b" id="notifList">
+                    <div class="loading-center"><div class="spinner"></div></div>
+                </div>
+            </div>
+        </div>
+ 
+        <div id="preferences">
+            <div class="section-head" style="margin-top:36px">
+                <div class="sh-title"><em>Préférences</em></div>
+                <div class="sh-line"></div>
+            </div>
+        </div>
+        <div class="grid2">
+            <div class="card reveal">
+                <div class="card-h">
+                    <div class="ch-l"><div class="ci ci-a">⭐</div><div><div class="ct">Évaluations Turo</div><div class="cs">Note globale</div></div></div>
+                </div>
+                <div class="card-b">
+                    <div class="rating">
+                        <div class="r-val">5.0</div>
+                        <div class="r-r">
+                            <div class="r-stars"><span class="r-s">★</span><span class="r-s">★</span><span class="r-s">★</span><span class="r-s">★</span><span class="r-s">★</span></div>
+                            <div class="r-c">Note via Turo</div>
+                            <div class="rbars">
+                                <div class="rb"><div class="rb-l">5</div><div class="rb-t"><div class="rb-f" style="width:0%" data-width="100%"></div></div></div>
+                                <div class="rb"><div class="rb-l">4</div><div class="rb-t"><div class="rb-f" style="width:0%" data-width="0%"></div></div></div>
+                                <div class="rb"><div class="rb-l">3</div><div class="rb-t"><div class="rb-f" style="width:0%" data-width="0%"></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card reveal d1">
+                <div class="card-h">
+                    <div class="ch-l"><div class="ci ci-b">⚙️</div><div><div class="ct">Préférences</div><div class="cs">Notifications</div></div></div>
+                    <a href="#" class="c-action" onclick="savePrefs();return false">💾 Sauvegarder</a>
+                </div>
+                <div class="card-b">
+                    <div class="pref">
+                        <div class="pref-i">📧</div>
+                        <div><div class="pref-n">Rappels par courriel</div><div class="pref-d">24h avant la location</div></div>
+                        <label class="tg"><input type="checkbox" id="prefEmail" checked/><span class="tg-s"></span></label>
+                    </div>
+                    <div class="pref">
+                        <div class="pref-i">📱</div>
+                        <div><div class="pref-n">SMS de confirmation</div><div class="pref-d">À chaque réservation</div></div>
+                        <label class="tg"><input type="checkbox" id="prefSMS" checked/><span class="tg-s"></span></label>
+                    </div>
+                    <div class="pref">
+                        <div class="pref-i">🔔</div>
+                        <div><div class="pref-n">Offres &amp; promotions</div><div class="pref-d">Nouveautés NexDrive</div></div>
+                        <label class="tg"><input type="checkbox" id="prefPromo"/><span class="tg-s"></span></label>
+                    </div>
+                    <div class="pref">
+                        <div class="pref-i">🌐</div>
+                        <div><div class="pref-n">Langue</div><div class="pref-d">Français (Canada)</div></div>
+                        <label class="tg"><input type="checkbox" id="prefFr" checked/><span class="tg-s"></span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="turo reveal">
+            <div>
+                <div class="turo-ey">Réservez via Turo</div>
+                <div class="turo-h">Prêt pour votre<br>prochaine aventure ?</div>
+                <div class="turo-p">Toute notre flotte est disponible sur Turo — assurance incluse, processus 100% en ligne, contrat envoyé automatiquement.</div>
+            </div>
+            <a href="vehicules.html" class="turo-btn">Voir la flotte <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+ 
+        <footer class="foot">
+            <div class="foot-grid">
+                <div><div class="fb">Nex<em>Drive</em></div><p class="fd">Location de véhicules premium au Québec, Canada.</p></div>
+                <div class="fc"><h4>Navigation</h4><a href="index.html">Accueil</a><a href="vehicules.html">Flotte</a><a href="apropos.html">À propos</a><a href="faq.html">FAQ</a></div>
+                <div class="fc"><h4>Mon espace</h4><a href="compte.html">Mon compte</a><a href="login.html">Connexion</a></div>
+                <div class="fc"><h4>Légal</h4><a href="confidentialite.html">Confidentialité</a><a href="conditions.html">Conditions</a></div>
+            </div>
+            <div class="foot-bot">
+                <span>© 2026 NexDrive — Québec, Canada.</span>
+                <span>Réservations via <a href="https://turo.com" target="_blank">Turo</a></span>
+            </div>
+        </footer>
+    </main>
+</div>
+ 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ── CONFIG SUPABASE ────────────────────────────────────────────────────────
+const SUPABASE_URL = 'https://igftridkkchvjaxtburi.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnZnRyaWRra2NodmpheHRidXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODcxMzgsImV4cCI6MjA4ODY2MzEzOH0.SuUO_seWElDPnm3lnGEEn8OwflJhbocyJjVF8nvrf4Y';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+    auth: { persistSession: true, storageKey: 'nexdrive-auth', autoRefreshToken: true, detectSessionInUrl: true }
+});
+ 
+let currentUser = null;
+let userReservations = [];
+ 
+// ── TOAST ──────────────────────────────────────────────────────────────────
+function showToast(msg, color) {
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.color = color || 'var(--G)';
+    t.style.borderColor = color ? color + '55' : 'rgba(52,211,153,0.3)';
+    t.classList.add('show');
+    setTimeout(function() { t.classList.remove('show'); }, 3000);
+}
+ 
+// ── HELPERS ────────────────────────────────────────────────────────────────
+function getInitials(user) {
+    var name = user.user_metadata?.full_name || user.user_metadata?.name || user.email || '';
+    var parts = name.trim().split(' ').filter(Boolean);
+    return parts.length >= 2
+        ? (parts[0][0] + parts[parts.length-1][0]).toUpperCase()
+        : name.slice(0, 2).toUpperCase() || '?';
+}
+ 
+function getProvider(user) {
+    var p = user.app_metadata?.provider || 'email';
+    var map = { google: '🔵 Google', facebook: '🔵 Facebook', apple: '🍎 Apple', phone: '📱 Téléphone', email: '📧 Magic Link' };
+    return map[p] || p;
+}
+ 
+function formatDate(d) {
+    if (!d) return '—';
+    return new Date(d).toLocaleDateString('fr-CA', { day:'numeric', month:'long', year:'numeric' });
+}
+ 
+function formatMoney(n) {
+    if (n == null) return '—';
+    return '$' + Number(n).toFixed(0);
+}
+ 
+function dateDiff(a, b) {
+    return Math.round((new Date(b) - new Date(a)) / 86400000);
+}
+ 
+function getStatusBadge(status) {
+    var map = {
+        'active':    '<span class="badge b-on">En cours</span>',
+        'confirmed': '<span class="badge b-on">Confirmée</span>',
+        'pending':   '<span class="badge b-pend">En attente</span>',
+        'completed': '<span class="badge b-off">Terminée</span>',
+        'cancelled': '<span class="badge b-off">Annulée</span>'
+    };
+    return map[status] || '<span class="badge b-off">' + status + '</span>';
+}
+ 
+function getVehicleIcon(cat) {
+    if (!cat) return '🚗';
+    if (cat.includes('electrique') || cat.includes('electric')) return '⚡';
+    if (cat.includes('sport')) return '🏎️';
+    if (cat.includes('vus') || cat.includes('suv')) return '🚙';
+    return '🚗';
+}
+ 
+// ── INIT ───────────────────────────────────────────────────────────────────
+async function init() {
+    var { data: { session } } = await sb.auth.getSession();
+    if (!session) {
+        window.location.href = 'login.html';
+        return;
+    }
+    currentUser = session.user;
+    renderProfile(currentUser);
+    await loadReservations(currentUser.id);
+    loadPreferences(currentUser.id);
+    setupReveal();
+    setTimeout(function() {
+        document.querySelectorAll('[data-width]').forEach(function(b) {
+            b.style.width = b.getAttribute('data-width');
+        });
+    }, 600);
+}
+ 
+// ── PROFIL ─────────────────────────────────────────────────────────────────
+function renderProfile(user) {
+    var initials = getInitials(user);
+    var name = user.user_metadata?.full_name || user.user_metadata?.name || '';
+    var firstName = name.split(' ')[0] || '';
+    var lastName = name.split(' ').slice(1).join(' ') || '';
+    var avatarUrl = user.user_metadata?.avatar_url || '';
+    var createdAt = formatDate(user.created_at);
+ 
+    // Avatar
+    var pfAv = document.getElementById('pfAv');
+    if (avatarUrl) {
+        pfAv.innerHTML = '<img src="' + avatarUrl + '" alt="' + initials + '"/>';
+    } else {
+        pfAv.textContent = initials;
+    }
+    document.getElementById('navAv').textContent = initials;
+ 
+    // Nom
+    if (firstName) {
+        document.getElementById('pfName').innerHTML = '<em>' + firstName + '</em>' + (lastName ? ' ' + lastName.charAt(0) + '.' : '');
+    } else {
+        document.getElementById('pfName').innerHTML = '<em>' + (user.email || user.phone || 'Client') + '</em>';
+    }
+ 
+    document.getElementById('pfSince').textContent = 'Membre depuis ' + createdAt;
+    document.getElementById('irEmail').textContent = user.email || '—';
+    document.getElementById('irPhone').textContent = user.phone || 'Non renseigné';
+    document.getElementById('irProvider').textContent = getProvider(user);
+}
+ 
+// ── RÉSERVATIONS ───────────────────────────────────────────────────────────
+async function loadReservations(userId) {
+    var { data, error } = await sb
+        .from('reservations')
+        .select('*')
+        .eq('client_id', userId)
+        .order('created_at', { ascending: false });
+ 
+    if (error || !data) {
+        renderNoReservations();
+        return;
+    }
+ 
+    userReservations = data;
+    renderStats(data);
+    renderActiveRental(data);
+    renderResList(data);
+    renderContracts(data);
+    renderNotifications(data);
+ 
+    // Badge
+    var active = data.filter(function(r) { return r.status === 'active' || r.status === 'confirmed'; });
+    if (active.length > 0) {
+        var badge = document.getElementById('lnBadge');
+        badge.textContent = active.length;
+        badge.style.display = '';
+        document.getElementById('notifDot').style.display = '';
+    }
+}
+ 
+function renderStats(data) {
+    var total = data.length;
+    var jours = data.reduce(function(acc, r) {
+        if (r.start_date && r.end_date) return acc + dateDiff(r.start_date, r.end_date);
+        return acc;
+    }, 0);
+    var totalTTC = data.reduce(function(acc, r) {
+        return acc + (Number(r.total_ttc) || 0);
+    }, 0);
+ 
+    document.getElementById('statRes').textContent = total;
+    document.getElementById('statResTrend').textContent = total === 0 ? 'Aucune encore' : total + ' au total';
+    document.getElementById('statJours').textContent = jours;
+    document.getElementById('statTotal').textContent = totalTTC > 0 ? formatMoney(totalTTC) : '—';
+}
+ 
+function renderActiveRental(data) {
+    var wrap = document.getElementById('activeRentalWrap');
+    var today = new Date();
+    var active = data.find(function(r) {
+        return (r.status === 'active' || r.status === 'confirmed') &&
+               r.start_date && r.end_date &&
+               new Date(r.end_date) >= today;
+    });
+ 
+    if (!active) {
+        wrap.innerHTML = `
+            <div class="empty reveal">
+                <div class="empty-icon">🚗</div>
+                <div class="empty-txt">Aucune location en cours.<br>Parcourez notre flotte pour réserver !</div>
+                <a href="vehicules.html" class="empty-btn">Voir la flotte →</a>
+            </div>`;
+        return;
+    }
+ 
+    var startD = new Date(active.start_date);
+    var endD   = new Date(active.end_date);
+    var total  = dateDiff(active.start_date, active.end_date);
+    var done   = dateDiff(active.start_date, today.toISOString().slice(0,10));
+    var left   = Math.max(0, total - done);
+    var pct    = total > 0 ? Math.min(100, Math.round((done / total) * 100)) : 0;
+    var name   = active.client_first_name ? (active.client_first_name + ' ' + (active.client_last_name || '')) : 'Votre location';
+ 
+    wrap.innerHTML = `
+        <div class="rental-card reveal">
+            <div class="rc-tag"><span class="rc-dot"></span>Active maintenant</div>
+            <div class="rc-body">
+                <div class="rc-left">
+                    <div class="rc-vehicle">${active.reference || 'Réservation #' + active.id.slice(0,8)}</div>
+                    <div class="rc-meta">
+                        ${formatDate(active.start_date)} <span class="rc-sep"></span> ${formatDate(active.end_date)}
+                        ${active.total_ttc ? '<span class="rc-sep"></span> ' + formatMoney(active.total_ttc) + ' TTC' : ''}
+                    </div>
+                </div>
+                <div class="rc-right">
+                    <div class="rc-days">${left}</div>
+                    <div class="rc-dlbl">jour${left > 1 ? 's' : ''} restant${left > 1 ? 's' : ''}</div>
+                </div>
+            </div>
+            <div class="rc-progress">
+                <div class="rc-pt"><span>Jour ${done} sur ${total}</span><span>Retour le ${formatDate(active.end_date)}</span></div>
+                <div class="rc-bar"><div class="rc-fill" style="width:${pct}%"></div></div>
+            </div>
+        </div>`;
+}
+ 
+function renderResList(data) {
+    var el = document.getElementById('resList');
+    if (!data.length) {
+        el.innerHTML = `<div class="empty"><div class="empty-icon">🗓️</div><div class="empty-txt">Aucune réservation pour l'instant.</div><a href="vehicules.html" class="empty-btn">Réserver maintenant →</a></div>`;
+        return;
+    }
+    el.innerHTML = data.slice(0, 5).map(function(r) {
+        var icon = '🚗';
+        var label = r.reference || ('Réservation · ' + r.id.slice(0,8));
+        var dates = (r.start_date && r.end_date) ? (formatDate(r.start_date) + ' – ' + formatDate(r.end_date)) : '—';
+        var price = r.total_ttc ? formatMoney(r.total_ttc) + ' TTC' : '—';
+        var jours = (r.start_date && r.end_date) ? dateDiff(r.start_date, r.end_date) + ' jour(s)' : '';
+        return `
+        <div class="res">
+            <div class="res-th">${icon}</div>
+            <div style="flex:1;min-width:0">
+                <div class="res-n">${label}</div>
+                <div class="res-d">${dates}</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+                ${getStatusBadge(r.status)}
+                <div class="res-p">${price}${jours ? ' · ' + jours : ''}</div>
+            </div>
+        </div>`;
+    }).join('');
+}
+ 
+function renderNoReservations() {
+    document.getElementById('statRes').textContent = '0';
+    document.getElementById('statJours').textContent = '0';
+    document.getElementById('statTotal').textContent = '—';
+    document.getElementById('statResTrend').textContent = 'Aucune encore';
+    document.getElementById('activeRentalWrap').innerHTML = `<div class="empty reveal"><div class="empty-icon">🚗</div><div class="empty-txt">Aucune location en cours.</div><a href="vehicules.html" class="empty-btn">Voir la flotte →</a></div>`;
+    document.getElementById('resList').innerHTML = `<div class="empty"><div class="empty-icon">🗓️</div><div class="empty-txt">Aucune réservation pour l'instant.</div><a href="vehicules.html" class="empty-btn">Réserver maintenant →</a></div>`;
+    renderContracts([]);
+    renderNotifications([]);
+}
+ 
+function renderContracts(data) {
+    var withContract = data.filter(function(r) { return r.contract_url; });
+    document.getElementById('contractCount').textContent = withContract.length + ' document' + (withContract.length > 1 ? 's' : '');
+    var el = document.getElementById('contractList');
+    if (!withContract.length) {
+        el.innerHTML = '<div class="empty"><div class="empty-icon">📋</div><div class="empty-txt">Aucun contrat disponible.</div></div>';
+        return;
+    }
+    el.innerHTML = withContract.slice(0, 4).map(function(r) {
+        return `
+        <div class="doc">
+            <div class="doc-i">📋</div>
+            <div>
+                <div class="doc-n">${r.reference || 'Contrat ' + r.id.slice(0,8)}</div>
+                <div class="doc-m">${formatDate(r.created_at)} · PDF</div>
+            </div>
+            <a href="${r.contract_url}" target="_blank" class="doc-dl">↓ PDF</a>
+        </div>`;
+    }).join('');
+}
+ 
+function renderNotifications(data) {
+    var el = document.getElementById('notifList');
+    if (!data.length) {
+        el.innerHTML = `
+            <div class="notif"><div class="ni ni-x">🎉</div><div><div class="nt r">Bienvenue chez NexDrive !</div><div class="nd">Votre compte est actif</div></div></div>`;
+        return;
+    }
+    var notifs = [];
+    data.slice(0, 3).forEach(function(r) {
+        if (r.status === 'active' || r.status === 'confirmed') {
+            notifs.push({ icon: '✅', cls: 'ni-g', title: 'Réservation confirmée', date: formatDate(r.created_at), unread: true });
+        } else if (r.status === 'completed') {
+            notifs.push({ icon: '⭐', cls: 'ni-a', title: 'Location terminée', date: formatDate(r.end_date), unread: false });
         }
-
-        function closeMob() {
-            hbBtn.classList.remove('open');
-            mobP.classList.remove('open');
-            mobB.classList.remove('open');
-            document.body.style.overflow = '';
+        if (r.contract_url) {
+            notifs.push({ icon: '📋', cls: 'ni-b', title: 'Contrat disponible', date: formatDate(r.created_at), unread: true });
         }
-
-        hbBtn.addEventListener('click', function() {
-            mobP.classList.contains('open') ? closeMob() : openMob();
+    });
+    notifs.push({ icon: '🎉', cls: 'ni-x', title: 'Bienvenue chez NexDrive !', date: 'À la création du compte', unread: false });
+    el.innerHTML = notifs.slice(0, 4).map(function(n) {
+        return `
+        <div class="notif">
+            <div class="ni ${n.cls}">${n.icon}</div>
+            <div class="notif-body"><div class="nt ${n.unread ? '' : 'r'}">${n.title}</div><div class="nd">${n.date}</div></div>
+            ${n.unread ? '<div class="n-u"></div>' : ''}
+        </div>`;
+    }).join('');
+}
+ 
+// ── PRÉFÉRENCES ────────────────────────────────────────────────────────────
+async function loadPreferences(userId) {
+    var { data } = await sb.from('profiles').select('*').eq('id', userId).single();
+    // Si la table profiles a des colonnes de préférences, on les charge
+    // Sinon on charge depuis localStorage comme fallback
+    var prefs = JSON.parse(localStorage.getItem('nexdrive-prefs') || '{}');
+    if (prefs.email !== undefined) document.getElementById('prefEmail').checked = prefs.email;
+    if (prefs.sms !== undefined) document.getElementById('prefSMS').checked = prefs.sms;
+    if (prefs.promo !== undefined) document.getElementById('prefPromo').checked = prefs.promo;
+    if (prefs.fr !== undefined) document.getElementById('prefFr').checked = prefs.fr;
+}
+ 
+async function savePrefs() {
+    var prefs = {
+        email: document.getElementById('prefEmail').checked,
+        sms:   document.getElementById('prefSMS').checked,
+        promo: document.getElementById('prefPromo').checked,
+        fr:    document.getElementById('prefFr').checked
+    };
+    // Sauvegarder en localStorage + dans Supabase si possible
+    localStorage.setItem('nexdrive-prefs', JSON.stringify(prefs));
+    if (currentUser) {
+        await sb.from('profiles').upsert({ id: currentUser.id, email: currentUser.email });
+    }
+    showToast('✓ Préférences sauvegardées !');
+}
+ 
+// ── DÉCONNEXION ────────────────────────────────────────────────────────────
+async function logout() {
+    await sb.auth.signOut();
+    showToast('À bientôt !', 'var(--Bl)');
+    setTimeout(function() { window.location.href = 'login.html'; }, 800);
+}
+ 
+// ── NAV ────────────────────────────────────────────────────────────────────
+var hbBtn = document.getElementById('hbBtn');
+var mobB  = document.getElementById('mobBack');
+var mobP  = document.getElementById('mobPanel');
+function openMob() { hbBtn.classList.add('open'); mobP.classList.add('open'); mobB.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeMob() { hbBtn.classList.remove('open'); mobP.classList.remove('open'); mobB.classList.remove('open'); document.body.style.overflow=''; }
+hbBtn.addEventListener('click', function() { mobP.classList.contains('open') ? closeMob() : openMob(); });
+mobB.addEventListener('click', closeMob);
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMob(); });
+(function() {
+    var links = mobP.querySelectorAll('.ma');
+    var mo = new MutationObserver(function() {
+        var open = mobP.classList.contains('open');
+        links.forEach(function(l,i) { l.style.transitionDelay = open ? (.05+i*.045)+'s' : '0s'; });
+    });
+    mo.observe(mobP, { attributes: true, attributeFilter: ['class'] });
+})();
+ 
+document.querySelectorAll('.ln').forEach(function(l) {
+    l.addEventListener('click', function() {
+        document.querySelectorAll('.ln').forEach(function(x) { x.classList.remove('active'); });
+        this.classList.add('active');
+    });
+});
+ 
+// ── REVEAL ─────────────────────────────────────────────────────────────────
+function setupReveal() {
+    var rightPanel = document.getElementById('mainRight');
+    var obs = new IntersectionObserver(function(es) {
+        es.forEach(function(e) {
+            if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
         });
-        mobB.addEventListener('click', closeMob);
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeMob();
-        });
-
-        (function() {
-            var links = mobP.querySelectorAll('.ma');
-            var mo = new MutationObserver(function() {
-                var open = mobP.classList.contains('open');
-                links.forEach(function(l, i) {
-                    l.style.transitionDelay = open ? (.05 + i * .045) + 's' : '0s';
-                });
-            });
-            mo.observe(mobP, {
-                attributes: true,
-                attributeFilter: ['class']
-            });
-        })();
-
-        document.querySelectorAll('.ln').forEach(function(l) {
-            l.addEventListener('click', function() {
-                document.querySelectorAll('.ln').forEach(function(x) {
-                    x.classList.remove('active');
-                });
-                this.classList.add('active');
-            });
-        });
-
-        var rightPanel = document.getElementById('mainRight');
-        var obs = new IntersectionObserver(function(es) {
-            es.forEach(function(e) {
-                if (e.isIntersecting) {
-                    e.target.classList.add('vis');
-                    obs.unobserve(e.target);
-                }
-            });
-        }, {
-            threshold: .06,
-            root: rightPanel
-        });
-        document.querySelectorAll('.reveal').forEach(function(r) {
-            obs.observe(r);
-        });
-
-        setTimeout(function() {
-            document.querySelectorAll('[data-width]').forEach(function(b) {
-                b.style.width = b.getAttribute('data-width');
-            });
-        }, 500);
-    </script>
+    }, { threshold: .06, root: rightPanel });
+    document.querySelectorAll('.reveal').forEach(function(r) { obs.observe(r); });
+}
+ 
+// ── DÉMARRAGE ──────────────────────────────────────────────────────────────
+init();
+</script>
 </body>
-
 </html>
