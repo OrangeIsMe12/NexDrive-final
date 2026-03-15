@@ -251,8 +251,11 @@ document.getElementById('btnRegister').addEventListener('click', async function(
   if (result.error) {
     showMsg('msgRegister', '❌ ' + result.error.message, 'error');
   } else {
-    showMsg('msgRegister', '✅ Compte créé ! Vérifiez votre courriel pour confirmer votre inscription.', 'success');
-    ['rPrenom','rNom','rEmail','rTel','rPass'].forEach(function(id){ document.getElementById(id).value = ''; });
+    showMsg('msgRegister', '✅ Compte créé ! Redirection…', 'success');
+    var params = window.location.search;
+    setTimeout(function() {
+      window.location.href = params ? 'confirmation.html' + params : 'compte.html';
+    }, 800);
   }
 });
  
@@ -275,7 +278,10 @@ document.getElementById('btnLogin').addEventListener('click', async function() {
     showMsg('msgLogin', '❌ Courriel ou mot de passe incorrect.', 'error');
   } else {
     showMsg('msgLogin', '✅ Connexion réussie ! Redirection…', 'success');
-    setTimeout(function() { window.location.href = 'compte.html'; }, 800);
+    var params = window.location.search;
+    setTimeout(function() {
+      window.location.href = params ? 'confirmation.html' + params : 'compte.html';
+    }, 800);
   }
 });
  
