@@ -455,62 +455,56 @@
         const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnZnRyaWRra2NodmpheHRidXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODcxMzgsImV4cCI6MjA4ODY2MzEzOH0.SuUO_seWElDPnm3lnGEEn8OwflJhbocyJjVF8nvrf4Y';
         const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
  
-        (async function() {
-            var { data: { session } } = await sb.auth.getSession();
- 
-            // ── Si pas connecté → rediriger vers login ──
-            if (!session) {
-                window.location.href = 'login.html';
-                return;
-            }
- 
-            var user = session.user;
+        function afficherUser(user) {
             var meta = user.user_metadata || {};
  
-            // ── Nom complet ──
-            var fullName = meta.full_name || meta.name || (meta.first_name ? meta.first_name + ' ' + (meta.last_name || '') : '') || user.email.split('@')[0];
-            var parts    = fullName.trim().split(' ');
-            var initials = parts.slice(0,2).map(function(w){ return w[0]; }).join('').toUpperCase();
+            var fullName  = meta.full_name || meta.name || (meta.first_name ? meta.first_name + ' ' + (meta.last_name || '') : '') || user.email.split('@')[0];
+            var parts     = fullName.trim().split(' ');
+            var initials  = parts.slice(0,2).map(function(w){ return w[0]; }).join('').toUpperCase();
             var firstName = parts[0] || '—';
             var lastName  = parts.slice(1).join(' ') || '';
- 
-            // ── Avatar photo (Google/Facebook fournissent une photo) ──
             var avatarUrl = meta.avatar_url || meta.picture || null;
- 
-            // ── Provider ──
-            var provider = user.app_metadata?.provider || 'email';
+            var provider  = (user.app_metadata && user.app_metadata.provider) || 'email';
             var providerLabel = { google: 'Google', facebook: 'Facebook', email: 'Courriel' }[provider] || provider;
- 
-            // ── Date d'inscription ──
             var createdAt = new Date(user.created_at);
-            var months = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
-            var sinceStr = 'Membre depuis ' + months[createdAt.getMonth()] + ' ' + createdAt.getFullYear();
+            var months    = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
+            var sinceStr  = 'Membre depuis ' + months[createdAt.getMonth()] + ' ' + createdAt.getFullYear();
  
-            // ── Mettre à jour le DOM ──
-            // Avatar
             var pfAv = document.getElementById('pfAv');
             if (avatarUrl) {
                 pfAv.innerHTML = '<img src="' + avatarUrl + '" alt="' + fullName + '"/>';
             } else {
                 pfAv.textContent = initials;
             }
- 
-            // Nav avatar
-            var navAv = document.getElementById('navAv');
-            navAv.textContent = initials;
- 
-            // Nom
-            document.getElementById('pfName').innerHTML = '<em>' + firstName + '</em>' + (lastName ? ' ' + lastName.charAt(0) + '.' : '');
- 
-            // Depuis
+            document.getElementById('navAv').textContent  = initials;
+            document.getElementById('pfName').innerHTML   = '<em>' + firstName + '</em>' + (lastName ? ' ' + lastName.charAt(0) + '.' : '');
             document.getElementById('pfSince').textContent = sinceStr;
- 
-            // Infos
-            document.getElementById('irEmail').textContent   = user.email || '—';
-            document.getElementById('irPhone').textContent   = meta.phone || user.phone || '—';
+            document.getElementById('irEmail').textContent    = user.email || '—';
+            document.getElementById('irPhone').textContent    = meta.phone || user.phone || '—';
             document.getElementById('irProvider').textContent = providerLabel;
+        }
  
-        })();
+        // ✅ onAuthStateChange — détecte la session même après un redirect OAuth Google/Facebook
+        var redirectTimer = setTimeout(function() {
+            window.location.href = 'login.html';
+        }, 4000); // Si aucune session en 4s → login
+ 
+        sb.auth.onAuthStateChange(function(event, session) {
+            if (session && session.user) {
+                clearTimeout(redirectTimer);
+                afficherUser(session.user);
+            } else if (event === 'SIGNED_OUT') {
+                window.location.href = 'login.html';
+            }
+        });
+ 
+        // Vérifier aussi immédiatement au cas où la session existe déjà
+        sb.auth.getSession().then(function(res) {
+            if (res.data && res.data.session) {
+                clearTimeout(redirectTimer);
+                afficherUser(res.data.session.user);
+            }
+        });
  
         // ── Déconnexion ──
         document.getElementById('btnDeconnexion').addEventListener('click', async function(e) {
