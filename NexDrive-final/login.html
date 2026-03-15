@@ -223,7 +223,7 @@ document.getElementById('btnGoogle').addEventListener('click', async function() 
   setLoading(btn, true);
   var result = await sb.auth.signInWithOAuth({
     provider: 'google',
-    options: { redirectTo: window.location.origin + '/compte.html' }
+    options: { redirectTo: 'https://location-nexdrive.com/compte.html' }
   });
   if (result.error) { setLoading(btn, false, orig); showMsg('msgSocial', 'Erreur Google : ' + result.error.message, 'error'); }
 });
