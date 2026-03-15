@@ -16,7 +16,6 @@ html{scroll-behavior:smooth}
 body{background:#0a1628;color:#fff;font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
 #sc{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
  
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:linear-gradient(180deg,#0e1e3a 0%,#0a1628 100%);border-bottom:1px solid rgba(41,121,255,0.2);backdrop-filter:blur(24px);box-shadow:0 0 0 1px rgba(41,121,255,0.08),0 4px 32px rgba(10,22,40,0.5)}
 nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(41,121,255,0.2) 15%,rgba(91,159,255,0.5) 35%,rgba(120,180,255,0.7) 50%,rgba(91,159,255,0.5) 65%,rgba(41,121,255,0.2) 85%,transparent 100%);pointer-events:none}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
@@ -24,61 +23,55 @@ nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;backg
 .back-link:hover{color:rgba(255,255,255,.85)}
 .back-link svg{opacity:.5}
  
-/* MAIN */
 main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px 24px 60px;position:relative;z-index:1}
  
 /* WRAPPER DOUBLE PANNEAU */
 .auth-wrapper{
-  display:grid;
-  grid-template-columns:1fr 1px 1fr;
+  display:grid;grid-template-columns:1fr 1px 1fr;
   width:100%;max-width:880px;
   background:rgba(14,22,42,0.85);
-  border:1px solid rgba(41,121,255,0.15);
-  border-radius:22px;
+  border:1px solid rgba(41,121,255,0.15);border-radius:22px;
   backdrop-filter:blur(24px);
   box-shadow:0 0 0 1px rgba(41,121,255,0.06),0 24px 80px rgba(0,0,0,0.5),0 0 60px rgba(41,121,255,0.08);
-  animation:fu .7s cubic-bezier(.16,1,.3,1) both;
-  overflow:hidden;
+  animation:fu .7s cubic-bezier(.16,1,.3,1) both;overflow:hidden;
 }
 @keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
  
-/* SÉPARATEUR VERTICAL */
+/* SÉPARATEUR */
 .divider-v{background:rgba(41,121,255,0.15);position:relative}
-.divider-v::before{content:'ou';position:absolute;top:0;left:50%;transform:translate(-50%, -50%) translateY(44px);background:#0f1e38;color:rgba(255,255,255,.35);font-size:.68rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:8px 14px;border-radius:20px;border:1px solid rgba(41,121,255,0.2);white-space:nowrap;writing-mode:horizontal-tb;box-shadow:0 0 20px rgba(41,121,255,0.15)}
+.divider-v::before{content:'ou';position:absolute;top:0;left:50%;transform:translate(-50%,-50%) translateY(44px);background:#0f1e38;color:rgba(255,255,255,.35);font-size:.68rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:8px 14px;border-radius:20px;border:1px solid rgba(41,121,255,0.2);white-space:nowrap;box-shadow:0 0 20px rgba(41,121,255,0.15)}
  
 /* PANNEAUX */
 .panel{padding:44px 38px}
  
-/* EYEBROW */
 .card-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.6rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--electric);margin-bottom:14px}
 .card-eyebrow::before{content:'';width:14px;height:1px;background:var(--electric)}
 .card-title{font-family:var(--serif);font-size:1.75rem;font-weight:300;line-height:1.15;letter-spacing:-.3px;margin-bottom:6px}
 .card-title em{font-style:italic;color:var(--elec-l)}
 .card-sub{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.35);margin-bottom:28px;line-height:1.6}
  
-/* BOUTONS SOCIAUX */
-.social-btn{width:100%;display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:rgba(255,255,255,.82);font-family:var(--sans);font-size:.88rem;font-weight:400;cursor:pointer;transition:all .22s;margin-bottom:11px;position:relative;overflow:hidden}
-.social-btn:hover{border-color:rgba(255,255,255,0.22);background:rgba(255,255,255,0.08);color:#fff;transform:translateY(-1px)}
-.social-btn .icon{width:22px;height:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-.social-btn .lbl{flex:1;text-align:left}
-.social-btn .arr{font-size:.8rem;color:rgba(255,255,255,.2);transition:transform .2s,color .2s}
-.social-btn:hover .arr{transform:translateX(4px);color:rgba(255,255,255,.5)}
-.social-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.btn-google:hover{border-color:rgba(66,133,244,0.4);background:rgba(66,133,244,0.08)}
-.btn-facebook:hover{border-color:rgba(24,119,242,0.4);background:rgba(24,119,242,0.08)}
- 
-/* FORMULAIRE MANUEL */
+/* INPUTS */
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .input-wrap{margin-bottom:11px}
 .input-wrap label{display:block;font-size:.68rem;font-weight:500;letter-spacing:.5px;color:rgba(255,255,255,.35);margin-bottom:6px;text-transform:uppercase}
-.input-wrap input{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:11px 14px;color:#fff;font-family:var(--sans);font-size:.87rem;font-weight:300;outline:none;transition:all .22s}
+.input-wrap input{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 14px;color:#fff;font-family:var(--sans);font-size:.87rem;font-weight:300;outline:none;transition:all .22s}
 .input-wrap input::placeholder{color:rgba(255,255,255,.18)}
 .input-wrap input:focus{border-color:rgba(41,121,255,.5);background:rgba(41,121,255,0.06);box-shadow:0 0 0 3px rgba(41,121,255,0.1)}
 .input-wrap input.err{border-color:rgba(248,113,113,0.5);background:rgba(248,113,113,0.05)}
  
+/* BOUTON SUBMIT */
 .btn-submit{width:100%;padding:13px;border-radius:10px;background:linear-gradient(135deg,#1454d4,#2979ff);border:none;color:#fff;font-family:var(--sans);font-size:.88rem;font-weight:500;cursor:pointer;transition:all .3s;box-shadow:0 4px 20px rgba(41,121,255,.3);margin-top:4px;letter-spacing:.3px}
 .btn-submit:hover{background:linear-gradient(135deg,#1a65f0,#3d8bff);transform:translateY(-2px);box-shadow:0 8px 28px rgba(41,121,255,.4)}
 .btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+ 
+/* CHECKBOX REMEMBER */
+.remember{display:flex;align-items:center;gap:8px;margin:10px 0 4px;cursor:pointer;font-size:.78rem;color:rgba(255,255,255,.35)}
+.remember input{width:14px;height:14px;accent-color:var(--electric);cursor:pointer}
+.remember:hover{color:rgba(255,255,255,.6)}
+ 
+/* MOT DE PASSE OUBLIÉ */
+.forgot{display:block;text-align:right;font-size:.72rem;color:rgba(91,159,255,.5);text-decoration:none;margin-top:6px;transition:color .2s}
+.forgot:hover{color:var(--elec-l)}
  
 /* MESSAGES */
 .msg{display:none;padding:9px 13px;border-radius:9px;font-size:.78rem;margin-top:8px;line-height:1.5}
@@ -86,23 +79,20 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px
 .msg.success{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);color:#34d399}
 .msg.show{display:block}
  
-/* FOOTER NOTE */
 .foot-note{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06);text-align:center;font-size:.68rem;color:rgba(255,255,255,.18);line-height:1.7}
 .foot-note a{color:rgba(91,159,255,.5);text-decoration:none}
 .foot-note a:hover{color:var(--elec-l)}
  
 .spinner{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
 @keyframes spin{to{transform:rotate(360deg)}}
- 
 .glow-bg{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(ellipse,rgba(41,121,255,0.08),transparent 65%);pointer-events:none;z-index:0}
  
-/* RESPONSIVE */
 @media(max-width:760px){
   nav{padding:0 20px;height:60px}
   main{padding:80px 16px 40px}
   .auth-wrapper{grid-template-columns:1fr;max-width:440px}
-  .divider-v{height:1px;writing-mode:horizontal-tb}
-  .divider-v::before{writing-mode:horizontal-tb;padding:6px 12px;top:50%;left:50%}
+  .divider-v{height:1px}
+  .divider-v::before{writing-mode:horizontal-tb;padding:6px 12px}
   .panel{padding:32px 24px}
   .row2{grid-template-columns:1fr}
 }
@@ -125,76 +115,75 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px
 <main>
   <div class="auth-wrapper">
  
-    <!-- ═══ PANNEAU GAUCHE — Connexion sociale ═══ -->
+    <!-- ═══ GAUCHE — INSCRIPTION ═══ -->
     <div class="panel">
-      <div class="card-eyebrow">Connexion rapide</div>
-      <h1 class="card-title">Connectez-<em>vous</em></h1>
-      <p class="card-sub">Accédez à votre compte en 1 clic avec votre réseau social.</p>
+      <div class="card-eyebrow">Nouveau client</div>
+      <h1 class="card-title">Créer un <em>compte</em></h1>
+      <p class="card-sub">Remplissez le formulaire pour créer votre compte NexDrive.</p>
  
-      <button class="social-btn btn-google" id="btnGoogle">
-        <span class="icon">
-          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-        </span>
-        <span class="lbl">Continuer avec Google</span>
-        <span class="arr">→</span>
-      </button>
+      <div class="row2">
+        <div class="input-wrap">
+          <label>Prénom</label>
+          <input type="text" id="rPrenom" placeholder="Marie-Claude"/>
+        </div>
+        <div class="input-wrap">
+          <label>Nom</label>
+          <input type="text" id="rNom" placeholder="Tremblay"/>
+        </div>
+      </div>
+      <div class="input-wrap">
+        <label>Adresse courriel</label>
+        <input type="email" id="rEmail" placeholder="vous@exemple.com"/>
+      </div>
+      <div class="input-wrap">
+        <label>Numéro de téléphone</label>
+        <input type="tel" id="rTel" placeholder="+1 (819) 555-0142"/>
+      </div>
+      <div class="input-wrap">
+        <label>Mot de passe</label>
+        <input type="password" id="rPass" placeholder="Minimum 6 caractères"/>
+      </div>
  
-      <button class="social-btn btn-facebook" id="btnFacebook">
-        <span class="icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </span>
-        <span class="lbl">Continuer avec Facebook</span>
-        <span class="arr">→</span>
-      </button>
- 
-      <div class="msg" id="msgSocial"></div>
+      <button class="btn-submit" id="btnRegister">Créer mon compte →</button>
+      <div class="msg" id="msgRegister"></div>
  
       <div class="foot-note">
-        En continuant, vous acceptez nos <a href="conditions.html">conditions</a> et notre <a href="confidentialite.html">politique de confidentialité</a>.
+        En créant un compte, vous acceptez nos <a href="conditions.html">conditions</a> et notre <a href="confidentialite.html">politique de confidentialité</a>.
       </div>
     </div>
  
     <!-- SÉPARATEUR -->
     <div class="divider-v"></div>
  
-    <!-- ═══ PANNEAU DROIT — Inscription manuelle ═══ -->
+    <!-- ═══ DROITE — CONNEXION ═══ -->
     <div class="panel">
-      <div class="card-eyebrow">Inscription manuelle</div>
-      <h2 class="card-title">Créez votre <em>compte</em></h2>
-      <p class="card-sub">Remplissez le formulaire pour créer votre compte NexDrive.</p>
- 
-      <div class="row2">
-        <div class="input-wrap">
-          <label>Prénom</label>
-          <input type="text" id="fPrenom" placeholder="Marie-Claude"/>
-        </div>
-        <div class="input-wrap">
-          <label>Nom</label>
-          <input type="text" id="fNom" placeholder="Tremblay"/>
-        </div>
-      </div>
+      <div class="card-eyebrow">Déjà client</div>
+      <h2 class="card-title">Se <em>connecter</em></h2>
+      <p class="card-sub">Entrez vos informations pour accéder à votre espace NexDrive.</p>
  
       <div class="input-wrap">
         <label>Adresse courriel</label>
-        <input type="email" id="fEmail" placeholder="vous@exemple.com"/>
+        <input type="email" id="lEmail" placeholder="vous@exemple.com"/>
       </div>
- 
-      <div class="input-wrap">
-        <label>Numéro de téléphone</label>
-        <input type="tel" id="fTel" placeholder="+1 (819) 555-0142"/>
-      </div>
- 
       <div class="input-wrap">
         <label>Mot de passe</label>
-        <input type="password" id="fPass" placeholder="Minimum 6 caractères"/>
+        <input type="password" id="lPass" placeholder="Votre mot de passe"/>
       </div>
  
-      <button class="btn-submit" id="btnInscription">Créer mon compte →</button>
+      <!-- Se souvenir 30 jours -->
+      <label class="remember">
+        <input type="checkbox" id="rememberMe" checked/>
+        Se souvenir de moi pendant 30 jours
+      </label>
  
-      <div class="msg" id="msgForm"></div>
+      <button class="btn-submit" id="btnLogin" style="margin-top:14px">Se connecter →</button>
  
-      <div class="foot-note" style="margin-top:14px;border-top:none;padding-top:0">
-        Déjà un compte ? <a href="#" onclick="document.getElementById('fEmail').focus();return false" style="color:rgba(91,159,255,.6)">Connectez-vous à gauche</a>
+      <a href="#" class="forgot" id="btnForgot">Mot de passe oublié ?</a>
+ 
+      <div class="msg" id="msgLogin"></div>
+ 
+      <div class="foot-note">
+        Pas encore de compte ? <a href="#" onclick="document.getElementById('rPrenom').focus();return false">Inscrivez-vous à gauche</a>
       </div>
     </div>
  
@@ -204,7 +193,24 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px
 <script>
 const SUPABASE_URL  = 'https://igftridkkchvjaxtburi.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnZnRyaWRra2NodmpheHRidXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODcxMzgsImV4cCI6MjA4ODY2MzEzOH0.SuUO_seWElDPnm3lnGEEn8OwflJhbocyJjVF8nvrf4Y';
-const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+ 
+// ✅ Session persistante 30 jours
+const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
+  auth: {
+    persistSession: true,
+    storageKey: 'nexdrive-auth',
+    storage: window.localStorage,
+    autoRefreshToken: true,
+    detectSessionInUrl: true
+  }
+});
+ 
+// Si déjà connecté → rediriger directement
+sb.auth.getSession().then(function(res) {
+  if (res.data && res.data.session) {
+    window.location.href = 'compte.html';
+  }
+});
  
 function showMsg(id, text, type) {
   var box = document.getElementById(id);
@@ -217,40 +223,17 @@ function setLoading(btn, loading, original) {
   else btn.innerHTML = original;
 }
  
-// ── GOOGLE ──
-document.getElementById('btnGoogle').addEventListener('click', async function() {
-  var btn = this, orig = btn.innerHTML;
-  setLoading(btn, true);
-  var result = await sb.auth.signInWithOAuth({
-    provider: 'google',
-    options: { redirectTo: 'https://location-nexdrive.com/compte.html' }
-  });
-  if (result.error) { setLoading(btn, false, orig); showMsg('msgSocial', 'Erreur Google : ' + result.error.message, 'error'); }
-});
+// ── INSCRIPTION ──
+document.getElementById('btnRegister').addEventListener('click', async function() {
+  var prenom = document.getElementById('rPrenom').value.trim();
+  var nom    = document.getElementById('rNom').value.trim();
+  var email  = document.getElementById('rEmail').value.trim();
+  var tel    = document.getElementById('rTel').value.trim();
+  var pass   = document.getElementById('rPass').value;
  
-// ── FACEBOOK ──
-document.getElementById('btnFacebook').addEventListener('click', async function() {
-  var btn = this, orig = btn.innerHTML;
-  setLoading(btn, true);
-  var result = await sb.auth.signInWithOAuth({
-    provider: 'facebook',
-    options: { redirectTo: window.location.origin + '/compte.html' }
-  });
-  if (result.error) { setLoading(btn, false, orig); showMsg('msgSocial', 'Erreur Facebook : ' + result.error.message, 'error'); }
-});
- 
-// ── INSCRIPTION MANUELLE ──
-document.getElementById('btnInscription').addEventListener('click', async function() {
-  var prenom = document.getElementById('fPrenom').value.trim();
-  var nom    = document.getElementById('fNom').value.trim();
-  var email  = document.getElementById('fEmail').value.trim();
-  var tel    = document.getElementById('fTel').value.trim();
-  var pass   = document.getElementById('fPass').value;
- 
-  // Validation
-  if (!prenom || !nom) { showMsg('msgForm', 'Veuillez entrer votre prénom et nom.', 'error'); return; }
-  if (!email || !email.includes('@')) { showMsg('msgForm', 'Veuillez entrer une adresse courriel valide.', 'error'); return; }
-  if (!pass || pass.length < 6) { showMsg('msgForm', 'Le mot de passe doit contenir au moins 6 caractères.', 'error'); return; }
+  if (!prenom || !nom)          { showMsg('msgRegister', '⚠️ Entrez votre prénom et nom.', 'error'); return; }
+  if (!email || !email.includes('@')) { showMsg('msgRegister', '⚠️ Adresse courriel invalide.', 'error'); return; }
+  if (!pass || pass.length < 6) { showMsg('msgRegister', '⚠️ Mot de passe minimum 6 caractères.', 'error'); return; }
  
   var btn = this, orig = btn.innerHTML;
   setLoading(btn, true);
@@ -259,36 +242,78 @@ document.getElementById('btnInscription').addEventListener('click', async functi
     email: email,
     password: pass,
     options: {
-      data: {
-        full_name: prenom + ' ' + nom,
-        first_name: prenom,
-        last_name: nom,
-        phone: tel
-      },
-      emailRedirectTo: window.location.origin + '/compte.html'
+      data: { full_name: prenom + ' ' + nom, first_name: prenom, last_name: nom, phone: tel },
+      emailRedirectTo: 'https://www.location-nexdrive.com/compte.html'
     }
   });
  
   setLoading(btn, false, orig);
  
   if (result.error) {
-    showMsg('msgForm', 'Erreur : ' + result.error.message, 'error');
+    showMsg('msgRegister', '❌ ' + result.error.message, 'error');
   } else {
-    showMsg('msgForm', '✅ Compte créé ! Vérifiez votre courriel pour confirmer votre inscription.', 'success');
-    // Vider le formulaire
-    ['fPrenom','fNom','fEmail','fTel','fPass'].forEach(function(id){ document.getElementById(id).value = ''; });
+    showMsg('msgRegister', '✅ Compte créé ! Vérifiez votre courriel pour confirmer votre inscription.', 'success');
+    ['rPrenom','rNom','rEmail','rTel','rPass'].forEach(function(id){ document.getElementById(id).value = ''; });
+  }
+});
+ 
+// ── CONNEXION ──
+document.getElementById('btnLogin').addEventListener('click', async function() {
+  var email = document.getElementById('lEmail').value.trim();
+  var pass  = document.getElementById('lPass').value;
+ 
+  if (!email || !email.includes('@')) { showMsg('msgLogin', '⚠️ Adresse courriel invalide.', 'error'); return; }
+  if (!pass)                          { showMsg('msgLogin', '⚠️ Entrez votre mot de passe.', 'error'); return; }
+ 
+  var btn = this, orig = btn.innerHTML;
+  setLoading(btn, true);
+ 
+  var result = await sb.auth.signInWithPassword({ email: email, password: pass });
+ 
+  setLoading(btn, false, orig);
+ 
+  if (result.error) {
+    showMsg('msgLogin', '❌ Courriel ou mot de passe incorrect.', 'error');
+  } else {
+    showMsg('msgLogin', '✅ Connexion réussie ! Redirection…', 'success');
+    setTimeout(function() { window.location.href = 'compte.html'; }, 800);
+  }
+});
+ 
+// ── MOT DE PASSE OUBLIÉ ──
+document.getElementById('btnForgot').addEventListener('click', async function(e) {
+  e.preventDefault();
+  var email = document.getElementById('lEmail').value.trim();
+  if (!email || !email.includes('@')) {
+    showMsg('msgLogin', '⚠️ Entrez votre courriel ci-dessus d\'abord.', 'error');
+    document.getElementById('lEmail').focus();
+    return;
+  }
+  var result = await sb.auth.resetPasswordForEmail(email, {
+    redirectTo: 'https://www.location-nexdrive.com/compte.html'
+  });
+  if (result.error) {
+    showMsg('msgLogin', '❌ ' + result.error.message, 'error');
+  } else {
+    showMsg('msgLogin', '✅ Courriel de réinitialisation envoyé !', 'success');
   }
 });
  
 // Effacer erreurs à la frappe
-['fPrenom','fNom','fEmail','fTel','fPass'].forEach(function(id) {
+['rPrenom','rNom','rEmail','rTel','rPass'].forEach(function(id) {
   document.getElementById(id).addEventListener('input', function() {
-    var box = document.getElementById('msgForm');
-    if (box.classList.contains('error')) box.classList.remove('show');
+    var b = document.getElementById('msgRegister');
+    if (b.classList.contains('error')) b.classList.remove('show');
+  });
+});
+['lEmail','lPass'].forEach(function(id) {
+  document.getElementById(id).addEventListener('input', function() {
+    var b = document.getElementById('msgLogin');
+    if (b.classList.contains('error')) b.classList.remove('show');
   });
 });
  
-// ── Animation étoiles ──
+// Animation étoiles
 (function(){
   var c=document.getElementById('sc'),x=c.getContext('2d'),W,H,stars=[],raf,last=0;
   function rnd(a,b){return a+Math.random()*(b-a)}
