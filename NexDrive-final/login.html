@@ -5,15 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>NexDrive — Connexion</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
- 
-<!-- ✅ SUPABASE SDK — une seule fois, gère tout -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
- 
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --navy:#0a1628;--navy2:#0f2040;--blue:#1454d4;--electric:#2979ff;--elec-l:#5b9fff;
-  --ink2:#3a5068;--ink3:#6a8aa8;--border:rgba(10,22,40,0.1);
+  --navy:#0a1628;--electric:#2979ff;--elec-l:#5b9fff;
   --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif
 }
 html{scroll-behavior:smooth}
@@ -29,77 +25,86 @@ nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;backg
 .back-link svg{opacity:.5}
  
 /* MAIN */
-main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px 20px 60px;position:relative;z-index:1}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px 24px 60px;position:relative;z-index:1}
  
-/* CARD */
-.login-card{width:100%;max-width:440px;background:rgba(14,22,42,0.85);border:1px solid rgba(41,121,255,0.15);border-radius:20px;padding:44px 40px;backdrop-filter:blur(24px);box-shadow:0 0 0 1px rgba(41,121,255,0.06),0 24px 80px rgba(0,0,0,0.5),0 0 60px rgba(41,121,255,0.08);animation:fu .7s cubic-bezier(.16,1,.3,1) both}
+/* WRAPPER DOUBLE PANNEAU */
+.auth-wrapper{
+  display:grid;
+  grid-template-columns:1fr 1px 1fr;
+  width:100%;max-width:880px;
+  background:rgba(14,22,42,0.85);
+  border:1px solid rgba(41,121,255,0.15);
+  border-radius:22px;
+  backdrop-filter:blur(24px);
+  box-shadow:0 0 0 1px rgba(41,121,255,0.06),0 24px 80px rgba(0,0,0,0.5),0 0 60px rgba(41,121,255,0.08);
+  animation:fu .7s cubic-bezier(.16,1,.3,1) both;
+  overflow:hidden;
+}
 @keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
  
-.card-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.6rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--electric);margin-bottom:16px}
-.card-eyebrow::before{content:'';width:14px;height:1px;background:var(--electric)}
-.card-title{font-family:var(--serif);font-size:2rem;font-weight:300;line-height:1.15;letter-spacing:-.3px;margin-bottom:6px}
-.card-title em{font-style:italic;color:var(--elec-l)}
-.card-sub{font-size:.85rem;font-weight:300;color:rgba(255,255,255,.38);margin-bottom:36px;line-height:1.6}
+/* SÉPARATEUR VERTICAL */
+.divider-v{background:rgba(41,121,255,0.15);position:relative}
+.divider-v::before{content:'ou';position:absolute;top:0;left:50%;transform:translate(-50%, -50%) translateY(44px);background:#0f1e38;color:rgba(255,255,255,.35);font-size:.68rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:8px 14px;border-radius:20px;border:1px solid rgba(41,121,255,0.2);white-space:nowrap;writing-mode:horizontal-tb;box-shadow:0 0 20px rgba(41,121,255,0.15)}
  
-/* SOCIAL BUTTONS */
-.social-btn{width:100%;display:flex;align-items:center;gap:14px;padding:13px 20px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:rgba(255,255,255,.82);font-family:var(--sans);font-size:.88rem;font-weight:400;cursor:pointer;transition:all .22s;margin-bottom:10px;text-decoration:none;position:relative;overflow:hidden}
+/* PANNEAUX */
+.panel{padding:44px 38px}
+ 
+/* EYEBROW */
+.card-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.6rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--electric);margin-bottom:14px}
+.card-eyebrow::before{content:'';width:14px;height:1px;background:var(--electric)}
+.card-title{font-family:var(--serif);font-size:1.75rem;font-weight:300;line-height:1.15;letter-spacing:-.3px;margin-bottom:6px}
+.card-title em{font-style:italic;color:var(--elec-l)}
+.card-sub{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.35);margin-bottom:28px;line-height:1.6}
+ 
+/* BOUTONS SOCIAUX */
+.social-btn{width:100%;display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:rgba(255,255,255,.82);font-family:var(--sans);font-size:.88rem;font-weight:400;cursor:pointer;transition:all .22s;margin-bottom:11px;position:relative;overflow:hidden}
 .social-btn:hover{border-color:rgba(255,255,255,0.22);background:rgba(255,255,255,0.08);color:#fff;transform:translateY(-1px)}
 .social-btn .icon{width:22px;height:22px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
 .social-btn .lbl{flex:1;text-align:left}
 .social-btn .arr{font-size:.8rem;color:rgba(255,255,255,.2);transition:transform .2s,color .2s}
 .social-btn:hover .arr{transform:translateX(4px);color:rgba(255,255,255,.5)}
 .social-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
- 
 .btn-google:hover{border-color:rgba(66,133,244,0.4);background:rgba(66,133,244,0.08)}
 .btn-facebook:hover{border-color:rgba(24,119,242,0.4);background:rgba(24,119,242,0.08)}
-.btn-apple:hover{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.1)}
-.btn-phone:hover{border-color:rgba(41,121,255,0.4);background:rgba(41,121,255,0.08)}
  
-/* DIVIDER */
-.divider{display:flex;align-items:center;gap:14px;margin:22px 0}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.08)}
-.divider span{font-size:.72rem;color:rgba(255,255,255,.22);letter-spacing:1px;white-space:nowrap}
+/* FORMULAIRE MANUEL */
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.input-wrap{margin-bottom:11px}
+.input-wrap label{display:block;font-size:.68rem;font-weight:500;letter-spacing:.5px;color:rgba(255,255,255,.35);margin-bottom:6px;text-transform:uppercase}
+.input-wrap input{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:11px 14px;color:#fff;font-family:var(--sans);font-size:.87rem;font-weight:300;outline:none;transition:all .22s}
+.input-wrap input::placeholder{color:rgba(255,255,255,.18)}
+.input-wrap input:focus{border-color:rgba(41,121,255,.5);background:rgba(41,121,255,0.06);box-shadow:0 0 0 3px rgba(41,121,255,0.1)}
+.input-wrap input.err{border-color:rgba(248,113,113,0.5);background:rgba(248,113,113,0.05)}
  
-/* EMAIL FORM */
-.input-wrap{margin-bottom:12px}
-.input-wrap label{display:block;font-size:.72rem;font-weight:500;letter-spacing:.5px;color:rgba(255,255,255,.38);margin-bottom:7px;text-transform:uppercase}
-.input-wrap input{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 16px;color:#fff;font-family:var(--sans);font-size:.9rem;font-weight:300;outline:none;transition:all .22s}
-.input-wrap input::placeholder{color:rgba(255,255,255,.2)}
-.input-wrap input:focus{border-color:rgba(41,121,255,.5);background:rgba(41,121,255,0.06);box-shadow:0 0 0 3px rgba(41,121,255,0.12)}
-.input-wrap input.error{border-color:rgba(248,113,113,0.5);background:rgba(248,113,113,0.06)}
- 
-.btn-submit{width:100%;padding:14px;border-radius:10px;background:linear-gradient(135deg,#1454d4,#2979ff);border:none;color:#fff;font-family:var(--sans);font-size:.9rem;font-weight:500;cursor:pointer;transition:all .3s;box-shadow:0 4px 20px rgba(41,121,255,.3);margin-top:4px;letter-spacing:.3px}
+.btn-submit{width:100%;padding:13px;border-radius:10px;background:linear-gradient(135deg,#1454d4,#2979ff);border:none;color:#fff;font-family:var(--sans);font-size:.88rem;font-weight:500;cursor:pointer;transition:all .3s;box-shadow:0 4px 20px rgba(41,121,255,.3);margin-top:4px;letter-spacing:.3px}
 .btn-submit:hover{background:linear-gradient(135deg,#1a65f0,#3d8bff);transform:translateY(-2px);box-shadow:0 8px 28px rgba(41,121,255,.4)}
 .btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
  
 /* MESSAGES */
-.msg{display:none;padding:10px 14px;border-radius:9px;font-size:.8rem;margin-top:10px;line-height:1.5}
-.msg.success{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);color:#34d399}
+.msg{display:none;padding:9px 13px;border-radius:9px;font-size:.78rem;margin-top:8px;line-height:1.5}
 .msg.error{background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.2);color:#f87171}
+.msg.success{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);color:#34d399}
 .msg.show{display:block}
  
-/* MAGIC LINK */
-.magic-link{display:flex;align-items:center;justify-content:center;gap:7px;font-size:.78rem;color:rgba(255,255,255,.3);margin-top:14px;cursor:pointer;transition:color .2s;background:none;border:none;width:100%;font-family:var(--sans)}
-.magic-link:hover{color:rgba(255,255,255,.6)}
-.magic-link svg{opacity:.5}
+/* FOOTER NOTE */
+.foot-note{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06);text-align:center;font-size:.68rem;color:rgba(255,255,255,.18);line-height:1.7}
+.foot-note a{color:rgba(91,159,255,.5);text-decoration:none}
+.foot-note a:hover{color:var(--elec-l)}
  
-/* FOOTER */
-.card-footer-note{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);text-align:center;font-size:.72rem;color:rgba(255,255,255,.2);line-height:1.7}
-.card-footer-note a{color:rgba(91,159,255,.6);text-decoration:none}
-.card-footer-note a:hover{color:var(--elec-l)}
- 
-/* GLOW */
-.glow-bg{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(ellipse,rgba(41,121,255,0.1),transparent 65%);pointer-events:none;z-index:0}
- 
-/* SPINNER */
-.spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
+.spinner{display:inline-block;width:13px;height:13px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
 @keyframes spin{to{transform:rotate(360deg)}}
  
-@media(max-width:520px){
+.glow-bg{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;border-radius:50%;background:radial-gradient(ellipse,rgba(41,121,255,0.08),transparent 65%);pointer-events:none;z-index:0}
+ 
+/* RESPONSIVE */
+@media(max-width:760px){
   nav{padding:0 20px;height:60px}
-  main{padding:88px 16px 40px}
-  .login-card{padding:32px 24px}
-  .card-title{font-size:1.7rem}
+  main{padding:80px 16px 40px}
+  .auth-wrapper{grid-template-columns:1fr;max-width:440px}
+  .divider-v{height:1px;writing-mode:horizontal-tb}
+  .divider-v::before{writing-mode:horizontal-tb;padding:6px 12px;top:50%;left:50%}
+  .panel{padding:32px 24px}
+  .row2{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -118,194 +123,172 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px
 </nav>
  
 <main>
-  <div class="login-card">
-    <div class="card-eyebrow">Première visite ?</div>
-    <h1 class="card-title">Créez votre <em>compte</em></h1>
-    <p class="card-sub">Connectez-vous en 1 clic pour réserver votre véhicule, suivre vos locations et accéder à votre tableau de bord.</p>
+  <div class="auth-wrapper">
  
-    <!-- GOOGLE -->
-    <button class="social-btn btn-google" id="btnGoogle">
-      <span class="icon">
-        <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-      </span>
-      <span class="lbl">Continuer avec Google</span>
-      <span class="arr">→</span>
-    </button>
+    <!-- ═══ PANNEAU GAUCHE — Connexion sociale ═══ -->
+    <div class="panel">
+      <div class="card-eyebrow">Connexion rapide</div>
+      <h1 class="card-title">Connectez-<em>vous</em></h1>
+      <p class="card-sub">Accédez à votre compte en 1 clic avec votre réseau social.</p>
  
-    <!-- FACEBOOK -->
-    <button class="social-btn btn-facebook" id="btnFacebook">
-      <span class="icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      </span>
-      <span class="lbl">Continuer avec Facebook</span>
-      <span class="arr">→</span>
-    </button>
+      <button class="social-btn btn-google" id="btnGoogle">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        </span>
+        <span class="lbl">Continuer avec Google</span>
+        <span class="arr">→</span>
+      </button>
  
-    <!-- APPLE -->
-    <button class="social-btn btn-apple" id="btnApple">
-      <span class="icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      </span>
-      <span class="lbl">Continuer avec Apple</span>
-      <span class="arr">→</span>
-    </button>
+      <button class="social-btn btn-facebook" id="btnFacebook">
+        <span class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </span>
+        <span class="lbl">Continuer avec Facebook</span>
+        <span class="arr">→</span>
+      </button>
  
-    <!-- TÉLÉPHONE -->
-    <button class="social-btn btn-phone" id="btnPhone">
-      <span class="icon">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(91,159,255,0.9)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      </span>
-      <span class="lbl">Continuer avec mon numéro</span>
-      <span class="arr">→</span>
-    </button>
+      <div class="msg" id="msgSocial"></div>
  
-    <!-- DIVIDER -->
-    <div class="divider"><span>ou par courriel</span></div>
- 
-    <!-- EMAIL -->
-    <div class="input-wrap">
-      <label>Adresse courriel</label>
-      <input type="email" id="emailInput" placeholder="vous@exemple.com"/>
+      <div class="foot-note">
+        En continuant, vous acceptez nos <a href="conditions.html">conditions</a> et notre <a href="confidentialite.html">politique de confidentialité</a>.
+      </div>
     </div>
-    <button class="btn-submit" id="btnEmail">Recevoir un lien de connexion</button>
  
-    <!-- Message succès / erreur -->
-    <div class="msg" id="msgBox"></div>
+    <!-- SÉPARATEUR -->
+    <div class="divider-v"></div>
  
-    <button class="magic-link" id="magicInfo">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-      Qu'est-ce qu'un lien magique ?
-    </button>
+    <!-- ═══ PANNEAU DROIT — Inscription manuelle ═══ -->
+    <div class="panel">
+      <div class="card-eyebrow">Inscription manuelle</div>
+      <h2 class="card-title">Créez votre <em>compte</em></h2>
+      <p class="card-sub">Remplissez le formulaire pour créer votre compte NexDrive.</p>
  
-    <div class="card-footer-note">
-      En continuant, vous acceptez nos <a href="conditions.html">conditions d'utilisation</a> et notre <a href="confidentialite.html">politique de confidentialité</a>.
+      <div class="row2">
+        <div class="input-wrap">
+          <label>Prénom</label>
+          <input type="text" id="fPrenom" placeholder="Marie-Claude"/>
+        </div>
+        <div class="input-wrap">
+          <label>Nom</label>
+          <input type="text" id="fNom" placeholder="Tremblay"/>
+        </div>
+      </div>
+ 
+      <div class="input-wrap">
+        <label>Adresse courriel</label>
+        <input type="email" id="fEmail" placeholder="vous@exemple.com"/>
+      </div>
+ 
+      <div class="input-wrap">
+        <label>Numéro de téléphone</label>
+        <input type="tel" id="fTel" placeholder="+1 (819) 555-0142"/>
+      </div>
+ 
+      <div class="input-wrap">
+        <label>Mot de passe</label>
+        <input type="password" id="fPass" placeholder="Minimum 6 caractères"/>
+      </div>
+ 
+      <button class="btn-submit" id="btnInscription">Créer mon compte →</button>
+ 
+      <div class="msg" id="msgForm"></div>
+ 
+      <div class="foot-note" style="margin-top:14px;border-top:none;padding-top:0">
+        Déjà un compte ? <a href="#" onclick="document.getElementById('fEmail').focus();return false" style="color:rgba(91,159,255,.6)">Connectez-vous à gauche</a>
+      </div>
     </div>
+ 
   </div>
 </main>
  
 <script>
-// ════════════════════════════════════════════════
-// ✅ CONFIGURATION SUPABASE — remplacez ces 2 valeurs
-// Trouvez-les dans : Supabase → Project Settings → API
-// ════════════════════════════════════════════════
 const SUPABASE_URL  = 'https://igftridkkchvjaxtburi.supabase.co';
 const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnZnRyaWRra2NodmpheHRidXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODcxMzgsImV4cCI6MjA4ODY2MzEzOH0.SuUO_seWElDPnm3lnGEEn8OwflJhbocyJjVF8nvrf4Y';
- 
 const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
  
-// ── Helpers UI ──
-function showMsg(text, type) {
-  var box = document.getElementById('msgBox');
+function showMsg(id, text, type) {
+  var box = document.getElementById(id);
   box.textContent = text;
   box.className = 'msg ' + type + ' show';
 }
 function setLoading(btn, loading, original) {
-  if (loading) {
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spinner"></span>Connexion…';
-  } else {
-    btn.disabled = false;
-    btn.innerHTML = original;
-  }
+  btn.disabled = loading;
+  if (loading) btn.innerHTML = '<span class="spinner"></span>Chargement…';
+  else btn.innerHTML = original;
 }
- 
-// ── EMAIL (lien magique) ──
-document.getElementById('btnEmail').addEventListener('click', async function() {
-  var email = document.getElementById('emailInput').value.trim();
-  var input = document.getElementById('emailInput');
- 
-  if (!email || !email.includes('@')) {
-    input.classList.add('error');
-    showMsg('Veuillez entrer une adresse courriel valide.', 'error');
-    input.focus();
-    return;
-  }
-  input.classList.remove('error');
- 
-  var btn = this;
-  var orig = btn.innerHTML;
-  setLoading(btn, true);
- 
-  var result = await sb.auth.signInWithOtp({
-    email: email,
-    options: { emailRedirectTo: window.location.origin + '/compte.html' }
-  });
- 
-  setLoading(btn, false, orig);
- 
-  if (result.error) {
-    showMsg('Erreur : ' + result.error.message, 'error');
-  } else {
-    showMsg('✅ Lien envoyé ! Vérifiez votre boîte courriel et cliquez sur le lien.', 'success');
-  }
-});
  
 // ── GOOGLE ──
 document.getElementById('btnGoogle').addEventListener('click', async function() {
-  var btn = this;
-  var orig = btn.innerHTML;
+  var btn = this, orig = btn.innerHTML;
   setLoading(btn, true);
   var result = await sb.auth.signInWithOAuth({
     provider: 'google',
     options: { redirectTo: window.location.origin + '/compte.html' }
   });
-  if (result.error) {
-    setLoading(btn, false, orig);
-    showMsg('Erreur Google : ' + result.error.message, 'error');
-  }
-  // Si succès, Supabase redirige automatiquement
+  if (result.error) { setLoading(btn, false, orig); showMsg('msgSocial', 'Erreur Google : ' + result.error.message, 'error'); }
 });
  
 // ── FACEBOOK ──
 document.getElementById('btnFacebook').addEventListener('click', async function() {
-  var btn = this;
-  var orig = btn.innerHTML;
+  var btn = this, orig = btn.innerHTML;
   setLoading(btn, true);
   var result = await sb.auth.signInWithOAuth({
     provider: 'facebook',
     options: { redirectTo: window.location.origin + '/compte.html' }
   });
-  if (result.error) {
-    setLoading(btn, false, orig);
-    showMsg('Erreur Facebook : ' + result.error.message, 'error');
-  }
+  if (result.error) { setLoading(btn, false, orig); showMsg('msgSocial', 'Erreur Facebook : ' + result.error.message, 'error'); }
 });
  
-// ── APPLE ──
-document.getElementById('btnApple').addEventListener('click', async function() {
-  var btn = this;
-  var orig = btn.innerHTML;
+// ── INSCRIPTION MANUELLE ──
+document.getElementById('btnInscription').addEventListener('click', async function() {
+  var prenom = document.getElementById('fPrenom').value.trim();
+  var nom    = document.getElementById('fNom').value.trim();
+  var email  = document.getElementById('fEmail').value.trim();
+  var tel    = document.getElementById('fTel').value.trim();
+  var pass   = document.getElementById('fPass').value;
+ 
+  // Validation
+  if (!prenom || !nom) { showMsg('msgForm', 'Veuillez entrer votre prénom et nom.', 'error'); return; }
+  if (!email || !email.includes('@')) { showMsg('msgForm', 'Veuillez entrer une adresse courriel valide.', 'error'); return; }
+  if (!pass || pass.length < 6) { showMsg('msgForm', 'Le mot de passe doit contenir au moins 6 caractères.', 'error'); return; }
+ 
+  var btn = this, orig = btn.innerHTML;
   setLoading(btn, true);
-  var result = await sb.auth.signInWithOAuth({
-    provider: 'apple',
-    options: { redirectTo: window.location.origin + '/compte.html' }
+ 
+  var result = await sb.auth.signUp({
+    email: email,
+    password: pass,
+    options: {
+      data: {
+        full_name: prenom + ' ' + nom,
+        first_name: prenom,
+        last_name: nom,
+        phone: tel
+      },
+      emailRedirectTo: window.location.origin + '/compte.html'
+    }
   });
+ 
+  setLoading(btn, false, orig);
+ 
   if (result.error) {
-    setLoading(btn, false, orig);
-    showMsg('Erreur Apple : ' + result.error.message, 'error');
+    showMsg('msgForm', 'Erreur : ' + result.error.message, 'error');
+  } else {
+    showMsg('msgForm', '✅ Compte créé ! Vérifiez votre courriel pour confirmer votre inscription.', 'success');
+    // Vider le formulaire
+    ['fPrenom','fNom','fEmail','fTel','fPass'].forEach(function(id){ document.getElementById(id).value = ''; });
   }
 });
  
-// ── TÉLÉPHONE (redirige vers une page dédiée ou affiche un message) ──
-document.getElementById('btnPhone').addEventListener('click', function() {
-  showMsg('📱 Connexion par téléphone : entrez votre numéro dans le champ courriel avec le format +1XXXXXXXXXX, ou contactez le support.', 'success');
+// Effacer erreurs à la frappe
+['fPrenom','fNom','fEmail','fTel','fPass'].forEach(function(id) {
+  document.getElementById(id).addEventListener('input', function() {
+    var box = document.getElementById('msgForm');
+    if (box.classList.contains('error')) box.classList.remove('show');
+  });
 });
  
-// ── INFO LIEN MAGIQUE ──
-document.getElementById('magicInfo').addEventListener('click', function() {
-  showMsg('✨ Un lien magique est envoyé à votre courriel. Cliquez dessus et vous êtes connecté — sans mot de passe !', 'success');
-});
- 
-// ── Effacer erreur à la frappe ──
-document.getElementById('emailInput').addEventListener('input', function() {
-  this.classList.remove('error');
-  var box = document.getElementById('msgBox');
-  if (box.classList.contains('error')) box.classList.remove('show');
-});
- 
-// ════════════════════════════════════════════════
-// Animation étoiles (inchangée)
-// ════════════════════════════════════════════════
+// ── Animation étoiles ──
 (function(){
   var c=document.getElementById('sc'),x=c.getContext('2d'),W,H,stars=[],raf,last=0;
   function rnd(a,b){return a+Math.random()*(b-a)}
