@@ -25,7 +25,6 @@ nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;backg
  
 main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px 24px 60px;position:relative;z-index:1}
  
-/* WRAPPER DOUBLE PANNEAU */
 .auth-wrapper{
   display:grid;grid-template-columns:1fr 1px 1fr;
   width:100%;max-width:880px;
@@ -37,11 +36,9 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px
 }
 @keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
  
-/* SÉPARATEUR */
 .divider-v{background:rgba(41,121,255,0.15);position:relative}
 .divider-v::before{content:'ou';position:absolute;top:0;left:50%;transform:translate(-50%,-50%) translateY(44px);background:#0f1e38;color:rgba(255,255,255,.35);font-size:.68rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;padding:8px 14px;border-radius:20px;border:1px solid rgba(41,121,255,0.2);white-space:nowrap;box-shadow:0 0 20px rgba(41,121,255,0.15)}
  
-/* PANNEAUX */
 .panel{padding:44px 38px}
  
 .card-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.6rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--electric);margin-bottom:14px}
@@ -50,7 +47,6 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px
 .card-title em{font-style:italic;color:var(--elec-l)}
 .card-sub{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.35);margin-bottom:28px;line-height:1.6}
  
-/* INPUTS */
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .input-wrap{margin-bottom:11px}
 .input-wrap label{display:block;font-size:.68rem;font-weight:500;letter-spacing:.5px;color:rgba(255,255,255,.35);margin-bottom:6px;text-transform:uppercase}
@@ -59,21 +55,29 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px
 .input-wrap input:focus{border-color:rgba(41,121,255,.5);background:rgba(41,121,255,0.06);box-shadow:0 0 0 3px rgba(41,121,255,0.1)}
 .input-wrap input.err{border-color:rgba(248,113,113,0.5);background:rgba(248,113,113,0.05)}
  
-/* BOUTON SUBMIT */
+/* ── BARRE DE FORCE MOT DE PASSE ── */
+.pass-strength{margin-top:7px}
+.pass-bars{display:flex;gap:4px;margin-bottom:5px}
+.pass-bar{flex:1;height:3px;border-radius:3px;background:rgba(255,255,255,0.08);transition:background .3s}
+.pass-bar.weak{background:#f87171}
+.pass-bar.medium{background:#fbbf24}
+.pass-bar.strong{background:#34d399}
+.pass-label{font-size:.65rem;color:rgba(255,255,255,.3);transition:color .3s}
+.pass-label.weak{color:#f87171}
+.pass-label.medium{color:#fbbf24}
+.pass-label.strong{color:#34d399}
+ 
 .btn-submit{width:100%;padding:13px;border-radius:10px;background:linear-gradient(135deg,#1454d4,#2979ff);border:none;color:#fff;font-family:var(--sans);font-size:.88rem;font-weight:500;cursor:pointer;transition:all .3s;box-shadow:0 4px 20px rgba(41,121,255,.3);margin-top:4px;letter-spacing:.3px}
 .btn-submit:hover{background:linear-gradient(135deg,#1a65f0,#3d8bff);transform:translateY(-2px);box-shadow:0 8px 28px rgba(41,121,255,.4)}
 .btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
  
-/* CHECKBOX REMEMBER */
 .remember{display:flex;align-items:center;gap:8px;margin:10px 0 4px;cursor:pointer;font-size:.78rem;color:rgba(255,255,255,.35)}
 .remember input{width:14px;height:14px;accent-color:var(--electric);cursor:pointer}
 .remember:hover{color:rgba(255,255,255,.6)}
  
-/* MOT DE PASSE OUBLIÉ */
 .forgot{display:block;text-align:right;font-size:.72rem;color:rgba(91,159,255,.5);text-decoration:none;margin-top:6px;transition:color .2s}
 .forgot:hover{color:var(--elec-l)}
  
-/* MESSAGES */
 .msg{display:none;padding:9px 13px;border-radius:9px;font-size:.78rem;margin-top:8px;line-height:1.5}
 .msg.error{background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.2);color:#f87171}
 .msg.success{background:rgba(52,211,153,0.1);border:1px solid rgba(52,211,153,0.2);color:#34d399}
@@ -142,6 +146,15 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px
       <div class="input-wrap">
         <label>Mot de passe</label>
         <input type="password" id="rPass" placeholder="Minimum 6 caractères"/>
+        <!-- Barre de force -->
+        <div class="pass-strength">
+          <div class="pass-bars">
+            <div class="pass-bar" id="bar1"></div>
+            <div class="pass-bar" id="bar2"></div>
+            <div class="pass-bar" id="bar3"></div>
+          </div>
+          <div class="pass-label" id="passLabel"></div>
+        </div>
       </div>
  
       <button class="btn-submit" id="btnRegister">Créer mon compte →</button>
@@ -170,7 +183,6 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px
         <input type="password" id="lPass" placeholder="Votre mot de passe"/>
       </div>
  
-      <!-- Se souvenir 30 jours -->
       <label class="remember">
         <input type="checkbox" id="rememberMe" checked/>
         Se souvenir de moi pendant 30 jours
@@ -204,15 +216,13 @@ const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
   }
 });
  
-// Si déjà connecté ET qu'il y a des params véhicule → aller à confirmation directement
-// Sinon on laisse l'utilisateur sur la page login (évite la boucle avec compte.html)
+// Si déjà connecté + params véhicule → confirmation directement
 sb.auth.getSession().then(function(res) {
   if (res.data && res.data.session) {
     var params = window.location.search;
     if (params) {
       window.location.href = 'confirmation.html' + params;
     }
-    // Pas de redirect vers compte.html ici — évite la boucle
   }
 });
  
@@ -227,6 +237,32 @@ function setLoading(btn, loading, original) {
   else btn.innerHTML = original;
 }
  
+// ── BARRE DE FORCE MOT DE PASSE ──
+document.getElementById('rPass').addEventListener('input', function() {
+  var val = this.value;
+  var score = 0;
+  if (val.length >= 6)  score++;
+  if (val.length >= 10) score++;
+  if (/[A-Z]/.test(val) && /[0-9]/.test(val)) score++;
+ 
+  var bars   = [document.getElementById('bar1'), document.getElementById('bar2'), document.getElementById('bar3')];
+  var label  = document.getElementById('passLabel');
+  var levels = ['weak', 'medium', 'strong'];
+  var labels = ['Faible', 'Moyen', 'Fort'];
+ 
+  bars.forEach(function(b) { b.className = 'pass-bar'; });
+  label.className = 'pass-label';
+ 
+  if (val.length === 0) { label.textContent = ''; return; }
+ 
+  var level = score === 0 ? 'weak' : levels[score - 1];
+  for (var i = 0; i < score || (score === 0 && i === 0); i++) {
+    if (bars[i]) bars[i].classList.add(score === 0 ? 'weak' : level);
+  }
+  label.classList.add(level);
+  label.textContent = score === 0 ? labels[0] : labels[score - 1];
+});
+ 
 // ── INSCRIPTION ──
 document.getElementById('btnRegister').addEventListener('click', async function() {
   var prenom = document.getElementById('rPrenom').value.trim();
@@ -235,9 +271,9 @@ document.getElementById('btnRegister').addEventListener('click', async function(
   var tel    = document.getElementById('rTel').value.trim();
   var pass   = document.getElementById('rPass').value;
  
-  if (!prenom || !nom)          { showMsg('msgRegister', '⚠️ Entrez votre prénom et nom.', 'error'); return; }
+  if (!prenom || !nom)               { showMsg('msgRegister', '⚠️ Entrez votre prénom et nom.', 'error'); return; }
   if (!email || !email.includes('@')) { showMsg('msgRegister', '⚠️ Adresse courriel invalide.', 'error'); return; }
-  if (!pass || pass.length < 6) { showMsg('msgRegister', '⚠️ Mot de passe minimum 6 caractères.', 'error'); return; }
+  if (!pass || pass.length < 6)      { showMsg('msgRegister', '⚠️ Mot de passe minimum 6 caractères.', 'error'); return; }
  
   var btn = this, orig = btn.innerHTML;
   setLoading(btn, true);
@@ -246,10 +282,20 @@ document.getElementById('btnRegister').addEventListener('click', async function(
     email: email,
     password: pass,
     options: {
-      data: { full_name: prenom + ' ' + nom, first_name: prenom, last_name: nom, phone: tel },
+      data: {
+        full_name:  prenom + ' ' + nom,
+        first_name: prenom,
+        last_name:  nom,
+        phone:      tel
+      },
       emailRedirectTo: 'https://www.location-nexdrive.com/compte.html'
     }
   });
+ 
+  // ✅ Mettre à jour le numéro de téléphone dans le profil Supabase
+  if (!result.error && tel) {
+    await sb.auth.updateUser({ phone: tel });
+  }
  
   setLoading(btn, false, orig);
  
