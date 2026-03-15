@@ -100,9 +100,7 @@ function render(user){
         +(voiture?'<div class="vehicle-section"><div class="v-top"><span class="v-label">Votre sélection</span><span class="v-badge">✓ Disponible</span></div><div class="v-name">'+voiture+'</div><div class="v-sub">'+sub+'</div><div class="v-row"><div class="v-price">'+prix+'<small> /jour</small></div><div class="v-via">via Turo</div></div></div>':'')
         +'<div class="actions">'
         +(voiture?'<a href="'+turoURL+'" target="_blank" class="btn-main">Réserver sur Turo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>':'<a href="vehicules.html" class="btn-main">Voir la flotte →</a>')
-        +'<a href="compte.html" class="btn-sec">👤 Mon compte</a>'
-        +'<a href="vehicules.html" class="btn-sec">← Retour à la flotte</a>'
-        +'<button class="btn-logout" onclick="logout()">Se déconnecter</button>'
+          +'<button class="btn-logout" onclick="logout()">Se déconnecter</button>'
         +'</div>'
         +(voiture?'<div class="note">En cliquant Réserver sur Turo, vous serez redirigé vers Turo pour finaliser votre réservation.</div>':'');
 }
