@@ -457,10 +457,9 @@
         const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnZnRyaWRra2NodmpheHRidXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODcxMzgsImV4cCI6MjA4ODY2MzEzOH0.SuUO_seWElDPnm3lnGEEn8OwflJhbocyJjVF8nvrf4Y';
  
         const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
-            auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false }
+            auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true, storageKey: 'nexdrive-auth' }
         });
  
-        // ── Afficher les infos utilisateur ──
         function afficherUser(user) {
             var meta      = user.user_metadata || {};
             var fullName  = meta.full_name || meta.name || (meta.first_name ? meta.first_name + ' ' + (meta.last_name || '') : '') || user.email.split('@')[0];
@@ -472,52 +471,36 @@
             var createdAt = new Date(user.created_at);
             var months    = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
             var sinceStr  = months[createdAt.getMonth()] + ' ' + createdAt.getFullYear();
- 
-            // Avatar
             var pfAv = document.getElementById('pfAv');
-            if (avatarUrl) {
-                pfAv.innerHTML = '<img src="' + avatarUrl + '" alt="avatar"/>';
-            } else {
-                pfAv.textContent = initials;
-            }
- 
-            // Nav avatar
+            if (avatarUrl) { pfAv.innerHTML = '<img src="' + avatarUrl + '" alt="avatar"/>'; }
+            else { pfAv.textContent = initials; }
             var navAv = document.getElementById('navAv');
-            if (avatarUrl) {
-                navAv.innerHTML = '<img src="' + avatarUrl + '" alt="avatar"/>';
-            } else {
-                navAv.textContent = initials;
-            }
- 
-            // Nom
+            if (avatarUrl) { navAv.innerHTML = '<img src="' + avatarUrl + '" alt="avatar"/>'; }
+            else { navAv.textContent = initials; }
             document.getElementById('pfName').innerHTML = '<em>' + firstName + '</em>' + (lastName ? ' ' + lastName.charAt(0) + '.' : '');
- 
-            // Depuis
             document.getElementById('pfSince').textContent = 'Membre depuis ' + sinceStr;
- 
-            // Infos
             document.getElementById('irEmail').textContent = user.email || '—';
             document.getElementById('irPhone').textContent = meta.phone || user.phone || '—';
             document.getElementById('irSince').textContent = sinceStr;
         }
  
-        // ── Vérification session — UNE SEULE FOIS, sans boucle ──
-        var sessionChecked = false;
- 
-        sb.auth.getSession().then(function(res) {
-            sessionChecked = true;
-            if (res.data && res.data.session) {
-                afficherUser(res.data.session.user);
-            } else {
-                window.location.replace('login.html');
-            }
-        });
- 
-        // onAuthStateChange seulement pour SIGNED_OUT et nouveaux events
+        // ✅ Solution sans boucle :
+        // onAuthStateChange se déclenche AUTOMATIQUEMENT au chargement
+        // avec event=INITIAL_SESSION. C'est le seul endroit où on vérifie.
+        var actionDone = false;
         sb.auth.onAuthStateChange(function(event, session) {
-            if (event === 'SIGNED_OUT') {
+            if (actionDone) return;
+            if (event === 'INITIAL_SESSION') {
+                actionDone = true;
+                if (session && session.user) {
+                    afficherUser(session.user);
+                } else {
+                    window.location.replace('login.html');
+                }
+            } else if (event === 'SIGNED_OUT') {
+                actionDone = true;
                 window.location.replace('login.html');
-            } else if (event === 'SIGNED_IN' && session && !sessionChecked) {
+            } else if (event === 'SIGNED_IN' && session && session.user) {
                 afficherUser(session.user);
             }
         });
