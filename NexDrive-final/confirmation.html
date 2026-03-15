@@ -24,7 +24,6 @@
         .conf-card { width: 100%; max-width: 480px; background: rgba(14,22,42,0.92); border: 1px solid rgba(41,121,255,0.15); border-radius: 20px; overflow: hidden; backdrop-filter: blur(24px); box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 60px rgba(41,121,255,0.06); animation: fu .7s cubic-bezier(.16,1,.3,1) both; }
         @keyframes fu { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
  
-        /* Banner succès */
         .conf-banner { background: linear-gradient(135deg, rgba(22,163,74,0.15), rgba(22,163,74,0.06)); border-bottom: 1px solid rgba(22,163,74,0.2); padding: 16px 28px; display: flex; align-items: center; gap: 14px; }
         .conf-check { width: 36px; height: 36px; border-radius: 50%; background: rgba(22,163,74,0.2); border: 1px solid rgba(22,163,74,0.4); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .conf-banner-txt strong { display: block; color: #4ade80; font-size: .88rem; margin-bottom: 2px; }
@@ -39,20 +38,17 @@
         .conf-title em { font-style: italic; color: var(--elec-l); }
         .conf-sub { font-size: .82rem; color: rgba(255,255,255,.38); margin-bottom: 22px; }
  
-        /* Récap véhicule */
         .conf-info { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 16px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
         .conf-info-left { font-size: .8rem; color: rgba(255,255,255,.4); line-height: 2; }
         .conf-info-left span { display: block; color: rgba(255,255,255,.85); font-weight: 500; font-size: .9rem; }
         .conf-price { font-family: var(--serif); font-size: 2rem; font-weight: 700; color: #fff; text-align: right; line-height: 1; }
         .conf-price small { display: block; font-family: var(--sans); font-size: .72rem; font-weight: 300; color: rgba(255,255,255,.3); margin-top: 3px; }
  
-        /* Profil client connecté */
         .user-info { display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: rgba(41,121,255,0.06); border: 1px solid rgba(41,121,255,0.15); border-radius: 10px; margin-bottom: 22px; }
         .user-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, #1454d4, #2979ff); display: flex; align-items: center; justify-content: center; font-size: .9rem; font-weight: 600; flex-shrink: 0; }
         .user-name { font-size: .88rem; font-weight: 500; color: rgba(255,255,255,.85); }
         .user-email { font-size: .75rem; color: rgba(255,255,255,.35); margin-top: 2px; }
  
-        /* Étapes */
         .steps { margin-bottom: 24px; }
         .steps-title { font-size: .62rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.2); margin-bottom: 12px; }
         .step { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
@@ -60,19 +56,16 @@
         .step-txt { font-size: .82rem; color: rgba(255,255,255,.5); line-height: 1.6; }
         .step-txt strong { color: rgba(255,255,255,.85); display: block; margin-bottom: 2px; font-weight: 500; }
  
-        /* Boutons */
         .btn-turo { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 15px; border-radius: 12px; background: linear-gradient(135deg, #1454d4, #2979ff); border: none; color: #fff; font-family: var(--sans); font-size: .95rem; font-weight: 500; cursor: pointer; text-decoration: none; transition: all .3s; box-shadow: 0 4px 24px rgba(41,121,255,.35); margin-bottom: 10px; }
         .btn-turo:hover { background: linear-gradient(135deg, #1a65f0, #3d8bff); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(41,121,255,.45); }
         .btn-turo svg { opacity: .7; }
         .btn-secondary { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 12px; border-radius: 12px; background: transparent; border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,.5); font-family: var(--sans); font-size: .85rem; cursor: pointer; text-decoration: none; transition: all .25s; margin-bottom: 8px; }
         .btn-secondary:hover { border-color: rgba(255,255,255,.25); color: rgba(255,255,255,.8); }
- 
         .btn-logout { background: none; border: none; color: rgba(255,255,255,.2); font-family: var(--sans); font-size: .75rem; cursor: pointer; width: 100%; text-align: center; padding: 6px; transition: color .2s; }
         .btn-logout:hover { color: rgba(220,38,38,.6); }
  
         .conf-note { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.06); font-size: .7rem; color: rgba(255,255,255,.18); text-align: center; line-height: 1.6; }
  
-        /* Loading state */
         .loading-state { text-align: center; padding: 40px 28px; }
         .spinner { width: 32px; height: 32px; border: 3px solid rgba(41,121,255,.2); border-top-color: var(--electric); border-radius: 50%; animation: spin .8s linear infinite; margin: 0 auto 16px; }
         @keyframes spin { to { transform: rotate(360deg); } }
@@ -100,7 +93,6 @@
  
 <main>
     <div class="conf-card" id="confCard">
-        <!-- Loading -->
         <div class="loading-state" id="loadingState">
             <div class="spinner"></div>
             <div style="font-size:.88rem;color:rgba(255,255,255,.35)">Vérification en cours...</div>
@@ -112,30 +104,54 @@
 <script>
     const SUPABASE_URL = 'https://igftridkkchvjaxtburi.supabase.co';
     const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnZnRyaWRra2NodmpheHRidXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODcxMzgsImV4cCI6MjA4ODY2MzEzOH0.SuUO_seWElDPnm3lnGEEn8OwflJhbocyJjVF8nvrf4Y';
-    const { createClient } = supabase;
-    const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
  
-    const p        = new URLSearchParams(window.location.search);
-    const voiture  = p.get('voiture') || '';
-    const prix     = p.get('prix')    || '—';
-    const sub      = p.get('sub')     || '';
-    const turoURL  = p.get('turo')    || 'https://turo.com';
- 
-    async function init() {
-        // Supabase gère le hash token automatiquement (magic link / OAuth)
-        const { data: { session } } = await sb.auth.getSession();
- 
-        if (!session) {
-            // Pas connecté → retour login
-            window.location.href = 'login.html' + window.location.search;
-            return;
+    const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+        auth: {
+            persistSession: true,
+            storageKey: 'nexdrive-auth',
+            autoRefreshToken: true,
+            detectSessionInUrl: true
         }
+    });
  
-        renderPage(session.user);
-    }
+    const p       = new URLSearchParams(window.location.search);
+    const voiture = p.get('voiture') || '';
+    const prix    = p.get('prix')    || '—';
+    const sub     = p.get('sub')     || '';
+    const turoURL = p.get('turo')    || 'https://turo.com';
+ 
+    // ✅ MÊME logique que compte.html — onAuthStateChange avec INITIAL_SESSION
+    // Évite la boucle infinie avec login.html
+    var done = false;
+ 
+    sb.auth.onAuthStateChange(function(event, session) {
+        if (done) return;
+        if (event === 'INITIAL_SESSION') {
+            done = true;
+            if (session && session.user) {
+                renderPage(session.user);
+            } else {
+                // ✅ Pas de redirect immédiat — on attend 1.5s au cas où
+                // la session arrive juste après (new signup)
+                setTimeout(function() {
+                    sb.auth.getSession().then(function(res) {
+                        if (res.data && res.data.session) {
+                            renderPage(res.data.session.user);
+                        } else {
+                            // Vraiment pas connecté → login
+                            window.location.replace('login.html' + window.location.search);
+                        }
+                    });
+                }, 1500);
+            }
+        } else if ((event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') && session && session.user && !done) {
+            done = true;
+            renderPage(session.user);
+        }
+    });
  
     function getInitials(user) {
-        var name = user.user_metadata?.full_name || user.email || '';
+        var name = (user.user_metadata && (user.user_metadata.full_name || user.user_metadata.name)) || user.email || '';
         var parts = name.trim().split(' ');
         return parts.length >= 2
             ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
@@ -143,76 +159,58 @@
     }
  
     function renderPage(user) {
-        var displayName = user.user_metadata?.full_name || user.user_metadata?.name || user.email || 'Client';
+        var displayName  = (user.user_metadata && (user.user_metadata.full_name || user.user_metadata.name)) || user.email || 'Client';
         var displayEmail = user.email || user.phone || '';
-        var initials = getInitials(user);
+        var initials     = getInitials(user);
+        var firstName    = displayName.split(' ')[0];
  
-        var userInfoHTML = `
-            <div class="user-info">
-                <div class="user-avatar">${initials}</div>
-                <div>
-                    <div class="user-name">${displayName}</div>
-                    <div class="user-email">${displayEmail}</div>
-                </div>
-            </div>`;
+        var userInfoHTML = '<div class="user-info">'
+            + '<div class="user-avatar">' + initials + '</div>'
+            + '<div><div class="user-name">' + displayName + '</div>'
+            + '<div class="user-email">' + displayEmail + '</div></div></div>';
  
-        var vehicleHTML = voiture ? `
-            <div class="conf-eyebrow">Votre sélection</div>
-            <div class="conf-title">${voiture.replace(/(.+?)(\s\d)/, '$1<em>$2</em>')}</div>
-            <p class="conf-sub">${sub}</p>
-            <div class="conf-info">
-                <div class="conf-info-left">
-                    Prix par jour<span>${prix}</span>
-                    Plateforme<span>Turo · Québec</span>
-                </div>
-                <div class="conf-price">${prix}<small>/jour</small></div>
-            </div>` : `
-            <div class="conf-eyebrow">Votre flotte</div>
-            <div class="conf-title">Choisissez votre <em>véhicule</em></div>
-            <p class="conf-sub">Parcourez la flotte et sélectionnez votre véhicule.</p>`;
+        var vehicleHTML = voiture
+            ? '<div class="conf-eyebrow">Votre sélection</div>'
+              + '<div class="conf-title">' + voiture + '</div>'
+              + '<p class="conf-sub">' + sub + '</p>'
+              + '<div class="conf-info"><div class="conf-info-left">Prix par jour<span>' + prix + '</span>Plateforme<span>Turo · Québec</span></div>'
+              + '<div class="conf-price">' + prix + '<small>/jour</small></div></div>'
+            : '<div class="conf-eyebrow">Votre flotte</div>'
+              + '<div class="conf-title">Choisissez votre <em>véhicule</em></div>'
+              + '<p class="conf-sub">Parcourez la flotte et sélectionnez votre véhicule.</p>';
  
-        var turoBtn = voiture ? `
-            <a href="${turoURL}" target="_blank" class="btn-turo">
-                Réserver sur Turo
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>` : `
-            <a href="vehicules.html" class="btn-turo">
-                Voir la flotte →
-            </a>`;
+        var stepsHTML = voiture
+            ? '<div class="steps"><div class="steps-title">Prochaines étapes</div>'
+              + '<div class="step"><div class="step-num">1</div><div class="step-txt"><strong>Cliquer sur Réserver sur Turo</strong>Vous serez redirigé vers la page du véhicule.</div></div>'
+              + '<div class="step"><div class="step-num">2</div><div class="step-txt"><strong>Choisir vos dates</strong>Sélectionnez vos dates de prise en charge et retour.</div></div>'
+              + '<div class="step"><div class="step-num">3</div><div class="step-txt"><strong>Confirmer la réservation</strong>Vous recevrez un contrat automatique par courriel.</div></div>'
+              + '</div>' : '';
  
-        document.getElementById('confCard').innerHTML = `
-            <div class="conf-banner">
-                <div class="conf-check">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                </div>
-                <div class="conf-banner-txt">
-                    <strong>Connecté avec succès !</strong>
-                    <span>Bienvenue sur NexDrive, ${displayName.split(' ')[0]}.</span>
-                </div>
-            </div>
-            <div class="conf-body">
-                ${userInfoHTML}
-                ${vehicleHTML}
-                ${voiture ? `
-                <div class="steps">
-                    <div class="steps-title">Prochaines étapes</div>
-                    <div class="step"><div class="step-num">1</div><div class="step-txt"><strong>Cliquer sur Réserver sur Turo</strong>Vous serez redirigé vers la page du véhicule.</div></div>
-                    <div class="step"><div class="step-num">2</div><div class="step-txt"><strong>Choisir vos dates</strong>Sélectionnez vos dates de prise en charge et retour.</div></div>
-                    <div class="step"><div class="step-num">3</div><div class="step-txt"><strong>Confirmer la réservation</strong>Vous recevrez un contrat automatique par courriel.</div></div>
-                </div>` : ''}
-                ${turoBtn}
-                <a href="vehicules.html" class="btn-secondary">← Retour à la flotte</a>
-                <button class="btn-logout" onclick="logout()">Se déconnecter</button>
-                ${voiture ? '<div class="conf-note">En cliquant sur Réserver sur Turo, vous quittez NexDrive et serez redirigé vers Turo pour finaliser.</div>' : ''}
-            </div>`;
+        var turoBtn = voiture
+            ? '<a href="' + turoURL + '" target="_blank" class="btn-turo">Réserver sur Turo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>'
+            : '<a href="vehicules.html" class="btn-turo">Voir la flotte →</a>';
+ 
+        document.getElementById('confCard').innerHTML =
+            '<div class="conf-banner">'
+            + '<div class="conf-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>'
+            + '<div class="conf-banner-txt"><strong>Connecté avec succès !</strong><span>Bienvenue sur NexDrive, ' + firstName + '.</span></div>'
+            + '</div>'
+            + '<div class="conf-body">'
+            + userInfoHTML
+            + vehicleHTML
+            + stepsHTML
+            + turoBtn
+            + '<a href="vehicules.html" class="btn-secondary">← Retour à la flotte</a>'
+            + '<a href="compte.html" class="btn-secondary">👤 Mon compte</a>'
+            + '<button class="btn-logout" onclick="logout()">Se déconnecter</button>'
+            + (voiture ? '<div class="conf-note">En cliquant sur Réserver sur Turo, vous quittez NexDrive et serez redirigé vers Turo pour finaliser.</div>' : '')
+            + '</div>';
     }
  
     async function logout() {
         await sb.auth.signOut();
-        window.location.href = 'login.html';
+        window.location.replace('login.html');
     }
- 
-    init();
 </script>
 </body>
 </html>
