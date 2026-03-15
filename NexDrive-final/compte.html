@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
- 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mon Compte — NexDrive</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <!-- ✅ SUPABASE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -29,7 +27,8 @@
         .nib{width:36px;height:36px;border-radius:8px;background:var(--W4);border:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.8rem;transition:all .2s;position:relative}
         .nib:hover{background:rgba(41,121,255,0.14);border-color:rgba(91,159,255,0.3)}
         .nib .dot{position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:var(--B);border:2px solid #080e1a}
-        .nav-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--B),#071020);border:2px solid rgba(91,159,255,0.4);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.8rem;cursor:pointer}
+        .nav-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--B),#071020);border:2px solid rgba(91,159,255,0.4);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:.8rem;cursor:pointer;overflow:hidden}
+        .nav-av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
         .hbg{-webkit-appearance:none;appearance:none;background:transparent;border:1px solid rgba(255,255,255,0.09);width:38px;height:38px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;border-radius:8px;transition:all .22s;flex-shrink:0}
         .hbg:focus{outline:none}
         .hbg:hover{background:rgba(41,121,255,0.12)}
@@ -226,7 +225,7 @@
             .left-scroll{padding:24px 20px 16px}
             .stats-grid{grid-template-columns:repeat(4,1fr)}
             .right{padding:24px 20px 40px;overflow:visible}
-            .grid2{grid-template-columns:1fr}
+            .grid2,.grid3{grid-template-columns:1fr}
             .foot-grid{grid-template-columns:1fr 1fr}
         }
         @media(max-width:540px){
@@ -238,7 +237,6 @@
         }
     </style>
 </head>
- 
 <body>
     <nav class="nav">
         <a href="index.html" class="nav-logo">
@@ -282,10 +280,10 @@
             <div class="left-scroll">
                 <div class="pf-hero">
                     <div class="pf-av-ring">
-                        <div class="pf-av" id="pfAv">?</div>
+                        <div class="pf-av" id="pfAv">…</div>
                         <div class="pf-status">✓</div>
                     </div>
-                    <div class="pf-name" id="pfName"><em>—</em></div>
+                    <div class="pf-name" id="pfName"><em>…</em></div>
                     <div class="pf-since" id="pfSince">Chargement…</div>
                     <div class="pf-stars">
                         <span class="pf-star">★</span><span class="pf-star">★</span><span class="pf-star">★</span><span class="pf-star">★</span><span class="pf-star">★</span>
@@ -293,14 +291,12 @@
                     </div>
                     <div class="pf-badge"><span class="pf-badge-dot"></span>Compte actif</div>
                 </div>
- 
                 <div class="stats-grid">
                     <div class="stat"><div class="stat-val">0</div><div class="stat-lbl">Réservations</div><div class="stat-trend st-neu">→</div></div>
                     <div class="stat"><div class="stat-val">0</div><div class="stat-lbl">Jours loués</div><div class="stat-trend st-neu">→</div></div>
                     <div class="stat"><div class="stat-val">5.0</div><div class="stat-lbl">Note</div><div class="stat-trend st-up">✓ Parfait</div></div>
                     <div class="stat"><div class="stat-val">$0</div><div class="stat-lbl">Total</div><div class="stat-trend st-neu">→</div></div>
                 </div>
- 
                 <div class="info-rows">
                     <div class="info-row">
                         <div class="ir-icon">📧</div>
@@ -312,13 +308,12 @@
                     </div>
                     <div class="info-row">
                         <div class="ir-icon">🔑</div>
-                        <div><div class="ir-lbl">Connexion via</div><div class="ir-val" id="irProvider">—</div></div>
+                        <div><div class="ir-lbl">Membre depuis</div><div class="ir-val" id="irSince">—</div></div>
                     </div>
                 </div>
- 
                 <div class="left-nav">
                     <a href="#overview" class="ln active"><div class="ln-ico">📊</div><div class="ln-label">Vue d'ensemble</div></a>
-                    <a href="#reservations" class="ln"><div class="ln-ico">🗓️</div><div class="ln-label">Réservations</div><span class="ln-badge">1</span></a>
+                    <a href="#reservations" class="ln"><div class="ln-ico">🗓️</div><div class="ln-label">Réservations</div></a>
                     <a href="#documents" class="ln"><div class="ln-ico">📋</div><div class="ln-label">Mes contrats</div></a>
                     <a href="#evaluations" class="ln"><div class="ln-ico">⭐</div><div class="ln-label">Évaluations</div></a>
                     <a href="#preferences" class="ln"><div class="ln-ico">⚙️</div><div class="ln-label">Préférences</div></a>
@@ -334,24 +329,20 @@
         <main class="right" id="mainRight">
             <div id="overview">
                 <div class="section-head">
-                    <div class="sh-title">Location <em>en cours</em></div>
+                    <div class="sh-title">Bienvenue <em>chez NexDrive</em></div>
                     <div class="sh-line"></div>
                 </div>
                 <div class="rental-card reveal">
-                    <div class="rc-tag"><span class="rc-dot"></span>Active maintenant</div>
+                    <div class="rc-tag"><span class="rc-dot"></span>Aucune location active</div>
                     <div class="rc-body">
                         <div class="rc-left">
-                            <div class="rc-vehicle">Berline Premium<br>Classe A</div>
-                            <div class="rc-meta">15 mars 2026 <span class="rc-sep"></span> 18 mars 2026 <span class="rc-sep"></span> Drummondville, QC <span class="rc-sep"></span> $285</div>
-                        </div>
-                        <div class="rc-right">
-                            <div class="rc-days">3</div>
-                            <div class="rc-dlbl">jours restants</div>
+                            <div class="rc-vehicle">Réservez votre<br>prochain véhicule</div>
+                            <div class="rc-meta">Explorez notre flotte de véhicules premium disponibles au Québec</div>
                         </div>
                     </div>
                     <div class="rc-progress">
-                        <div class="rc-pt"><span>Jour 1 sur 3</span><span>Retour le 18 mars</span></div>
-                        <div class="rc-bar"><div class="rc-fill"></div></div>
+                        <div class="rc-pt"><span>Prêt à rouler ?</span><span><a href="vehicules.html" style="color:var(--G);text-decoration:none">Voir la flotte →</a></span></div>
+                        <div class="rc-bar"><div class="rc-fill" style="width:0%"></div></div>
                     </div>
                 </div>
             </div>
@@ -360,14 +351,15 @@
                 <div class="section-head">
                     <div class="sh-title">Mes <em>réservations</em></div>
                     <div class="sh-line"></div>
-                    <a href="#" class="sh-link">Voir tout →</a>
                 </div>
                 <div class="card reveal">
                     <div class="card-b">
                         <div class="res">
-                            <div class="res-th">🚗</div>
-                            <div style="flex:1;min-width:0;"><div class="res-n">Berline Premium — Classe A</div><div class="res-d">15–18 mars 2026 <span class="res-ds"></span> Drummondville</div></div>
-                            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;"><span class="badge b-on">En cours</span><div class="res-p">$285 · 3 jours</div></div>
+                            <div class="res-th">🗓️</div>
+                            <div style="flex:1;min-width:0;">
+                                <div class="res-n">Aucune réservation pour l'instant</div>
+                                <div class="res-d">Vos réservations apparaîtront ici</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -382,10 +374,14 @@
             <div class="grid2">
                 <div class="card reveal">
                     <div class="card-h">
-                        <div class="ch-l"><div class="ci ci-g">📋</div><div><div class="ct">Mes contrats</div><div class="cs">Documents</div></div></div>
+                        <div class="ch-l"><div class="ci ci-g">📋</div><div><div class="ct">Mes contrats</div><div class="cs">0 document</div></div></div>
                     </div>
                     <div class="card-b">
-                        <div class="doc"><div class="doc-i">🪪</div><div><div class="doc-n">Permis de conduire</div><div class="doc-m">À vérifier</div></div><a href="#" class="doc-dl">↓ Voir</a></div>
+                        <div class="doc">
+                            <div class="doc-i">🪪</div>
+                            <div><div class="doc-n">Permis de conduire</div><div class="doc-m">À soumettre</div></div>
+                            <a href="#" class="doc-dl">↑ Envoyer</a>
+                        </div>
                     </div>
                 </div>
                 <div class="card reveal d1">
@@ -393,7 +389,13 @@
                         <div class="ch-l"><div class="ci ci-v">🔔</div><div><div class="ct">Notifications</div><div class="cs">Récentes</div></div></div>
                     </div>
                     <div class="card-b">
-                        <div class="notif"><div class="ni ni-g">🎉</div><div class="notif-body"><div class="nt">Bienvenue chez NexDrive !</div><div class="nd">Compte créé avec succès</div></div></div>
+                        <div class="notif">
+                            <div class="ni ni-g">🎉</div>
+                            <div class="notif-body">
+                                <div class="nt">Bienvenue chez NexDrive !</div>
+                                <div class="nd">Votre compte est actif</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -409,10 +411,10 @@
                     <div class="card-h"><div class="ch-l"><div class="ci ci-a">⭐</div><div><div class="ct">Mes évaluations</div><div class="cs">via Turo</div></div></div></div>
                     <div class="card-b">
                         <div class="rating">
-                            <div class="r-val">5.0</div>
+                            <div class="r-val">—</div>
                             <div class="r-r">
                                 <div class="r-stars"><span class="r-s">★</span><span class="r-s">★</span><span class="r-s">★</span><span class="r-s">★</span><span class="r-s">★</span></div>
-                                <div class="r-c">0 avis · 5.0 / 5.0</div>
+                                <div class="r-c">Aucun avis pour l'instant</div>
                             </div>
                         </div>
                     </div>
@@ -448,61 +450,75 @@
     </div>
  
     <script>
-        // ════════════════════════════════════════════════
-        // ✅ SUPABASE — Session & infos utilisateur réelles
-        // ════════════════════════════════════════════════
+        // ════════════════════════════════════════
+        // SUPABASE
+        // ════════════════════════════════════════
         const SUPABASE_URL  = 'https://igftridkkchvjaxtburi.supabase.co';
         const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnZnRyaWRra2NodmpheHRidXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODcxMzgsImV4cCI6MjA4ODY2MzEzOH0.SuUO_seWElDPnm3lnGEEn8OwflJhbocyJjVF8nvrf4Y';
-        const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
  
+        const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, {
+            auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false }
+        });
+ 
+        // ── Afficher les infos utilisateur ──
         function afficherUser(user) {
-            var meta = user.user_metadata || {};
- 
+            var meta      = user.user_metadata || {};
             var fullName  = meta.full_name || meta.name || (meta.first_name ? meta.first_name + ' ' + (meta.last_name || '') : '') || user.email.split('@')[0];
             var parts     = fullName.trim().split(' ');
-            var initials  = parts.slice(0,2).map(function(w){ return w[0]; }).join('').toUpperCase();
+            var initials  = parts.slice(0,2).map(function(w){ return w[0] || ''; }).join('').toUpperCase() || '?';
             var firstName = parts[0] || '—';
             var lastName  = parts.slice(1).join(' ') || '';
             var avatarUrl = meta.avatar_url || meta.picture || null;
-            var provider  = (user.app_metadata && user.app_metadata.provider) || 'email';
-            var providerLabel = { google: 'Google', facebook: 'Facebook', email: 'Courriel' }[provider] || provider;
             var createdAt = new Date(user.created_at);
             var months    = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'];
-            var sinceStr  = 'Membre depuis ' + months[createdAt.getMonth()] + ' ' + createdAt.getFullYear();
+            var sinceStr  = months[createdAt.getMonth()] + ' ' + createdAt.getFullYear();
  
+            // Avatar
             var pfAv = document.getElementById('pfAv');
             if (avatarUrl) {
-                pfAv.innerHTML = '<img src="' + avatarUrl + '" alt="' + fullName + '"/>';
+                pfAv.innerHTML = '<img src="' + avatarUrl + '" alt="avatar"/>';
             } else {
                 pfAv.textContent = initials;
             }
-            document.getElementById('navAv').textContent  = initials;
-            document.getElementById('pfName').innerHTML   = '<em>' + firstName + '</em>' + (lastName ? ' ' + lastName.charAt(0) + '.' : '');
-            document.getElementById('pfSince').textContent = sinceStr;
-            document.getElementById('irEmail').textContent    = user.email || '—';
-            document.getElementById('irPhone').textContent    = meta.phone || user.phone || '—';
-            document.getElementById('irProvider').textContent = providerLabel;
+ 
+            // Nav avatar
+            var navAv = document.getElementById('navAv');
+            if (avatarUrl) {
+                navAv.innerHTML = '<img src="' + avatarUrl + '" alt="avatar"/>';
+            } else {
+                navAv.textContent = initials;
+            }
+ 
+            // Nom
+            document.getElementById('pfName').innerHTML = '<em>' + firstName + '</em>' + (lastName ? ' ' + lastName.charAt(0) + '.' : '');
+ 
+            // Depuis
+            document.getElementById('pfSince').textContent = 'Membre depuis ' + sinceStr;
+ 
+            // Infos
+            document.getElementById('irEmail').textContent = user.email || '—';
+            document.getElementById('irPhone').textContent = meta.phone || user.phone || '—';
+            document.getElementById('irSince').textContent = sinceStr;
         }
  
-        // ✅ onAuthStateChange — détecte la session même après un redirect OAuth Google/Facebook
-        var redirectTimer = setTimeout(function() {
-            window.location.href = 'login.html';
-        }, 4000); // Si aucune session en 4s → login
+        // ── Vérification session — UNE SEULE FOIS, sans boucle ──
+        var sessionChecked = false;
  
-        sb.auth.onAuthStateChange(function(event, session) {
-            if (session && session.user) {
-                clearTimeout(redirectTimer);
-                afficherUser(session.user);
-            } else if (event === 'SIGNED_OUT') {
-                window.location.href = 'login.html';
+        sb.auth.getSession().then(function(res) {
+            sessionChecked = true;
+            if (res.data && res.data.session) {
+                afficherUser(res.data.session.user);
+            } else {
+                window.location.replace('login.html');
             }
         });
  
-        // Vérifier aussi immédiatement au cas où la session existe déjà
-        sb.auth.getSession().then(function(res) {
-            if (res.data && res.data.session) {
-                clearTimeout(redirectTimer);
-                afficherUser(res.data.session.user);
+        // onAuthStateChange seulement pour SIGNED_OUT et nouveaux events
+        sb.auth.onAuthStateChange(function(event, session) {
+            if (event === 'SIGNED_OUT') {
+                window.location.replace('login.html');
+            } else if (event === 'SIGNED_IN' && session && !sessionChecked) {
+                afficherUser(session.user);
             }
         });
  
@@ -510,7 +526,7 @@
         document.getElementById('btnDeconnexion').addEventListener('click', async function(e) {
             e.preventDefault();
             await sb.auth.signOut();
-            window.location.href = 'login.html';
+            window.location.replace('login.html');
         });
  
         // ── Hamburger ──
@@ -518,36 +534,36 @@
             mobB  = document.getElementById('mobBack'),
             mobP  = document.getElementById('mobPanel');
  
-        function openMob() { hbBtn.classList.add('open'); mobP.classList.add('open'); mobB.classList.add('open'); document.body.style.overflow='hidden'; }
-        function closeMob() { hbBtn.classList.remove('open'); mobP.classList.remove('open'); mobB.classList.remove('open'); document.body.style.overflow=''; }
+        function openMob(){ hbBtn.classList.add('open'); mobP.classList.add('open'); mobB.classList.add('open'); document.body.style.overflow='hidden'; }
+        function closeMob(){ hbBtn.classList.remove('open'); mobP.classList.remove('open'); mobB.classList.remove('open'); document.body.style.overflow=''; }
  
-        hbBtn.addEventListener('click', function() { mobP.classList.contains('open') ? closeMob() : openMob(); });
+        hbBtn.addEventListener('click', function(){ mobP.classList.contains('open') ? closeMob() : openMob(); });
         mobB.addEventListener('click', closeMob);
-        document.addEventListener('keydown', function(e) { if (e.key==='Escape') closeMob(); });
+        document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeMob(); });
  
-        (function() {
+        (function(){
             var links = mobP.querySelectorAll('.ma');
-            var mo = new MutationObserver(function() {
+            var mo = new MutationObserver(function(){
                 var open = mobP.classList.contains('open');
                 links.forEach(function(l,i){ l.style.transitionDelay = open ? (.05+i*.045)+'s' : '0s'; });
             });
             mo.observe(mobP, { attributes:true, attributeFilter:['class'] });
         })();
  
-        document.querySelectorAll('.ln').forEach(function(l) {
-            l.addEventListener('click', function() {
+        document.querySelectorAll('.ln').forEach(function(l){
+            l.addEventListener('click', function(){
                 document.querySelectorAll('.ln').forEach(function(x){ x.classList.remove('active'); });
                 this.classList.add('active');
             });
         });
  
         var rightPanel = document.getElementById('mainRight');
-        var obs = new IntersectionObserver(function(es) {
-            es.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+        var obs = new IntersectionObserver(function(es){
+            es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); obs.unobserve(e.target); } });
         }, { threshold:.06, root:rightPanel });
-        document.querySelectorAll('.reveal').forEach(function(r) { obs.observe(r); });
+        document.querySelectorAll('.reveal').forEach(function(r){ obs.observe(r); });
  
-        setTimeout(function() {
+        setTimeout(function(){
             document.querySelectorAll('[data-width]').forEach(function(b){ b.style.width = b.getAttribute('data-width'); });
         }, 500);
     </script>
