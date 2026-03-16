@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -193,6 +194,19 @@ footer{background:#080e1a;border-top:1px solid rgba(255,255,255,.06);padding:56p
 .ma.admin-nav{background:rgba(251,191,36,.07);border-color:rgba(251,191,36,.18);}
 .ma.admin-nav .mn-lbl{color:#fbbf24;}
 .ma.admin-nav .mn-icon{background:rgba(251,191,36,.12);}
+ 
+/* ── INLINE EDIT ── */
+.is-owner [data-sb]{position:relative;transition:outline .15s;}
+.is-owner [data-sb]:hover{outline:2px dashed rgba(251,191,36,.55);outline-offset:4px;border-radius:3px;cursor:pointer;}
+[data-sb][contenteditable="true"]{outline:2px solid #fbbf24 !important;outline-offset:4px;border-radius:3px;cursor:text;min-width:10px;}
+.inline-bar{position:fixed;z-index:9999;display:flex;align-items:center;gap:6px;background:rgba(8,14,26,.97);border:1px solid rgba(251,191,36,.4);border-radius:9px;padding:6px 10px;box-shadow:0 6px 28px rgba(0,0,0,.55);}
+.ib-key{font-size:.56rem;color:rgba(251,191,36,.55);font-weight:600;letter-spacing:.5px;margin-right:2px;}
+.ib-save{background:#fbbf24;color:#000;border:none;border-radius:6px;padding:5px 14px;font-size:.73rem;font-weight:700;cursor:pointer;}
+.ib-save:hover{background:#f59e0b;}
+.ib-cancel{background:transparent;color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 10px;font-size:.73rem;cursor:pointer;}
+.ib-cancel:hover{color:#fff;}
+.ib-toast{position:fixed;bottom:90px;right:28px;z-index:9999;background:#059669;color:#fff;font-size:.78rem;font-weight:500;padding:8px 18px;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.3);transform:translateY(30px);opacity:0;transition:all .3s;pointer-events:none;}
+.ib-toast.show{transform:translateY(0);opacity:1;}
  
 /* RESPONSIVE */
 @media(max-width:1100px){.proc-steps{grid-template-columns:1fr;max-width:520px;}.ftt{grid-template-columns:1fr 1fr;}}
@@ -461,8 +475,84 @@ sb.auth.onAuthStateChange(async function(event, session) {
         : el.classList.contains('mn-sec') ? 'block'
         : 'flex';
     });
+    // Activer l'édition inline
+    initInlineEdit();
   }
 });
+ 
+ 
+/* ── ÉDITION INLINE (owner seulement) ── */
+var _ibBar = null, _ibEl = null, _ibOrig = '';
+ 
+function initInlineEdit() {
+  // Ajouter classe is-owner sur body pour activer les styles CSS
+  document.body.classList.add('is-owner');
+ 
+  // Créer la barre flottante
+  _ibBar = document.createElement('div');
+  _ibBar.className = 'inline-bar';
+  _ibBar.style.display = 'none';
+  _ibBar.innerHTML = '<span class="ib-key" id="ibKey"></span><button class="ib-save" onclick="ibSave()">✓ Sauvegarder</button><button class="ib-cancel" onclick="ibCancel()">✕</button>';
+  document.body.appendChild(_ibBar);
+ 
+  // Toast de confirmation
+  var toast = document.createElement('div');
+  toast.className = 'ib-toast';
+  toast.id = 'ibToast';
+  toast.textContent = '✅ Texte sauvegardé !';
+  document.body.appendChild(toast);
+ 
+  // Clic sur un élément data-sb
+  document.addEventListener('click', function(e) {
+    var el = e.target.closest('[data-sb]');
+    if (!el) { if (_ibEl && e.target !== _ibBar && !_ibBar.contains(e.target)) ibCancel(); return; }
+    if (_ibEl === el) return;
+    if (_ibEl) ibCancel();
+    _ibEl = el;
+    _ibOrig = el.textContent;
+    el.contentEditable = 'true';
+    el.focus();
+    // Positionner la barre sous l'élément
+    var r = el.getBoundingClientRect();
+    _ibBar.style.display = 'flex';
+    _ibBar.style.top = Math.min(r.bottom + window.scrollY + 8, window.scrollY + window.innerHeight - 60) + 'px';
+    _ibBar.style.left = Math.max(8, r.left) + 'px';
+    document.getElementById('ibKey').textContent = el.getAttribute('data-sb');
+    e.preventDefault();
+  });
+ 
+  // Enter = sauvegarder, Escape = annuler
+  document.addEventListener('keydown', function(e) {
+    if (!_ibEl) return;
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); ibSave(); }
+    if (e.key === 'Escape') ibCancel();
+  });
+}
+ 
+async function ibSave() {
+  if (!_ibEl) return;
+  var key = _ibEl.getAttribute('data-sb');
+  var val = _ibEl.textContent.trim();
+  _ibEl.contentEditable = 'false';
+  _ibBar.style.display = 'none';
+  _ibEl = null;
+  // Sauvegarder dans Supabase
+  var { error } = await sb.from('site_texts')
+    .upsert({ page: 'index', key: key, value_fr: val }, { onConflict: 'page,key' });
+  var t = document.getElementById('ibToast');
+  t.textContent = error ? '❌ Erreur : ' + error.message : '✅ Sauvegardé !';
+  t.style.background = error ? '#dc2626' : '#059669';
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 2800);
+}
+ 
+function ibCancel() {
+  if (!_ibEl) return;
+  _ibEl.textContent = _ibOrig;
+  _ibEl.contentEditable = 'false';
+  _ibBar.style.display = 'none';
+  _ibEl = null;
+}
  
 /* ── STARFIELD ── */
 (function(){
