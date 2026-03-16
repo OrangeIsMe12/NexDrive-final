@@ -187,7 +187,6 @@
         .carousel-track { display: flex; height: 100%; transition: transform 0.35s cubic-bezier(.22,.68,0,1.2); }
         .carousel-track img { flex: 0 0 100%; width: 100%; height: 220px; object-fit: cover; object-position: center; display: block; user-select: none; pointer-events: none; }
  
-        /* Coming soon */
         .vcard.coming-soon { pointer-events: none; }
         .vcard.coming-soon .btn-reserver,
         .vcard.coming-soon .btn-indispo { opacity: 0; }
@@ -294,14 +293,9 @@
         <a href="index.html" class="logo">
             <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:100px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(41,121,255,0.45))" />
         </a>
-        <div style="display:flex;align-items:center;gap:10px">
-            <a href="#" id="navCompteBtn" onclick="goCompte();return false" style="display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.04);color:rgba(255,255,255,.7);font-family:var(--sans);font-size:.8rem;text-decoration:none;transition:all .2s">
-                <span id="navCompteTxt">Mon compte</span>
-            </a>
-            <button class="hbg" id="hbBtn" type="button" aria-label="Menu">
-                <span class="hb"></span><span class="hb"></span><span class="hb"></span>
-            </button>
-        </div>
+        <button class="hbg" id="hbBtn" type="button" aria-label="Menu">
+            <span class="hb"></span><span class="hb"></span><span class="hb"></span>
+        </button>
     </nav>
  
     <!-- MOBILE PANEL -->
@@ -429,25 +423,19 @@
             prestige:  'Prestige'
         };
  
-        // ── VÉHICULES ──────────────────────────────────────────────────────────────────────
         const vehicles = [
-            // BERLINE (2)
             { cat:'berline', tier:'essentiel', dispo:true,  icon:'🚗', slides:1, title:'Toyota Corolla',    sub:'Berline · 2023', specs:['5 places','Auto','Éco'],    price:'65$',  delay:'',   turo:'https://turo.com' },
             { cat:'berline', tier:'premium',   dispo:true,  icon:'🚗', slides:1, title:'BMW Série 5',       sub:'Berline · 2024', specs:['5 places','Auto','330 ch'], price:'120$', delay:'d1', turo:'https://turo.com' },
-            // VUS (3)
             { cat:'vus', tier:'essentiel', dispo:true,  icon:'🚙', slides:1, title:'Toyota RAV4',       sub:'VUS · 2023',     specs:['5 places','Auto','AWD'], price:'80$',  delay:'',   turo:'https://turo.com' },
             { cat:'vus', tier:'premium',   dispo:true,  icon:'🚙', slides:1, title:'BMW X5',            sub:'VUS · 2024',     specs:['5 places','Auto','AWD'], price:'155$', delay:'d1', turo:'https://turo.com' },
             { cat:'vus', tier:'prestige',  dispo:true,  icon:'🚙', slides:1, title:'Lamborghini Urus',  sub:'VUS · 2023',     specs:['5 places','Auto','AWD'], price:'750$', delay:'d2', turo:'https://turo.com' },
-            // SPORT (2)
             { cat:'sport', tier:'confort',   dispo:true,  icon:'🏎️', slides:1, title:'Ford Mustang',      sub:'Sport · 2024', specs:['4 places','Auto','450 ch'],   price:'115$', delay:'',   turo:'https://turo.com' },
             { cat:'sport', tier:'prestige',  dispo:true,  icon:'🏎️', slides:1, title:'Ferrari 296 GTB',   sub:'Sport · 2023', specs:['2 places','Auto','830 ch'],   price:'1100$',delay:'d1', turo:'https://turo.com' },
-            // ÉLECTRIQUE (3)
             { cat:'electrique',     tier:'confort',   dispo:true, imgs:['voiture/tesla/image.png','voiture/tesla/image copy.png','voiture/tesla/image copy 3.png','voiture/tesla/image copy 2.png'], title:'Tesla Model 3', sub:'Électrique · 2021', specs:['5 places','Auto','400 km'], price:'110$', delay:'', turo:'https://turo.com/fr-ca/search' },
             { cat:'electrique vus', tier:'premium',   dispo:true, icon:'⚡', slides:1, title:'Tesla Model Y',   sub:'VUS Électrique · 2024', specs:['5 places','Auto','533 km'], price:'130$', delay:'d1', turo:'https://turo.com' },
             { cat:'electrique',     tier:'luxe',      dispo:true, icon:'⚡', slides:1, title:'Porsche Taycan',  sub:'Électrique · 2024',     specs:['4 places','Auto','AWD'],    price:'295$', delay:'d2', turo:'https://turo.com' }
         ];
  
-        // ── SUPABASE SESSION ───────────────────────────────────────────────────────────────
         const SUPABASE_URL = 'https://igftridkkchvjaxtburi.supabase.co';
         const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnZnRyaWRra2NodmpheHRidXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODcxMzgsImV4cCI6MjA4ODY2MzEzOH0.SuUO_seWElDPnm3lnGEEn8OwflJhbocyJjVF8nvrf4Y';
  
@@ -458,22 +446,9 @@
             var sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
             var { data: { session } } = await sb.auth.getSession();
             sbSession = session;
-            if (session) {
-                var user = session.user;
-                var name = user.user_metadata?.full_name || user.email || '';
-                var initials = name.trim().split(' ').slice(0,2).map(function(w){ return w[0]; }).join('').toUpperCase();
-                var navBtn = document.getElementById('navCompteBtn');
-                if (navBtn) {
-                    document.getElementById('navCompteTxt').textContent = initials || 'Mon compte';
-                    navBtn.style.background = 'rgba(41,121,255,0.15)';
-                    navBtn.style.borderColor = 'rgba(91,159,255,0.3)';
-                    navBtn.style.color = '#fff';
-                }
-            }
         };
         document.head.appendChild(sbScript);
  
-        // ✅ CORRECTION — fonction reserver() complète
         function reserver(title, price, sub, turo) {
             var params = '?voiture=' + encodeURIComponent(title) +
                          '&prix='    + encodeURIComponent(price) +
@@ -486,15 +461,6 @@
             }
         }
  
-        function goCompte() {
-            if (sbSession) {
-                window.location.href = 'compte.html';
-            } else {
-                window.location.href = 'login.html';
-            }
-        }
- 
-        // ── RENDER CARDS ───────────────────────────────────────────────────────────────────
         document.getElementById('fleetGrid').innerHTML = vehicles.map(function(v) {
             var slides = v.imgs
                 ? v.imgs.map(function(s) { return `<img src="${s}" alt="${v.title}"/>`; }).join('')
@@ -541,7 +507,6 @@
             </div>`;
         }).join('');
  
-        // ── CAROUSEL ───────────────────────────────────────────────────────────────────────
         document.querySelectorAll('.carousel').forEach(function(carousel) {
             var track = carousel.querySelector('.carousel-track');
             var total = track.children.length;
@@ -575,7 +540,6 @@
             }, { passive: true });
         });
  
-        // ── FILTRES ────────────────────────────────────────────────────────────────────────
         var activeType  = 'tous';
         var activeTier  = 'tous';
         var activeDispo = 'tous';
@@ -620,7 +584,6 @@
             });
         });
  
-        // ── HAMBURGER ──────────────────────────────────────────────────────────────────────
         var hbBtn = document.getElementById('hbBtn');
         var mobB  = document.getElementById('mobBack');
         var mobP  = document.getElementById('mobPanel');
@@ -656,7 +619,6 @@
             mo.observe(mobP, { attributes: true, attributeFilter: ['class'] });
         })();
  
-        // ── SCROLL REVEAL ──────────────────────────────────────────────────────────────────
         var obs = new IntersectionObserver(function(es) {
             es.forEach(function(e) {
                 if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
