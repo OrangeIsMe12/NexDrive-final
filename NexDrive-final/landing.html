@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -129,21 +131,31 @@ body.leaving .wrap{animation:leave .5s ease forwards;}
  
 <script>
 /* ── CHOIX DE LANGUE ── */
+function setCookie(name, value, days) {
+  var d = new Date();
+  d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+  document.cookie = name + '=' + value + '; expires=' + d.toUTCString() + '; path=/; SameSite=Lax';
+}
+ 
+function getCookie(name) {
+  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  return match ? match[2] : null;
+}
+ 
 function goLang(lang) {
-  localStorage.setItem('nd_lang', lang);
-  // Animation de sortie
+  setCookie('nd_lang', lang, 365); // expire dans 1 an
   document.body.classList.add('leaving');
   setTimeout(function() {
     window.location.href = 'index.html';
   }, 450);
 }
  
-/* ── Si déjà une langue choisie → skip la landing ── */
-/* Décommente si tu veux bypass automatique :
-if (localStorage.getItem('nd_lang')) {
+/* Si déjà un cookie de langue → skip la landing */
+if (getCookie('nd_lang')) {
   window.location.replace('index.html');
 }
-*/
+ 
+ 
  
 /* ── STARFIELD ── */
 (function(){
