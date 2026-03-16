@@ -4,88 +4,133 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>FAQ — NexDrive | Québec</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-<link rel="icon" type="image/png" href="logo/ChatGPT Image 10 mars 2026, 16_59_33 (1).png" />
-<link rel="apple-touch-icon" href="logo/ChatGPT Image 10 mars 2026, 16_59_33 (1).png" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --white:rgba(238,241,246,0.82);--off:rgba(230,234,241,0.78);--off2:rgba(221,227,236,0.80);
   --navy:#0a1628;--navy2:#0f2040;--blue:#1454d4;
   --electric:#2979ff;--elec-l:#5b9fff;
-  --chrome:#7a9ab8;--chrome3:#c4d8e8;
   --ink2:#3a5068;--ink3:#6a8aa8;
   --border:rgba(10,22,40,0.1);--border2:rgba(10,22,40,0.06);
-  --serif:'Cormorant Garamond',Georgia,serif;
+  --serif:'Playfair Display',Georgia,serif;
   --sans:'DM Sans',sans-serif;
 }
 html{scroll-behavior:smooth;}
 body{background:#eef1f6;color:var(--navy);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:var(--electric);}
-nav,section,footer,.pb,.tb{position:relative;z-index:1;}
-
-
+::-webkit-scrollbar{width:8px;}::-webkit-scrollbar-track{background:#0a1628;}::-webkit-scrollbar-thumb{background:var(--electric);border-radius:4px;}
+nav,section,footer{position:relative;z-index:1;}
+ 
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:linear-gradient(180deg,#0e1e3a 0%,#0a1628 100%);border-bottom:1px solid rgba(41,121,255,0.2);backdrop-filter:blur(24px);box-shadow:0 0 0 1px rgba(41,121,255,0.08),0 4px 32px rgba(10,22,40,0.5),0 0 60px rgba(41,121,255,0.08);}
 nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(41,121,255,0.2) 15%,rgba(91,159,255,0.5) 35%,rgba(120,180,255,0.7) 50%,rgba(91,159,255,0.5) 65%,rgba(41,121,255,0.2) 85%,transparent 100%);pointer-events:none;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:linear-gradient(180deg,#0e1e3a 0%,#0a1628 100%);border-bottom:1px solid rgba(41,121,255,0.2);background-clip:padding-box;backdrop-filter:blur(24px);box-shadow:0 0 0 1px rgba(41,121,255,0.08),0 4px 32px rgba(10,22,40,0.5),0 0 60px rgba(41,121,255,0.08);}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.lm{width:34px;height:34px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(10,22,40,0.15);}
-.lm::before{content:'';position:absolute;top:-6px;left:-6px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--chrome3),var(--elec-l));opacity:.5;}
-.ln{font-family:var(--serif);font-size:1.1rem;color:#fff;position:relative;z-index:1;}
-.lt{font-family:var(--serif);font-size:1.3rem;font-weight:400;letter-spacing:.5px;color:#fff;}
-.lt em{font-style:normal;background:linear-gradient(90deg,var(--electric),var(--chrome));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.hbg{-webkit-appearance:none;appearance:none;background:transparent;border:none;padding:0;display:flex;width:44px;height:44px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;border-radius:10px;transition:background .2s;flex-shrink:0;z-index:200;}
-.hbg:focus{outline:none;}.hbg:hover{background:rgba(255,255,255,.08);}
-.hb{display:block;border-radius:2px;background:#fff;pointer-events:none;transition:transform .38s cubic-bezier(.68,-.55,.265,1.55),opacity .25s,width .3s;}
-.hb:nth-child(1){width:22px;height:1.5px;}.hb:nth-child(2){width:14px;height:1.5px;}.hb:nth-child(3){width:22px;height:1.5px;}
-.hbg.open .hb{background:var(--electric);}
+.hbg{-webkit-appearance:none;appearance:none;background:transparent;border:1px solid rgba(255,255,255,0.12);padding:0;display:flex;width:44px;height:44px;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;border-radius:10px;transition:all .25s;flex-shrink:0;z-index:200;}
+.hbg:focus{outline:none;}.hbg:hover{background:rgba(41,121,255,0.12);border-color:rgba(91,159,255,0.4);}
+.hb{display:block;width:20px;height:1.5px;border-radius:2px;background:#fff;pointer-events:none;transition:transform .38s cubic-bezier(.68,-.55,.265,1.55),opacity .25s;}
+.hbg.open{background:rgba(41,121,255,0.18);border-color:rgba(41,121,255,0.5);}
 .hbg.open .hb:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
 .hbg.open .hb:nth-child(2){opacity:0;transform:scaleX(0);}
 .hbg.open .hb:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
-.mbd{position:fixed;inset:0;z-index:140;background:rgba(10,22,40,.45);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .4s;}
+ 
+/* ── MOBILE PANEL ── */
+.mbd{position:fixed;inset:0;z-index:140;background:rgba(5,10,20,0.6);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .4s;}
 .mbd.open{opacity:1;pointer-events:all;}
-.mpn{position:fixed;top:0;right:0;bottom:0;width:min(360px,100vw);z-index:150;background:rgba(238,241,246,0.97);backdrop-filter:blur(24px);border-left:1px solid rgba(10,22,40,0.12);transform:translateX(110%);transition:transform .55s cubic-bezier(.77,0,.175,1);display:flex;flex-direction:column;box-shadow:-12px 0 60px rgba(10,22,40,.18);overflow:hidden;}
+.mpn{position:fixed;top:0;right:0;bottom:0;width:min(320px,100vw);z-index:150;background:rgba(10,18,36,0.88);backdrop-filter:blur(28px);border-left:1px solid rgba(255,255,255,0.08);box-shadow:-20px 0 60px rgba(0,0,0,0.45),inset 1px 0 0 rgba(255,255,255,0.05);transform:translateX(110%);transition:transform .55s cubic-bezier(.77,0,.175,1);display:flex;flex-direction:column;overflow:hidden;}
 .mpn.open{transform:translateX(0);}
-.mph{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid var(--border2);flex-shrink:0;}
-.mph-close{width:36px;height:36px;border-radius:8px;background:transparent;border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink3);font-size:.95rem;transition:all .2s;}
-.mph-close:hover{border-color:var(--navy);color:var(--navy);background:var(--off2);}
-.mn{flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:0;}
-.mn-sec{margin-bottom:6px;}
-.mn-heading{font-size:.59rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);opacity:.6;padding:14px 12px 8px;border-bottom:1px solid var(--border2);margin-bottom:4px;}
-.ma{display:flex;align-items:center;justify-content:space-between;padding:11px 12px;border-radius:9px;text-decoration:none;margin-bottom:2px;transition:background .18s,padding-left .2s;opacity:0;transform:translateX(16px);}
+.mph{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid rgba(255,255,255,0.07);flex-shrink:0;}
+.mph-close{width:34px;height:34px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.12);cursor:pointer;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:.9rem;transition:all .2s;}
+.mph-close:hover{border-color:rgba(91,159,255,0.5);color:#fff;background:rgba(41,121,255,0.15);}
+.mn{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:0;scrollbar-width:none;}
+.mn::-webkit-scrollbar{display:none;}
+.mn-sec{margin-bottom:4px;}
+.mn-heading{font-size:.59rem;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.2);padding:12px 10px 7px;margin-bottom:2px;}
+.ma{display:flex;align-items:center;justify-content:space-between;padding:11px 10px;border-radius:10px;text-decoration:none;margin-bottom:2px;transition:all .18s;border:1px solid transparent;opacity:0;transform:translateX(16px);}
 .mpn.open .ma{opacity:1;transform:translateX(0);}
-.ma:hover{background:var(--off2);padding-left:16px;}
-.ma.active{background:rgba(41,121,255,.09);border:1px solid rgba(41,121,255,.14);}
-.ma.active .mn-lbl{color:var(--electric);}
-.ma-accent .mn-icon{background:rgba(41,121,255,.1)!important;border-color:rgba(41,121,255,.2)!important;}
+.ma:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08);}
+.ma.active{background:rgba(41,121,255,0.15);border-color:rgba(41,121,255,0.3);}
 .mn-left{display:flex;align-items:center;gap:12px;}
-.mn-icon{width:34px;height:34px;border-radius:8px;background:var(--off2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;transition:background .18s,border-color .18s;}
-.ma:hover .mn-icon{background:rgba(41,121,255,.07);border-color:rgba(41,121,255,.15);}
-.ma.active .mn-icon{background:rgba(41,121,255,.1);border-color:rgba(41,121,255,.2);}
-.mn-lbl{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--navy);transition:color .18s;line-height:1;}
-.ma:hover .mn-lbl{color:var(--navy2);}
-.mn-arr{color:var(--ink3);font-size:.75rem;opacity:.4;transition:transform .22s,color .18s,opacity .18s;}
-.ma:hover .mn-arr{transform:translateX(4px);color:var(--electric);opacity:1;}
-.mpf{padding:20px 24px;border-top:1px solid var(--border2);flex-shrink:0;opacity:0;transform:translateY(8px);transition:opacity .4s ease .3s,transform .4s ease .3s;}
+.mn-icon{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;}
+.ma.active .mn-icon{background:rgba(41,121,255,0.22);}
+.mn-lbl{font-family:var(--serif);font-size:1.05rem;font-weight:400;color:rgba(255,255,255,0.7);line-height:1;transition:color .18s;}
+.ma.active .mn-lbl,.ma:hover .mn-lbl{color:rgba(255,255,255,0.95);}
+.mn-arr{color:rgba(255,255,255,0.2);font-size:.75rem;transition:transform .22s,color .18s;}
+.ma:hover .mn-arr{transform:translateX(4px);color:var(--elec-l);}
+.ma.active .mn-arr{color:rgba(91,159,255,0.6);}
+.mpf{padding:16px;border-top:1px solid rgba(255,255,255,0.07);flex-shrink:0;opacity:0;transform:translateY(8px);transition:opacity .4s ease .3s,transform .4s ease .3s;}
 .mpn.open .mpf{opacity:1;transform:translateY(0);}
-.mr{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--navy);color:#fff;padding:13px;border-radius:9px;font-size:.86rem;font-weight:500;text-decoration:none;margin-bottom:12px;transition:all .25s;box-shadow:0 4px 18px rgba(10,22,40,.2);}
-.mr:hover{background:var(--navy2);transform:translateY(-1px);}
-.mf{font-size:.68rem;color:var(--ink3);text-align:center;}
-
-
-.pb{padding:140px 64px 80px;}
-.pb-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:20px;animation:fu .8s ease .1s both;}
-.pb-eyebrow::before{content:'';width:20px;height:1px;background:var(--electric);}
-.pb-tw{display:block;overflow:hidden;}
-.pb-title{display:block;font-family:var(--serif);font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;letter-spacing:-1px;color:var(--navy);animation:su .9s cubic-bezier(.16,1,.3,1) .15s both;}
-.pb-title em{font-style:italic;background:linear-gradient(105deg,var(--electric),var(--blue),var(--chrome));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.pb-sub{max-width:540px;margin-top:24px;font-size:.98rem;font-weight:300;line-height:1.85;color:var(--ink2);animation:fu .8s ease .35s both;}
-.sl2{display:inline-flex;align-items:center;gap:8px;font-size:.62rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--electric);margin-bottom:14px;}
-.sl2::before{content:'';width:14px;height:1px;background:var(--electric);}
-.sh{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:300;color:var(--navy);line-height:1.1;letter-spacing:-.5px;margin-bottom:14px;}
-.sh em{font-style:italic;color:var(--blue);}
-footer{background:#0a1628;border-top:1px solid rgba(255,255,255,.06);padding:56px 64px 32px;position:relative;z-index:1;}
-.ftt{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:48px;margin-bottom:48px;}
+.mf{font-size:.68rem;color:rgba(255,255,255,0.25);text-align:center;}
+ 
+/* ── PAGE HEADER ── */
+#page-header{padding:140px 64px 80px;text-align:center;background:linear-gradient(180deg,#0e1e3a 0%,#0a1628 100%);min-height:44vh;display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 0 80px rgba(41,121,255,0.12),inset 0 -1px 0 rgba(41,121,255,0.15);position:relative;overflow:hidden;}
+#page-header::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(41,121,255,0.1),transparent 65%);pointer-events:none;}
+.ph-label{display:inline-flex;align-items:center;gap:8px;font-size:.62rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--electric);margin-bottom:18px;animation:fu .8s ease .1s both;}
+.ph-label::before{content:'';width:14px;height:1px;background:var(--electric);}
+.ph-h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,4.2rem);font-weight:300;line-height:1.1;letter-spacing:-.5px;color:#fff;animation:fu .9s cubic-bezier(.16,1,.3,1) .2s both;}
+.ph-h1 em{font-style:italic;color:var(--elec-l);}
+.ph-sub{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.45);margin-top:14px;animation:fu .8s ease .35s both;max-width:480px;}
+ 
+/* ── CONTENT ── */
+#content{padding:72px 64px 100px;}
+.proc-label{display:inline-flex;align-items:center;gap:8px;font-size:.62rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--electric);margin-bottom:32px;}
+.proc-label::before{content:'';width:14px;height:1px;background:var(--electric);}
+ 
+/* ── FILTER TABS ── */
+.faq-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:48px;}
+.faq-tab{font-size:.76rem;font-weight:500;padding:8px 18px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;transition:all .22s;font-family:var(--sans);}
+.faq-tab:hover{border-color:rgba(41,121,255,.3);color:var(--blue);}
+.faq-tab.active{background:var(--navy);color:#fff;border-color:var(--navy);box-shadow:0 4px 14px rgba(10,22,40,.2);}
+ 
+/* ── FAQ GROUPS ── */
+.faq-group{margin-bottom:56px;display:none;}
+.faq-group.visible{display:block;}
+.faq-group-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+.faq-group-icon{width:40px;height:40px;border-radius:10px;background:rgba(41,121,255,.08);border:1px solid rgba(41,121,255,.14);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.faq-group-title{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--navy);}
+ 
+/* ── FAQ ITEMS ── */
+.faq-item{background:linear-gradient(160deg,#EEF4FA 0%,#D8E4F0 100%);border:1px solid #C8D8E8;border-radius:12px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 0 rgba(255,255,255,0.95) inset,0 2px 8px rgba(90,120,155,0.08);transition:border-color .25s,box-shadow .25s;}
+.faq-item:hover{border-color:rgba(41,121,255,.3);}
+.faq-item.open{border-color:rgba(41,121,255,.35);box-shadow:0 1px 0 rgba(255,255,255,0.95) inset,0 8px 28px rgba(41,121,255,.12);}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:16px;}
+.faq-q-text{font-family:var(--serif);font-size:1.05rem;font-weight:700;color:var(--navy);line-height:1.3;transition:color .2s;}
+.faq-item.open .faq-q-text{color:var(--electric);}
+.faq-q-icon{width:30px;height:30px;border-radius:50%;border:1px solid rgba(10,22,40,0.12);background:#fff;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--ink3);flex-shrink:0;transition:all .3s;}
+.faq-item.open .faq-q-icon{background:var(--electric);border-color:var(--electric);color:#fff;transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.faq-item.open .faq-a{max-height:400px;}
+.faq-a-inner{font-size:.88rem;font-weight:300;color:var(--ink2);line-height:1.85;padding:0 22px 20px;border-top:1px solid rgba(10,22,40,0.06);}
+.faq-a-inner p{margin-bottom:10px;}
+.faq-a-inner p:last-child{margin-bottom:0;}
+.faq-a-inner ul{margin:10px 0;display:flex;flex-direction:column;gap:6px;list-style:none;}
+.faq-a-inner li{display:flex;align-items:flex-start;gap:8px;}
+.faq-a-inner li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--electric);flex-shrink:0;margin-top:7px;}
+ 
+/* ── CONTACT CARD ── */
+.contact-card{background:linear-gradient(135deg,var(--navy) 0%,#0d1f3a 100%);border-radius:16px;padding:36px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden;border:1px solid rgba(41,121,255,0.2);box-shadow:0 0 0 1px rgba(41,121,255,0.06),0 16px 48px rgba(10,22,40,0.4);margin-top:8px;}
+.contact-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(91,159,255,0.4) 50%,transparent);}
+.contact-card::after{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(41,121,255,0.12),transparent 65%);}
+.cc-left{position:relative;z-index:1;}
+.cc-title{font-family:var(--serif);font-size:1.4rem;font-weight:300;color:#fff;margin-bottom:6px;}
+.cc-sub{font-size:.78rem;color:rgba(255,255,255,.35);}
+.cc-btn{display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#1454d4,#2979ff);color:#fff;padding:12px 24px;border-radius:9px;font-size:.84rem;font-weight:500;text-decoration:none;transition:all .25s;box-shadow:0 4px 18px rgba(41,121,255,.38);position:relative;z-index:1;white-space:nowrap;}
+.cc-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(41,121,255,.5);}
+ 
+/* ── CTA ── */
+#cta{padding:80px 64px;text-align:center;background:#0a1628;position:relative;overflow:hidden;}
+.ctag{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:700px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(41,121,255,.15),transparent 60%);pointer-events:none;}
+.ctal{width:48px;height:1px;margin:0 auto 28px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);}
+.ctah{font-family:var(--serif);font-size:clamp(2rem,4vw,3.5rem);font-weight:300;line-height:1.1;letter-spacing:-.5px;color:#fff;margin-bottom:16px;}
+.ctah em{font-style:italic;color:var(--elec-l);}
+.ctap{font-size:.9rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.8;max-width:400px;margin:0 auto 36px;}
+.ctab{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.bw{display:flex;align-items:center;gap:9px;background:#fff;color:var(--navy);padding:14px 32px;border-radius:8px;font-size:.88rem;font-weight:500;text-decoration:none;box-shadow:0 4px 24px rgba(0,0,0,.2);transition:all .3s;}
+.bw:hover{transform:translateY(-2px);}
+.bow{display:flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.2);padding:13px 24px;border-radius:8px;font-size:.86rem;text-decoration:none;transition:all .3s;}
+.bow:hover{border-color:rgba(255,255,255,.5);color:#fff;}
+ 
+/* ── FOOTER ── */
+footer{background:#080e1a;border-top:1px solid rgba(255,255,255,.06);padding:56px 64px 32px;}
+.ftt{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
 .fb{font-family:var(--serif);font-size:1.3rem;color:#fff;margin-bottom:12px;}
 .fb em{font-style:normal;color:var(--elec-l);}
 .fd{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.75;max-width:220px;}
@@ -95,47 +140,40 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,.06);padding:56p
 .ftb{border-top:1px solid rgba(255,255,255,.06);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
 .ftc,.ftr{font-size:.75rem;color:rgba(255,255,255,.25);}
 .ftr a{color:var(--elec-l);text-decoration:none;}
+ 
+/* ── ANIMATIONS ── */
 @keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-@keyframes su{from{transform:translateY(110%)}to{transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
 .reveal.vis{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+ 
+/* ── RESPONSIVE ── */
 @media(max-width:900px){
   nav{padding:0 20px;height:60px;}
-  .pb{padding:96px 20px 56px;}
+  #page-header{padding:100px 20px 60px;}
+  #content{padding:48px 20px 72px;}
+  #cta{padding:72px 20px;}
+  .ctab{flex-direction:column;align-items:center;}
+  .bw,.bow{width:100%;max-width:300px;justify-content:center;}
   footer{padding:40px 20px 24px;}
-  .ftt{grid-template-columns:1fr;gap:28px;}
+  .ftt{grid-template-columns:1fr 1fr;gap:28px;}
   .ftb{flex-direction:column;text-align:center;gap:8px;}
+  .contact-card{flex-direction:column;align-items:flex-start;}
 }
-@media(max-width:420px){nav{padding:0 16px;}.pb{padding-left:16px;padding-right:16px;}footer{padding:32px 16px 20px;}}
-
-
-.faq-sec{padding:0 64px 120px;max-width:900px;}
-.faq-cats{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:40px;}
-.faq-cat{font-size:.76rem;font-weight:500;padding:7px 16px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--ink3);cursor:pointer;transition:all .2s;}
-.faq-cat.active,.faq-cat:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
-.faq-group{margin-bottom:48px;}
-.faq-group-title{font-size:.66rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--electric);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border2);}
-.faq-item{border-bottom:1px solid var(--border2);}
-.faq-q{width:100%;background:none;border:none;text-align:left;padding:18px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:16px;}
-.faq-q-text{font-size:.92rem;font-weight:500;color:var(--navy);}
-.faq-q-icon{width:28px;height:28px;border-radius:50%;border:1px solid var(--border2);background:var(--off2);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--ink3);flex-shrink:0;transition:all .25s;}
-.faq-item.open .faq-q-icon{background:var(--electric);border-color:var(--electric);color:#fff;transform:rotate(45deg);}
-.faq-item.open .faq-q-text{color:var(--electric);}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;}
-.faq-a-inner{font-size:.86rem;font-weight:300;color:var(--ink2);line-height:1.85;padding-bottom:18px;}
-.faq-item.open .faq-a{max-height:300px;}
-
-@media(max-width:900px){.faq-sec{padding-left:20px;padding-right:20px;}}
-@media(max-width:420px){.faq-sec{padding-left:16px;padding-right:16px;}}
+@media(max-width:420px){
+  nav{padding:0 16px;}
+  #page-header,#content,#cta{padding-left:16px;padding-right:16px;}
+  footer{padding:32px 16px 20px;}
+  .ftt{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
-
+ 
+<!-- NAV -->
 <nav>
   <a href="index.html" class="logo">
-    <div class="lm"><span class="ln">N</span></div>
-    <div class="lt">Nex<em>Drive</em></div>
+    <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:100px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(41,121,255,0.45))"/>
   </a>
   <button class="hbg" id="hbBtn" type="button" aria-label="Menu">
     <span class="hb"></span><span class="hb"></span><span class="hb"></span>
@@ -145,91 +183,339 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,.06);padding:56p
 <div class="mpn" id="mobPanel">
   <div class="mph">
     <a href="index.html" class="logo" onclick="closeMob()">
-      <div class="lm"><span class="ln">N</span></div>
-      <div class="lt">Nex<em>Drive</em></div>
+      <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:52px;width:auto;object-fit:contain;filter:drop-shadow(0 0 6px rgba(41,121,255,0.4))"/>
     </a>
-    <button class="mph-close" onclick="closeMob()" aria-label="Fermer">✕</button>
+    <button class="mph-close" onclick="closeMob()">✕</button>
   </div>
   <div class="mn">
-    <div class="mn-sec"><div class="mn-heading">Navigation</div>
-      <a href="vehicules.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🚗</div><span class="mn-lbl">Véhicules</span></div><span class="mn-arr">→</span></a>
-      <a href="engagement.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">✦</div><span class="mn-lbl">Engagement</span></div><span class="mn-arr">→</span></a>
-      <a href="processus.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🗝️</div><span class="mn-lbl">Processus</span></div><span class="mn-arr">→</span></a>
-    </div>
-    <div class="mn-sec"><div class="mn-heading">Mon espace</div>
-      <a href="compte.html" class="ma ma-accent" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">👤</div><span class="mn-lbl">Mon compte</span></div><span class="mn-arr">→</span></a>
-    </div>
-    <div class="mn-sec"><div class="mn-heading">Informations</div>
-      <a href="apropos.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🏢</div><span class="mn-lbl">À propos</span></div><span class="mn-arr">→</span></a>
-      <a href="services.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">⚙️</div><span class="mn-lbl">Services</span></div><span class="mn-arr">→</span></a>
+    <div class="mn-sec">
+      <div class="mn-heading">Navigation</div>
+      <a href="index.html"       class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🏠</div><span class="mn-lbl">Accueil</span></div><span class="mn-arr">→</span></a>
+      <a href="vehicules.html"   class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🚗</div><span class="mn-lbl">Notre flotte</span></div><span class="mn-arr">→</span></a>
+      <a href="apropos.html"     class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🏢</div><span class="mn-lbl">À propos</span></div><span class="mn-arr">→</span></a>
       <a href="partenaires.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🤝</div><span class="mn-lbl">Partenaires</span></div><span class="mn-arr">→</span></a>
-      <a href="faq.html" class="ma active" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">❓</div><span class="mn-lbl">FAQ</span></div><span class="mn-arr">→</span></a>
+      <a href="faq.html"         class="ma active" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">❓</div><span class="mn-lbl">FAQ</span></div><span class="mn-arr">→</span></a>
     </div>
-    <div class="mn-sec"><div class="mn-heading">Légal</div>
+    <div class="mn-sec">
+      <div class="mn-heading">Mon espace</div>
+      <a href="compte.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">👤</div><span class="mn-lbl">Mon compte</span></div><span class="mn-arr">→</span></a>
+    </div>
+    <div class="mn-sec">
+      <div class="mn-heading">Légal</div>
       <a href="confidentialite.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🔒</div><span class="mn-lbl">Confidentialité</span></div><span class="mn-arr">→</span></a>
+      <a href="conditions.html"      class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">📄</div><span class="mn-lbl">Conditions</span></div><span class="mn-arr">→</span></a>
     </div>
   </div>
-  <div class="mpf">
-    <a href="https://turo.com/VOTRE-LIEN-ICI" target="_blank" class="mr">Réserver sur Turo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-    <div class="mf">NexDrive — Québec © 2026</div>
-  </div>
+  <div class="mpf"><div class="mf">NexDrive — Québec © 2026</div></div>
 </div>
-
-<div class="pb">
-  <div class="pb-eyebrow">Centre d'aide</div>
-  <div class="pb-tw"><span class="pb-title">Questions <em>fréquentes</em></span></div>
-  <p class="pb-sub">Trouvez rapidement les réponses à vos questions sur la location, la réservation et nos services.</p>
-</div>
-<section class="faq-sec">
-  <div class="faq-group reveal">
-    <div class="faq-group-title">Réservation</div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Comment réserver un véhicule NexDrive ?</span><span class="faq-q-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Toutes les réservations se font via la plateforme Turo. Cliquez sur « Réserver » sur la page d'un véhicule, choisissez vos dates et confirmez. Vous recevrez une confirmation par courriel.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Puis-je modifier ou annuler ma réservation ?</span><span class="faq-q-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Oui. Les modifications et annulations sont gérées directement via Turo selon la politique d'annulation du véhicule. Consultez les conditions au moment de la réservation.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Combien de temps à l'avance dois-je réserver ?</span><span class="faq-q-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Vous pouvez réserver jusqu'à quelques heures à l'avance sous réserve de disponibilité. Nous recommandons de réserver 2–3 jours à l'avance pour garantir votre véhicule.</div></div></div>
+ 
+<!-- PAGE HEADER -->
+<section id="page-header">
+  <div class="ph-label">Centre d'aide</div>
+  <h1 class="ph-h1">Questions <em>fréquentes</em></h1>
+  <p class="ph-sub">Tout ce que vous devez savoir sur la location NexDrive, la réservation Turo et nos services.</p>
+</section>
+ 
+<!-- CONTENT -->
+<section id="content">
+  <div class="proc-label reveal">FAQ / Aide</div>
+ 
+  <!-- FILTER TABS -->
+  <div class="faq-tabs reveal">
+    <button class="faq-tab active" data-cat="tous">Toutes les questions</button>
+    <button class="faq-tab" data-cat="reservation">🗓 Réservation</button>
+    <button class="faq-tab" data-cat="assurance">🛡️ Assurance</button>
+    <button class="faq-tab" data-cat="location">🚗 Pendant la location</button>
+    <button class="faq-tab" data-cat="paiement">💳 Paiement</button>
+    <button class="faq-tab" data-cat="vehicules">⚡ Véhicules</button>
   </div>
-  <div class="faq-group reveal d1">
-    <div class="faq-group-title">Assurance & Sécurité</div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Suis-je assuré pendant la location ?</span><span class="faq-q-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Oui, toutes les locations sont assurées via Turo. La protection inclut la responsabilité civile et la protection du véhicule selon le plan choisi.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Y a-t-il des frais cachés ?</span><span class="faq-q-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Absolument aucun frais caché. Le prix affiché sur Turo est le prix final (hors frais de service Turo standard). Tout est transparent avant la confirmation.</div></div></div>
+ 
+  <!-- RÉSERVATION -->
+  <div class="faq-group visible reveal" data-group="reservation">
+    <div class="faq-group-header">
+      <div class="faq-group-icon">🗓</div>
+      <div class="faq-group-title">Réservation</div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Comment réserver un véhicule NexDrive ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Toutes nos réservations se font via la plateforme <strong>Turo</strong>. Visitez notre page véhicules, cliquez sur « Réserver » sur le véhicule de votre choix, sélectionnez vos dates et confirmez. Vous recevrez une confirmation par courriel dans les minutes suivantes.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Combien de temps à l'avance dois-je réserver ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Vous pouvez réserver jusqu'à quelques heures à l'avance selon la disponibilité. Cependant, nous recommandons de réserver <strong>2 à 3 jours à l'avance</strong> pour garantir votre véhicule, surtout en haute saison ou lors des fins de semaine.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Puis-je modifier ou annuler ma réservation ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Oui. Les modifications et annulations sont gérées directement via Turo, selon la politique d'annulation associée au véhicule. Consultez les conditions au moment de la réservation. En cas de question, contactez-nous via la messagerie Turo.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Puis-je prolonger ma location en cours de route ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Oui, sous réserve de disponibilité du véhicule. Contactez-nous le plus tôt possible via Turo pour demander une prolongation. Nous ferons notre possible pour accommoder votre demande.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Faut-il créer un compte Turo pour réserver ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Oui, un compte Turo est nécessaire pour effectuer une réservation. La création est gratuite et rapide. Turo gérera la réservation, le paiement et l'assurance de façon sécurisée.</p>
+      </div></div>
+    </div>
   </div>
-  <div class="faq-group reveal d2">
-    <div class="faq-group-title">Lors de la location</div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Où se fait la remise des clés ?</span><span class="faq-q-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Le point de remise est défini lors de la réservation. Nous offrons la livraison à domicile ou à l'aéroport pour un supplément. Tout est coordonné via Turo.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Que faire en cas de problème pendant la location ?</span><span class="faq-q-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Contactez-nous directement via la messagerie Turo ou par téléphone. Nous répondons rapidement. En cas d'accident, suivez les procédures Turo et contactez les autorités si nécessaire.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span class="faq-q-text">Le véhicule sera-t-il propre à mon arrivée ?</span><span class="faq-q-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Toujours. Chaque véhicule est nettoyé en profondeur (intérieur et extérieur) et inspecté avant chaque location. C'est notre engagement de qualité.</div></div></div>
+ 
+  <!-- ASSURANCE -->
+  <div class="faq-group visible reveal d1" data-group="assurance">
+    <div class="faq-group-header">
+      <div class="faq-group-icon">🛡️</div>
+      <div class="faq-group-title">Assurance & Sécurité</div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Suis-je assuré pendant toute la durée de la location ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Oui, <strong>à 100%</strong>. Toutes les locations NexDrive sont couvertes par l'assurance Turo, qui inclut la responsabilité civile et la protection du véhicule selon le plan choisi lors de la réservation. Vous roulez l'esprit tranquille.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Que se passe-t-il en cas d'accident ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>En cas d'accident, voici les étapes à suivre :</p>
+        <ul>
+          <li>Assurez-vous que tout le monde est en sécurité</li>
+          <li>Appelez les autorités si nécessaire (911)</li>
+          <li>Documentez la situation avec des photos</li>
+          <li>Contactez Turo immédiatement via l'application</li>
+          <li>Avisez-nous via la messagerie Turo</li>
+        </ul>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Y a-t-il des frais cachés ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p><strong>Aucun frais caché chez NexDrive.</strong> Le prix affiché sur Turo est le prix final (hors frais de service Turo standard, clairement indiqués avant la confirmation). Notre engagement : transparence totale à chaque étape.</p>
+      </div></div>
+    </div>
+  </div>
+ 
+  <!-- PENDANT LA LOCATION -->
+  <div class="faq-group visible reveal d2" data-group="location">
+    <div class="faq-group-header">
+      <div class="faq-group-icon">🚗</div>
+      <div class="faq-group-title">Pendant la location</div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Où se fait la remise des clés ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Le lieu de remise est défini lors de la réservation sur Turo. Nous proposons plusieurs options selon votre situation. Contactez-nous via la messagerie Turo pour coordonner les détails une fois votre réservation confirmée.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Le véhicule sera-t-il propre à mon arrivée ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p><strong>Toujours.</strong> Chaque véhicule NexDrive est nettoyé en profondeur — intérieur et extérieur — et inspecté avant chaque location. C'est notre engagement qualité, sans exception.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Que faire en cas de problème pendant la location ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Contactez-nous immédiatement via la messagerie Turo ou par téléphone. Nous répondons rapidement et nous engageons à trouver une solution. En cas d'urgence mécanique, Turo offre également une assistance routière.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Puis-je fumer ou voyager avec des animaux dans le véhicule ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p><strong>Il est strictement interdit de fumer</strong> dans tous nos véhicules. Des frais de nettoyage importants s'appliquent en cas de non-respect. Concernant les animaux, veuillez nous contacter à l'avance pour connaître les conditions applicables au véhicule souhaité.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Puis-je conduire hors du Québec ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Les conditions de conduite hors Québec sont définies dans votre contrat Turo. En règle générale, la conduite au Canada et aux États-Unis est permise selon les paramètres de la réservation. Vérifiez toujours les détails de votre contrat avant de traverser une frontière.</p>
+      </div></div>
+    </div>
+  </div>
+ 
+  <!-- PAIEMENT -->
+  <div class="faq-group visible reveal" data-group="paiement">
+    <div class="faq-group-header">
+      <div class="faq-group-icon">💳</div>
+      <div class="faq-group-title">Paiement</div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Comment fonctionne le paiement ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Tous les paiements sont traités de façon sécurisée <strong>directement via Turo</strong>. NexDrive n'a jamais accès à vos informations bancaires ou de carte de crédit. Turo accepte les principales cartes de crédit et débit.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Y a-t-il un dépôt de garantie ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Turo peut retenir un dépôt de garantie sur votre carte selon le véhicule et votre profil. Ce montant est libéré après le retour du véhicule en bon état, généralement dans un délai de quelques jours ouvrables.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Quand suis-je débité ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Le paiement est prélevé au moment de la confirmation de la réservation par Turo. En cas d'annulation, le remboursement suit la politique d'annulation du véhicule, clairement indiquée avant votre confirmation.</p>
+      </div></div>
+    </div>
+  </div>
+ 
+  <!-- VÉHICULES -->
+  <div class="faq-group visible reveal d1" data-group="vehicules">
+    <div class="faq-group-header">
+      <div class="faq-group-icon">⚡</div>
+      <div class="faq-group-title">Nos véhicules</div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Comment est entretenu le véhicule ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Tous nos véhicules font l'objet d'un entretien régulier selon les recommandations du fabricant. Avant chaque location, un membre de notre équipe effectue une inspection complète et un nettoyage en profondeur. Votre sécurité est notre priorité absolue.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Comment recharger un véhicule électrique ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Le véhicule vous sera remis avec une charge complète. Vous pourrez le recharger dans les bornes publiques (Circuit électrique, Tesla Supercharger, etc.) au Québec. Les frais de recharge pendant la location sont à votre charge. Retournez le véhicule avec le même niveau de charge qu'à la remise.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Qui est responsable de l'essence / de l'énergie ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Le locataire est responsable du carburant ou de la charge pendant la location. Veuillez retourner le véhicule avec le même niveau de carburant ou de charge qu'à la remise. Des frais de remplissage peuvent s'appliquer en cas de non-respect.</p>
+      </div></div>
+    </div>
+ 
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Y a-t-il une limite de kilométrage ?</span>
+        <span class="faq-q-icon">+</span>
+      </button>
+      <div class="faq-a"><div class="faq-a-inner">
+        <p>Les conditions de kilométrage sont précisées dans chaque annonce Turo. Certains véhicules incluent un kilométrage illimité, d'autres ont une limite journalière. Vérifiez ces informations avant de confirmer votre réservation.</p>
+      </div></div>
+    </div>
+  </div>
+ 
+  <!-- CONTACT CARD -->
+  <div class="contact-card reveal">
+    <div class="cc-left">
+      <div class="cc-title">Vous n'avez pas trouvé votre réponse ?</div>
+      <div class="cc-sub">Notre équipe répond rapidement — NexDrive, Québec · Généralement sous 24h</div>
+    </div>
+    <a href="mailto:info@location-nexdrive.com" class="cc-btn">Nous écrire <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
   </div>
 </section>
-
+ 
+<!-- CTA -->
+<section id="cta">
+  <div class="ctag"></div>
+  <div class="ctal"></div>
+  <div class="proc-label" style="justify-content:center;color:rgba(255,255,255,.3);margin-bottom:20px">Prêt à commencer</div>
+  <h2 class="ctah reveal">Réservez <em>maintenant</em></h2>
+  <p class="ctap reveal">Accédez à la meilleure flotte de véhicules premium au Québec. Réservation simple, assurance incluse.</p>
+  <div class="ctab reveal">
+    <a href="vehicules.html" class="bw">Voir la flotte <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    <a href="index.html" class="bow">Retour à l'accueil →</a>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
 <footer>
   <div class="ftt">
-    <div><div class="fb">Nex<em>Drive</em></div><p class="fd">Location de véhicules premium au Québec. Réservation via Turo, assurance incluse.</p></div>
-    <div class="fc"><h4>Navigation</h4>
-      <a href="vehicules.html">Véhicules</a>
-      <a href="engagement.html">Engagement</a>
-      <a href="processus.html">Processus</a>
-      <a href="compte.html">Mon compte</a>
-    </div>
-    <div class="fc"><h4>Infos & Légal</h4>
-      <a href="apropos.html">À propos</a>
-      <a href="services.html">Services</a>
-      <a href="partenaires.html">Partenaires</a>
-      <a href="faq.html">FAQ</a>
-      <a href="confidentialite.html">Confidentialité</a>
-    </div>
+    <div><div class="fb">Nex<em>Drive</em></div><p class="fd">Location de véhicules premium au Québec, Canada. Réservation en ligne, contrat automatique.</p></div>
+    <div class="fc"><h4>Navigation</h4><a href="index.html">Accueil</a><a href="vehicules.html">Flotte</a><a href="apropos.html">À propos</a><a href="faq.html">FAQ</a></div>
+    <div class="fc"><h4>Mon espace</h4><a href="compte.html">Mon compte</a><a href="login.html">Connexion</a></div>
+    <div class="fc"><h4>Légal</h4><a href="confidentialite.html">Confidentialité</a><a href="conditions.html">Conditions d'utilisation</a></div>
   </div>
-  <div class="ftb"><div class="ftc">© 2026 NexDrive — Québec, Canada.</div><div class="ftr">Réservations via <a href="https://turo.com" target="_blank">Turo</a></div></div>
+  <div class="ftb">
+    <div class="ftc">© 2026 NexDrive — Québec, Canada. Tous droits réservés.</div>
+    <div class="ftr">Réservations via <a href="https://turo.com" target="_blank">Turo</a></div>
+  </div>
 </footer>
+ 
 <script>
-
-(function(){var c=document.getElementById('sc'),x=c.getContext('2d'),W,H,stars=[],raf,last=0;
-function rnd(a,b){return a+Math.random()*(b-a);}
-function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;stars=[];var n=Math.min(Math.max(Math.floor(W*H/4000),80),260);for(var i=0;i<n;i++)stars.push(mk());}
-function mk(){var t=Math.random(),r,col,bA;if(t<.55){r=rnd(.8,2);col='15,35,70';bA=rnd(.45,.75);}else if(t<.8){r=rnd(.6,1.6);col='30,100,220';bA=rnd(.35,.65);}else if(t<.93){r=rnd(1,2.2);col='60,90,130';bA=rnd(.3,.55);}else{r=rnd(1.2,2);col='10,40,90';bA=rnd(.4,.65);}return{x:Math.random()*W,y:Math.random()*H,r:r,bA:bA,al:bA,col:col,vx:(Math.random()-.5)*rnd(.08,.28),vy:(Math.random()-.5)*rnd(.08,.28),ph:Math.random()*Math.PI*2,spd:rnd(.4,1.1),sparkle:t>=.93};}
-function d4(px,py,r,a,col){x.save();x.translate(px,py);x.rotate(Math.PI/4);x.globalAlpha=a;x.strokeStyle='rgb('+col+')';x.lineWidth=.7;for(var i=0;i<4;i++){x.beginPath();x.moveTo(0,0);x.lineTo(0,r*2.8);x.stroke();x.rotate(Math.PI/2);}x.beginPath();x.arc(0,0,r*.45,0,Math.PI*2);x.fillStyle='rgb('+col+')';x.fill();x.restore();}
-function loop(ts){var dt=Math.min((ts-last)/16,2);last=ts;x.clearRect(0,0,W,H);for(var s of stars){s.x+=s.vx*dt;s.y+=s.vy*dt;if(s.x<-5)s.x=W+5;if(s.x>W+5)s.x=-5;if(s.y<-5)s.y=H+5;if(s.y>H+5)s.y=-5;s.ph+=s.spd*.014*dt;s.al=s.bA*(.5+.5*Math.sin(s.ph));if(s.sparkle)d4(s.x,s.y,s.r*1.5,s.al,s.col);else{x.globalAlpha=s.al;x.beginPath();x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fillStyle='rgb('+s.col+')';x.fill();}}x.globalAlpha=1;raf=requestAnimationFrame(loop);}
-window.addEventListener('resize',function(){cancelAnimationFrame(raf);resize();raf=requestAnimationFrame(loop);});resize();raf=requestAnimationFrame(loop);})();
-
-
+/* ── NAV ── */
 var hbBtn=document.getElementById('hbBtn'),mobB=document.getElementById('mobBack'),mobP=document.getElementById('mobPanel');
 function openMob(){hbBtn.classList.add('open');mobP.classList.add('open');mobB.classList.add('open');document.body.style.overflow='hidden';}
 function closeMob(){hbBtn.classList.remove('open');mobP.classList.remove('open');mobB.classList.remove('open');document.body.style.overflow='';}
@@ -237,18 +523,35 @@ hbBtn.addEventListener('click',function(){mobP.classList.contains('open')?closeM
 mobB.addEventListener('click',closeMob);
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMob();});
 (function(){var links=mobP.querySelectorAll('.ma');var mo=new MutationObserver(function(){var open=mobP.classList.contains('open');links.forEach(function(l,i){l.style.transitionDelay=open?(.06+i*.05)+'s':'0s';});});mo.observe(mobP,{attributes:true,attributeFilter:['class']});})();
-var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:.08});
-document.querySelectorAll('.reveal').forEach(function(r){obs.observe(r);});
-
-
+ 
+/* ── FAQ TOGGLE ── */
 function toggleFaq(btn){
   var item=btn.parentElement;
   var wasOpen=item.classList.contains('open');
   document.querySelectorAll('.faq-item.open').forEach(function(i){i.classList.remove('open');});
   if(!wasOpen)item.classList.add('open');
 }
-
-
+ 
+/* ── FILTER TABS ── */
+document.querySelectorAll('.faq-tab').forEach(function(tab){
+  tab.addEventListener('click',function(){
+    document.querySelectorAll('.faq-tab').forEach(function(t){t.classList.remove('active');});
+    tab.classList.add('active');
+    var cat=tab.dataset.cat;
+    document.querySelectorAll('.faq-group').forEach(function(g){
+      if(cat==='tous'||g.dataset.group===cat){
+        g.classList.add('visible');
+      }else{
+        g.classList.remove('visible');
+        g.querySelectorAll('.faq-item.open').forEach(function(i){i.classList.remove('open');});
+      }
+    });
+  });
+});
+ 
+/* ── REVEAL ── */
+var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(function(r){obs.observe(r);});
 </script>
 </body>
 </html>
