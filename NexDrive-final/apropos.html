@@ -4,11 +4,10 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>À Propos — NexDrive | Québec</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <link rel="icon" type="image/png" href="logo/ChatGPT Image 10 mars 2026, 16_59_33 (1).png" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="icon" type="image/png" href="logo/ChatGPT Image 10 mars 2026, 16_59_33 (1).png" />
 <link rel="apple-touch-icon" href="logo/ChatGPT Image 10 mars 2026, 16_59_33 (1).png" />
 <style>
-
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --white:rgba(238,241,246,0.82);--off:rgba(230,234,241,0.78);--off2:rgba(221,227,236,0.80);
@@ -23,11 +22,10 @@
 html{scroll-behavior:smooth;}
 body{background:#eef1f6;color:var(--navy);font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 ::-webkit-scrollbar{width:3px;}::-webkit-scrollbar-thumb{background:var(--electric);}
-nav,section,footer,.pb,.tb{position:relative;z-index:1;}
-
-
+ 
+/* ── NAV ── */
 nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(41,121,255,0.2) 15%,rgba(91,159,255,0.5) 35%,rgba(120,180,255,0.7) 50%,rgba(91,159,255,0.5) 65%,rgba(41,121,255,0.2) 85%,transparent 100%);pointer-events:none;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:linear-gradient(180deg,#0e1e3a 0%,#0a1628 100%);border-bottom:1px solid rgba(41,121,255,0.2);background-clip:padding-box;backdrop-filter:blur(24px);box-shadow:0 0 0 1px rgba(41,121,255,0.08),0 4px 32px rgba(10,22,40,0.5),0 0 60px rgba(41,121,255,0.08);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:linear-gradient(180deg,#0e1e3a 0%,#0a1628 100%);border-bottom:1px solid rgba(41,121,255,0.2);backdrop-filter:blur(24px);box-shadow:0 0 0 1px rgba(41,121,255,0.08),0 4px 32px rgba(10,22,40,0.5),0 0 60px rgba(41,121,255,0.08);}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
 .lm{width:34px;height:34px;border-radius:8px;background:var(--navy);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 2px 12px rgba(10,22,40,0.15);}
 .lm::before{content:'';position:absolute;top:-6px;left:-6px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--chrome3),var(--elec-l));opacity:.5;}
@@ -71,20 +69,116 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;ali
 .mr{display:flex;align-items:center;justify-content:center;gap:9px;background:var(--navy);color:#fff;padding:13px;border-radius:9px;font-size:.86rem;font-weight:500;text-decoration:none;margin-bottom:12px;transition:all .25s;box-shadow:0 4px 18px rgba(10,22,40,.2);}
 .mr:hover{background:var(--navy2);transform:translateY(-1px);}
 .mf{font-size:.68rem;color:var(--ink3);text-align:center;}
-
-
-.pb{padding:140px 64px 80px;}
-.pb-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.68rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--ink3);margin-bottom:20px;animation:fu .8s ease .1s both;}
-.pb-eyebrow::before{content:'';width:20px;height:1px;background:var(--electric);}
-.pb-tw{display:block;overflow:hidden;}
-.pb-title{display:block;font-family:var(--serif);font-size:clamp(3rem,6vw,5.5rem);font-weight:300;line-height:1.05;letter-spacing:-1px;color:var(--navy);animation:su .9s cubic-bezier(.16,1,.3,1) .15s both;}
-.pb-title em{font-style:italic;background:linear-gradient(105deg,var(--electric),var(--blue),var(--chrome));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.pb-sub{max-width:540px;margin-top:24px;font-size:.98rem;font-weight:300;line-height:1.85;color:var(--ink2);animation:fu .8s ease .35s both;}
-.sl2{display:inline-flex;align-items:center;gap:8px;font-size:.62rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--electric);margin-bottom:14px;}
-.sl2::before{content:'';width:14px;height:1px;background:var(--electric);}
-.sh{font-family:var(--serif);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:300;color:var(--navy);line-height:1.1;letter-spacing:-.5px;margin-bottom:14px;}
+ 
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:0 64px;}
+canvas#sc{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;}
+.hero-inner{position:relative;z-index:1;max-width:680px;padding-top:68px;}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(41,121,255,.08);border:1px solid rgba(41,121,255,.18);border-radius:100px;padding:7px 16px;margin-bottom:28px;animation:fu .8s ease .1s both;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--electric);animation:pulse 2s ease infinite;}
+.hero-badge-txt{font-size:.65rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--electric);}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.7);}}
+.hero-title{font-family:var(--serif);font-size:clamp(3.5rem,7vw,6.5rem);font-weight:300;line-height:1.02;letter-spacing:-2px;color:var(--navy);overflow:hidden;animation:su .9s cubic-bezier(.16,1,.3,1) .15s both;}
+.hero-title em{font-style:italic;background:linear-gradient(105deg,var(--electric),var(--blue),var(--chrome));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-desc{margin-top:28px;font-size:1.05rem;font-weight:300;line-height:1.9;color:var(--ink2);max-width:500px;animation:fu .8s ease .4s both;}
+.hero-actions{display:flex;align-items:center;gap:16px;margin-top:36px;animation:fu .8s ease .55s both;}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;padding:13px 26px;border-radius:9px;font-size:.88rem;font-weight:500;text-decoration:none;transition:all .25s;box-shadow:0 4px 20px rgba(10,22,40,.25);}
+.btn-primary:hover{background:var(--electric);transform:translateY(-2px);box-shadow:0 8px 28px rgba(41,121,255,.35);}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;color:var(--ink3);font-size:.88rem;font-weight:400;text-decoration:none;transition:color .2s;padding:13px 0;}
+.btn-ghost:hover{color:var(--navy);}
+.hero-visual{position:absolute;right:0;top:50%;transform:translateY(-50%);width:42vw;max-width:560px;height:70vh;pointer-events:none;z-index:0;}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(70px);}
+.orb1{width:380px;height:380px;background:radial-gradient(circle,rgba(41,121,255,.14) 0%,transparent 70%);top:10%;right:5%;}
+.orb2{width:250px;height:250px;background:radial-gradient(circle,rgba(122,154,184,.12) 0%,transparent 70%);bottom:15%;right:20%;}
+.hero-card{position:absolute;background:rgba(238,241,246,0.85);backdrop-filter:blur(16px);border:1px solid rgba(10,22,40,0.08);border-radius:16px;padding:22px 28px;box-shadow:0 8px 40px rgba(10,22,40,.1);}
+.hc1{right:60px;top:22%;animation:float 6s ease-in-out infinite;}
+.hc2{right:180px;bottom:25%;animation:float 7s ease-in-out .8s infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.hc-label{font-size:.63rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--ink3);margin-bottom:6px;}
+.hc-val{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:var(--navy);background:linear-gradient(90deg,var(--electric),var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
+.hc-sub{font-size:.72rem;color:var(--ink3);margin-top:4px;}
+.hc-stars{display:flex;gap:3px;margin-top:8px;}
+.hc-star{color:var(--electric);font-size:.9rem;}
+ 
+/* ── SECTIONS ── */
+section{position:relative;z-index:1;}
+.sl2{display:inline-flex;align-items:center;gap:10px;font-size:.62rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--electric);margin-bottom:16px;}
+.sl2::before{content:'';width:20px;height:1px;background:var(--electric);}
+.sh{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:300;color:var(--navy);line-height:1.1;letter-spacing:-.5px;margin-bottom:20px;}
 .sh em{font-style:italic;color:var(--blue);}
-footer{background:#0a1628;border-top:1px solid rgba(255,255,255,.06);padding:56px 64px 32px;position:relative;z-index:1;}
+ 
+/* ── STORY ── */
+.story{padding:100px 64px;}
+.story-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center;}
+.story-text p{font-size:.97rem;font-weight:300;color:var(--ink2);line-height:1.95;margin-bottom:20px;}
+.story-text strong{color:var(--navy);font-weight:500;}
+.story-img{position:relative;}
+.story-img-main{width:100%;border-radius:20px;background:linear-gradient(135deg,var(--navy) 0%,#1a3060 100%);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;overflow:hidden;position:relative;}
+.story-img-main::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 60%,rgba(41,121,255,.25),transparent 60%);}
+.story-img-label{font-family:var(--serif);font-size:3rem;font-weight:300;color:rgba(255,255,255,.08);letter-spacing:-2px;position:absolute;bottom:20px;right:24px;}
+.story-car-icon{font-size:4rem;filter:drop-shadow(0 4px 20px rgba(41,121,255,.4));position:relative;z-index:1;}
+.story-img-caption{position:relative;z-index:1;font-size:.75rem;color:rgba(255,255,255,.3);letter-spacing:2px;text-transform:uppercase;}
+.story-badge-fl{position:absolute;left:-24px;bottom:28px;background:rgba(238,241,246,0.95);border:1px solid var(--border2);border-radius:12px;padding:16px 20px;box-shadow:0 8px 32px rgba(10,22,40,.12);}
+.story-badge-fl .val{font-family:var(--serif);font-size:1.8rem;font-weight:300;color:var(--electric);line-height:1;}
+.story-badge-fl .lbl{font-size:.68rem;color:var(--ink3);margin-top:2px;}
+ 
+/* ── STATS ── */
+.stats{padding:0 64px 100px;}
+.stats-inner{background:var(--navy);border-radius:24px;padding:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;overflow:hidden;position:relative;}
+.stats-inner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(41,121,255,.15),transparent 60%),radial-gradient(ellipse at 80% 50%,rgba(122,154,184,.1),transparent 60%);}
+.stat-item{text-align:center;padding:24px;position:relative;z-index:1;}
+.stat-item:not(:last-child)::after{content:'';position:absolute;right:0;top:20%;height:60%;width:1px;background:rgba(255,255,255,.07);}
+.stat-num{font-family:var(--serif);font-size:3.5rem;font-weight:300;color:#fff;line-height:1;background:linear-gradient(135deg,#fff,var(--elec-l));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.stat-unit{font-family:var(--serif);font-size:2rem;color:var(--elec-l);opacity:.6;}
+.stat-label{font-size:.72rem;font-weight:300;color:rgba(255,255,255,.4);letter-spacing:1.5px;text-transform:uppercase;margin-top:10px;}
+ 
+/* ── VALUES ── */
+.values{padding:0 64px 100px;}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px;}
+.val-card{background:rgba(238,241,246,0.7);border:1px solid var(--border2);border-radius:16px;padding:36px;transition:all .35s;position:relative;overflow:hidden;}
+.val-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--electric),transparent);opacity:0;transition:opacity .35s;}
+.val-card:hover{transform:translateY(-6px);border-color:rgba(41,121,255,.15);box-shadow:0 20px 60px rgba(10,22,40,.08);}
+.val-card:hover::before{opacity:1;}
+.val-icon{width:48px;height:48px;border-radius:12px;background:rgba(41,121,255,.08);border:1px solid rgba(41,121,255,.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:24px;transition:background .35s,border-color .35s;}
+.val-card:hover .val-icon{background:rgba(41,121,255,.14);border-color:rgba(41,121,255,.22);}
+.val-title{font-family:var(--serif);font-size:1.45rem;font-weight:400;color:var(--navy);margin-bottom:12px;line-height:1.15;}
+.val-desc{font-size:.88rem;font-weight:300;color:var(--ink2);line-height:1.8;}
+ 
+/* ── TIMELINE ── */
+.timeline{padding:0 64px 100px;}
+.tl-wrap{margin-top:48px;position:relative;}
+.tl-line{position:absolute;left:24px;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--electric),rgba(41,121,255,.1));}
+.tl-item{display:flex;gap:40px;align-items:flex-start;padding-left:64px;margin-bottom:48px;position:relative;}
+.tl-dot{position:absolute;left:17px;top:6px;width:14px;height:14px;border-radius:50%;background:var(--electric);border:3px solid #eef1f6;box-shadow:0 0 0 2px var(--electric);flex-shrink:0;}
+.tl-year{font-family:var(--serif);font-size:.85rem;font-weight:600;color:var(--electric);letter-spacing:1px;min-width:48px;padding-top:2px;flex-shrink:0;}
+.tl-content{}
+.tl-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--navy);margin-bottom:8px;}
+.tl-desc{font-size:.88rem;font-weight:300;color:var(--ink2);line-height:1.8;}
+ 
+/* ── TEAM ── */
+.team{padding:0 64px 100px;}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px;}
+.team-card{background:rgba(238,241,246,0.7);border:1px solid var(--border2);border-radius:16px;padding:32px;transition:all .35s;text-align:center;position:relative;overflow:hidden;}
+.team-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(41,121,255,.03),transparent);opacity:0;transition:opacity .35s;}
+.team-card:hover{transform:translateY(-6px);border-color:rgba(41,121,255,.18);box-shadow:0 20px 60px rgba(10,22,40,.08);}
+.team-card:hover::after{opacity:1;}
+.tc-avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--navy),#1a3060);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.6rem;font-weight:300;color:#fff;margin:0 auto 20px;box-shadow:0 6px 24px rgba(10,22,40,.2);border:2px solid rgba(41,121,255,.2);}
+.tc-name{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--navy);margin-bottom:5px;}
+.tc-role{font-size:.72rem;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--electric);margin-bottom:14px;}
+.tc-desc{font-size:.84rem;font-weight:300;color:var(--ink2);line-height:1.75;}
+ 
+/* ── CTA ── */
+.cta{padding:0 64px 100px;}
+.cta-inner{background:linear-gradient(135deg,var(--navy) 0%,#1a3060 100%);border-radius:24px;padding:72px 64px;text-align:center;position:relative;overflow:hidden;}
+.cta-inner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(41,121,255,.2),transparent 60%);}
+.cta-inner h2{font-family:var(--serif);font-size:clamp(2rem,4vw,3rem);font-weight:300;color:#fff;position:relative;z-index:1;margin-bottom:16px;}
+.cta-inner h2 em{font-style:italic;color:var(--elec-l);}
+.cta-inner p{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.8;max-width:440px;margin:0 auto 36px;position:relative;z-index:1;}
+.cta-btn{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--navy);padding:15px 32px;border-radius:10px;font-size:.9rem;font-weight:500;text-decoration:none;transition:all .3s;position:relative;z-index:1;box-shadow:0 6px 24px rgba(0,0,0,.2);}
+.cta-btn:hover{background:var(--electric);color:#fff;transform:translateY(-3px);box-shadow:0 12px 36px rgba(41,121,255,.4);}
+ 
+/* ── FOOTER ── */
+footer{background:#0a1628;border-top:1px solid rgba(255,255,255,.06);padding:56px 64px 32px;}
 .ftt{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:48px;margin-bottom:48px;}
 .fb{font-family:var(--serif);font-size:1.3rem;color:#fff;margin-bottom:12px;}
 .fb em{font-style:normal;color:var(--elec-l);}
@@ -95,43 +189,60 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,.06);padding:56p
 .ftb{border-top:1px solid rgba(255,255,255,.06);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;}
 .ftc,.ftr{font-size:.75rem;color:rgba(255,255,255,.25);}
 .ftr a{color:var(--elec-l);text-decoration:none;}
+ 
+/* ── ANIMATIONS ── */
 @keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 @keyframes su{from{transform:translateY(110%)}to{transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .75s ease,transform .75s ease;}
 .reveal.vis{opacity:1;transform:translateY(0);}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}.d5{transition-delay:.5s}
+ 
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .hero-card{display:none;}
+  .hero-visual{opacity:.4;}
+  .story-grid{grid-template-columns:1fr;gap:48px;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .stat-item:nth-child(2)::after{display:none;}
+  .values-grid{grid-template-columns:1fr 1fr;}
+  .team-grid{grid-template-columns:1fr 1fr;}
+}
 @media(max-width:900px){
   nav{padding:0 20px;height:60px;}
-  .pb{padding:96px 20px 56px;}
+  .hero{padding:0 20px;min-height:80vh;}
+  .story{padding:64px 20px;}
+  .stats{padding:0 20px 64px;}
+  .stats-inner{padding:40px 24px;grid-template-columns:1fr 1fr;}
+  .values{padding:0 20px 64px;}
+  .timeline{padding:0 20px 64px;}
+  .team{padding:0 20px 64px;}
+  .cta{padding:0 20px 64px;}
+  .cta-inner{padding:48px 24px;}
   footer{padding:40px 20px 24px;}
   .ftt{grid-template-columns:1fr;gap:28px;}
   .ftb{flex-direction:column;text-align:center;gap:8px;}
 }
-@media(max-width:420px){nav{padding:0 16px;}.pb{padding-left:16px;padding-right:16px;}footer{padding:32px 16px 20px;}}
-
-
-.ap{padding:0 64px 120px;}
-.ap-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;margin-bottom:80px;}
-.ap-text p{font-size:.95rem;font-weight:300;color:var(--ink2);line-height:1.9;margin-bottom:18px;}
-.ap-text strong{color:var(--navy);font-weight:500;}
-.ap-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
-.ap-stat{padding:24px;background:rgba(238,241,246,0.82);border:1px solid var(--border2);border-radius:12px;text-align:center;}
-.ap-stat-val{font-family:var(--serif);font-size:2.6rem;font-weight:300;color:var(--navy);background:linear-gradient(90deg,var(--electric),var(--chrome));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
-.ap-stat-lbl{font-size:.74rem;color:var(--ink3);margin-top:4px;}
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px;}
-.team-card{background:rgba(238,241,246,0.82);border:1px solid var(--border2);border-radius:14px;padding:28px;text-align:center;transition:border-color .3s,transform .3s;}
-.team-card:hover{border-color:rgba(41,121,255,.2);transform:translateY(-5px);}
-.team-avatar{width:56px;height:56px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.2rem;color:#fff;margin:0 auto 14px;}
-.team-name{font-size:.9rem;font-weight:500;color:var(--navy);margin-bottom:3px;}
-.team-role{font-size:.76rem;color:var(--ink3);}
-
-@media(max-width:1100px){.ap-grid{grid-template-columns:1fr;gap:48px;}.team-grid{grid-template-columns:1fr 1fr;}}
-@media(max-width:900px){.ap{padding-left:20px;padding-right:20px;}.ap-stat-row{grid-template-columns:1fr;}.team-grid{grid-template-columns:1fr;}}
-@media(max-width:420px){.ap{padding-left:16px;padding-right:16px;}}
+@media(max-width:640px){
+  .values-grid{grid-template-columns:1fr;}
+  .team-grid{grid-template-columns:1fr;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:420px){
+  nav{padding:0 16px;}
+  .hero{padding:0 16px;}
+  .story{padding:56px 16px;}
+  .stats{padding:0 16px 56px;}
+  .values{padding:0 16px 56px;}
+  .timeline{padding:0 16px 56px;}
+  .team{padding:0 16px 56px;}
+  .cta{padding:0 16px 56px;}
+  footer{padding:32px 16px 20px;}
+}
 </style>
 </head>
 <body>
-
+ 
+<!-- NAV -->
 <nav>
   <a href="index.html" class="logo">
     <div class="lm"><span class="ln">N</span></div>
@@ -174,41 +285,214 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,.06);padding:56p
     <div class="mf">NexDrive — Québec © 2026</div>
   </div>
 </div>
-
-<div class="pb">
-  <div class="pb-eyebrow">Notre histoire</div>
-  <div class="pb-tw"><span class="pb-title">Qui sommes-<em>nous ?</em></span></div>
-  <p class="pb-sub">NexDrive est né d'une passion pour les belles voitures et l'excellence du service client au Québec.</p>
-</div>
-<section class="ap">
-  <div class="ap-grid">
-    <div class="ap-text reveal">
-      <div class="sl2">Notre histoire</div>
-      <p>NexDrive est une entreprise québécoise de location de véhicules via la plateforme Turo. Fondée avec la conviction que louer une voiture peut et devrait être une <strong>expérience agréable et sans stress</strong>, nous nous sommes donné pour mission de changer la façon dont les gens perçoivent la location de véhicules entre particuliers.</p>
-      <p>Chaque véhicule de notre flotte est entretenu avec soin, nettoyé en profondeur avant chaque location, et assuré à 100% via Turo. Nous croyons en la transparence totale — pas de frais cachés, pas de surprises.</p>
-      <p>Basés au Québec, nous servons des clients à travers toute la province avec un service <strong>rapide, humain et professionnel</strong>.</p>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      <span class="hero-badge-txt">Fondée au Québec · 100% Turo</span>
     </div>
-    <div class="reveal d1">
-      <div class="ap-stat-row">
-        <div class="ap-stat"><div class="ap-stat-val">5.0</div><div class="ap-stat-lbl">Note Turo</div></div>
-        <div class="ap-stat"><div class="ap-stat-val">100+</div><div class="ap-stat-lbl">Clients satisfaits</div></div>
-        <div class="ap-stat"><div class="ap-stat-val">3</div><div class="ap-stat-lbl">Véhicules disponibles</div></div>
+    <div style="overflow:hidden;">
+      <h1 class="hero-title">Notre<br><em>histoire</em></h1>
+    </div>
+    <p class="hero-desc">NexDrive est né d'une conviction simple : la location de voiture devrait être une expérience agréable, transparente et mémorable. Nous mettons nos véhicules à votre service avec passion.</p>
+    <div class="hero-actions">
+      <a href="vehicules.html" class="btn-primary">Voir nos véhicules <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="#valeurs" class="btn-ghost">Nos valeurs →</a>
+    </div>
+  </div>
+  <!-- Floating cards -->
+  <div class="hero-card hc1">
+    <div class="hc-label">Note Turo</div>
+    <div class="hc-val">5.0</div>
+    <div class="hc-stars">
+      <span class="hc-star">★</span><span class="hc-star">★</span><span class="hc-star">★</span><span class="hc-star">★</span><span class="hc-star">★</span>
+    </div>
+    <div class="hc-sub">Évaluation parfaite</div>
+  </div>
+  <div class="hero-card hc2">
+    <div class="hc-label">Clients satisfaits</div>
+    <div class="hc-val">100<span style="font-size:1.4rem;opacity:.5">+</span></div>
+    <div class="hc-sub">Au Québec</div>
+  </div>
+</section>
+ 
+<!-- STORY -->
+<section class="story">
+  <div class="story-grid">
+    <div class="story-text reveal">
+      <div class="sl2">Notre histoire</div>
+      <h2 class="sh">Une passion pour<br><em>l'excellence</em></h2>
+      <p>NexDrive est une entreprise québécoise de location de véhicules via la plateforme Turo. Fondée avec la conviction que louer une voiture peut et devrait être une <strong>expérience agréable et sans stress</strong>, nous nous sommes donné pour mission de changer la façon dont les gens perçoivent la location entre particuliers.</p>
+      <p>Chaque véhicule de notre flotte est entretenu avec soin, nettoyé en profondeur avant chaque location, et assuré à 100% via Turo. Nous croyons en la <strong>transparence totale</strong> — pas de frais cachés, pas de surprises.</p>
+      <p>Basés au Québec, nous servons des clients à travers toute la province avec un service <strong>rapide, humain et professionnel</strong>. Votre satisfaction n'est pas une option, c'est notre priorité.</p>
+    </div>
+    <div class="reveal d2" style="position:relative;">
+      <div class="story-img-main">
+        <div class="story-car-icon">🚗</div>
+        <div class="story-img-caption">Flotte NexDrive · Québec</div>
+        <div class="story-img-label">2026</div>
+      </div>
+      <div class="story-badge-fl">
+        <div class="val">3</div>
+        <div class="lbl">Véhicules premium</div>
       </div>
     </div>
   </div>
-  <div class="reveal">
-    <div class="sl2">L'équipe</div>
-    <div class="team-grid">
-      <div class="team-card"><div class="team-avatar">N</div><div class="team-name">L'équipe NexDrive</div><div class="team-role">Fondateur & propriétaire</div></div>
-      <div class="team-card"><div class="team-avatar">S</div><div class="team-name">Service client</div><div class="team-role">Relation client & réservations</div></div>
-      <div class="team-card"><div class="team-avatar">M</div><div class="team-name">Entretien & Inspection</div><div class="team-role">Préparation des véhicules</div></div>
+</section>
+ 
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-inner reveal">
+    <div class="stat-item">
+      <div class="stat-num">5.0</div>
+      <div class="stat-label">Note Turo</div>
+    </div>
+    <div class="stat-item">
+      <div><span class="stat-num">100</span><span class="stat-unit">+</span></div>
+      <div class="stat-label">Clients satisfaits</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Véhicules disponibles</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Frais cachés</div>
     </div>
   </div>
 </section>
-
+ 
+<!-- VALUES -->
+<section class="values" id="valeurs">
+  <div class="reveal">
+    <div class="sl2">Ce qui nous guide</div>
+    <h2 class="sh">Nos <em>valeurs</em></h2>
+  </div>
+  <div class="values-grid">
+    <div class="val-card reveal d1">
+      <div class="val-icon">✦</div>
+      <div class="val-title">Transparence totale</div>
+      <p class="val-desc">Aucun frais caché, aucune mauvaise surprise. Le prix affiché est le prix final. Nous croyons que la confiance se construit dès le premier contact.</p>
+    </div>
+    <div class="val-card reveal d2">
+      <div class="val-icon">🛡️</div>
+      <div class="val-title">Sécurité & assurance</div>
+      <p class="val-desc">Chaque location est couverte à 100% par l'assurance Turo. Nos véhicules sont inspectés minutieusement avant chaque remise de clés.</p>
+    </div>
+    <div class="val-card reveal d3">
+      <div class="val-icon">⚡</div>
+      <div class="val-title">Service rapide</div>
+      <p class="val-desc">Nous répondons rapidement à toutes vos questions. Notre processus de réservation est simple, fluide et adapté à votre rythme de vie.</p>
+    </div>
+    <div class="val-card reveal d1">
+      <div class="val-icon">🌟</div>
+      <div class="val-title">Excellence constante</div>
+      <p class="val-desc">Nos véhicules sont nettoyés en profondeur avant chaque location. Chaque client mérite un véhicule impeccable, sans compromis.</p>
+    </div>
+    <div class="val-card reveal d2">
+      <div class="val-icon">🤝</div>
+      <div class="val-title">Relation humaine</div>
+      <p class="val-desc">Vous n'êtes pas un numéro de dossier. Chez NexDrive, chaque client est traité avec respect, attention et bienveillance.</p>
+    </div>
+    <div class="val-card reveal d3">
+      <div class="val-icon">📍</div>
+      <div class="val-title">Ancrage local</div>
+      <p class="val-desc">Fièrement québécois, nous connaissons nos routes, nos saisons et nos clients. Nous sommes là pour vous, partout dans la province.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- TIMELINE -->
+<section class="timeline">
+  <div class="reveal">
+    <div class="sl2">Notre parcours</div>
+    <h2 class="sh">Comment nous <em>sommes nés</em></h2>
+  </div>
+  <div class="tl-wrap reveal d1">
+    <div class="tl-line"></div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2024</div>
+      <div class="tl-content">
+        <div class="tl-title">L'idée germe</div>
+        <p class="tl-desc">Insatisfaits des expériences de location traditionnelles, les fondateurs imaginent un service différent — centré sur l'humain et la qualité.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2025</div>
+      <div class="tl-content">
+        <div class="tl-title">Lancement sur Turo</div>
+        <p class="tl-desc">NexDrive rejoint la plateforme Turo avec un premier véhicule. Les premières avis 5 étoiles arrivent rapidement, validant notre approche.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2025</div>
+      <div class="tl-content">
+        <div class="tl-title">Croissance de la flotte</div>
+        <p class="tl-desc">Face à la demande croissante, nous agrandissons notre flotte à 3 véhicules et affinons nos processus d'inspection et d'entretien.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2026</div>
+      <div class="tl-content">
+        <div class="tl-title">100+ clients satisfaits</div>
+        <p class="tl-desc">Nous célébrons notre 100ème location avec une note parfaite de 5.0 sur Turo. La communauté NexDrive continue de grandir au Québec.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- TEAM -->
+<section class="team">
+  <div class="reveal">
+    <div class="sl2">L'équipe</div>
+    <h2 class="sh">Les personnes <em>derrière</em> NexDrive</h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal d1">
+      <div class="tc-avatar">N</div>
+      <div class="tc-name">L'équipe NexDrive</div>
+      <div class="tc-role">Fondateur & Propriétaire</div>
+      <p class="tc-desc">Passionné d'automobile, il a fondé NexDrive avec la vision d'un service de location qui respecte vraiment ses clients.</p>
+    </div>
+    <div class="team-card reveal d2">
+      <div class="tc-avatar">S</div>
+      <div class="tc-name">Service client</div>
+      <div class="tc-role">Relations & Réservations</div>
+      <p class="tc-desc">Toujours disponible pour répondre à vos questions, coordonner les remises de clés et vous accompagner à chaque étape.</p>
+    </div>
+    <div class="team-card reveal d3">
+      <div class="tc-avatar">M</div>
+      <div class="tc-name">Entretien & Inspection</div>
+      <div class="tc-role">Préparation des véhicules</div>
+      <p class="tc-desc">Garant de l'impeccabilité de notre flotte, il s'assure que chaque véhicule soit parfait avant de vous être remis.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-inner reveal">
+    <h2>Prêt à vivre l'expérience<br><em>NexDrive ?</em></h2>
+    <p>Réservez en quelques minutes sur Turo. Assurance incluse, véhicule impeccable, service 5 étoiles garanti.</p>
+    <a href="https://turo.com/VOTRE-LIEN-ICI" target="_blank" class="cta-btn">Réserver sur Turo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
 <footer>
   <div class="ftt">
-    <div><div class="fb">Nex<em>Drive</em></div><p class="fd">Location de véhicules premium au Québec. Réservation via Turo, assurance incluse.</p></div>
+    <div>
+      <div class="fb">Nex<em>Drive</em></div>
+      <p class="fd">Location de véhicules premium au Québec. Réservation via Turo, assurance incluse.</p>
+    </div>
     <div class="fc"><h4>Navigation</h4>
       <a href="vehicules.html">Véhicules</a>
       <a href="engagement.html">Engagement</a>
@@ -223,19 +507,16 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,.06);padding:56p
       <a href="confidentialite.html">Confidentialité</a>
     </div>
   </div>
-  <div class="ftb"><div class="ftc">© 2026 NexDrive — Québec, Canada.</div><div class="ftr">Réservations via <a href="https://turo.com" target="_blank">Turo</a></div></div>
+  <div class="ftb">
+    <div class="ftc">© 2026 NexDrive — Québec, Canada.</div>
+    <div class="ftr">Réservations via <a href="https://turo.com" target="_blank">Turo</a></div>
+  </div>
 </footer>
+ 
 <script>
-
-(function(){var c=document.getElementById('sc'),x=c.getContext('2d'),W,H,stars=[],raf,last=0;
-function rnd(a,b){return a+Math.random()*(b-a);}
-function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;stars=[];var n=Math.min(Math.max(Math.floor(W*H/4000),80),260);for(var i=0;i<n;i++)stars.push(mk());}
-function mk(){var t=Math.random(),r,col,bA;if(t<.55){r=rnd(.8,2);col='15,35,70';bA=rnd(.45,.75);}else if(t<.8){r=rnd(.6,1.6);col='30,100,220';bA=rnd(.35,.65);}else if(t<.93){r=rnd(1,2.2);col='60,90,130';bA=rnd(.3,.55);}else{r=rnd(1.2,2);col='10,40,90';bA=rnd(.4,.65);}return{x:Math.random()*W,y:Math.random()*H,r:r,bA:bA,al:bA,col:col,vx:(Math.random()-.5)*rnd(.08,.28),vy:(Math.random()-.5)*rnd(.08,.28),ph:Math.random()*Math.PI*2,spd:rnd(.4,1.1),sparkle:t>=.93};}
-function d4(px,py,r,a,col){x.save();x.translate(px,py);x.rotate(Math.PI/4);x.globalAlpha=a;x.strokeStyle='rgb('+col+')';x.lineWidth=.7;for(var i=0;i<4;i++){x.beginPath();x.moveTo(0,0);x.lineTo(0,r*2.8);x.stroke();x.rotate(Math.PI/2);}x.beginPath();x.arc(0,0,r*.45,0,Math.PI*2);x.fillStyle='rgb('+col+')';x.fill();x.restore();}
-function loop(ts){var dt=Math.min((ts-last)/16,2);last=ts;x.clearRect(0,0,W,H);for(var s of stars){s.x+=s.vx*dt;s.y+=s.vy*dt;if(s.x<-5)s.x=W+5;if(s.x>W+5)s.x=-5;if(s.y<-5)s.y=H+5;if(s.y>H+5)s.y=-5;s.ph+=s.spd*.014*dt;s.al=s.bA*(.5+.5*Math.sin(s.ph));if(s.sparkle)d4(s.x,s.y,s.r*1.5,s.al,s.col);else{x.globalAlpha=s.al;x.beginPath();x.arc(s.x,s.y,s.r,0,Math.PI*2);x.fillStyle='rgb('+s.col+')';x.fill();}}x.globalAlpha=1;raf=requestAnimationFrame(loop);}
-window.addEventListener('resize',function(){cancelAnimationFrame(raf);resize();raf=requestAnimationFrame(loop);});resize();raf=requestAnimationFrame(loop);})();
-
-
+ 
+ 
+/* ── NAV ── */
 var hbBtn=document.getElementById('hbBtn'),mobB=document.getElementById('mobBack'),mobP=document.getElementById('mobPanel');
 function openMob(){hbBtn.classList.add('open');mobP.classList.add('open');mobB.classList.add('open');document.body.style.overflow='hidden';}
 function closeMob(){hbBtn.classList.remove('open');mobP.classList.remove('open');mobB.classList.remove('open');document.body.style.overflow='';}
@@ -243,10 +524,37 @@ hbBtn.addEventListener('click',function(){mobP.classList.contains('open')?closeM
 mobB.addEventListener('click',closeMob);
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMob();});
 (function(){var links=mobP.querySelectorAll('.ma');var mo=new MutationObserver(function(){var open=mobP.classList.contains('open');links.forEach(function(l,i){l.style.transitionDelay=open?(.06+i*.05)+'s':'0s';});});mo.observe(mobP,{attributes:true,attributeFilter:['class']});})();
+ 
+/* ── REVEAL ON SCROLL ── */
 var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:.08});
 document.querySelectorAll('.reveal').forEach(function(r){obs.observe(r);});
-
-
+ 
+/* ── COUNTER ANIMATION ── */
+function animateCount(el, target, decimals){
+  var start=0, duration=1800, startTime=null;
+  function step(ts){
+    if(!startTime)startTime=ts;
+    var p=Math.min((ts-startTime)/duration,1);
+    var eased=1-Math.pow(1-p,3);
+    var val=start+(target-start)*eased;
+    el.textContent=decimals?val.toFixed(1):Math.floor(val)+(target===100?'+':'');
+    if(p<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+var countObs=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      var nums=e.target.querySelectorAll('.stat-num');
+      nums.forEach(function(n){
+        var v=parseFloat(n.textContent);
+        if(!isNaN(v)){animateCount(n,v,n.textContent.includes('.'));}
+      });
+      countObs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.stats-inner').forEach(function(s){countObs.observe(s);});
 </script>
 </body>
 </html>
