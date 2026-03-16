@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>À Propos — NexDrive | Québec</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <link rel="icon" type="image/png" href="logo/ChatGPT Image 10 mars 2026, 16_59_33 (1).png" />
 <link rel="apple-touch-icon" href="logo/ChatGPT Image 10 mars 2026, 16_59_33 (1).png" />
 <style>
@@ -53,7 +53,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;ali
 .mn-left{display:flex;align-items:center;gap:12px;}
 .mn-icon{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0;}
 .ma.active .mn-icon{background:rgba(41,121,255,0.22);}
-.mn-lbl{font-family:var(--serif);font-size:1.05rem;font-weight:400;color:rgba(255,255,255,0.7);transition:color .18s;line-height:1;}
+.mn-lbl{font-family:'Playfair Display',Georgia,serif;font-size:1.05rem;font-weight:400;color:rgba(255,255,255,0.7);transition:color .18s;line-height:1;}
 .ma.active .mn-lbl,.ma:hover .mn-lbl{color:rgba(255,255,255,0.95);}
 .ma.active .mn-lbl{color:#fff;}
 .mn-arr{color:rgba(255,255,255,0.2);font-size:.75rem;transition:transform .22s,color .18s;}
@@ -255,26 +255,25 @@ footer{background:#0a1628;border-top:1px solid rgba(255,255,255,.06);padding:56p
     <button class="mph-close" onclick="closeMob()" aria-label="Fermer">✕</button>
   </div>
   <div class="mn">
-    <div class="mn-sec"><div class="mn-heading">Navigation</div>
-      <a href="vehicules.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🚗</div><span class="mn-lbl">Véhicules</span></div><span class="mn-arr">→</span></a>
-      <a href="engagement.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">✦</div><span class="mn-lbl">Engagement</span></div><span class="mn-arr">→</span></a>
-      <a href="processus.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🗝️</div><span class="mn-lbl">Processus</span></div><span class="mn-arr">→</span></a>
-    </div>
-    <div class="mn-sec"><div class="mn-heading">Mon espace</div>
-      <a href="compte.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">👤</div><span class="mn-lbl">Mon compte</span></div><span class="mn-arr">→</span></a>
-    </div>
-    <div class="mn-sec"><div class="mn-heading">Informations</div>
-      <a href="apropos.html" class="ma active" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🏢</div><span class="mn-lbl">À propos</span></div><span class="mn-arr">→</span></a>
-      <a href="services.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">⚙️</div><span class="mn-lbl">Services</span></div><span class="mn-arr">→</span></a>
+    <div class="mn-sec">
+      <div class="mn-heading">Navigation</div>
+      <a href="index.html"      class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🏠</div><span class="mn-lbl">Accueil</span></div><span class="mn-arr">→</span></a>
+      <a href="vehicules.html"  class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🚗</div><span class="mn-lbl">Notre flotte</span></div><span class="mn-arr">→</span></a>
+      <a href="apropos.html"    class="ma active" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🏢</div><span class="mn-lbl">À propos</span></div><span class="mn-arr">→</span></a>
       <a href="partenaires.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🤝</div><span class="mn-lbl">Partenaires</span></div><span class="mn-arr">→</span></a>
-      <a href="faq.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">❓</div><span class="mn-lbl">FAQ</span></div><span class="mn-arr">→</span></a>
+      <a href="faq.html"        class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">❓</div><span class="mn-lbl">FAQ</span></div><span class="mn-arr">→</span></a>
     </div>
-    <div class="mn-sec"><div class="mn-heading">Légal</div>
+    <div class="mn-sec">
+      <div class="mn-heading">Mon espace</div>
+      <a href="compte.html"     class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">👤</div><span class="mn-lbl">Mon compte</span></div><span class="mn-arr">→</span></a>
+    </div>
+    <div class="mn-sec">
+      <div class="mn-heading">Légal</div>
       <a href="confidentialite.html" class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">🔒</div><span class="mn-lbl">Confidentialité</span></div><span class="mn-arr">→</span></a>
+      <a href="conditions.html"      class="ma" onclick="closeMob()"><div class="mn-left"><div class="mn-icon">📄</div><span class="mn-lbl">Conditions</span></div><span class="mn-arr">→</span></a>
     </div>
   </div>
   <div class="mpf">
-    <a href="https://turo.com/VOTRE-LIEN-ICI" target="_blank" class="mr">Réserver sur Turo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     <div class="mf">NexDrive — Québec © 2026</div>
   </div>
 </div>
