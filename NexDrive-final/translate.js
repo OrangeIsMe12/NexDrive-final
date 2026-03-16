@@ -1,4 +1,5 @@
 
+
 /**
  * NexDrive — translate.js v3 (cookies)
  * ─────────────────────────────────────────────────────────
@@ -170,8 +171,8 @@
         'stat2.label': { fr: 'Contrat automatique', en: 'Automatic Contract' },
         'stat3.label': { fr: 'Disponible', en: 'Available' },
         'stat4.label': { fr: 'Tout le Québec', en: 'All of Québec' },
-        'process.label': { fr: 'Processus / Process', en: 'Process' },
-        'process.title': { fr: 'Comment ça fonctionne', en: 'How it works' },
+        'process.label': { fr: 'Processus / Process', en: 'Process / Processus' },
+        'process.title': { fr: 'Comment ça <em>fonctionne</em>', en: 'How it <em>works</em>' },
         'step1.title': { fr: 'Choisissez votre véhicule', en: 'Choose your vehicle' },
         'step1.desc': { fr: 'Parcourez notre flotte et sélectionnez le véhicule qui correspond à vos besoins et votre budget.', en: 'Browse our fleet and select the vehicle that fits your needs and budget.' },
         'step2.title': { fr: 'Réservez en ligne', en: 'Book online' },
@@ -179,7 +180,7 @@
         'step3.title': { fr: 'Recevez votre contrat', en: 'Receive your contract' },
         'step3.desc': { fr: 'Un contrat complet est généré automatiquement et envoyé à votre adresse email en quelques secondes.', en: 'A complete contract is automatically generated and sent to your email in seconds.' },
         'reviews.label': { fr: 'Témoignages', en: 'Testimonials' },
-        'reviews.title': { fr: 'Ce que disent nos clients', en: 'What our clients say' },
+        'reviews.title': { fr: 'Ce que disent <em>nos clients</em>', en: 'What our <em>clients say</em>' },
         'reviews.score': { fr: '5.0', en: '5.0' },
         'reviews.source': { fr: 'Avis vérifiés via Turo', en: 'Verified reviews via Turo' },
         'cta.label': { fr: 'Prêt à commencer', en: 'Ready to start' },
