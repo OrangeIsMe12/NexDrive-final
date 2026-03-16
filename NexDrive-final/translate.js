@@ -214,48 +214,68 @@
     }
  
     function injectToggle() {
-        if (document.getElementById('nd-lang-btn')) return;
+        if (document.getElementById('nd-lang-wrap')) return;
         var nav = document.querySelector('nav');
         if (!nav) return;
  
-        var btn = document.createElement('button');
-        btn.id = 'nd-lang-btn';
-        btn.textContent = lang === 'fr' ? 'EN' : 'FR';
-        btn.title = lang === 'fr' ? 'Switch to English' : 'Passer en français';
-        btn.style.cssText = 'background:transparent;border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.6);font-family:inherit;font-size:.72rem;font-weight:500;letter-spacing:1.5px;padding:6px 14px;border-radius:8px;cursor:pointer;transition:all .25s;flex-shrink:0;margin-right:10px;z-index:200;';
-        btn.addEventListener('mouseenter', function() {
-            this.style.borderColor = 'rgba(91,159,255,0.5)';
-            this.style.color = '#fff';
-            this.style.background = 'rgba(41,121,255,0.12)';
-        });
-        btn.addEventListener('mouseleave', function() {
-            this.style.borderColor = 'rgba(255,255,255,0.18)';
-            this.style.color = 'rgba(255,255,255,0.6)';
-            this.style.background = 'transparent';
-        });
-        btn.addEventListener('click', toggleLang);
+        // Wrapper des deux boutons
+        var wrap = document.createElement('div');
+        wrap.id = 'nd-lang-wrap';
+        wrap.style.cssText = 'display:flex;align-items:center;gap:4px;margin-right:10px;flex-shrink:0;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:3px;';
  
-        // Insérer avant .hbg OU avant le dernier enfant de nav
-        var hbg = nav.querySelector('.hbg');
-        var navRight = nav.querySelector('[style*="display:flex"]') || nav.querySelector('div');
-        if (hbg) {
-            hbg.parentNode.insertBefore(btn, hbg);
-        } else if (navRight) {
-            navRight.insertBefore(btn, navRight.firstChild);
-        } else {
-            nav.appendChild(btn);
+        function makeBtn(code) {
+            var b = document.createElement('button');
+            b.id = 'nd-btn-' + code;
+            b.textContent = code.toUpperCase();
+            b.style.cssText = 'background:transparent;border:none;color:rgba(255,255,255,0.45);font-family:inherit;font-size:.7rem;font-weight:600;letter-spacing:1.5px;padding:5px 12px;border-radius:7px;cursor:pointer;transition:all .22s;flex-shrink:0;';
+            b.addEventListener('mouseenter', function() {
+                if (lang !== code) this.style.color = 'rgba(255,255,255,0.8)';
+            });
+            b.addEventListener('mouseleave', function() {
+                if (lang !== code) this.style.color = 'rgba(255,255,255,0.45)';
+            });
+            b.addEventListener('click', function() {
+                if (lang !== code) {
+                    lang = code;
+                    setCookie('nd_lang', lang, 365);
+                    applyAll();
+                    updateBtns();
+                }
+            });
+            return b;
         }
+ 
+        wrap.appendChild(makeBtn('fr'));
+        wrap.appendChild(makeBtn('en'));
+ 
+        var hbg = nav.querySelector('.hbg');
+        if (hbg) hbg.parentNode.insertBefore(wrap, hbg);
+        else nav.appendChild(wrap);
+ 
+        updateBtns();
+    }
+ 
+    function updateBtns() {
+        ['fr','en'].forEach(function(code) {
+            var b = document.getElementById('nd-btn-' + code);
+            if (!b) return;
+            if (lang === code) {
+                b.style.background = 'rgba(34,197,94,0.18)';
+                b.style.color = '#4ade80';
+                b.style.boxShadow = '0 0 10px rgba(34,197,94,0.2)';
+            } else {
+                b.style.background = 'transparent';
+                b.style.color = 'rgba(255,255,255,0.45)';
+                b.style.boxShadow = 'none';
+            }
+        });
     }
  
     function toggleLang() {
         lang = (lang === 'fr') ? 'en' : 'fr';
-        setCookie('nd_lang', lang, 365); // expire dans 1 an
+        setCookie('nd_lang', lang, 365);
         applyAll();
-        var btn = document.getElementById('nd-lang-btn');
-        if (btn) {
-            btn.textContent = lang === 'fr' ? 'EN' : 'FR';
-            btn.title = lang === 'fr' ? 'Switch to English' : 'Passer en français';
-        }
+        updateBtns();
     }
  
     function init() {
@@ -278,11 +298,7 @@
             lang = l;
             setCookie('nd_lang', l, 365);
             applyAll();
-            var btn = document.getElementById('nd-lang-btn');
-            if (btn) {
-                btn.textContent = lang === 'fr' ? 'EN' : 'FR';
-                btn.title = lang === 'fr' ? 'Switch to English' : 'Passer en français';
-            }
+            updateBtns();
         }
     };
  
