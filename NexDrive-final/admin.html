@@ -1,0 +1,2864 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NexDrive — Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg: #060c18;
+            --sb: #08101f;
+            --card: #0c1828;
+            --card2: #0f1e30;
+            --blue: #2979ff;
+            --bl: #5b9fff;
+            --bll: #a8cbff;
+            --green: #34d399;
+            --amber: #fbbf24;
+            --red: #f87171;
+            --purple: #a78bfa;
+            --W: #fff;
+            --W2: rgba(255, 255, 255, .68);
+            --W3: rgba(255, 255, 255, .35);
+            --W4: rgba(255, 255, 255, .07);
+            --bdr: rgba(41, 121, 255, .11);
+            --bdr2: rgba(41, 121, 255, .06);
+            --sans: 'DM Sans', -apple-system, sans-serif;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            background: var(--bg);
+            color: var(--W);
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden;
+        }
+        
+        input,
+        textarea,
+        select,
+        button {
+            font-family: inherit;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgba(41, 121, 255, .3);
+            border-radius: 4px;
+        }
+        /* ── AUTH GATE ─────────────────────────────────── */
+        
+        #gate {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(41, 121, 255, .12), transparent), var(--bg);
+        }
+        
+        .gate-card {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(10, 18, 32, .95);
+            border: 1px solid var(--bdr);
+            border-radius: 20px;
+            padding: 40px 34px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 32px 80px rgba(0, 0, 0, .6);
+        }
+        
+        .gate-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(41, 121, 255, .6) 50%, transparent);
+        }
+        
+        .gate-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        
+        .gate-lm {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            background: rgba(41, 121, 255, .14);
+            border: 1px solid rgba(41, 121, 255, .28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .95rem;
+        }
+        
+        .gate-lt {
+            font-size: 1.3rem;
+            color: #fff;
+            letter-spacing: .3px;
+        }
+        
+        .gate-lt em {
+            font-style: normal;
+            background: linear-gradient(90deg, var(--blue), var(--bl));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .gate-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 22px;
+        }
+        
+        .gate-badge span {
+            font-size: .56rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: 5px;
+            background: rgba(251, 191, 36, .1);
+            color: var(--amber);
+            border: 1px solid rgba(251, 191, 36, .22);
+        }
+        
+        .gate-title {
+            font-size: 1.35rem;
+            font-weight: 300;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+        
+        .gate-sub {
+            font-size: .78rem;
+            color: var(--W3);
+            text-align: center;
+            margin-bottom: 26px;
+            line-height: 1.6;
+        }
+        
+        .fg {
+            margin-bottom: 14px;
+        }
+        
+        .fg label {
+            display: block;
+            font-size: .66rem;
+            font-weight: 600;
+            letter-spacing: .8px;
+            text-transform: uppercase;
+            color: var(--W3);
+            margin-bottom: 6px;
+        }
+        
+        .fg input {
+            width: 100%;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .09);
+            border-radius: 9px;
+            padding: 11px 14px;
+            color: #fff;
+            font-size: .85rem;
+            transition: all .2s;
+        }
+        
+        .fg input:focus {
+            outline: none;
+            border-color: rgba(41, 121, 255, .5);
+            background: rgba(41, 121, 255, .06);
+        }
+        
+        .fg input::placeholder {
+            color: rgba(255, 255, 255, .18);
+        }
+        
+        .gate-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #1454d4, #2979ff);
+            color: #fff;
+            border: none;
+            border-radius: 9px;
+            padding: 12px;
+            font-size: .88rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all .25s;
+            box-shadow: 0 4px 18px rgba(41, 121, 255, .3);
+            margin-top: 6px;
+        }
+        
+        .gate-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 7px 24px rgba(41, 121, 255, .45);
+        }
+        
+        .gate-err {
+            font-size: .75rem;
+            color: var(--red);
+            text-align: center;
+            margin-top: 10px;
+            min-height: 18px;
+        }
+        /* ── LAYOUT ────────────────────────────────────── */
+        
+        #dash {
+            display: none;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .dash {
+            display: flex;
+            height: 100%;
+        }
+        /* SIDEBAR */
+        
+        .sb {
+            width: 230px;
+            flex-shrink: 0;
+            background: var(--sb);
+            border-right: 1px solid var(--bdr2);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .sb::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, rgba(41, 121, 255, .25) 25%, rgba(41, 121, 255, .25) 75%, transparent);
+        }
+        
+        .sb-top {
+            padding: 18px 14px 14px;
+            border-bottom: 1px solid var(--bdr2);
+        }
+        
+        .sb-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        
+        .sb-lm {
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            background: rgba(41, 121, 255, .14);
+            border: 1px solid rgba(41, 121, 255, .25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+        }
+        
+        .sb-lt {
+            font-size: 1.05rem;
+            color: #fff;
+        }
+        
+        .sb-lt em {
+            font-style: normal;
+            color: var(--bl);
+        }
+        
+        .sb-adm {
+            display: inline-block;
+            font-size: .48rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(251, 191, 36, .1);
+            color: var(--amber);
+            border: 1px solid rgba(251, 191, 36, .2);
+        }
+        
+        .sb-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px 8px;
+            scrollbar-width: none;
+        }
+        
+        .sb-nav::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .sb-sec {
+            margin-bottom: 2px;
+        }
+        
+        .sb-sec-title {
+            font-size: .47rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .16);
+            padding: 10px 8px 4px;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            margin-bottom: 1px;
+            color: rgba(255, 255, 255, .45);
+            font-size: .8rem;
+            font-weight: 500;
+            transition: all .16s;
+            user-select: none;
+        }
+        
+        .nav-item:hover {
+            background: rgba(255, 255, 255, .04);
+            color: rgba(255, 255, 255, .8);
+        }
+        
+        .nav-item.active {
+            background: rgba(41, 121, 255, .14);
+            border-color: rgba(41, 121, 255, .24);
+            color: #fff;
+        }
+        
+        .nav-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, .04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .68rem;
+            flex-shrink: 0;
+        }
+        
+        .nav-item.active .nav-icon {
+            background: rgba(41, 121, 255, .2);
+        }
+        
+        .nav-ct {
+            margin-left: auto;
+            font-size: .54rem;
+            padding: 1px 6px;
+            border-radius: 100px;
+            background: rgba(41, 121, 255, .18);
+            color: var(--bl);
+            border: 1px solid rgba(41, 121, 255, .28);
+            font-weight: 700;
+        }
+        
+        .sb-bot {
+            padding: 10px 8px 14px;
+            border-top: 1px solid var(--bdr2);
+        }
+        
+        .sb-user {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid var(--bdr2);
+            margin-bottom: 8px;
+        }
+        
+        .sb-av {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue), #060c18);
+            border: 2px solid rgba(91, 159, 255, .3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .65rem;
+            flex-shrink: 0;
+        }
+        
+        .sb-uinfo {
+            overflow: hidden;
+        }
+        
+        .sb-uname {
+            font-size: .72rem;
+            font-weight: 500;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .sb-uemail {
+            font-size: .58rem;
+            color: var(--W3);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .sb-out {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            padding: 7px;
+            border-radius: 7px;
+            background: rgba(239, 68, 68, .07);
+            border: 1px solid rgba(239, 68, 68, .15);
+            color: #f87171;
+            font-size: .72rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all .2s;
+        }
+        
+        .sb-out:hover {
+            background: rgba(239, 68, 68, .14);
+        }
+        /* MAIN */
+        
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .topbar {
+            height: 54px;
+            border-bottom: 1px solid var(--bdr2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            flex-shrink: 0;
+            background: rgba(6, 12, 24, .85);
+            backdrop-filter: blur(12px);
+        }
+        
+        .tb-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tb-title {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #fff;
+        }
+        
+        .tb-title em {
+            font-style: italic;
+            color: var(--bl);
+        }
+        
+        .tb-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: .58rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 5px;
+            background: rgba(52, 211, 153, .1);
+            color: var(--green);
+            border: 1px solid rgba(52, 211, 153, .2);
+        }
+        
+        .tb-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(52, 211, 153, .4);
+            }
+            50% {
+                box-shadow: 0 0 0 5px rgba(52, 211, 153, 0);
+            }
+        }
+        
+        .tb-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+        }
+        /* ── SECTIONS ──────────────────────────────────── */
+        
+        .sec {
+            display: none;
+            animation: fadeIn .3s ease;
+        }
+        
+        .sec.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* STATS */
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+        
+        .sc {
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 12px;
+            padding: 18px 16px;
+            transition: border-color .25s;
+        }
+        
+        .sc:hover {
+            border-color: rgba(41, 121, 255, .25);
+        }
+        
+        .sc-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        
+        .sc-ico {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .85rem;
+            border: 1px solid;
+        }
+        
+        .ico-b {
+            background: rgba(41, 121, 255, .12);
+            border-color: rgba(41, 121, 255, .22);
+        }
+        
+        .ico-g {
+            background: rgba(52, 211, 153, .12);
+            border-color: rgba(52, 211, 153, .22);
+        }
+        
+        .ico-a {
+            background: rgba(251, 191, 36, .12);
+            border-color: rgba(251, 191, 36, .22);
+        }
+        
+        .ico-p {
+            background: rgba(167, 139, 250, .12);
+            border-color: rgba(167, 139, 250, .22);
+        }
+        
+        .sc-trend {
+            font-size: .6rem;
+            padding: 2px 7px;
+            border-radius: 100px;
+            font-weight: 600;
+        }
+        
+        .trend-g {
+            background: rgba(52, 211, 153, .1);
+            color: var(--green);
+        }
+        
+        .trend-b {
+            background: rgba(41, 121, 255, .1);
+            color: var(--bl);
+        }
+        
+        .sc-val {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+        
+        .sc-lbl {
+            font-size: .66rem;
+            color: var(--W3);
+        }
+        /* SECTION HEAD */
+        
+        .sh {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        
+        .sh-title {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #fff;
+        }
+        
+        .sh-title em {
+            font-style: italic;
+            color: var(--bl);
+        }
+        /* BUTTONS */
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 7px 14px;
+            border-radius: 7px;
+            font-size: .76rem;
+            font-weight: 500;
+            border: 1px solid;
+            cursor: pointer;
+            transition: all .18s;
+            white-space: nowrap;
+        }
+        
+        .btn-p {
+            background: rgba(41, 121, 255, .14);
+            color: var(--bl);
+            border-color: rgba(41, 121, 255, .28);
+        }
+        
+        .btn-p:hover {
+            background: rgba(41, 121, 255, .24);
+            border-color: rgba(41, 121, 255, .45);
+        }
+        
+        .btn-g {
+            background: rgba(52, 211, 153, .11);
+            color: var(--green);
+            border-color: rgba(52, 211, 153, .24);
+        }
+        
+        .btn-g:hover {
+            background: rgba(52, 211, 153, .2);
+        }
+        
+        .btn-r {
+            background: rgba(239, 68, 68, .08);
+            color: var(--red);
+            border-color: rgba(239, 68, 68, .2);
+        }
+        
+        .btn-r:hover {
+            background: rgba(239, 68, 68, .16);
+        }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--W3);
+            border-color: rgba(255, 255, 255, .1);
+        }
+        
+        .btn-ghost:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, .25);
+        }
+        
+        .btn-sm {
+            padding: 4px 10px;
+            font-size: .67rem;
+        }
+        
+        .btn-icon {
+            width: 28px;
+            height: 28px;
+            padding: 0;
+            justify-content: center;
+        }
+        /* VEHICLE GRID */
+        
+        .v-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 14px;
+        }
+        
+        .vcard {
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all .25s;
+        }
+        
+        .vcard:hover {
+            border-color: rgba(41, 121, 255, .28);
+            transform: translateY(-3px);
+        }
+        
+        .vcard-img {
+            height: 130px;
+            background: linear-gradient(135deg, rgba(41, 121, 255, .08), rgba(6, 12, 24, .9));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vcard-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .vcard-av {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+        }
+        
+        .vcard-body {
+            padding: 14px;
+        }
+        
+        .vcard-name {
+            font-size: .9rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 2px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .vcard-info {
+            font-size: .68rem;
+            color: var(--W3);
+            margin-bottom: 10px;
+        }
+        
+        .vcard-price {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--bl);
+            margin-bottom: 12px;
+        }
+        
+        .vcard-price small {
+            font-size: .62rem;
+            color: var(--W3);
+        }
+        
+        .vcard-actions {
+            display: flex;
+            gap: 6px;
+        }
+        /* TABLE */
+        
+        .tbl-wrap {
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .data-tbl {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .data-tbl th {
+            font-size: .56rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--W3);
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--bdr2);
+            background: rgba(255, 255, 255, .02);
+        }
+        
+        .data-tbl td {
+            padding: 11px 14px;
+            border-bottom: 1px solid var(--bdr2);
+            font-size: .8rem;
+            vertical-align: middle;
+        }
+        
+        .data-tbl tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .data-tbl tr:hover td {
+            background: rgba(255, 255, 255, .015);
+        }
+        /* BADGES */
+        
+        .bdg {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            font-size: .56rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+        
+        .bdg::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+        }
+        
+        .bdg-on {
+            background: rgba(52, 211, 153, .1);
+            color: var(--green);
+            border: 1px solid rgba(52, 211, 153, .2);
+        }
+        
+        .bdg-on::before {
+            background: var(--green);
+        }
+        
+        .bdg-off {
+            background: rgba(255, 255, 255, .05);
+            color: var(--W3);
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+        
+        .bdg-off::before {
+            background: rgba(255, 255, 255, .2);
+        }
+        
+        .bdg-warn {
+            background: rgba(251, 191, 36, .1);
+            color: var(--amber);
+            border: 1px solid rgba(251, 191, 36, .2);
+        }
+        
+        .bdg-warn::before {
+            background: var(--amber);
+        }
+        
+        .bdg-blue {
+            background: rgba(41, 121, 255, .12);
+            color: var(--bl);
+            border: 1px solid rgba(41, 121, 255, .22);
+        }
+        
+        .bdg-blue::before {
+            background: var(--bl);
+        }
+        /* TOGGLE */
+        
+        .tgl {
+            position: relative;
+            width: 34px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+        
+        .tgl input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            position: absolute;
+        }
+        
+        .tgl-s {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, .1);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: background .2s;
+            border: 1px solid rgba(255, 255, 255, .1);
+        }
+        
+        .tgl-s::before {
+            content: '';
+            position: absolute;
+            left: 2px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #fff;
+            transition: left .2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .3);
+        }
+        
+        .tgl input:checked+.tgl-s {
+            background: rgba(41, 121, 255, .65);
+            border-color: rgba(91, 159, 255, .4);
+        }
+        
+        .tgl input:checked+.tgl-s::before {
+            left: calc(100% - 14px);
+        }
+        /* MODAL */
+        
+        .msk {
+            position: fixed;
+            inset: 0;
+            z-index: 900;
+            background: rgba(3, 8, 18, .85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .28s;
+        }
+        
+        .msk.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .modal {
+            background: var(--card2);
+            border: 1px solid var(--bdr);
+            border-radius: 18px;
+            width: 100%;
+            max-width: 560px;
+            max-height: 88vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 32px 80px rgba(0, 0, 0, .5);
+        }
+        
+        .modal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(41, 121, 255, .55) 50%, transparent);
+        }
+        
+        .modal.wide {
+            max-width: 720px;
+        }
+        
+        .mh {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 22px 14px;
+            border-bottom: 1px solid var(--bdr2);
+        }
+        
+        .mh-title {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #fff;
+        }
+        
+        .mh-x {
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: var(--W3);
+            font-size: .75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all .18s;
+        }
+        
+        .mh-x:hover {
+            border-color: rgba(255, 255, 255, .25);
+            color: #fff;
+        }
+        
+        .mb {
+            padding: 18px 22px;
+        }
+        
+        .mf {
+            padding: 14px 22px;
+            border-top: 1px solid var(--bdr2);
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+        /* FORM */
+        
+        .frow {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .frow3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .fg2 {
+            margin-bottom: 12px;
+        }
+        
+        .fg2 label {
+            display: block;
+            font-size: .64rem;
+            font-weight: 600;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            color: var(--W3);
+            margin-bottom: 5px;
+        }
+        
+        .fg2 input,
+        .fg2 select,
+        .fg2 textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .09);
+            border-radius: 8px;
+            padding: 9px 12px;
+            color: #fff;
+            font-size: .82rem;
+            transition: all .18s;
+        }
+        
+        .fg2 input:focus,
+        .fg2 select:focus,
+        .fg2 textarea:focus {
+            outline: none;
+            border-color: rgba(41, 121, 255, .5);
+            background: rgba(41, 121, 255, .05);
+        }
+        
+        .fg2 input::placeholder,
+        .fg2 textarea::placeholder {
+            color: rgba(255, 255, 255, .17);
+        }
+        
+        .fg2 textarea {
+            resize: vertical;
+            min-height: 72px;
+            line-height: 1.6;
+        }
+        
+        .fg2 select option {
+            background: var(--card2);
+        }
+        
+        .img-prev {
+            width: 100%;
+            height: 90px;
+            border-radius: 7px;
+            background: rgba(255, 255, 255, .03);
+            border: 1px dashed rgba(255, 255, 255, .12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 6px;
+            overflow: hidden;
+            font-size: .7rem;
+            color: var(--W3);
+            cursor: pointer;
+            transition: border-color .2s;
+        }
+        
+        .img-prev:hover {
+            border-color: rgba(41, 121, 255, .4);
+        }
+        
+        .img-prev img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, .03);
+            border-radius: 7px;
+            padding: 3px;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 6px;
+            border-radius: 5px;
+            font-size: .7rem;
+            font-weight: 500;
+            color: var(--W3);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all .17s;
+        }
+        
+        .tab.active {
+            background: rgba(41, 121, 255, .17);
+            color: #fff;
+            border: 1px solid rgba(41, 121, 255, .28);
+        }
+        
+        .lang-tabs {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, .03);
+            border-radius: 7px;
+            padding: 2px;
+        }
+        
+        .lang-tab {
+            flex: 1;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: .65rem;
+            font-weight: 600;
+            color: var(--W3);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: all .17s;
+        }
+        
+        .lang-tab.active {
+            background: rgba(41, 121, 255, .17);
+            color: #fff;
+        }
+        /* TEXT EDITOR */
+        
+        .txt-pages {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .txt-page {
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 11px;
+            overflow: hidden;
+        }
+        
+        .txt-ph {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .txt-ph:hover {
+            background: rgba(255, 255, 255, .02);
+        }
+        
+        .txt-pname {
+            font-size: .85rem;
+            font-weight: 500;
+            color: #fff;
+        }
+        
+        .txt-plbl {
+            font-size: .6rem;
+            color: var(--bl);
+        }
+        
+        .txt-chev {
+            color: var(--W3);
+            font-size: .7rem;
+            transition: transform .2s;
+        }
+        
+        .txt-ph.open .txt-chev {
+            transform: rotate(180deg);
+        }
+        
+        .txt-pb {
+            display: none;
+            padding: 14px 16px;
+            border-top: 1px solid var(--bdr2);
+        }
+        
+        .txt-pb.open {
+            display: block;
+        }
+        
+        .txt-row {
+            margin-bottom: 14px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--bdr2);
+        }
+        
+        .txt-row:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .txt-key {
+            font-size: .58rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--bl);
+            margin-bottom: 7px;
+        }
+        
+        .txt-langs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        
+        .txt-ll {
+            font-size: .58rem;
+            color: var(--W3);
+            margin-bottom: 3px;
+        }
+        
+        .txt-input {
+            width: 100%;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 7px;
+            padding: 7px 10px;
+            color: #fff;
+            font-size: .79rem;
+            resize: none;
+            min-height: 56px;
+            line-height: 1.5;
+            transition: border-color .18s;
+        }
+        
+        .txt-input:focus {
+            outline: none;
+            border-color: rgba(41, 121, 255, .4);
+        }
+        
+        .txt-save-row {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+        /* TOAST */
+        
+        .toast {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            z-index: 9999;
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 10px;
+            padding: 11px 16px;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: .8rem;
+            color: #fff;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, .45);
+            transform: translateY(70px);
+            opacity: 0;
+            transition: all .35s cubic-bezier(.22, .68, 0, 1.2);
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .t-ok {
+            border-color: rgba(52, 211, 153, .28);
+            background: rgba(10, 30, 25, .97);
+        }
+        
+        .t-err {
+            border-color: rgba(248, 113, 113, .28);
+            background: rgba(30, 10, 10, .97);
+        }
+        
+        .t-info {
+            border-color: rgba(41, 121, 255, .28);
+            background: rgba(10, 15, 30, .97);
+        }
+        /* SETUP */
+        
+        .sql-box {
+            background: rgba(0, 0, 0, .45);
+            border: 1px solid rgba(255, 255, 255, .07);
+            border-radius: 8px;
+            padding: 14px;
+            font-family: monospace;
+            font-size: .7rem;
+            color: rgba(168, 213, 255, .8);
+            line-height: 1.8;
+            overflow-x: auto;
+            white-space: pre;
+            max-height: 340px;
+            overflow-y: auto;
+        }
+        /* QUICK ACTIONS */
+        
+        .qa-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+        
+        .qa {
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 11px;
+            padding: 16px;
+            cursor: pointer;
+            transition: all .22s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .qa:hover {
+            border-color: rgba(41, 121, 255, .3);
+            transform: translateY(-2px);
+        }
+        
+        .qa-ico {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .qa-t {
+            font-size: .84rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        
+        .qa-s {
+            font-size: .68rem;
+            color: var(--W3);
+        }
+        /* ACTIVITY */
+        
+        .act-list {
+            background: var(--card);
+            border: 1px solid var(--bdr);
+            border-radius: 11px;
+            overflow: hidden;
+        }
+        
+        .act-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 14px;
+            border-bottom: 1px solid var(--bdr2);
+        }
+        
+        .act-item:last-child {
+            border-bottom: none;
+        }
+        
+        .act-ico {
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .72rem;
+            flex-shrink: 0;
+            border: 1px solid;
+        }
+        
+        .act-t {
+            font-size: .8rem;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 1px;
+        }
+        
+        .act-d {
+            font-size: .65rem;
+            color: var(--W3);
+        }
+        
+        .act-time {
+            font-size: .62rem;
+            color: var(--W3);
+            margin-left: auto;
+            white-space: nowrap;
+        }
+        /* EMPTY STATE */
+        
+        .empty {
+            text-align: center;
+            padding: 48px 20px;
+            color: var(--W3);
+        }
+        
+        .empty-ico {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+        }
+        
+        .empty-t {
+            font-size: .9rem;
+            font-weight: 500;
+            color: var(--W2);
+            margin-bottom: 6px;
+        }
+        
+        .empty-s {
+            font-size: .78rem;
+        }
+        /* LOADING */
+        
+        .loader {
+            text-align: center;
+            padding: 32px;
+            color: var(--W3);
+            font-size: .82rem;
+        }
+        
+        .spin {
+            width: 24px;
+            height: 24px;
+            border: 2px solid rgba(41, 121, 255, .2);
+            border-top-color: var(--blue);
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @media(max-width:900px) {
+            .sb {
+                display: none;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .qa-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .v-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .frow,
+            .frow3 {
+                grid-template-columns: 1fr;
+            }
+            .txt-langs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══ AUTH GATE ════════════════════════════════════════════════════ -->
+    <div id="gate">
+        <div class="gate-card">
+            <div class="gate-logo">
+                <div class="gate-lm">🚗</div>
+                <div class="gate-lt">Nex<em>Drive</em></div>
+            </div>
+            <div class="gate-badge"><span>⚡ Espace Admin / Owner</span></div>
+            <div class="gate-title">Tableau de bord</div>
+            <div class="gate-sub">Connectez-vous avec votre compte admin NexDrive.</div>
+            <div class="fg">
+                <label>Adresse courriel</label>
+                <input type="email" id="gEmail" placeholder="votre@email.com" autocomplete="email" />
+            </div>
+            <div class="fg">
+                <label>Mot de passe</label>
+                <input type="password" id="gPass" placeholder="••••••••" autocomplete="current-password" />
+            </div>
+            <div class="fg">
+                <label>Code admin secret</label>
+                <input type="password" id="gCode" placeholder="Code d'accès admin" />
+            </div>
+            <button class="gate-btn" onclick="doLogin()">Accéder au dashboard →</button>
+            <div class="gate-err" id="gErr"></div>
+        </div>
+    </div>
+
+    <!-- ══ DASHBOARD ════════════════════════════════════════════════════ -->
+    <div id="dash">
+        <div class="dash">
+
+            <!-- SIDEBAR -->
+            <aside class="sb">
+                <div class="sb-top">
+                    <div class="sb-logo">
+                        <div class="sb-lm">🚗</div>
+                        <div class="sb-lt">Nex<em>Drive</em></div>
+                    </div>
+                    <div class="sb-adm">Admin Panel</div>
+                </div>
+                <nav class="sb-nav">
+                    <div class="sb-sec">
+                        <div class="sb-sec-title">Principal</div>
+                        <div class="nav-item active" onclick="goTo('overview')">
+                            <div class="nav-icon">📊</div> Vue d'ensemble
+                        </div>
+                        <div class="nav-item" onclick="goTo('fleet')">
+                            <div class="nav-icon">🚗</div> Flotte
+                            <span class="nav-ct" id="ct-fleet">0</span>
+                        </div>
+                    </div>
+                    <div class="sb-sec">
+                        <div class="sb-sec-title">Gestion</div>
+                        <div class="nav-item" onclick="goTo('clients')">
+                            <div class="nav-icon">👥</div> Clients
+                            <span class="nav-ct" id="ct-clients">0</span>
+                        </div>
+                        <div class="nav-item" onclick="goTo('reservations')">
+                            <div class="nav-icon">📋</div> Réservations
+                            <span class="nav-ct" id="ct-res">0</span>
+                        </div>
+                    </div>
+                    <div class="sb-sec">
+                        <div class="sb-sec-title">Contenu</div>
+                        <div class="nav-item" onclick="goTo('texts')">
+                            <div class="nav-icon">✏️</div> Textes du site
+                        </div>
+                        <div class="nav-item" onclick="goTo('settings')">
+                            <div class="nav-icon">⚙️</div> Paramètres
+                        </div>
+                    </div>
+                </nav>
+                <div class="sb-bot">
+                    <div class="sb-user">
+                        <div class="sb-av" id="sbAv">A</div>
+                        <div class="sb-uinfo">
+                            <div class="sb-uname" id="sbName">Admin</div>
+                            <div class="sb-uemail" id="sbEmail">—</div>
+                        </div>
+                    </div>
+                    <button class="sb-out" onclick="doLogout()">🚪 Déconnexion</button>
+                </div>
+            </aside>
+
+            <!-- MAIN -->
+            <div class="main">
+                <div class="topbar">
+                    <div class="tb-left">
+                        <div class="tb-title" id="tbTitle">Vue d'<em>ensemble</em></div>
+                        <div class="tb-status"><span class="tb-dot"></span>En ligne</div>
+                    </div>
+                    <div class="tb-actions">
+                        <button class="btn btn-p" onclick="openSetupModal()">🗄️ Setup SQL</button>
+                        <button class="btn btn-g" onclick="goTo('fleet');openVehicleModal()">+ Ajouter véhicule</button>
+                    </div>
+                </div>
+                <div class="content">
+
+                    <!-- OVERVIEW -->
+                    <div class="sec active" id="sec-overview">
+                        <div class="stats-grid">
+                            <div class="sc">
+                                <div class="sc-top">
+                                    <div class="sc-ico ico-b">🚗</div><span class="sc-trend trend-b" id="s-fleet">0</span></div>
+                                <div class="sc-val" id="sv-fleet">0</div>
+                                <div class="sc-lbl">Véhicules dans la flotte</div>
+                            </div>
+                            <div class="sc">
+                                <div class="sc-top">
+                                    <div class="sc-ico ico-g">✅</div><span class="sc-trend trend-g" id="s-avail">0 dispo</span></div>
+                                <div class="sc-val" id="sv-avail">0</div>
+                                <div class="sc-lbl">Véhicules disponibles</div>
+                            </div>
+                            <div class="sc">
+                                <div class="sc-top">
+                                    <div class="sc-ico ico-a">👥</div><span class="sc-trend trend-b" id="s-cli">clients</span></div>
+                                <div class="sc-val" id="sv-cli">0</div>
+                                <div class="sc-lbl">Clients inscrits</div>
+                            </div>
+                            <div class="sc">
+                                <div class="sc-top">
+                                    <div class="sc-ico ico-p">📋</div><span class="sc-trend trend-g" id="s-res">actives</span></div>
+                                <div class="sc-val" id="sv-res">0</div>
+                                <div class="sc-lbl">Réservations</div>
+                            </div>
+                        </div>
+                        <div class="sh">
+                            <div class="sh-title">Actions <em>rapides</em></div>
+                        </div>
+                        <div class="qa-grid">
+                            <div class="qa" onclick="goTo('fleet');openVehicleModal()">
+                                <div class="qa-ico" style="background:rgba(41,121,255,.12);border:1px solid rgba(41,121,255,.22)">🚗</div>
+                                <div>
+                                    <div class="qa-t">Ajouter un véhicule</div>
+                                    <div class="qa-s">Photos, prix, disponibilité</div>
+                                </div>
+                            </div>
+                            <div class="qa" onclick="goTo('reservations');openResModal()">
+                                <div class="qa-ico" style="background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.22)">📋</div>
+                                <div>
+                                    <div class="qa-t">Nouvelle réservation</div>
+                                    <div class="qa-s">Enregistrer manuellement</div>
+                                </div>
+                            </div>
+                            <div class="qa" onclick="goTo('texts')">
+                                <div class="qa-ico" style="background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.22)">✏️</div>
+                                <div>
+                                    <div class="qa-t">Modifier les textes</div>
+                                    <div class="qa-s">FR / EN sur toutes les pages</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sh">
+                            <div class="sh-title">Activité <em>récente</em></div>
+                        </div>
+                        <div class="act-list" id="actList">
+                            <div class="loader">
+                                <div class="spin"></div>Chargement…</div>
+                        </div>
+                    </div>
+
+                    <!-- FLEET -->
+                    <div class="sec" id="sec-fleet">
+                        <div class="sh">
+                            <div class="sh-title">Gestion de la <em>flotte</em></div>
+                            <button class="btn btn-g" onclick="openVehicleModal()">+ Ajouter un véhicule</button>
+                        </div>
+                        <div class="v-grid" id="vGrid">
+                            <div class="loader">
+                                <div class="spin"></div>Chargement des véhicules…</div>
+                        </div>
+                    </div>
+
+                    <!-- CLIENTS -->
+                    <div class="sec" id="sec-clients">
+                        <div class="sh">
+                            <div class="sh-title">Clients <em>inscrits</em></div>
+                            <button class="btn btn-ghost btn-sm" onclick="loadClients()">↺ Actualiser</button>
+                        </div>
+                        <div class="tbl-wrap">
+                            <table class="data-tbl">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Courriel</th>
+                                        <th>Ville</th>
+                                        <th>Inscrit le</th>
+                                        <th>Dernière connexion</th>
+                                        <th>Statut</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cliBody">
+                                    <tr>
+                                        <td colspan="6">
+                                            <div class="loader">
+                                                <div class="spin"></div>Chargement…</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- RESERVATIONS -->
+                    <div class="sec" id="sec-reservations">
+                        <div class="sh">
+                            <div class="sh-title">Suivi des <em>réservations</em></div>
+                            <button class="btn btn-g" onclick="openResModal()">+ Nouvelle réservation</button>
+                        </div>
+                        <div class="tbl-wrap">
+                            <table class="data-tbl">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Véhicule</th>
+                                        <th>Dates</th>
+                                        <th>Total</th>
+                                        <th>Statut</th>
+                                        <th>Notes</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resBody">
+                                    <tr>
+                                        <td colspan="7">
+                                            <div class="loader">
+                                                <div class="spin"></div>Chargement…</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- TEXTS -->
+                    <div class="sec" id="sec-texts">
+                        <div class="sh">
+                            <div class="sh-title">Éditeur de <em>textes</em></div>
+                            <div style="display:flex;gap:8px">
+                                <button class="btn btn-ghost btn-sm" onclick="loadTexts()">↺ Actualiser</button>
+                                <button class="btn btn-g btn-sm" onclick="addTextKey()">+ Ajouter une clé</button>
+                            </div>
+                        </div>
+                        <div style="font-size:.76rem;color:var(--W3);margin-bottom:14px;background:rgba(41,121,255,.07);border:1px solid rgba(41,121,255,.15);border-radius:8px;padding:10px 14px;">
+                            💡 Ces textes correspondent aux clés <code style="color:var(--bl)">data-i18n</code> sur vos pages. Modifiez FR et EN puis sauvegardez.
+                        </div>
+                        <div class="txt-pages" id="txtPages">
+                            <div class="loader">
+                                <div class="spin"></div>Chargement des textes…</div>
+                        </div>
+                    </div>
+
+                    <!-- SETTINGS -->
+                    <div class="sec" id="sec-settings">
+                        <div class="sh">
+                            <div class="sh-title">Paramètres <em>admin</em></div>
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px;">
+                            <div style="background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:20px;">
+                                <div style="font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--bl);margin-bottom:12px;">Informations du site</div>
+                                <div class="fg2"><label>Nom du site</label><input type="text" id="sName" value="NexDrive" /></div>
+                                <div class="fg2"><label>Email de contact</label><input type="text" id="sEmail" value="info@location-nexdrive.com" /></div>
+                                <div class="fg2"><label>Lien Turo principal</label><input type="text" id="sTuro" placeholder="https://turo.com/..." /></div>
+                                <div class="fg2"><label>Téléphone</label><input type="text" id="sPhone" placeholder="+1 (514) ..." /></div>
+                                <button class="btn btn-p" onclick="saveSettings()">💾 Sauvegarder</button>
+                            </div>
+                            <div style="background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:20px;">
+                                <div style="font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-bottom:12px;">⚙️ Configuration Admin</div>
+                                <div style="font-size:.76rem;color:var(--W3);margin-bottom:12px;line-height:1.7;">
+                                    Pour modifier le <strong style="color:#fff">code admin</strong> ou l'<strong style="color:#fff">email admin</strong>, éditez les constantes en haut du fichier <code style="color:var(--bl)">admin.html</code> :<br><br>
+                                    <code style="color:var(--green)">ADMIN_EMAIL</code> — courriel autorisé<br>
+                                    <code style="color:var(--green)">ADMIN_CODE</code> — code secret d'accès
+                                </div>
+                                <div style="font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--bl);margin-bottom:8px;margin-top:16px;">Bucket Supabase Storage</div>
+                                <div style="font-size:.76rem;color:var(--W3);line-height:1.7;">
+                                    Pour l'upload de photos, créez un bucket public nommé <code style="color:var(--green)">vehicles-images</code> dans Supabase Storage.
+                                </div>
+                            </div>
+                        </div>
+                        <div style="background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:20px;">
+                            <div style="font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-bottom:10px;">📊 Statistiques Supabase</div>
+                            <div id="sbStats" style="font-size:.78rem;color:var(--W3);">Chargement…</div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /content -->
+            </div>
+            <!-- /main -->
+        </div>
+        <!-- /dash -->
+    </div>
+    <!-- /#dash -->
+
+    <!-- ══ MODAL : VEHICLE ══════════════════════════════════════════════ -->
+    <div class="msk" id="mVehicle">
+        <div class="modal">
+            <div class="mh">
+                <div class="mh-title" id="mVTitle">Ajouter un véhicule</div>
+                <button class="mh-x" onclick="closeModal('mVehicle')">✕</button>
+            </div>
+            <div class="mb">
+                <input type="hidden" id="vId" />
+                <div class="frow">
+                    <div class="fg2"><label>Nom complet</label><input id="vName" placeholder="Ex: Toyota Corolla 2023" /></div>
+                    <div class="fg2">
+                        <label>Catégorie</label>
+                        <select id="vCat">
+            <option value="berline">Berline</option>
+            <option value="suv">SUV / VUS</option>
+            <option value="sport">Sport</option>
+            <option value="electrique">Électrique</option>
+            <option value="luxe">Luxe</option>
+          </select>
+                    </div>
+                </div>
+                <div class="frow3">
+                    <div class="fg2"><label>Année</label><input id="vYear" type="number" placeholder="2024" /></div>
+                    <div class="fg2"><label>Places</label><input id="vSeats" type="number" placeholder="5" /></div>
+                    <div class="fg2"><label>Prix / jour ($)</label><input id="vPrice" type="number" placeholder="75" /></div>
+                </div>
+                <div class="frow">
+                    <div class="fg2">
+                        <label>Transmission</label>
+                        <select id="vTrans">
+            <option value="Automatique">Automatique</option>
+            <option value="Manuelle">Manuelle</option>
+          </select>
+                    </div>
+                    <div class="fg2"><label>Lien Turo</label><input id="vTuro" placeholder="https://turo.com/..." /></div>
+                </div>
+                <!-- Image upload -->
+                <div class="fg2">
+                    <label>Photo du véhicule</label>
+                    <div class="tabs">
+                        <button class="tab active" onclick="switchImgTab('url',this)">🔗 Lien URL</button>
+                        <button class="tab" onclick="switchImgTab('upload',this)">📁 Fichier</button>
+                    </div>
+                    <div id="imgUrl"><input id="vImgUrl" placeholder="https://... ou laissez vide" oninput="previewImg(this.value)" /></div>
+                    <div id="imgUpload" style="display:none">
+                        <input type="file" id="vImgFile" accept="image/*" style="display:none" onchange="handleImgUpload(this)" />
+                        <div class="img-prev" onclick="document.getElementById('vImgFile').click()">
+                            📁 Cliquer pour sélectionner une image
+                        </div>
+                    </div>
+                    <div class="img-prev" id="imgPreview" style="margin-top:8px;display:none;"><img id="imgPreviewEl" src="" alt="" /></div>
+                </div>
+                <!-- Descriptions -->
+                <div class="fg2">
+                    <label>Description</label>
+                    <div class="lang-tabs">
+                        <button class="lang-tab active" onclick="switchDescTab('fr',this)">🇨🇦 Français</button>
+                        <button class="lang-tab" onclick="switchDescTab('en',this)">🇺🇸 English</button>
+                    </div>
+                    <textarea id="vDescFr" rows="3" placeholder="Description en français…"></textarea>
+                    <textarea id="vDescEn" rows="3" placeholder="English description…" style="display:none;margin-top:6px;"></textarea>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;margin-top:4px;">
+                    <label class="tgl"><input type="checkbox" id="vAvail" checked/><span class="tgl-s"></span></label>
+                    <span style="font-size:.8rem;color:var(--W2);">Disponible à la location</span>
+                </div>
+            </div>
+            <div class="mf">
+                <button class="btn btn-ghost" onclick="closeModal('mVehicle')">Annuler</button>
+                <button class="btn btn-g" onclick="saveVehicle()">💾 Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ MODAL : RESERVATION ══════════════════════════════════════════ -->
+    <div class="msk" id="mRes">
+        <div class="modal">
+            <div class="mh">
+                <div class="mh-title" id="mRTitle">Nouvelle réservation</div>
+                <button class="mh-x" onclick="closeModal('mRes')">✕</button>
+            </div>
+            <div class="mb">
+                <input type="hidden" id="rId" />
+                <div class="frow">
+                    <div class="fg2"><label>Nom du client</label><input id="rClient" placeholder="Jean Tremblay" /></div>
+                    <div class="fg2"><label>Courriel</label><input id="rEmail" placeholder="client@email.com" type="email" /></div>
+                </div>
+                <div class="fg2"><label>Véhicule</label><input id="rVehicle" placeholder="Toyota Corolla 2023" /></div>
+                <div class="frow">
+                    <div class="fg2"><label>Date début</label><input id="rStart" type="date" /></div>
+                    <div class="fg2"><label>Date fin</label><input id="rEnd" type="date" /></div>
+                </div>
+                <div class="frow">
+                    <div class="fg2"><label>Total ($)</label><input id="rTotal" type="number" placeholder="285" /></div>
+                    <div class="fg2">
+                        <label>Statut</label>
+                        <select id="rStatus">
+            <option value="en_cours">En cours</option>
+            <option value="confirme">Confirmée</option>
+            <option value="terminee">Terminée</option>
+            <option value="annulee">Annulée</option>
+          </select>
+                    </div>
+                </div>
+                <div class="fg2"><label>Notes</label><textarea id="rNotes" rows="2" placeholder="Notes internes…"></textarea></div>
+            </div>
+            <div class="mf">
+                <button class="btn btn-ghost" onclick="closeModal('mRes')">Annuler</button>
+                <button class="btn btn-g" onclick="saveReservation()">💾 Sauvegarder</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ MODAL : ADD TEXT KEY ══════════════════════════════════════════ -->
+    <div class="msk" id="mText">
+        <div class="modal">
+            <div class="mh">
+                <div class="mh-title">Ajouter une clé de texte</div>
+                <button class="mh-x" onclick="closeModal('mText')">✕</button>
+            </div>
+            <div class="mb">
+                <div class="frow">
+                    <div class="fg2"><label>Page (ex: nav, footer, apropos)</label><input id="tkPage" placeholder="apropos" /></div>
+                    <div class="fg2"><label>Clé (ex: hero.title)</label><input id="tkKey" placeholder="hero.title" /></div>
+                </div>
+                <div class="fg2"><label>Texte français</label><textarea id="tkFr" rows="2" placeholder="Texte en français…"></textarea></div>
+                <div class="fg2"><label>Texte anglais</label><textarea id="tkEn" rows="2" placeholder="English text…"></textarea></div>
+            </div>
+            <div class="mf">
+                <button class="btn btn-ghost" onclick="closeModal('mText')">Annuler</button>
+                <button class="btn btn-g" onclick="saveNewTextKey()">💾 Ajouter</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ MODAL : SETUP SQL ════════════════════════════════════════════ -->
+    <div class="msk" id="mSetup">
+        <div class="modal wide">
+            <div class="mh">
+                <div class="mh-title">🗄️ Setup — SQL à exécuter dans Supabase</div>
+                <button class="mh-x" onclick="closeModal('mSetup')">✕</button>
+            </div>
+            <div class="mb">
+                <div style="font-size:.78rem;color:var(--W3);margin-bottom:12px;line-height:1.7;">
+                    Copiez ce SQL et exécutez-le dans <strong style="color:#fff">Supabase → SQL Editor</strong>. Remplacez <code style="color:var(--amber)">VOTRE_EMAIL_ADMIN</code> par votre vrai email.
+                </div>
+                <pre class="sql-box" id="sqlBox"></pre>
+                <button class="btn btn-p" style="margin-top:10px" onclick="copySQL()">📋 Copier le SQL</button>
+            </div>
+            <div class="mf"><button class="btn btn-ghost" onclick="closeModal('mSetup')">Fermer</button></div>
+        </div>
+    </div>
+
+    <!-- ══ CONFIRM DELETE ════════════════════════════════════════════════ -->
+    <div class="msk" id="mConfirm">
+        <div class="modal" style="max-width:380px">
+            <div class="mh">
+                <div class="mh-title">⚠️ Confirmer la suppression</div><button class="mh-x" onclick="closeModal('mConfirm')">✕</button></div>
+            <div class="mb">
+                <p style="font-size:.84rem;color:var(--W2);line-height:1.7;" id="confirmMsg">Êtes-vous sûr de vouloir supprimer cet élément ? Cette action est irréversible.</p>
+            </div>
+            <div class="mf"><button class="btn btn-ghost" onclick="closeModal('mConfirm')">Annuler</button><button class="btn btn-r" id="confirmBtn">🗑️ Supprimer</button></div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ══ SCRIPTS ═══════════════════════════════════════════════════════ -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // ════════════════════════════════════════════════════
+        //  CONFIG — MODIFIER ICI
+        // ════════════════════════════════════════════════════
+        const SUPABASE_URL = 'https://igftridkkchvjaxtburi.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnZnRyaWRra2NodmpheHRidXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODcxMzgsImV4cCI6MjA4ODY2MzEzOH0.SuUO_seWElDPnm3lnGEEn8OwflJhbocyJjVF8nvrf4Y';
+        const ADMIN_EMAIL = 'kevin@kevinliberdy.ca'; // ← VOTRE EMAIL
+        const ADMIN_CODE = 'NEXDRIVE2026'; // ← CODE SECRET (changez-le !)
+        const STORAGE_BUCKET = 'vehicles-images'; // ← bucket Supabase Storage
+
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+            auth: {
+                persistSession: true,
+                storageKey: 'nd-admin',
+                autoRefreshToken: true
+            }
+        });
+
+        // ════════════════════════════════════════════════════
+        //  AUTH
+        // ════════════════════════════════════════════════════
+        sb.auth.onAuthStateChange(function(event, session) {
+            if (session && session.user && session.user.email === ADMIN_EMAIL) {
+                showDash(session.user);
+            }
+        });
+
+        async function doLogin() {
+            var email = document.getElementById('gEmail').value.trim();
+            var pass = document.getElementById('gPass').value;
+            var code = document.getElementById('gCode').value.trim();
+            var err = document.getElementById('gErr');
+            err.textContent = '';
+
+            if (!email || !pass || !code) {
+                err.textContent = 'Tous les champs sont requis.';
+                return;
+            }
+            if (code !== ADMIN_CODE) {
+                err.textContent = 'Code admin incorrect.';
+                return;
+            }
+
+            var btn = document.querySelector('.gate-btn');
+            btn.textContent = 'Connexion…';
+            btn.disabled = true;
+
+            var {
+                data,
+                error
+            } = await sb.auth.signInWithPassword({
+                email,
+                password: pass
+            });
+            btn.textContent = 'Accéder au dashboard →';
+            btn.disabled = false;
+
+            if (error) {
+                err.textContent = 'Erreur : ' + error.message;
+                return;
+            }
+            if (data.user.email !== ADMIN_EMAIL) {
+                await sb.auth.signOut();
+                err.textContent = 'Accès refusé — email non autorisé.';
+                return;
+            }
+            showDash(data.user);
+        }
+
+        function showDash(user) {
+            document.getElementById('gate').style.display = 'none';
+            document.getElementById('dash').style.display = 'block';
+            document.getElementById('sbName').textContent = (user.user_metadata && user.user_metadata.full_name) || 'Admin';
+            document.getElementById('sbEmail').textContent = user.email;
+            document.getElementById('sbAv').textContent = (user.email || 'A')[0].toUpperCase();
+            loadOverview();
+        }
+
+        async function doLogout() {
+            await sb.auth.signOut();
+            document.getElementById('gate').style.display = 'flex';
+            document.getElementById('dash').style.display = 'none';
+        }
+
+        // ════════════════════════════════════════════════════
+        //  NAVIGATION
+        // ════════════════════════════════════════════════════
+        var sections = {
+            'overview': 'Vue d\'<em>ensemble</em>',
+            'fleet': 'Flotte <em>NexDrive</em>',
+            'clients': 'Clients <em>inscrits</em>',
+            'reservations': 'Suivi <em>réservations</em>',
+            'texts': 'Éditeur de <em>textes</em>',
+            'settings': 'Paramètres <em>admin</em>'
+        };
+
+        function goTo(name) {
+            document.querySelectorAll('.sec').forEach(function(s) {
+                s.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-item').forEach(function(n) {
+                n.classList.remove('active');
+            });
+            var sec = document.getElementById('sec-' + name);
+            if (sec) sec.classList.add('active');
+            document.querySelectorAll('.nav-item').forEach(function(n) {
+                if (n.textContent.trim().toLowerCase().includes(name.split('_')[0].substring(0, 5).toLowerCase()))
+                    n.classList.add('active');
+            });
+            document.getElementById('tbTitle').innerHTML = sections[name] || name;
+
+            if (name === 'overview') loadOverview();
+            if (name === 'fleet') loadVehicles();
+            if (name === 'clients') loadClients();
+            if (name === 'reservations') loadReservations();
+            if (name === 'texts') loadTexts();
+            if (name === 'settings') loadSettings();
+        }
+
+        // ════════════════════════════════════════════════════
+        //  OVERVIEW
+        // ════════════════════════════════════════════════════
+        async function loadOverview() {
+            var [{
+                data: veh
+            }, {
+                data: cli
+            }, {
+                data: res
+            }] = await Promise.all([
+                sb.from('vehicles').select('id,available'),
+                sb.from('profiles').select('id'),
+                sb.from('reservations').select('id,status,created_at,client_name,vehicle_name')
+            ]);
+            veh = veh || [];
+            cli = cli || [];
+            res = res || [];
+            var avail = veh.filter(function(v) {
+                return v.available;
+            }).length;
+
+            document.getElementById('sv-fleet').textContent = veh.length;
+            document.getElementById('sv-avail').textContent = avail;
+            document.getElementById('sv-cli').textContent = cli.length;
+            document.getElementById('sv-res').textContent = res.length;
+            document.getElementById('s-fleet').textContent = veh.length + ' total';
+            document.getElementById('s-avail').textContent = avail + ' dispo';
+            document.getElementById('s-cli').textContent = cli.length + ' clients';
+            document.getElementById('s-res').textContent = res.filter(function(r) {
+                return r.status === 'en_cours';
+            }).length + ' actives';
+
+            document.getElementById('ct-fleet').textContent = veh.length;
+            document.getElementById('ct-clients').textContent = cli.length;
+            document.getElementById('ct-res').textContent = res.length;
+
+            var recent = (res || []).slice(-5).reverse();
+            var al = document.getElementById('actList');
+            if (!recent.length) {
+                al.innerHTML = '<div class="empty"><div class="empty-ico">📭</div><div class="empty-t">Aucune activité</div><div class="empty-s">Les réservations apparaîtront ici</div></div>';
+                return;
+            }
+            al.innerHTML = recent.map(function(r) {
+                return '<div class="act-item"><div class="act-ico ico-g" style="border-color:rgba(52,211,153,.2)">📋</div><div><div class="act-t">' + esc(r.client_name || '—') + '</div><div class="act-d">' + esc(r.vehicle_name || '—') + '</div></div><div class="act-time">' + fmtDate(r.created_at) + '</div></div>';
+            }).join('');
+        }
+
+        // ════════════════════════════════════════════════════
+        //  VEHICLES CRUD
+        // ════════════════════════════════════════════════════
+        async function loadVehicles() {
+            document.getElementById('vGrid').innerHTML = '<div class="loader"><div class="spin"></div>Chargement…</div>';
+            var {
+                data,
+                error
+            } = await sb.from('vehicles').select('*').order('created_at', {
+                ascending: false
+            });
+            if (error) {
+                showToast('Erreur chargement véhicules : ' + error.message, 'err');
+                return;
+            }
+            var grid = document.getElementById('vGrid');
+            if (!data || !data.length) {
+                grid.innerHTML = '<div class="empty" style="grid-column:1/-1"><div class="empty-ico">🚗</div><div class="empty-t">Aucun véhicule</div><div class="empty-s">Ajoutez votre premier véhicule.</div></div>';
+                return;
+            }
+            grid.innerHTML = data.map(function(v) {
+                var img = v.image_url ?
+                    '<img src="' + esc(v.image_url) + '" alt="' + esc(v.name) + '" onerror="this.parentNode.innerHTML=\'🚗\'">' :
+                    '🚗';
+                return '<div class="vcard">' +
+                    '<div class="vcard-img">' + img + '<div class="vcard-av"><span class="bdg ' + (v.available ? 'bdg-on' : 'bdg-off') + '">' + (v.available ? 'Disponible' : 'Indisponible') + '</span></div></div>' +
+                    '<div class="vcard-body">' +
+                    '<div class="vcard-name">' + esc(v.name) + '</div>' +
+                    '<div class="vcard-info">' + esc(v.category || '') + (v.year ? ' · ' + v.year : '') + (v.seats ? ' · ' + v.seats + ' places' : '') + '</div>' +
+                    '<div class="vcard-price">' + v.price_per_day + '$<small> /jour</small></div>' +
+                    '<div class="vcard-actions">' +
+                    '<button class="btn btn-p btn-sm" onclick="editVehicle(\'' + v.id + '\')">✏️</button>' +
+                    '<button class="btn btn-ghost btn-sm" onclick="toggleVehicle(\'' + v.id + '\',' + v.available + ')">' + (v.available ? '🔴' : '🟢') + '</button>' +
+                    '<button class="btn btn-r btn-sm" onclick="confirmDelete(\'vehicle\',\'' + v.id + '\')">🗑️</button>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>';
+            }).join('');
+            document.getElementById('ct-fleet').textContent = data.length;
+        }
+
+        function openVehicleModal(vehicle) {
+            document.getElementById('vId').value = '';
+            document.getElementById('vName').value = '';
+            document.getElementById('vCat').value = 'berline';
+            document.getElementById('vYear').value = '';
+            document.getElementById('vSeats').value = '5';
+            document.getElementById('vPrice').value = '';
+            document.getElementById('vTrans').value = 'Automatique';
+            document.getElementById('vTuro').value = '';
+            document.getElementById('vImgUrl').value = '';
+            document.getElementById('vDescFr').value = '';
+            document.getElementById('vDescEn').value = '';
+            document.getElementById('vAvail').checked = true;
+            document.getElementById('imgPreview').style.display = 'none';
+            document.getElementById('mVTitle').textContent = 'Ajouter un véhicule';
+            openModal('mVehicle');
+        }
+
+        async function editVehicle(id) {
+            var {
+                data
+            } = await sb.from('vehicles').select('*').eq('id', id).single();
+            if (!data) return;
+            document.getElementById('vId').value = data.id;
+            document.getElementById('vName').value = data.name || '';
+            document.getElementById('vCat').value = data.category || 'berline';
+            document.getElementById('vYear').value = data.year || '';
+            document.getElementById('vSeats').value = data.seats || 5;
+            document.getElementById('vPrice').value = data.price_per_day || '';
+            document.getElementById('vTrans').value = data.transmission || 'Automatique';
+            document.getElementById('vTuro').value = data.turo_url || '';
+            document.getElementById('vImgUrl').value = data.image_url || '';
+            document.getElementById('vDescFr').value = data.description_fr || '';
+            document.getElementById('vDescEn').value = data.description_en || '';
+            document.getElementById('vAvail').checked = !!data.available;
+            document.getElementById('mVTitle').textContent = 'Modifier — ' + data.name;
+            if (data.image_url) {
+                previewImg(data.image_url);
+            }
+            openModal('mVehicle');
+        }
+
+        async function saveVehicle() {
+            var id = document.getElementById('vId').value;
+            var name = document.getElementById('vName').value.trim();
+            if (!name) {
+                showToast('Le nom du véhicule est requis.', 'err');
+                return;
+            }
+            var payload = {
+                name,
+                category: document.getElementById('vCat').value,
+                year: parseInt(document.getElementById('vYear').value) || null,
+                seats: parseInt(document.getElementById('vSeats').value) || 5,
+                price_per_day: parseInt(document.getElementById('vPrice').value) || 0,
+                transmission: document.getElementById('vTrans').value,
+                turo_url: document.getElementById('vTuro').value.trim(),
+                image_url: document.getElementById('vImgUrl').value.trim(),
+                description_fr: document.getElementById('vDescFr').value.trim(),
+                description_en: document.getElementById('vDescEn').value.trim(),
+                available: document.getElementById('vAvail').checked
+            };
+            var {
+                error
+            } = id
+                ?
+                await sb.from('vehicles').update(payload).eq('id', id) :
+                await sb.from('vehicles').insert([payload]);
+            if (error) {
+                showToast('Erreur : ' + error.message, 'err');
+                return;
+            }
+            showToast(id ? '✅ Véhicule mis à jour !' : '✅ Véhicule ajouté !', 'ok');
+            closeModal('mVehicle');
+            loadVehicles();
+            loadOverview();
+        }
+
+        async function toggleVehicle(id, current) {
+            var {
+                error
+            } = await sb.from('vehicles').update({
+                available: !current
+            }).eq('id', id);
+            if (error) {
+                showToast('Erreur : ' + error.message, 'err');
+                return;
+            }
+            showToast('Disponibilité mise à jour.', 'ok');
+            loadVehicles();
+        }
+
+        // ════════════════════════════════════════════════════
+        //  CLIENTS
+        // ════════════════════════════════════════════════════
+        async function loadClients() {
+            var tbody = document.getElementById('cliBody');
+            tbody.innerHTML = '<tr><td colspan="6"><div class="loader"><div class="spin"></div>Chargement…</div></td></tr>';
+            var {
+                data,
+                error
+            } = await sb.from('profiles').select('*').order('created_at', {
+                ascending: false
+            });
+            if (error || !data || !data.length) {
+                tbody.innerHTML = '<tr><td colspan="6"><div class="empty"><div class="empty-ico">👥</div><div class="empty-t">Aucun client</div><div class="empty-s">Assurez-vous que la table <code>profiles</code> existe (voir Setup SQL).</div></div></td></tr>';
+                return;
+            }
+            document.getElementById('ct-clients').textContent = data.length;
+            tbody.innerHTML = data.map(function(c) {
+                return '<tr>' +
+                    '<td><strong style="color:#fff">' + esc(c.full_name || '—') + '</strong></td>' +
+                    '<td>' + esc(c.email || '—') + '</td>' +
+                    '<td>' + esc(c.city || '—') + '</td>' +
+                    '<td>' + fmtDate(c.created_at) + '</td>' +
+                    '<td>' + fmtDate(c.last_seen) + '</td>' +
+                    '<td><span class="bdg bdg-on">Actif</span></td>' +
+                    '</tr>';
+            }).join('');
+        }
+
+        // ════════════════════════════════════════════════════
+        //  RESERVATIONS CRUD
+        // ════════════════════════════════════════════════════
+        async function loadReservations() {
+            var tbody = document.getElementById('resBody');
+            tbody.innerHTML = '<tr><td colspan="7"><div class="loader"><div class="spin"></div>Chargement…</div></td></tr>';
+            var {
+                data,
+                error
+            } = await sb.from('reservations').select('*').order('created_at', {
+                ascending: false
+            });
+            if (error) {
+                tbody.innerHTML = '<tr><td colspan="7" style="color:var(--red);padding:16px">' + error.message + '</td></tr>';
+                return;
+            }
+            if (!data || !data.length) {
+                tbody.innerHTML = '<tr><td colspan="7"><div class="empty"><div class="empty-ico">📋</div><div class="empty-t">Aucune réservation</div><div class="empty-s">Ajoutez les réservations Turo manuellement.</div></div></td></tr>';
+                return;
+            }
+            document.getElementById('ct-res').textContent = data.length;
+            var statusMap = {
+                en_cours: 'bdg-blue',
+                confirme: 'bdg-on',
+                terminee: 'bdg-off',
+                annulee: 'bdg-warn'
+            };
+            var statusLbl = {
+                en_cours: 'En cours',
+                confirme: 'Confirmée',
+                terminee: 'Terminée',
+                annulee: 'Annulée'
+            };
+            tbody.innerHTML = data.map(function(r) {
+                return '<tr>' +
+                    '<td><strong style="color:#fff">' + esc(r.client_name || '—') + '</strong><div style="font-size:.66rem;color:var(--W3)">' + esc(r.client_email || '') + '</div></td>' +
+                    '<td>' + esc(r.vehicle_name || '—') + '</td>' +
+                    '<td style="font-size:.74rem">' + fmtDate(r.start_date) + ' → ' + fmtDate(r.end_date) + '</td>' +
+                    '<td><strong style="color:var(--bl)">' + (r.price_total ? r.price_total + '$' : '—') + '</strong></td>' +
+                    '<td><span class="bdg ' + (statusMap[r.status] || 'bdg-off') + '">' + (statusLbl[r.status] || r.status) + '</span></td>' +
+                    '<td style="font-size:.74rem;color:var(--W3);max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + esc(r.notes || '—') + '</td>' +
+                    '<td><div style="display:flex;gap:5px"><button class="btn btn-p btn-sm" onclick="editRes(\'' + r.id + '\')">✏️</button><button class="btn btn-r btn-sm" onclick="confirmDelete(\'reservation\',\'' + r.id + '\')">🗑️</button></div></td>' +
+                    '</tr>';
+            }).join('');
+        }
+
+        function openResModal() {
+            document.getElementById('rId').value = '';
+            document.getElementById('rClient').value = '';
+            document.getElementById('rEmail').value = '';
+            document.getElementById('rVehicle').value = '';
+            document.getElementById('rStart').value = '';
+            document.getElementById('rEnd').value = '';
+            document.getElementById('rTotal').value = '';
+            document.getElementById('rStatus').value = 'confirme';
+            document.getElementById('rNotes').value = '';
+            document.getElementById('mRTitle').textContent = 'Nouvelle réservation';
+            openModal('mRes');
+        }
+
+        async function editRes(id) {
+            var {
+                data
+            } = await sb.from('reservations').select('*').eq('id', id).single();
+            if (!data) return;
+            document.getElementById('rId').value = data.id;
+            document.getElementById('rClient').value = data.client_name || '';
+            document.getElementById('rEmail').value = data.client_email || '';
+            document.getElementById('rVehicle').value = data.vehicle_name || '';
+            document.getElementById('rStart').value = data.start_date || '';
+            document.getElementById('rEnd').value = data.end_date || '';
+            document.getElementById('rTotal').value = data.price_total || '';
+            document.getElementById('rStatus').value = data.status || 'confirme';
+            document.getElementById('rNotes').value = data.notes || '';
+            document.getElementById('mRTitle').textContent = 'Modifier — ' + data.client_name;
+            openModal('mRes');
+        }
+
+        async function saveReservation() {
+            var id = document.getElementById('rId').value;
+            var payload = {
+                client_name: document.getElementById('rClient').value.trim(),
+                client_email: document.getElementById('rEmail').value.trim(),
+                vehicle_name: document.getElementById('rVehicle').value.trim(),
+                start_date: document.getElementById('rStart').value || null,
+                end_date: document.getElementById('rEnd').value || null,
+                price_total: parseInt(document.getElementById('rTotal').value) || 0,
+                status: document.getElementById('rStatus').value,
+                notes: document.getElementById('rNotes').value.trim()
+            };
+            if (!payload.client_name) {
+                showToast('Le nom du client est requis.', 'err');
+                return;
+            }
+            var {
+                error
+            } = id
+                ?
+                await sb.from('reservations').update(payload).eq('id', id) :
+                await sb.from('reservations').insert([payload]);
+            if (error) {
+                showToast('Erreur : ' + error.message, 'err');
+                return;
+            }
+            showToast(id ? '✅ Réservation mise à jour !' : '✅ Réservation ajoutée !', 'ok');
+            closeModal('mRes');
+            loadReservations();
+            loadOverview();
+        }
+
+        // ════════════════════════════════════════════════════
+        //  TEXTS EDITOR
+        // ════════════════════════════════════════════════════
+        async function loadTexts() {
+            var container = document.getElementById('txtPages');
+            container.innerHTML = '<div class="loader"><div class="spin"></div>Chargement…</div>';
+            var {
+                data,
+                error
+            } = await sb.from('site_texts').select('*').order('page').order('key');
+            if (error) {
+                container.innerHTML = '<div class="empty"><div class="empty-ico">📝</div><div class="empty-t">Table introuvable</div><div class="empty-s">Exécutez le Setup SQL d\'abord.</div></div>';
+                return;
+            }
+            if (!data || !data.length) {
+                container.innerHTML = '<div class="empty"><div class="empty-ico">📝</div><div class="empty-t">Aucun texte</div><div class="empty-s">Ajoutez des clés de texte avec le bouton +.</div></div>';
+                return;
+            }
+            var groups = {};
+            data.forEach(function(t) {
+                if (!groups[t.page]) groups[t.page] = [];
+                groups[t.page].push(t);
+            });
+            container.innerHTML = Object.keys(groups).map(function(page) {
+                var rows = groups[page].map(function(t) {
+                    return '<div class="txt-row">' +
+                        '<div class="txt-key">' + esc(t.key) + '</div>' +
+                        '<div class="txt-langs">' +
+                        '<div><div class="txt-ll">🇨🇦 FR</div><textarea class="txt-input" data-id="' + t.id + '" data-field="value_fr" rows="2">' + esc(t.value_fr || '') + '</textarea></div>' +
+                        '<div><div class="txt-ll">🇺🇸 EN</div><textarea class="txt-input" data-id="' + t.id + '" data-field="value_en" rows="2">' + esc(t.value_en || '') + '</textarea></div>' +
+                        '</div>' +
+                        '<div style="display:flex;justify-content:flex-end;gap:6px;margin-top:6px">' +
+                        '<button class="btn btn-g btn-sm" onclick="saveTextRow(\'' + t.id + '\')">💾 Sauvegarder</button>' +
+                        '<button class="btn btn-r btn-sm" onclick="confirmDelete(\'text\',\'' + t.id + '\')">🗑️</button>' +
+                        '</div>' +
+                        '</div>';
+                }).join('');
+                return '<div class="txt-page">' +
+                    '<div class="txt-ph" onclick="toggleTxtPage(this)">' +
+                    '<div><div class="txt-pname">' + esc(page) + '</div><div class="txt-plbl">' + groups[page].length + ' clé(s)</div></div>' +
+                    '<span class="txt-chev">▼</span>' +
+                    '</div>' +
+                    '<div class="txt-pb">' + rows + '</div>' +
+                    '</div>';
+            }).join('');
+        }
+
+        function toggleTxtPage(header) {
+            header.classList.toggle('open');
+            var body = header.nextElementSibling;
+            body.classList.toggle('open');
+        }
+
+        async function saveTextRow(id) {
+            var frEl = document.querySelector('[data-id="' + id + '"][data-field="value_fr"]');
+            var enEl = document.querySelector('[data-id="' + id + '"][data-field="value_en"]');
+            var {
+                error
+            } = await sb.from('site_texts').update({
+                value_fr: frEl.value,
+                value_en: enEl.value
+            }).eq('id', id);
+            if (error) {
+                showToast('Erreur : ' + error.message, 'err');
+                return;
+            }
+            showToast('✅ Texte sauvegardé !', 'ok');
+        }
+
+        function addTextKey() {
+            openModal('mText');
+        }
+
+        async function saveNewTextKey() {
+            var page = document.getElementById('tkPage').value.trim();
+            var key = document.getElementById('tkKey').value.trim();
+            var fr = document.getElementById('tkFr').value.trim();
+            var en = document.getElementById('tkEn').value.trim();
+            if (!page || !key) {
+                showToast('Page et clé requis.', 'err');
+                return;
+            }
+            var {
+                error
+            } = await sb.from('site_texts').upsert({
+                page,
+                key,
+                value_fr: fr,
+                value_en: en
+            });
+            if (error) {
+                showToast('Erreur : ' + error.message, 'err');
+                return;
+            }
+            showToast('✅ Clé ajoutée !', 'ok');
+            closeModal('mText');
+            loadTexts();
+        }
+
+        // ════════════════════════════════════════════════════
+        //  SETTINGS
+        // ════════════════════════════════════════════════════
+        async function loadSettings() {
+            var {
+                data
+            } = await sb.from('site_texts').select('page,key,value_fr').eq('page', 'settings');
+            if (data) {
+                data.forEach(function(d) {
+                    var el = document.getElementById('s' + d.key.charAt(0).toUpperCase() + d.key.slice(1));
+                    if (el) el.value = d.value_fr || '';
+                });
+            }
+            var {
+                data: veh
+            } = await sb.from('vehicles').select('id');
+            var {
+                data: res
+            } = await sb.from('reservations').select('id');
+            var {
+                data: cli
+            } = await sb.from('profiles').select('id');
+            document.getElementById('sbStats').innerHTML =
+                '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">' +
+                '<div style="background:rgba(255,255,255,.03);border-radius:8px;padding:12px;text-align:center"><div style="font-size:1.5rem;color:var(--bl)">' + (veh ? veh.length : 0) + '</div><div style="font-size:.68rem;color:var(--W3)">Véhicules</div></div>' +
+                '<div style="background:rgba(255,255,255,.03);border-radius:8px;padding:12px;text-align:center"><div style="font-size:1.5rem;color:var(--green)">' + (res ? res.length : 0) + '</div><div style="font-size:.68rem;color:var(--W3)">Réservations</div></div>' +
+                '<div style="background:rgba(255,255,255,.03);border-radius:8px;padding:12px;text-align:center"><div style="font-size:1.5rem;color:var(--amber)">' + (cli ? cli.length : 0) + '</div><div style="font-size:.68rem;color:var(--W3)">Clients</div></div>' +
+                '</div>';
+        }
+
+        async function saveSettings() {
+            var fields = [{
+                key: 'Name',
+                col: 'name'
+            }, {
+                key: 'Email',
+                col: 'email'
+            }, {
+                key: 'Turo',
+                col: 'turo'
+            }, {
+                key: 'Phone',
+                col: 'phone'
+            }];
+            var promises = fields.map(function(f) {
+                var val = document.getElementById('s' + f.key).value.trim();
+                return sb.from('site_texts').upsert({
+                    page: 'settings',
+                    key: f.col.toLowerCase(),
+                    value_fr: val,
+                    value_en: val
+                });
+            });
+            await Promise.all(promises);
+            showToast('✅ Paramètres sauvegardés !', 'ok');
+        }
+
+        // ════════════════════════════════════════════════════
+        //  DELETE
+        // ════════════════════════════════════════════════════
+        function confirmDelete(type, id) {
+            document.getElementById('confirmMsg').textContent = 'Êtes-vous sûr de vouloir supprimer cet élément ? Cette action est irréversible.';
+            document.getElementById('confirmBtn').onclick = function() {
+                closeModal('mConfirm');
+                if (type === 'vehicle') deleteRow('vehicles', id, loadVehicles);
+                if (type === 'reservation') deleteRow('reservations', id, loadReservations);
+                if (type === 'text') deleteRow('site_texts', id, loadTexts);
+            };
+            openModal('mConfirm');
+        }
+
+        async function deleteRow(table, id, callback) {
+            var {
+                error
+            } = await sb.from(table).delete().eq('id', id);
+            if (error) {
+                showToast('Erreur : ' + error.message, 'err');
+                return;
+            }
+            showToast('🗑️ Supprimé avec succès.', 'ok');
+            if (callback) callback();
+            loadOverview();
+        }
+
+        // ════════════════════════════════════════════════════
+        //  IMAGE
+        // ════════════════════════════════════════════════════
+        function switchImgTab(type, btn) {
+            document.querySelectorAll('.tabs .tab').forEach(function(t) {
+                t.classList.remove('active');
+            });
+            btn.classList.add('active');
+            document.getElementById('imgUrl').style.display = type === 'url' ? 'block' : 'none';
+            document.getElementById('imgUpload').style.display = type === 'upload' ? 'block' : 'none';
+            document.getElementById('imgPreview').style.display = 'none';
+        }
+
+        function previewImg(url) {
+            var p = document.getElementById('imgPreview');
+            if (!url) {
+                p.style.display = 'none';
+                return;
+            }
+            document.getElementById('imgPreviewEl').src = url;
+            p.style.display = 'flex';
+        }
+
+        async function handleImgUpload(input) {
+            var file = input.files[0];
+            if (!file) return;
+            var ext = file.name.split('.').pop();
+            var path = 'vehicle-' + Date.now() + '.' + ext;
+            showToast('📤 Upload en cours…', 'info');
+            var {
+                data,
+                error
+            } = await sb.storage.from(STORAGE_BUCKET).upload(path, file, {
+                upsert: true
+            });
+            if (error) {
+                showToast('Erreur upload : ' + error.message, 'err');
+                return;
+            }
+            var {
+                data: pub
+            } = sb.storage.from(STORAGE_BUCKET).getPublicUrl(path);
+            document.getElementById('vImgUrl').value = pub.publicUrl;
+            previewImg(pub.publicUrl);
+            showToast('✅ Image uploadée !', 'ok');
+        }
+
+        function switchDescTab(lang, btn) {
+            document.querySelectorAll('.lang-tabs .lang-tab').forEach(function(t) {
+                t.classList.remove('active');
+            });
+            btn.classList.add('active');
+            document.getElementById('vDescFr').style.display = lang === 'fr' ? 'block' : 'none';
+            document.getElementById('vDescEn').style.display = lang === 'en' ? 'block' : 'none';
+        }
+
+        // ════════════════════════════════════════════════════
+        //  SETUP SQL
+        // ════════════════════════════════════════════════════
+        var SQL_SETUP = `-- ══ NexDrive — Setup SQL ══════════════════════════
+-- Exécuter dans Supabase > SQL Editor
+ 
+-- 1. VÉHICULES
+CREATE TABLE IF NOT EXISTS vehicles (
+  id               UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  name             TEXT NOT NULL,
+  category         TEXT DEFAULT 'berline',
+  year             INTEGER,
+  seats            INTEGER DEFAULT 5,
+  transmission     TEXT DEFAULT 'Automatique',
+  price_per_day    INTEGER DEFAULT 0,
+  available        BOOLEAN DEFAULT true,
+  image_url        TEXT DEFAULT '',
+  turo_url         TEXT DEFAULT '',
+  description_fr   TEXT DEFAULT '',
+  description_en   TEXT DEFAULT '',
+  created_at       TIMESTAMPTZ DEFAULT NOW()
+);
+ 
+-- 2. TEXTES DU SITE
+CREATE TABLE IF NOT EXISTS site_texts (
+  id        UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  page      TEXT NOT NULL,
+  key       TEXT NOT NULL,
+  value_fr  TEXT DEFAULT '',
+  value_en  TEXT DEFAULT '',
+  UNIQUE(page, key)
+);
+ 
+-- 3. RÉSERVATIONS (tracker manuel)
+CREATE TABLE IF NOT EXISTS reservations (
+  id            UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  client_name   TEXT,
+  client_email  TEXT,
+  vehicle_name  TEXT,
+  start_date    DATE,
+  end_date      DATE,
+  price_total   INTEGER DEFAULT 0,
+  status        TEXT DEFAULT 'confirme',
+  notes         TEXT DEFAULT '',
+  created_at    TIMESTAMPTZ DEFAULT NOW()
+);
+ 
+-- 4. PROFILS CLIENTS
+CREATE TABLE IF NOT EXISTS profiles (
+  id          UUID REFERENCES auth.users(id) ON DELETE CASCADE PRIMARY KEY,
+  email       TEXT,
+  full_name   TEXT,
+  phone       TEXT,
+  city        TEXT,
+  created_at  TIMESTAMPTZ DEFAULT NOW(),
+  last_seen   TIMESTAMPTZ DEFAULT NOW()
+);
+ 
+-- 5. RLS
+ALTER TABLE vehicles     ENABLE ROW LEVEL SECURITY;
+ALTER TABLE site_texts   ENABLE ROW LEVEL SECURITY;
+ALTER TABLE reservations ENABLE ROW LEVEL SECURITY;
+ALTER TABLE profiles     ENABLE ROW LEVEL SECURITY;
+ 
+-- Lecture publique (véhicules & textes)
+CREATE POLICY "vehicles_read"    ON vehicles    FOR SELECT USING (true);
+CREATE POLICY "site_texts_read"  ON site_texts  FOR SELECT USING (true);
+CREATE POLICY "profiles_read"    ON profiles    FOR SELECT USING (true);
+ 
+-- Admin full access (remplacez par votre email)
+CREATE POLICY "vehicles_admin"     ON vehicles     FOR ALL
+  USING (auth.jwt()->>'email' = 'VOTRE_EMAIL_ADMIN');
+CREATE POLICY "site_texts_admin"   ON site_texts   FOR ALL
+  USING (auth.jwt()->>'email' = 'VOTRE_EMAIL_ADMIN');
+CREATE POLICY "reservations_admin" ON reservations FOR ALL
+  USING (auth.jwt()->>'email' = 'VOTRE_EMAIL_ADMIN');
+ 
+-- 6. AUTO-CRÉER UN PROFIL À L'INSCRIPTION
+CREATE OR REPLACE FUNCTION handle_new_user()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO profiles (id, email, full_name)
+  VALUES (NEW.id, NEW.email,
+          NEW.raw_user_meta_data->>'full_name')
+  ON CONFLICT (id) DO NOTHING;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+ 
+DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
+CREATE TRIGGER on_auth_user_created
+  AFTER INSERT ON auth.users
+  FOR EACH ROW EXECUTE FUNCTION handle_new_user();
+ 
+-- ✅ Terminé ! N'oubliez pas de remplacer VOTRE_EMAIL_ADMIN`;
+
+        function openSetupModal() {
+            document.getElementById('sqlBox').textContent = SQL_SETUP;
+            openModal('mSetup');
+        }
+
+        async function copySQL() {
+            await navigator.clipboard.writeText(SQL_SETUP);
+            showToast('📋 SQL copié !', 'ok');
+        }
+
+        // ════════════════════════════════════════════════════
+        //  UTILS
+        // ════════════════════════════════════════════════════
+        function openModal(id) {
+            document.getElementById(id).classList.add('open');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('open');
+        }
+
+        document.querySelectorAll('.msk').forEach(function(m) {
+            m.addEventListener('click', function(e) {
+                if (e.target === this) this.classList.remove('open');
+            });
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') document.querySelectorAll('.msk.open').forEach(function(m) {
+                m.classList.remove('open');
+            });
+        });
+
+        var _toastTimer;
+
+        function showToast(msg, type) {
+            var t = document.getElementById('toast');
+            t.className = 'toast ' + (type === 'ok' ? 't-ok' : type === 'err' ? 't-err' : 't-info');
+            t.innerHTML = (type === 'ok' ? '✅ ' : type === 'err' ? '❌ ' : 'ℹ️ ') + msg;
+            t.classList.add('show');
+            clearTimeout(_toastTimer);
+            _toastTimer = setTimeout(function() {
+                t.classList.remove('show');
+            }, 3200);
+        }
+
+        function esc(str) {
+            return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function fmtDate(d) {
+            if (!d) return '—';
+            try {
+                return new Date(d).toLocaleDateString('fr-CA', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                });
+            } catch (e) {
+                return d;
+            }
+        }
+
+        // ════════════════════════════════════════════════════
+        //  ENTER KEY ON LOGIN
+        // ════════════════════════════════════════════════════
+        ['gEmail', 'gPass', 'gCode'].forEach(function(id) {
+            document.getElementById(id).addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') doLogin();
+            });
+        });
+    </script>
+</body>
+
+</html>
