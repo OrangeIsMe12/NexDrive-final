@@ -1514,7 +1514,7 @@
 
         function reserver(title, price, sub, turo) {
             var params = '?voiture=' + encodeURIComponent(title) + '&prix=' + encodeURIComponent(price) + '&sub=' + encodeURIComponent(sub) + '&turo=' + encodeURIComponent(turo);
-            window.location.href = sbSession ? 'confirmation.html' + params;
+           window.location.href = 'confirmation.html' + params;
         }
 
         document.getElementById('fleetGrid').innerHTML = vehicles.map(function(v) {
