@@ -1874,7 +1874,7 @@
             }).join('');
             var loueOverlay = v.dispo ? '' : '<div class="loue-overlay"></div>';
             var comingHTML = v.comingSoon ? '<div class="coming-overlay"></div><div class="coming-ribbon"></div><div class="coming-label"><span class="gift">🎁</span><span class="txt">Bientôt disponible</span></div>' : '';
-            return '<div class="vcard reveal' + (v.delay ? ' ' + v.delay : '') + '" data-cat="' + v.cat + '" data-tier="' + v.tier + '" data-dispo="' + (v.dispo ? 'oui' : 'non') + '" id="vc-' + v.id + '">' +
+            return '<div class="vcard reveal' + (v.delay ? ' ' + v.delay : '') + '" data-cat="' + v.cat + '" data-tier="' + v.tier + '" data-dispo="' + (v.dispo ? 'oui' : 'non') + '" data-coming="' + (v.comingSoon ? 'oui' : 'non') + '" id="vc-' + v.id + '">' +
                 loueOverlay + comingHTML +
                 '<div class="carousel" id="carousel-' + v.id + '">' +
                 '<div class="badge-special ' + v.tier + '"><span class="diamond"></span>' + TL[v.tier] + '</div>' +
@@ -2008,7 +2008,7 @@
 
         function applyF() {
             document.querySelectorAll('.vcard').forEach(function(c) {
-                var ok = (aT === 'tous' || c.dataset.cat.includes(aT)) && (aTi === 'tous' || c.dataset.tier === aTi) && (aD === 'tous' || c.dataset.dispo === 'oui');
+                var ok = (aT === 'tous' || c.dataset.cat.includes(aT)) && (aTi === 'tous' || c.dataset.tier === aTi) && (aD === 'tous' || (c.dataset.dispo === 'oui' && c.dataset.coming === 'non'));
                 if (ok) {
                     c.classList.remove('hidden');
                     c.style.animation = 'none';
