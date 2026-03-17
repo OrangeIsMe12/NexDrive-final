@@ -1,110 +1,653 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NexDrive — Confirmation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
     <style>
-        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-        :root{--navy:#0a1628;--electric:#2979ff;--elec-l:#5b9fff;--green:#34d399;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif}
-        body{background:#0a1628;color:#fff;font-family:var(--sans);min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
-        nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:linear-gradient(180deg,#0e1e3a 0%,#0a1628 100%);border-bottom:1px solid rgba(41,121,255,0.2);backdrop-filter:blur(24px)}
-        nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(91,159,255,0.5) 50%,transparent);pointer-events:none}
-        .logo{display:flex;align-items:center;text-decoration:none}
-        .back-link{display:flex;align-items:center;gap:8px;font-size:.82rem;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
-        .back-link:hover{color:#fff}
-        main{flex:1;display:flex;align-items:center;justify-content:center;padding:100px 20px 60px;position:relative;z-index:1}
- 
-        /* Glow vert */
-        .glow{position:fixed;top:40%;left:50%;transform:translate(-50%,-50%);width:700px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(52,211,153,0.07),transparent 65%);pointer-events:none;z-index:0}
- 
-        .card{width:100%;max-width:500px;background:rgba(14,22,42,0.88);border:1px solid rgba(52,211,153,0.18);border-radius:22px;overflow:hidden;backdrop-filter:blur(24px);box-shadow:0 0 0 1px rgba(52,211,153,0.06),0 24px 80px rgba(0,0,0,0.5);animation:fu .7s cubic-bezier(.16,1,.3,1) both;position:relative}
-        .card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(52,211,153,0.5) 40%,rgba(91,159,255,0.4) 70%,transparent)}
-        @keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
- 
-        /* Check animé */
-        .check-hero{display:flex;flex-direction:column;align-items:center;padding:40px 32px 28px;text-align:center}
-        .check-ring{width:80px;height:80px;border-radius:50%;background:rgba(52,211,153,0.1);border:2px solid rgba(52,211,153,0.3);display:flex;align-items:center;justify-content:center;margin-bottom:20px;animation:pop .5s cubic-bezier(.16,1,.3,1) .2s both}
-        @keyframes pop{from{transform:scale(0.4);opacity:0}to{transform:scale(1);opacity:1}}
-        .check-ring svg{animation:draw .4s ease .5s both}
-        @keyframes draw{from{opacity:0;transform:scale(0.5)}to{opacity:1;transform:scale(1)}}
-        .hero-tag{font-size:.6rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:10px}
-        .hero-title{font-family:var(--serif);font-size:2rem;font-weight:300;line-height:1.2;margin-bottom:6px}
-        .hero-title em{font-style:italic;color:var(--elec-l)}
-        .hero-sub{font-size:.85rem;color:rgba(255,255,255,.38);line-height:1.6;max-width:340px}
- 
-        /* Véhicule */
-        .vehicle-section{margin:0 28px 24px;background:rgba(255,255,255,0.04);border:1px solid rgba(91,159,255,0.12);border-radius:14px;padding:18px 20px}
-        .v-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-        .v-label{font-size:.6rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.2)}
-        .v-badge{font-size:.62rem;padding:3px 10px;border-radius:100px;background:rgba(52,211,153,0.12);color:var(--green);border:1px solid rgba(52,211,153,0.2);font-weight:600}
-        .v-name{font-family:var(--serif);font-size:1.5rem;font-weight:300;color:#fff;margin-bottom:3px}
-        .v-sub{font-size:.76rem;color:rgba(91,159,255,.6);margin-bottom:14px}
-        .v-row{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid rgba(41,121,255,0.1)}
-        .v-price{font-family:var(--serif);font-size:1.7rem;font-weight:300;color:#fff}
-        .v-price small{font-size:.72rem;color:rgba(255,255,255,.3);font-family:var(--sans);font-weight:300}
-        .v-via{font-size:.7rem;color:rgba(255,255,255,.2)}
- 
-        /* Boutons */
-        .actions{padding:0 28px 28px;display:flex;flex-direction:column;gap:10px}
-        .btn-main{display:flex;align-items:center;justify-content:center;gap:10px;padding:15px;border-radius:12px;background:linear-gradient(135deg,#059669,var(--green));border:none;color:#fff;font-family:var(--sans);font-size:.95rem;font-weight:500;cursor:pointer;text-decoration:none;transition:all .3s;box-shadow:0 4px 24px rgba(52,211,153,.25)}
-        .btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(52,211,153,.38)}
-        .btn-sec{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-family:var(--sans);font-size:.85rem;text-decoration:none;transition:all .25s}
-        .btn-sec:hover{border-color:rgba(255,255,255,.25);color:rgba(255,255,255,.8)}
-        .btn-logout{background:none;border:none;color:rgba(255,255,255,.18);font-family:var(--sans);font-size:.72rem;cursor:pointer;padding:6px;transition:color .2s}
-        .btn-logout:hover{color:rgba(220,38,38,.5)}
-        .note{padding:0 28px 24px;font-size:.7rem;color:rgba(255,255,255,.15);text-align:center;line-height:1.6;border-top:1px solid rgba(255,255,255,.05);padding-top:16px;margin-top:-4px}
- 
-        .spinner{width:32px;height:32px;border:3px solid rgba(41,121,255,.2);border-top-color:var(--electric);border-radius:50%;animation:spin .8s linear infinite;margin:40px auto}
-        @keyframes spin{to{transform:rotate(360deg)}}
-        @media(max-width:520px){nav{padding:0 20px;height:60px}.actions{padding:0 20px 20px}.vehicle-section{margin:0 20px 20px}.check-hero{padding:30px 20px 20px}}
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+        
+         :root {
+            --navy: #0a1628;
+            --electric: #2979ff;
+            --elec-l: #5b9fff;
+            --green: #34d399;
+            --green-d: #059669;
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'DM Sans', sans-serif;
+        }
+        
+        body {
+            background: #0a1628;
+            color: #fff;
+            font-family: var(--sans);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        /* BG particles */
+        
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image: linear-gradient(rgba(41, 121, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(41, 121, 255, 0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+        }
+        
+        .glow-green {
+            position: fixed;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(52, 211, 153, 0.06) 0%, transparent 65%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .glow-blue {
+            position: fixed;
+            bottom: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(41, 121, 255, 0.06) 0%, transparent 65%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            background: linear-gradient(180deg, #0e1e3a 0%, rgba(10, 22, 40, 0.95) 100%);
+            border-bottom: 1px solid rgba(41, 121, 255, 0.2);
+            backdrop-filter: blur(24px);
+        }
+        
+        nav::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(91, 159, 255, 0.5) 50%, transparent);
+            pointer-events: none;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .82rem;
+            color: rgba(255, 255, 255, .4);
+            text-decoration: none;
+            transition: color .2s;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+        
+        .back-link:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+        
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 110px 20px 60px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .card {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(10, 18, 36, 0.85);
+            border: 1px solid rgba(52, 211, 153, 0.15);
+            border-radius: 24px;
+            overflow: hidden;
+            backdrop-filter: blur(32px);
+            box-shadow: 0 0 0 1px rgba(52, 211, 153, 0.05), 0 32px 100px rgba(0, 0, 0, 0.6), 0 0 80px rgba(52, 211, 153, 0.04);
+            animation: slideUp .7s cubic-bezier(.16, 1, .3, 1) both;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(32px) scale(0.97);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        /* Top accent bar */
+        
+        .card-top-bar {
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(52, 211, 153, 0.6) 40%, rgba(91, 159, 255, 0.5) 70%, transparent 100%);
+        }
+        /* Hero section */
+        
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 44px 32px 28px;
+            text-align: center;
+        }
+        
+        .check-ring {
+            width: 82px;
+            height: 82px;
+            border-radius: 50%;
+            background: rgba(52, 211, 153, 0.08);
+            border: 2px solid rgba(52, 211, 153, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 22px;
+            animation: popIn .55s cubic-bezier(.16, 1, .3, 1) .15s both;
+            position: relative;
+        }
+        
+        .check-ring::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 1px solid rgba(52, 211, 153, 0.1);
+            animation: pulseRing 2.5s ease-in-out 1s infinite;
+        }
+        
+        @keyframes pulseRing {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.12);
+                opacity: 0.15;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+        }
+        
+        @keyframes popIn {
+            from {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .check-ring svg {
+            animation: checkDraw .35s ease .55s both;
+        }
+        
+        @keyframes checkDraw {
+            from {
+                opacity: 0;
+                transform: scale(0.5) rotate(-10deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+        
+        .hero-eyebrow {
+            font-size: .6rem;
+            font-weight: 600;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--green);
+            margin-bottom: 10px;
+            animation: fadeIn .5s ease .4s both;
+        }
+        
+        .hero-title {
+            font-family: var(--serif);
+            font-size: 2.1rem;
+            font-weight: 300;
+            line-height: 1.2;
+            color: #fff;
+            margin-bottom: 10px;
+            animation: fadeIn .5s ease .5s both;
+        }
+        
+        .hero-title em {
+            font-style: italic;
+            color: var(--elec-l);
+        }
+        
+        .hero-sub {
+            font-size: .84rem;
+            color: rgba(255, 255, 255, .35);
+            line-height: 1.65;
+            max-width: 320px;
+            animation: fadeIn .5s ease .6s both;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Steps */
+        
+        .steps {
+            margin: 0 28px 20px;
+            display: flex;
+            gap: 8px;
+            animation: fadeIn .5s ease .65s both;
+        }
+        
+        .step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 8px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            text-align: center;
+        }
+        
+        .step-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .65rem;
+            font-weight: 700;
+        }
+        
+        .step:nth-child(1) .step-num {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--green);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+        
+        .step:nth-child(2) .step-num {
+            background: rgba(41, 121, 255, 0.15);
+            color: var(--elec-l);
+            border: 1px solid rgba(41, 121, 255, 0.3);
+        }
+        
+        .step:nth-child(3) .step-num {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--green);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+        
+        .step-lbl {
+            font-size: .67rem;
+            color: rgba(255, 255, 255, .3);
+            line-height: 1.3;
+        }
+        /* Vehicle card */
+        
+        .vehicle-section {
+            margin: 0 28px 20px;
+            background: rgba(255, 255, 255, 0.035);
+            border: 1px solid rgba(91, 159, 255, 0.1);
+            border-radius: 16px;
+            padding: 20px;
+            animation: fadeIn .5s ease .7s both;
+        }
+        
+        .v-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+        
+        .v-label {
+            font-size: .58rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .18);
+        }
+        
+        .v-badge {
+            font-size: .6rem;
+            font-weight: 700;
+            letter-spacing: .5px;
+            padding: 3px 10px;
+            border-radius: 100px;
+            background: rgba(52, 211, 153, 0.1);
+            color: var(--green);
+            border: 1px solid rgba(52, 211, 153, 0.2);
+        }
+        
+        .v-name {
+            font-family: var(--serif);
+            font-size: 1.55rem;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 3px;
+        }
+        
+        .v-sub {
+            font-size: .75rem;
+            color: rgba(91, 159, 255, .55);
+            margin-bottom: 16px;
+        }
+        
+        .v-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 14px;
+            border-top: 1px solid rgba(41, 121, 255, 0.08);
+        }
+        
+        .v-price {
+            font-family: var(--serif);
+            font-size: 1.75rem;
+            font-weight: 300;
+            color: #fff;
+        }
+        
+        .v-price small {
+            font-size: .7rem;
+            color: rgba(255, 255, 255, .25);
+            font-family: var(--sans);
+            font-weight: 300;
+        }
+        
+        .v-platform {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .7rem;
+            color: rgba(255, 255, 255, .18);
+        }
+        
+        .v-platform-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: blink 2s ease-in-out infinite;
+        }
+        
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+        /* Actions */
+        
+        .actions {
+            padding: 0 28px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            animation: fadeIn .5s ease .8s both;
+        }
+        
+        .btn-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--green-d), var(--green));
+            border: none;
+            color: #fff;
+            font-family: var(--sans);
+            font-size: .95rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all .3s;
+            box-shadow: 0 4px 28px rgba(52, 211, 153, .2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .1), transparent);
+            transition: left .45s;
+        }
+        
+        .btn-main:hover::before {
+            left: 100%;
+        }
+        
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 36px rgba(52, 211, 153, .32);
+        }
+        
+        .btn-main svg {
+            flex-shrink: 0;
+        }
+        
+        .btn-sec {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px;
+            border-radius: 12px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .08);
+            color: rgba(255, 255, 255, .4);
+            font-family: var(--sans);
+            font-size: .85rem;
+            text-decoration: none;
+            transition: all .25s;
+        }
+        
+        .btn-sec:hover {
+            border-color: rgba(255, 255, 255, .2);
+            color: rgba(255, 255, 255, .75);
+            background: rgba(255, 255, 255, .04);
+        }
+        /* Note footer */
+        
+        .note {
+            margin: 0 28px 28px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: rgba(41, 121, 255, 0.05);
+            border: 1px solid rgba(41, 121, 255, 0.1);
+            font-size: .68rem;
+            color: rgba(255, 255, 255, .2);
+            line-height: 1.65;
+            text-align: center;
+            animation: fadeIn .5s ease .9s both;
+        }
+        
+        @media (max-width: 520px) {
+            nav {
+                padding: 0 20px;
+                height: 60px;
+            }
+            .hero {
+                padding: 32px 20px 22px;
+            }
+            .steps,
+            .vehicle-section,
+            .actions,
+            .note {
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+            .actions {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            .steps {
+                gap: 6px;
+            }
+        }
     </style>
 </head>
+
 <body>
-<div class="glow"></div>
-<nav>
-    <a href="index.html" class="logo"><img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:100px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(41,121,255,0.45))"/></a>
-    <a href="vehicules.html" class="back-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Retour à la flotte</a>
-</nav>
-<main>
-    <div class="card" id="card"><div class="spinner"></div></div>
-</main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-const SUPABASE_URL='https://igftridkkchvjaxtburi.supabase.co';
-const SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnZnRyaWRra2NodmpheHRidXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODcxMzgsImV4cCI6MjA4ODY2MzEzOH0.SuUO_seWElDPnm3lnGEEn8OwflJhbocyJjVF8nvrf4Y';
-const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,storageKey:'nexdrive-auth',autoRefreshToken:true,detectSessionInUrl:true}});
-const p=new URLSearchParams(window.location.search);
-const voiture=p.get('voiture')||'';const prix=p.get('prix')||'—';const sub=p.get('sub')||'';const turoURL=p.get('turo')||'https://turo.com';
-var done=false;
-sb.auth.onAuthStateChange(function(event,session){
-    if(done)return;
-    if(event==='INITIAL_SESSION'){
-        done=true;
-        if(session&&session.user){render(session.user);}
-        else{setTimeout(function(){sb.auth.getSession().then(function(r){if(r.data&&r.data.session){render(r.data.session.user);}else{window.location.replace('login.html'+window.location.search);}});},1500);}
-    }else if((event==='SIGNED_IN'||event==='TOKEN_REFRESHED')&&session&&session.user&&!done){done=true;render(session.user);}
-});
-function getInit(u){var n=(u.user_metadata&&(u.user_metadata.full_name||u.user_metadata.name))||u.email||'';var p=n.trim().split(' ');return p.length>=2?(p[0][0]+p[p.length-1][0]).toUpperCase():n.slice(0,2).toUpperCase();}
-function render(user){
-    var name=(user.user_metadata&&(user.user_metadata.full_name||user.user_metadata.name))||user.email||'Client';
-    var init=getInit(user);
-    document.getElementById('card').innerHTML=
-        '<div class="check-hero">'
-        +'<div class="check-ring"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>'
-        +'<div class="hero-tag">Réservation</div>'
-        +'<div class="hero-title">Prêt à <em>rouler</em> !</div>'
-        +'<div class="hero-sub">Bonjour '+name.split(' ')[0]+' ! Complétez votre réservation sur Turo — assurance incluse, contrat automatique.</div>'
-        +'</div>'
-        +(voiture?'<div class="vehicle-section"><div class="v-top"><span class="v-label">Votre sélection</span><span class="v-badge">✓ Disponible</span></div><div class="v-name">'+voiture+'</div><div class="v-sub">'+sub+'</div><div class="v-row"><div class="v-price">'+prix+'<small> /jour</small></div><div class="v-via">via Turo</div></div></div>':'')
-        +'<div class="actions">'
-        +(voiture?'<a href="'+turoURL+'" target="_blank" class="btn-main">Réserver sur Turo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>':'<a href="vehicules.html" class="btn-main">Voir la flotte →</a>')
-          +'<button class="btn-logout" onclick="logout()">Se déconnecter</button>'
-        +'</div>'
-        +(voiture?'<div class="note">En cliquant Réserver sur Turo, vous serez redirigé vers Turo pour finaliser votre réservation.</div>':'');
-}
-async function logout(){await sb.auth.signOut();window.location.replace('login.html');}
-</script>
+    <div class="bg-grid"></div>
+    <div class="glow-green"></div>
+    <div class="glow-blue"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:100px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(41,121,255,0.45))" />
+        </a>
+        <a href="vehicules.html" class="back-link">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> Retour à la flotte
+        </a>
+    </nav>
+
+    <main>
+        <div class="card" id="card">
+            <div class="card-top-bar"></div>
+
+            <div class="hero">
+                <div class="check-ring">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                </div>
+                <div class="hero-eyebrow">Sélection confirmée</div>
+                <div class="hero-title">Prêt à <em>rouler</em>&nbsp;!</div>
+                <div class="hero-sub" id="heroSub">Votre véhicule est sélectionné. Complétez votre réservation sur Turo — assurance incluse, contrat automatique.</div>
+            </div>
+
+            <!-- Étapes -->
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">✓</div>
+                    <div class="step-lbl">Véhicule<br>choisi</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-lbl">Réserver<br>sur Turo</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-lbl">Profiter<br>du trajet</div>
+                </div>
+            </div>
+
+            <!-- Véhicule -->
+            <div class="vehicle-section" id="vehicleSection" style="display:none">
+                <div class="v-header">
+                    <span class="v-label">Votre sélection</span>
+                    <span class="v-badge">✓ Disponible</span>
+                </div>
+                <div class="v-name" id="vName"></div>
+                <div class="v-sub" id="vSub"></div>
+                <div class="v-row">
+                    <div class="v-price" id="vPrice"></div>
+                    <div class="v-platform">
+                        <span class="v-platform-dot"></span> via Turo
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="actions">
+                <a href="#" id="btnTuro" class="btn-main" target="_blank">
+                    Réserver sur Turo
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                        <polyline points="15 3 21 3 21 9"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                    </svg>
+                </a>
+                <a href="vehicules.html" class="btn-sec">
+                    ← Retour à la flotte
+                </a>
+            </div>
+
+            <div class="note">
+                En cliquant sur « Réserver sur Turo », vous serez redirigé vers la plateforme Turo pour finaliser votre réservation. Assurance et contrat inclus.
+            </div>
+        </div>
+    </main>
+
+    <script>
+        var p = new URLSearchParams(window.location.search);
+        var voiture = p.get('voiture') || '';
+        var prix = p.get('prix') || '';
+        var sub = p.get('sub') || '';
+        var turo = p.get('turo') || 'https://turo.com/fr-ca/conduire/TONLIENICI'; // ← mets ton lien Turo ici
+
+        if (voiture) {
+            document.getElementById('vehicleSection').style.display = 'block';
+            document.getElementById('vName').textContent = voiture;
+            document.getElementById('vSub').textContent = sub;
+            document.getElementById('vPrice').innerHTML = prix + '<small> /jour</small>';
+        } else {
+            document.getElementById('heroSub').textContent = 'Consultez notre flotte et choisissez le véhicule qui vous convient.';
+        }
+
+        document.getElementById('btnTuro').href = turo;
+    </script>
 </body>
+
 </html>
