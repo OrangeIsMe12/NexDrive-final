@@ -1,0 +1,22 @@
+Robots · TXT
+Copier
+
+# robots.txt — NexDrive (location-nexdrive.com)
+# Généré pour un site HTML/CSS/JS déployé sur Vercel
+ 
+# --- Moteurs de recherche (tout autoriser sauf zones privées) ---
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+ 
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+ 
+# --- Tous les autres bots ---
+User-agent: *
+Allow: /
+Disallow: /api/
+ 
+# --- Sitemap (aide Google à indexer ton site) ---
+Sitemap: https://location-nexdrive.com/sitemap.xml
