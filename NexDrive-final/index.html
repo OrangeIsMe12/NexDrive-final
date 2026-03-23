@@ -1,567 +1,1789 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8" />
-  <script>
-    (function(){
-      function g(n){var m=document.cookie.match(new RegExp('(^| )'+n+'=([^;]+)'));return m?m[2]:null;}
-      if(!g('nd_lang'))window.location.replace('landing.html');
-    })()
-  </script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <title>Locations NexDrive — Véhicules Premium | Québec</title>
-  <link rel="icon" type="image/png" href="logo/1-removebg-preview.png">
-  <link rel="apple-touch-icon" href="logo/1-removebg-preview.png">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-    :root {
-      --white:   #ffffff;
-      --bg:      #f5f7fa;
-      --bg2:     #eef1f6;
-      --navy:    #0d1f3c;
-      --navy2:   #162a4a;
-      --blue:    #1a56db;
-      --blue-l:  #4f84f8;
-      --text:    #374151;
-      --muted:   #6b7280;
-      --border:  #e2e8f0;
-      --border2: rgba(14,14,14,.06);
-      --sans:    'Outfit', sans-serif;
-    }
-
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
-
-    /* ─── IPHONE / IOS FIXES ─── */
-    /* Scroll fluide iOS */
-    body { -webkit-overflow-scrolling: touch; }
-    /* Évite le zoom sur les inputs iOS */
-    input, select, textarea { font-size: 16px; }
-    /* Tap highlight transparent */
-    * { -webkit-tap-highlight-color: transparent; }
-    /* Boutons natifs iOS */
-    button, a { -webkit-appearance: none; touch-action: manipulation; }
-    /* Safe area iPhone X et plus (notch + home bar) */
-    nav { padding-left: max(52px, env(safe-area-inset-left)); padding-right: max(52px, env(safe-area-inset-right)); }
-    .hero-content { padding-bottom: max(72px, env(safe-area-inset-bottom)); }
-    footer { padding-bottom: max(32px, env(safe-area-inset-bottom)); }
-    /* Backdrop-filter webkit pour Safari */
-    nav.scrolled { -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
-    .hero-stats { -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
-
-    /* ─── NAV ─── */
-    nav {
-      position: fixed; top:0; left:0; right:0; z-index:100;
-      height: 80px; display:flex; align-items:center; justify-content:space-between;
-      padding: 0 52px;
-      transition: background .35s, box-shadow .35s;
-    }
-    nav::after {
-      content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
-      transition: background .35s;
-    }
-    /* Sur le hero : transparent, liens blancs */
-    nav.on-hero { background: transparent; }
-    nav.on-hero::after { background: rgba(255,255,255,.15); }
-    nav.on-hero .nav-link { color: rgba(255,255,255,.75); }
-    nav.on-hero .nav-link:hover { color: #fff; }
-    nav.on-hero .nav-cta { background: transparent !important; border: 1px solid rgba(255,255,255,.45) !important; color: #fff !important; }
-    nav.on-hero .nav-cta:hover { background: rgba(255,255,255,.12) !important; }
-    nav.on-hero .hb { background: #fff; }
-    nav.on-hero .logo img { filter: none; }
-    nav.on-hero .nav-sep { display:block; background: rgba(255,255,255,.2); }
-    nav.scrolled .nav-sep { display:block; }
-    /* Après scroll : blanc */
-    nav.scrolled {
-      background: rgba(255,255,255,.97);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 2px 16px rgba(0,0,0,.07);
-    }
-    nav.scrolled::after { background: var(--border); }
-    nav.scrolled .logo img { filter: none; }
-
-    .logo { display:flex; align-items:center; text-decoration:none; flex-shrink:0; }
-    .nav-logo { height:100px; width:auto; object-fit:contain; display:block; }
-    /* Séparateur — seulement visible desktop avec les liens */
-    .nav-sep { display:none; width:1px; height:26px; flex-shrink:0; margin:0 16px; transition:background .35s; }
-    .nav-links { display:flex; align-items:center; gap:32px; }
-    .nav-link { font-size:.88rem; font-weight:400; color:var(--text); text-decoration:none; letter-spacing:.2px; transition:color .2s; }
-    .nav-link:hover { color:var(--blue); }
-    .nav-cta { background:var(--blue) !important; color:#fff !important; padding:9px 22px; border-radius:6px; font-weight:500; border:none !important; transition: background .2s !important; }
-    .nav-cta:hover { background:#1347b8 !important; }
-
-    /* Hamburger */
-    .hbg { display:none; background:none; border:1px solid var(--border); width:42px; height:42px; border-radius:8px; cursor:pointer; flex-direction:column; align-items:center; justify-content:center; gap:5px; transition:border-color .2s; }
-    .hb { display:block; width:18px; height:1.5px; background:var(--navy); border-radius:2px; transition:transform .3s, opacity .2s, background .3s; }
-    .hbg.open .hb:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
-    .hbg.open .hb:nth-child(2){opacity:0;}
-    .hbg.open .hb:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
-
-    /* Mobile panel */
-    .mbd { position:fixed; inset:0; z-index:140; background:rgba(0,0,0,.4); backdrop-filter:blur(6px); opacity:0; pointer-events:none; transition:opacity .35s; }
-    .mbd.open { opacity:1; pointer-events:all; }
-    .mpn {
-      position:fixed; top:0; right:0; bottom:0; width:min(310px,100vw); z-index:150;
-      background:var(--white); border-left:1px solid var(--border);
-      transform:translateX(110%); transition:transform .45s cubic-bezier(.77,0,.175,1);
-      display:flex; flex-direction:column; overflow:hidden;
-    }
-    .mpn.open { transform:translateX(0); }
-    .mph { display:flex; align-items:center; justify-content:space-between; padding:18px 22px; border-bottom:1px solid var(--border); }
-    .mph-close { width:34px; height:34px; border-radius:8px; background:transparent; border:1px solid var(--border); cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:.9rem; transition:all .2s; }
-    .mph-close:hover { border-color:var(--blue); color:var(--navy); }
-    .mn { flex:1; overflow-y:auto; padding:14px; scrollbar-width:none; }
-    .mn::-webkit-scrollbar { display:none; }
-    .mn-heading { font-size:.6rem; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); padding:12px 10px 7px; }
-    .ma { display:flex; align-items:center; justify-content:space-between; padding:11px 12px; border-radius:8px; text-decoration:none; margin-bottom:2px; transition:all .18s; border:1px solid transparent; }
-    .ma:hover { background:var(--bg); border-color:var(--border); }
-    .ma.active { background:rgba(26,86,219,.08); border-color:rgba(26,86,219,.2); }
-    .mn-left { display:flex; align-items:center; gap:12px; }
-    .mn-icon { width:32px; height:32px; border-radius:8px; background:var(--bg2); display:flex; align-items:center; justify-content:center; font-size:.8rem; flex-shrink:0; }
-    .ma.active .mn-icon { background:rgba(26,86,219,.1); }
-    .mn-lbl { font-size:.95rem; font-weight:400; color:var(--text); transition:color .18s; }
-    .ma:hover .mn-lbl, .ma.active .mn-lbl { color:var(--navy); }
-    .mn-arr { color:var(--muted); font-size:.75rem; transition:transform .2s, color .18s; }
-    .ma:hover .mn-arr { transform:translateX(4px); color:var(--blue); }
-    .mpf { padding:16px; border-top:1px solid var(--border); }
-    .mf { font-size:.7rem; color:var(--muted); text-align:center; }
-
-    /* ─── HERO plein écran ─── */
-    #hero {
-      position:relative; width:100%;
-      height: 100vh;
-      height: 100dvh;
-      min-height:600px;
-      display:flex; align-items:center;
-      overflow:hidden;
-    }
-    .hero-media {
-      position:absolute; inset:0; z-index:0;
-      background: var(--navy);
-      /* Remplace par : background-image: url('photo.jpg'); background-size:cover; */
-    }
-    .hero-media video {
-      position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-    }
-    /* Logo ND côté droit */
-    .hero-logo-right {
-      position:absolute; right:7%; top:50%; transform:translateY(-50%); z-index:2;
-      display:flex; align-items:center; justify-content:center;
-    }
-    .hero-logo-right img {
-      width: clamp(280px, 30vw, 480px);
-      animation: float 6s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-    }
-    @keyframes float {
-      0%   { transform: translateY(0px)   rotate(0deg);   filter: drop-shadow(0 0 40px rgba(79,132,248,.55)) drop-shadow(0 0 80px rgba(79,132,248,.2)); }
-      50%  { transform: translateY(-28px) rotate(1deg);   filter: drop-shadow(0 0 80px rgba(79,132,248,.9))  drop-shadow(0 0 130px rgba(79,132,248,.45)); }
-      100% { transform: translateY(0px)   rotate(0deg);   filter: drop-shadow(0 0 40px rgba(79,132,248,.55)) drop-shadow(0 0 80px rgba(79,132,248,.2)); }
-    }
-
-    .hero-overlay {
-      position:absolute; inset:0; z-index:1;
-      background: linear-gradient(to top, rgba(13,31,60,.88) 0%, rgba(13,31,60,.35) 55%, rgba(13,31,60,.1) 100%);
-    }
-    .hero-content {
-      position:relative; z-index:2;
-      padding: 0 52px;
-      max-width: 640px;
-    }
-    .hero-eyebrow {
-      display:inline-flex; align-items:center; gap:10px; margin-bottom:22px; white-space:nowrap;
-    }
-    .hero-eyebrow-line { width:24px; height:1px; background:var(--blue-l); flex-shrink:0; }
-    .hero-eyebrow span { font-size:.65rem; font-weight:500; letter-spacing:3.5px; text-transform:uppercase; color:var(--blue-l); }
-    #hero h1 { font-size:clamp(2.8rem,5.5vw,5.2rem); font-weight:700; line-height:1.06; letter-spacing:-.5px; color:#fff; margin-bottom:18px; }
-    #hero h1 em { font-style:normal; color:var(--blue-l); }
-    .hero-sub { font-size:.9rem; font-weight:300; color:rgba(255,255,255,.58); line-height:1.85; max-width:420px; margin-bottom:40px; }
-    .hero-cta {
-      display:inline-flex; align-items:center; gap:10px;
-      background:var(--blue); color:#fff; padding:14px 34px; border-radius:6px;
-      font-size:.9rem; font-weight:500; text-decoration:none; transition:background .25s, transform .2s;
-    }
-    .hero-cta:hover { background:#1347b8; transform:translateY(-2px); }
-
-    /* Stats bas-droit hero */
-    .hero-stats {
-      position:absolute; bottom:44px; right:52px; z-index:2;
-      display:flex; background:rgba(255,255,255,.07); backdrop-filter:blur(14px);
-      border:1px solid rgba(255,255,255,.14); border-radius:10px; overflow:hidden;
-    }
-    .hstat { padding:16px 22px; text-align:center; position:relative; }
-    .hstat:not(:last-child)::after { content:''; position:absolute; right:0; top:20%; bottom:20%; width:1px; background:rgba(255,255,255,.12); }
-    .hstat-n { font-size:1.6rem; font-weight:700; color:#fff; line-height:1; }
-    .hstat-n em { color:var(--blue-l); font-style:normal; }
-    .hstat-l { font-size:.58rem; font-weight:400; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,.38); margin-top:4px; }
-
-    /* ─── PROCESS ─── */
-    #process { padding:100px 52px; background:var(--white); }
-    .proc-label { display:inline-flex; align-items:center; gap:8px; font-size:.62rem; font-weight:500; letter-spacing:3px; text-transform:uppercase; color:var(--blue); margin-bottom:12px; }
-    .proc-label::before { content:''; width:14px; height:1px; background:var(--blue); }
-    .proc-title { font-size:clamp(1.9rem,3.5vw,3.2rem); font-weight:700; color:var(--navy); line-height:1.12; letter-spacing:-.3px; margin-bottom:60px; max-width:480px; }
-    .proc-title em { font-style:italic; color:var(--blue); font-weight:400; }
-    .proc-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-    .proc-step {
-      background:var(--bg); border:1px solid var(--border); border-radius:14px;
-      padding:32px 28px; position:relative;
-      transition:transform .3s cubic-bezier(.22,.68,0,1.2), box-shadow .3s, border-color .3s;
-    }
-    .proc-step:hover { transform:translateY(-8px); border-color:rgba(26,86,219,.3); box-shadow:0 16px 40px rgba(26,86,219,.1); }
-    .proc-num { font-size:3.5rem; font-weight:700; color:rgba(26,86,219,.07); position:absolute; top:14px; right:20px; line-height:1; }
-    .proc-icon { width:44px; height:44px; border-radius:10px; background:rgba(26,86,219,.08); display:flex; align-items:center; justify-content:center; font-size:1.2rem; margin-bottom:20px; }
-    .proc-step-title { font-size:1.15rem; font-weight:600; color:var(--navy); margin-bottom:10px; line-height:1.2; }
-    .proc-step-desc { font-size:.84rem; font-weight:300; color:var(--muted); line-height:1.8; }
-
-    /* ─── REVIEWS ─── */
-    #reviews { padding:100px 52px; background:var(--bg2); border-top:1px solid var(--border); }
-    .rt { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:36px; flex-wrap:wrap; gap:20px; }
-    .scn { font-size:4rem; font-weight:700; color:var(--navy); line-height:1; }
-    .scs { display:flex; gap:3px; margin-bottom:4px; }
-    .star { color:#f59e0b; font-size:1rem; }
-    .scm { font-size:.74rem; color:var(--muted); }
-    .rg { display:flex; gap:16px; overflow-x:auto; padding-bottom:16px; scrollbar-width:none; cursor:grab; }
-    .rg::-webkit-scrollbar { display:none; }
-    .rg.grabbing { cursor:grabbing; user-select:none; }
-    .rv { flex:0 0 300px; background:var(--white); border:1px solid var(--border); border-radius:12px; padding:22px; transition:border-color .25s, transform .25s, box-shadow .25s; }
-    .rv:hover { border-color:rgba(26,86,219,.25); transform:translateY(-4px); box-shadow:0 10px 28px rgba(10,22,40,.08); }
-    .rvh { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
-    .rva { width:38px; height:38px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:.95rem; font-weight:600; color:#fff; }
-    .rvn { font-size:.86rem; font-weight:500; color:var(--navy); }
-    .rvd { font-size:.72rem; color:var(--muted); margin-top:1px; }
-    .rvs { display:flex; gap:2px; margin-bottom:9px; }
-    .rvst { font-size:.78rem; color:#f59e0b; }
-    .rvt { font-size:.82rem; font-weight:300; color:var(--text); line-height:1.75; }
-    .rvr { font-size:.7rem; color:var(--blue); margin-top:12px; padding-top:10px; border-top:1px solid var(--border); }
-
-    /* ─── CTA ─── */
-    #cta { padding:110px 52px; text-align:center; background:var(--navy); position:relative; overflow:hidden; }
-    #cta::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:600px; height:400px; border-radius:50%; background:radial-gradient(ellipse, rgba(26,86,219,.18), transparent 65%); pointer-events:none; }
-    .ctal { width:40px; height:1px; margin:0 auto 28px; background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent); }
-    .ctah { font-size:clamp(2.2rem,4.5vw,4rem); font-weight:700; line-height:1.1; color:#fff; margin-bottom:16px; letter-spacing:-.3px; }
-    .ctah em { font-style:normal; color:var(--blue-l); }
-    .ctap { font-size:.92rem; font-weight:300; color:rgba(255,255,255,.5); line-height:1.85; max-width:400px; margin:0 auto 44px; }
-    .ctab { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-    .bw { display:inline-flex; align-items:center; gap:9px; background:#fff; color:var(--navy); padding:14px 34px; border-radius:6px; font-size:.9rem; font-weight:500; text-decoration:none; box-shadow:0 4px 20px rgba(0,0,0,.18); transition:all .25s; }
-    .bw:hover { background:var(--bg2); transform:translateY(-2px); }
-
-    /* ─── FOOTER ─── */
-    footer { background:#080e1a; border-top:1px solid rgba(255,255,255,.06); padding:56px 52px 32px; }
-    .ftt { display:grid; grid-template-columns:1.8fr 1fr 1fr; gap:40px; margin-bottom:48px; }
-    .fd { font-size:.82rem; font-weight:300; color:rgba(255,255,255,.28); line-height:1.75; max-width:220px; }
-    .fc h4 { font-size:.62rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.2); margin-bottom:16px; }
-    .fc a { display:block; font-size:.82rem; font-weight:300; color:rgba(255,255,255,.38); text-decoration:none; margin-bottom:11px; transition:color .2s; }
-    .fc a:hover { color:rgba(255,255,255,.8); }
-    .ftb { border-top:1px solid rgba(255,255,255,.06); padding-top:22px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; }
-    .ftc, .ftr { font-size:.72rem; color:rgba(255,255,255,.22); }
-    .ftr a { color:var(--blue-l); text-decoration:none; }
-
-    /* ─── REVEAL ─── */
-    .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
-    .reveal.vis { opacity:1; transform:translateY(0); }
-    .d1 { transition-delay:.12s; } .d2 { transition-delay:.24s; } .d3 { transition-delay:.36s; }
-
-    /* ─── RESPONSIVE ─── */
-    @media(max-width:1000px) {
-      .proc-steps { grid-template-columns:1fr; max-width:520px; }
-      .ftt { grid-template-columns:1fr 1fr; }
-      .hero-logo-right {
-        display:flex;
-        position:relative;
-        top:auto; right:auto; bottom:auto;
-        transform:none;
-        justify-content:center;
-        width:100%;
-        padding-top:80px;
-        flex-shrink:0;
-      }
-      .hero-logo-right img { width: clamp(140px, 45vw, 220px); }
-      #hero { flex-direction:column; justify-content:space-between; align-items:center; }
-      .hero-content { padding:16px 16px max(28px, env(safe-area-inset-bottom)); max-width:100%; flex-shrink:0; }
-    }
-    @media(max-width:860px) {
-      nav {
-        padding-left: max(16px, env(safe-area-inset-left));
-        padding-right: max(16px, env(safe-area-inset-right));
-        height:64px;
-      }
-      .hbg { display:flex; }
-      .nav-links { display:none; }
-      .nav-sep { display:none !important; }
-      .nav-logo { height:44px; }
-      #hero { height:100svh; height:100dvh; min-height:500px; align-items:center; flex-direction:column; justify-content:space-between; }
-      .hero-content { padding: 0 16px max(28px, env(safe-area-inset-bottom)); max-width:100%; }
-      #hero h1 { font-size:clamp(2rem,8vw,3rem); }
-      .hero-sub { font-size:.85rem; max-width:100%; }
-      .hero-eyebrow { white-space:normal; }
-      .hero-cta { width:100%; justify-content:center; min-height:48px; }
-      .hero-stats { position:relative; bottom:auto; right:auto; margin:0 16px 20px; border-radius:8px; flex-wrap:wrap; width:calc(100% - 32px); }
-      .hstat { flex:1 1 50%; padding:12px 10px; }
-      .hstat-n { font-size:1.3rem; }
-      #process, #reviews, #cta { padding:56px 16px; }
-      .proc-steps { grid-template-columns:1fr; gap:14px; }
-      .rt { flex-direction:column; align-items:flex-start; gap:12px; }
-      .rv { flex:0 0 260px; }
-      .ctah { font-size:clamp(1.8rem,7vw,2.6rem); }
-      .bw { width:100%; justify-content:center; min-height:48px; }
-      footer {
-        padding: 40px max(16px, env(safe-area-inset-left)) max(24px, env(safe-area-inset-bottom));
-      }
-      .ftt { grid-template-columns:1fr 1fr; gap:24px; }
-      .ftb { flex-direction:column; text-align:center; gap:8px; }
-    }
-    @media(max-width:420px) {
-      .nav-logo { height:38px; }
-      #hero h1 { font-size:clamp(1.8rem,9vw,2.6rem); }
-      .hero-stats { margin:0 14px 16px; width:calc(100% - 28px); }
-      .hero-content { padding:0 14px 24px; }
-      footer { padding:32px 14px 20px; }
-      .ftt { grid-template-columns:1fr; }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <script>
+        (function() {
+            function g(n) {
+                var m = document.cookie.match(new RegExp('(^| )' + n + '=([^;]+)'));
+                return m ? m[2] : null;
+            }
+            if (!g('nd_lang')) window.location.replace('landing.html');
+        })()
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Locations NexDrive — Véhicules Premium | Québec</title>
+    <link rel="icon" type="image/png" href="logo/1-removebg-preview.png">
+    <link rel="apple-touch-icon" href="logo/1-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+         :root {
+            --off: rgba(230, 234, 241, .78);
+            --off2: rgba(221, 227, 236, .80);
+            --navy: #0a1628;
+            --navy2: #0f2040;
+            --blue: #1454d4;
+            --electric: #2979ff;
+            --elec-l: #5b9fff;
+            --chrome: #7a9ab8;
+            --chrome3: #c4d8e8;
+            --ink2: #3a5068;
+            --ink3: #6a8aa8;
+            --border: rgba(10, 22, 40, .1);
+            --border2: rgba(10, 22, 40, .06);
+            --serif: 'Playfair Display', Georgia, serif;
+            --serif2: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'DM Sans', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: #eef1f6;
+            color: var(--navy);
+            font-family: var(--sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+         ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            background: #0a1628;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background: var(--electric);
+            border-radius: 4px;
+        }
+        
+         ::-webkit-scrollbar-thumb:hover {
+            background: var(--elec-l);
+        }
+        
+        #sc {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        nav,
+        section,
+        footer,
+        .tb {
+            position: relative;
+            z-index: 1;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            background: linear-gradient(180deg, #0e1e3a 0%, #0a1628 100%);
+            border-bottom: 1px solid rgba(41, 121, 255, .2);
+            backdrop-filter: blur(24px);
+            box-shadow: 0 0 0 1px rgba(41, 121, 255, .08), 0 4px 32px rgba(10, 22, 40, .5), 0 0 60px rgba(41, 121, 255, .08);
+        }
+        
+        nav::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(41, 121, 255, .2) 15%, rgba(91, 159, 255, .5) 35%, rgba(120, 180, 255, .7) 50%, rgba(91, 159, 255, .5) 65%, rgba(41, 121, 255, .2) 85%, transparent 100%);
+            pointer-events: none;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        
+        .hbg {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .12);
+            padding: 0;
+            display: flex;
+            width: 44px;
+            height: 44px;
+            cursor: pointer;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            border-radius: 10px;
+            transition: all .25s;
+            flex-shrink: 0;
+            z-index: 200;
+        }
+        
+        .hbg:focus {
+            outline: none;
+        }
+        
+        .hbg:hover {
+            background: rgba(41, 121, 255, .12);
+            border-color: rgba(91, 159, 255, .4);
+        }
+        
+        .hb {
+            display: block;
+            width: 20px;
+            height: 1.5px;
+            border-radius: 2px;
+            background: #fff;
+            pointer-events: none;
+            transition: transform .38s cubic-bezier(.68, -.55, .265, 1.55), opacity .25s;
+        }
+        
+        .hbg.open {
+            background: rgba(41, 121, 255, .18);
+            border-color: rgba(41, 121, 255, .5);
+        }
+        
+        .hbg.open .hb:nth-child(1) {
+            transform: translateY(6.5px) rotate(45deg);
+        }
+        
+        .hbg.open .hb:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        
+        .hbg.open .hb:nth-child(3) {
+            transform: translateY(-6.5px) rotate(-45deg);
+        }
+        
+        .mbd {
+            position: fixed;
+            inset: 0;
+            z-index: 140;
+            background: rgba(5, 10, 20, .6);
+            backdrop-filter: blur(6px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .4s;
+        }
+        
+        .mbd.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .mpn {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: min(320px, 100vw);
+            z-index: 150;
+            background: rgba(10, 18, 36, .88);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border-left: 1px solid rgba(255, 255, 255, .08);
+            box-shadow: -20px 0 60px rgba(0, 0, 0, .45), inset 1px 0 0 rgba(255, 255, 255, .05);
+            transform: translateX(110%);
+            transition: transform .55s cubic-bezier(.77, 0, .175, 1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .mpn.open {
+            transform: translateX(0);
+        }
+        
+        .mph {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 22px;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            flex-shrink: 0;
+        }
+        
+        .mph-close {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .12);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, .5);
+            font-size: .9rem;
+            transition: all .2s;
+        }
+        
+        .mph-close:hover {
+            border-color: rgba(91, 159, 255, .5);
+            color: #fff;
+            background: rgba(41, 121, 255, .15);
+        }
+        
+        .mn {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            scrollbar-width: none;
+        }
+        
+        .mn::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .mn-sec {
+            margin-bottom: 4px;
+        }
+        
+        .mn-heading {
+            font-size: .59rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .2);
+            padding: 12px 10px 7px;
+            margin-bottom: 2px;
+        }
+        
+        .ma {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            margin-bottom: 2px;
+            transition: all .18s;
+            border: 1px solid transparent;
+            opacity: 0;
+            transform: translateX(16px);
+        }
+        
+        .mpn.open .ma {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .ma:hover {
+            background: rgba(255, 255, 255, .06);
+            border-color: rgba(255, 255, 255, .08);
+        }
+        
+        .ma.active {
+            background: rgba(41, 121, 255, .15);
+            border-color: rgba(41, 121, 255, .3);
+        }
+        
+        .mn-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .mn-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .07);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+            flex-shrink: 0;
+            transition: background .18s;
+        }
+        
+        .ma.active .mn-icon {
+            background: rgba(41, 121, 255, .22);
+        }
+        
+        .mn-lbl {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, .7);
+            line-height: 1;
+            transition: color .18s;
+        }
+        
+        .ma.active .mn-lbl,
+        .ma:hover .mn-lbl {
+            color: rgba(255, 255, 255, .95);
+        }
+        
+        .mn-arr {
+            color: rgba(255, 255, 255, .2);
+            font-size: .75rem;
+            transition: transform .22s, color .18s;
+        }
+        
+        .ma:hover .mn-arr {
+            transform: translateX(4px);
+            color: var(--elec-l);
+        }
+        
+        .ma.active .mn-arr {
+            color: rgba(91, 159, 255, .6);
+        }
+        
+        .mpf {
+            padding: 16px;
+            border-top: 1px solid rgba(255, 255, 255, .07);
+            flex-shrink: 0;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity .4s ease .3s, transform .4s ease .3s;
+        }
+        
+        .mpn.open .mpf {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .mf {
+            font-size: .68rem;
+            color: rgba(255, 255, 255, .25);
+            text-align: center;
+        }
+        
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 140px 64px 100px;
+        }
+        
+        .hey {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            animation: fu .8s ease .1s both;
+        }
+        
+        .hey-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+            padding: 8px 18px;
+        }
+        
+        .eyd {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--electric);
+            opacity: 1;
+        }
+        
+        .eyt {
+            font-size: .65rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--ink2);
+        }
+        
+        .hr {
+            display: block;
+            overflow: hidden;
+            line-height: 1.0;
+        }
+        
+        .hi {
+            display: block;
+            font-family: var(--serif);
+            font-weight: 300;
+            font-size: clamp(3.2rem, 7vw, 7rem);
+            letter-spacing: -1px;
+            color: var(--navy);
+            animation: su .9s cubic-bezier(.16, 1, .3, 1) both;
+        }
+        
+        .hr:nth-child(1) .hi {
+            animation-delay: .15s;
+        }
+        
+        .hr:nth-child(2) .hi {
+            animation-delay: .3s;
+            font-style: italic;
+            background: linear-gradient(105deg, var(--electric) 0%, var(--blue) 40%, var(--chrome) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: su .9s cubic-bezier(.16, 1, .3, 1) .3s both, shine 5s linear 1.2s infinite;
+        }
+        
+        @keyframes su {
+            from {
+                transform: translateY(110%)
+            }
+            to {
+                transform: translateY(0)
+            }
+        }
+        
+        @keyframes shine {
+            to {
+                background-position: 200% center
+            }
+        }
+        
+        .hs {
+            max-width: 500px;
+            margin: 36px auto 52px;
+            font-size: 1.03rem;
+            font-weight: 300;
+            line-height: 1.85;
+            color: var(--ink2);
+            animation: fu .8s ease .5s both;
+            padding: 22px 26px;
+            border-radius: 12px;
+            background: linear-gradient(180deg, #EEF4FA 0%, #C8D8E8 100%);
+            border: 1px solid #C8D8E8;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .95) inset, 0 -1px 0 rgba(140, 170, 198, .5) inset, 1px 0 0 rgba(255, 255, 255, .7) inset, -1px 0 0 rgba(160, 185, 210, .35) inset, 0 6px 24px rgba(90, 120, 155, .18), 0 2px 6px rgba(150, 180, 205, .25);
+            position: relative;
+            text-align: left;
+        }
+        
+        .hb2 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            animation: fu .8s ease .6s both;
+        }
+        
+        .bn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--navy);
+            color: #fff;
+            padding: 15px 36px;
+            border-radius: 8px;
+            font-size: .9rem;
+            font-weight: 500;
+            text-decoration: none;
+            box-shadow: 0 4px 24px rgba(10, 22, 40, .25);
+            transition: all .3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .08), transparent);
+            transition: left .4s;
+        }
+        
+        .bn:hover::before {
+            left: 100%;
+        }
+        
+        .bn:hover {
+            background: var(--navy2);
+            box-shadow: 0 8px 36px rgba(10, 22, 40, .35);
+            transform: translateY(-2px);
+        }
+        
+        .hst {
+            display: flex;
+            margin-top: 72px;
+            animation: fu .8s ease .7s both;
+            background: linear-gradient(180deg, #0e1e3a 0%, #0a1628 100%);
+            border-radius: 14px;
+            border: 1px solid rgba(41, 121, 255, .2);
+            box-shadow: 0 0 0 1px rgba(41, 121, 255, .08), 0 4px 32px rgba(10, 22, 40, .5), 0 0 60px rgba(41, 121, 255, .1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hst::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 100%;
+            background: radial-gradient(ellipse, rgba(41, 121, 255, .12), transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hst::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 5%;
+            right: 5%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(41, 121, 255, .25) 20%, rgba(91, 159, 255, .55) 50%, rgba(41, 121, 255, .25) 80%, transparent);
+        }
+        
+        .stat {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 28px 20px;
+            position: relative;
+        }
+        
+        .stat:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            bottom: 20%;
+            width: 1px;
+            background: linear-gradient(180deg, transparent, rgba(41, 121, 255, .25) 40%, rgba(91, 159, 255, .4) 50%, rgba(41, 121, 255, .25) 60%, transparent);
+        }
+        
+        .sn {
+            font-family: var(--serif);
+            font-size: 2.6rem;
+            font-weight: 300;
+            line-height: 1;
+            color: #fff;
+        }
+        
+        .sn span {
+            background: linear-gradient(90deg, var(--elec-l), var(--chrome3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .sl {
+            font-size: .72rem;
+            color: rgba(255, 255, 255, .45);
+            margin-top: 6px;
+            letter-spacing: .5px;
+        }
+        
+        .ticker-wrap {
+            overflow: hidden;
+            background: linear-gradient(180deg, #0a1628 0%, #0b1a2e 100%);
+            border-top: 1px solid rgba(41, 121, 255, .12);
+            border-bottom: 1px solid rgba(41, 121, 255, .12);
+            padding: 14px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ticker-wrap::before,
+        .ticker-wrap::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .ticker-wrap::before {
+            left: 0;
+            background: linear-gradient(90deg, #0a1628, transparent);
+        }
+        
+        .ticker-wrap::after {
+            right: 0;
+            background: linear-gradient(270deg, #0a1628, transparent);
+        }
+        
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            animation: tick 38s linear infinite;
+        }
+        
+        @keyframes tick {
+            from {
+                transform: translateX(0)
+            }
+            to {
+                transform: translateX(-50%)
+            }
+        }
+        
+        .ticker-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 32px;
+            font-size: .72rem;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .35);
+        }
+        
+        .ticker-dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--elec-l);
+            opacity: .5;
+            flex-shrink: 0;
+        }
+        
+        .ticker-item.accent {
+            color: rgba(91, 159, 255, .55);
+        }
+        
+        #process {
+            padding: 110px 64px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .proc-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .62rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--electric);
+            margin-bottom: 14px;
+        }
+        
+        .proc-label::before {
+            content: '';
+            width: 14px;
+            height: 1px;
+            background: var(--electric);
+        }
+        
+        .proc-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 300;
+            color: var(--navy);
+            line-height: 1.1;
+            letter-spacing: -.5px;
+            margin-bottom: 64px;
+            max-width: 480px;
+        }
+        
+        .proc-title em {
+            font-style: italic;
+            color: var(--blue);
+        }
+        
+        .proc-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .proc-step {
+            background: linear-gradient(160deg, #EEF4FA 0%, #D8E4F0 100%);
+            border: 1px solid #C8D8E8;
+            border-radius: 16px;
+            padding: 32px 28px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .95) inset, 0 -1px 0 rgba(140, 170, 198, .45) inset, 0 6px 24px rgba(90, 120, 155, .12);
+            transition: transform .35s cubic-bezier(.22, .68, 0, 1.2), box-shadow .35s, border-color .3s;
+        }
+        
+        .proc-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .9) 50%, transparent);
+            pointer-events: none;
+        }
+        
+        .proc-step:hover {
+            transform: translateY(-10px);
+            border-color: rgba(41, 121, 255, .35);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .95) inset, 0 20px 50px rgba(41, 121, 255, .18), 0 0 0 1px rgba(41, 121, 255, .15), 0 0 40px rgba(41, 121, 255, .12);
+        }
+        
+        .proc-num {
+            font-family: var(--serif);
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: rgba(122, 154, 184, .18);
+            line-height: 1;
+            position: absolute;
+            top: 16px;
+            right: 22px;
+            pointer-events: none;
+            letter-spacing: -2px;
+        }
+        
+        .proc-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #EEF4FA, #C8D8E8);
+            border: 1px solid rgba(200, 216, 232, .8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(90, 120, 155, .15);
+        }
+        
+        .proc-step-title {
+            font-family: var(--serif);
+            font-size: 1.35rem;
+            font-weight: 400;
+            color: var(--navy);
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        
+        .proc-step-desc {
+            font-size: .84rem;
+            font-weight: 300;
+            color: var(--ink2);
+            line-height: 1.78;
+        }
+        
+        #reviews {
+            padding: 110px 64px;
+            background: rgba(210, 220, 232, .82);
+            border-top: 1px solid rgba(160, 185, 210, .45);
+            box-shadow: inset 0 2px 12px rgba(90, 120, 155, .08);
+        }
+        
+        .rt {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .scn {
+            font-family: var(--serif);
+            font-size: 4.5rem;
+            font-weight: 300;
+            color: var(--navy);
+            line-height: 1;
+        }
+        
+        .scs {
+            display: flex;
+            gap: 3px;
+            margin-bottom: 4px;
+        }
+        
+        .star {
+            color: #f59e0b;
+            font-size: 1rem;
+        }
+        
+        .scm {
+            font-size: .76rem;
+            color: var(--ink3);
+        }
+        
+        .rg {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 20px;
+            scrollbar-width: none;
+            cursor: grab;
+        }
+        
+        .rg::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .rg.grabbing {
+            cursor: grabbing;
+            user-select: none;
+        }
+        
+        .rv {
+            flex: 0 0 320px;
+            background: rgba(230, 234, 241, .90);
+            border: 1px solid var(--border2);
+            border-radius: 14px;
+            padding: 22px;
+            transition: border-color .3s, transform .3s, box-shadow .3s;
+        }
+        
+        .rv:hover {
+            border-color: rgba(41, 121, 255, .2);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 28px rgba(10, 22, 40, .1);
+        }
+        
+        .rvh {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        
+        .rva {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--serif);
+            font-size: .95rem;
+            color: #fff;
+        }
+        
+        .rvn {
+            font-size: .86rem;
+            font-weight: 500;
+            color: var(--navy);
+        }
+        
+        .rvd {
+            font-size: .72rem;
+            color: var(--ink3);
+            margin-top: 1px;
+        }
+        
+        .rvs {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 9px;
+        }
+        
+        .rvst {
+            font-size: .78rem;
+            color: #f59e0b;
+        }
+        
+        .rvt {
+            font-size: .82rem;
+            font-weight: 300;
+            color: var(--ink2);
+            line-height: 1.7;
+        }
+        
+        .rvr {
+            font-size: .7rem;
+            color: var(--electric);
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border2);
+        }
+        
+        #cta {
+            padding: 120px 64px;
+            text-align: center;
+            background: #0a1628;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ctag {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(ellipse, rgba(41, 121, 255, .15), transparent 60%);
+            pointer-events: none;
+        }
+        
+        .ctal {
+            width: 48px;
+            height: 1px;
+            margin: 0 auto 28px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .3), transparent);
+        }
+        
+        .ctah {
+            font-family: var(--serif);
+            font-size: clamp(2.2rem, 5vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1.1;
+            letter-spacing: -.5px;
+            color: #fff;
+            margin-bottom: 18px;
+        }
+        
+        .ctah em {
+            font-style: italic;
+            color: var(--elec-l);
+        }
+        
+        .ctap {
+            font-size: .95rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, .55);
+            line-height: 1.8;
+            max-width: 420px;
+            margin: 0 auto 48px;
+        }
+        
+        .ctab {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .bw {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            background: #fff;
+            color: var(--navy);
+            padding: 15px 36px;
+            border-radius: 8px;
+            font-size: .9rem;
+            font-weight: 500;
+            text-decoration: none;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, .2);
+            transition: all .3s;
+        }
+        
+        .bw:hover {
+            background: var(--off2);
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background: #080e1a;
+            border-top: 1px solid rgba(255, 255, 255, .06);
+            padding: 56px 64px 32px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ftt {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+        /* Texte sous logo en foncé */
+        
+        .fd {
+            font-size: .82rem;
+            font-weight: 300;
+            color: #3a5068;
+            line-height: 1.75;
+            max-width: 220px;
+        }
+        
+        .fc h4 {
+            font-size: .65rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .2);
+            margin-bottom: 16px;
+        }
+        
+        .fc a {
+            display: block;
+            font-size: .82rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, .4);
+            text-decoration: none;
+            margin-bottom: 11px;
+            transition: color .2s;
+        }
+        
+        .fc a:hover {
+            color: rgba(255, 255, 255, .8);
+        }
+        
+        .ftb {
+            border-top: 1px solid rgba(255, 255, 255, .06);
+            padding-top: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .ftc,
+        .ftr {
+            font-size: .75rem;
+            color: rgba(255, 255, 255, .25);
+        }
+        
+        .ftr a {
+            color: var(--elec-l);
+            text-decoration: none;
+        }
+        
+        @keyframes fu {
+            from {
+                opacity: 0;
+                transform: translateY(22px)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+        
+        .reveal {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+        
+        .reveal.vis {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .d1 {
+            transition-delay: .12s
+        }
+        
+        .d2 {
+            transition-delay: .24s
+        }
+        
+        .d3 {
+            transition-delay: .36s
+        }
+        
+        @media(max-width:1100px) {
+            .proc-steps {
+                grid-template-columns: 1fr;
+                max-width: 520px;
+            }
+            .ftt {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media(max-width:900px) {
+            nav {
+                padding: 0 20px;
+                height: 60px;
+            }
+            #hero {
+                padding: 96px 20px 72px;
+                min-height: 100svh;
+            }
+            .hi {
+                font-size: clamp(2.6rem, 9vw, 4rem);
+            }
+            .hs {
+                font-size: .93rem;
+                margin: 24px 0 36px;
+            }
+            .hb2 {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .bn {
+                width: 100%;
+                justify-content: center;
+                max-width: 320px;
+            }
+            .hst {
+                margin-top: 44px;
+                flex-wrap: wrap;
+            }
+            .stat {
+                padding: 20px 16px;
+                flex: 1 1 50%;
+            }
+            .sn {
+                font-size: 1.9rem;
+            }
+            .stat:nth-child(2)::after {
+                display: none;
+            }
+            #process {
+                padding: 72px 20px;
+            }
+            .proc-steps {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            #reviews {
+                padding: 72px 20px;
+            }
+            .rt {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+            #cta {
+                padding: 80px 20px;
+            }
+            .ctab {
+                flex-direction: column;
+                align-items: center;
+            }
+            .bw {
+                width: 100%;
+                max-width: 320px;
+                justify-content: center;
+            }
+            footer {
+                padding: 40px 20px 24px;
+            }
+            .ftt {
+                grid-template-columns: 1fr 1fr;
+                gap: 28px;
+            }
+            .ftb {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+        }
+        
+        @media(max-width:420px) {
+            nav {
+                padding: 0 16px;
+            }
+            #hero,
+            #process,
+            #reviews,
+            #cta {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            footer {
+                padding: 32px 16px 20px;
+            }
+            .ftt {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
+    <canvas id="sc"></canvas>
 
-  <!-- NAV -->
-  <nav id="mainNav" class="on-hero">
-    <a href="index.html" class="logo">
-      <img src="logo/1-removebg-preview.png" alt="NexDrive" class="nav-logo" />
-    </a>
-    <div class="nav-sep"></div>
-    <div class="nav-links">
-      <a href="index.html"       class="nav-link" data-i18n="nav.accueil">Accueil</a>
-      <a href="vehicules.html"   class="nav-link" data-i18n="nav.flotte">Notre flotte</a>
-      <a href="apropos.html"     class="nav-link" data-i18n="nav.apropos">À propos</a>
-      <a href="partenaires.html" class="nav-link" data-i18n="nav.partenaires">Partenaires</a>
-      <a href="faq.html"         class="nav-link" data-i18n="nav.faq">FAQ</a>
-      <a href="vehicules.html"   class="nav-link nav-cta" data-i18n="hero.btn.fleet">Réserver</a>
-    </div>
-    <button class="hbg" id="hbBtn" type="button" aria-label="Menu">
-      <span class="hb"></span><span class="hb"></span><span class="hb"></span>
-    </button>
-  </nav>
+    <nav>
+        <a href="index.html" class="logo"><img src="logo/2-removebg-preview.png" alt="NexDrive" style="height:100px;width:auto;object-fit:contain;filter:drop-shadow(0 0 8px rgba(41,121,255,0.45));" /></a>
+        <button class="hbg" id="hbBtn" type="button" aria-label="Menu"><span class="hb"></span><span class="hb"></span><span class="hb"></span></button>
+    </nav>
 
-  <!-- MENU MOBILE -->
-  <div class="mbd" id="mobBack"></div>
-  <div class="mpn" id="mobPanel">
-    <div class="mph">
-      <a href="index.html" class="logo" onclick="closeMob()">
-        <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:40px;width:auto;object-fit:contain;" />
-      </a>
-      <button class="mph-close" onclick="closeMob()">✕</button>
-    </div>
-    <div class="mn">
-      <div class="mn-heading" data-i18n="nav.section.navigation">Navigation</div>
-      <a href="index.html" class="ma active" onclick="closeMob()">
-        <div class="mn-left"><div class="mn-icon">🏠</div><span class="mn-lbl" data-i18n="nav.accueil">Accueil</span></div><span class="mn-arr">→</span>
-      </a>
-      <a href="vehicules.html" class="ma" onclick="closeMob()">
-        <div class="mn-left"><div class="mn-icon">🚗</div><span class="mn-lbl" data-i18n="nav.flotte">Notre flotte</span></div><span class="mn-arr">→</span>
-      </a>
-      <a href="apropos.html" class="ma" onclick="closeMob()">
-        <div class="mn-left"><div class="mn-icon">🏢</div><span class="mn-lbl" data-i18n="nav.apropos">À propos</span></div><span class="mn-arr">→</span>
-      </a>
-      <a href="partenaires.html" class="ma" onclick="closeMob()">
-        <div class="mn-left"><div class="mn-icon">🤝</div><span class="mn-lbl" data-i18n="nav.partenaires">Partenaires</span></div><span class="mn-arr">→</span>
-      </a>
-      <a href="faq.html" class="ma" onclick="closeMob()">
-        <div class="mn-left"><div class="mn-icon">❓</div><span class="mn-lbl" data-i18n="nav.faq">FAQ</span></div><span class="mn-arr">→</span>
-      </a>
-      <div class="mn-heading" style="margin-top:8px" data-i18n="nav.section.legal">Légal</div>
-      <a href="confidentialite.html" class="ma" onclick="closeMob()">
-        <div class="mn-left"><div class="mn-icon">🔒</div><span class="mn-lbl" data-i18n="nav.confidentialite">Confidentialité</span></div><span class="mn-arr">→</span>
-      </a>
-      <a href="engagement.html" class="ma" onclick="closeMob()">
-        <div class="mn-left"><div class="mn-icon">📄</div><span class="mn-lbl" data-i18n="nav.engagement">Engagement</span></div><span class="mn-arr">→</span>
-      </a>
-    </div>
-    <div class="mpf"><div class="mf" data-i18n="nav.copyright">NexDrive — Québec © 2026</div></div>
-  </div>
-
-  <!-- ══════════════════════════════════════════
-       HERO — VIDÉO / PHOTO PLEIN ÉCRAN
-       ══════════════════════════════════════════
-       Pour ajouter une vidéo → décommente la ligne <video> dans .hero-media
-       Pour une photo → ajoute  background-image:url('photo.jpg'); background-size:cover;  sur .hero-media
-  -->
-  <section id="hero">
-    <div class="hero-media">
-      <!-- <video autoplay muted loop playsinline src="video/hero.mp4"></video> -->
-    </div>
-    <div class="hero-overlay"></div>
-
-    <!-- Logo ND à droite en attendant la vidéo -->
-    <div class="hero-logo-right">
-      <img src="logo/1-removebg-preview.png" alt="NexDrive" />
-    </div>
-
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <div class="hero-eyebrow-line"></div>
-        <span data-i18n="hero.eyebrow">Location de véhicules premium — Québec, Canada</span>
-      </div>
-      <h1>
-        <span data-i18n="hero.title1">L'excellence</span><br>
-        <em data-i18n="hero.title2">automobile.</em>
-      </h1>
-      <p class="hero-sub" data-i18n="hero.subtitle">
-        Une flotte de véhicules haut de gamme, une réservation en quelques clics, un contrat envoyé automatiquement.
-      </p>
-      <a href="vehicules.html" class="hero-cta">
-        <span data-i18n="hero.btn.fleet">Voir la flotte</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </div>
-
-    <div class="hero-stats">
-      <div class="hstat"><div class="hstat-n"><em>100%</em></div><div class="hstat-l" data-i18n="stat1.label">Premium</div></div>
-      <div class="hstat"><div class="hstat-n">0<em>h</em></div><div class="hstat-l" data-i18n="stat2.label">Contrat auto</div></div>
-      <div class="hstat"><div class="hstat-n">24<em>/7</em></div><div class="hstat-l" data-i18n="stat3.label">Disponible</div></div>
-      <div class="hstat"><div class="hstat-n">QC</div><div class="hstat-l" data-i18n="stat4.label">Québec</div></div>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section id="process">
-    <div class="proc-label reveal" data-i18n="process.label">Processus / Process</div>
-    <h2 class="proc-title reveal" data-i18n="process.title">Comment ça <em>fonctionne</em></h2>
-    <div class="proc-steps">
-      <div class="proc-step reveal">
-        <div class="proc-num">01</div>
-        <div class="proc-icon">🚗</div>
-        <h3 class="proc-step-title" data-i18n="step1.title">Choisissez votre véhicule</h3>
-        <p class="proc-step-desc" data-i18n="step1.desc">Parcourez notre flotte et sélectionnez le véhicule qui correspond à vos besoins et votre budget.</p>
-      </div>
-      <div class="proc-step reveal d1">
-        <div class="proc-num">02</div>
-        <div class="proc-icon">📋</div>
-        <h3 class="proc-step-title" data-i18n="step2.title">Réservez en ligne</h3>
-        <p class="proc-step-desc" data-i18n="step2.desc">Remplissez le formulaire, choisissez vos dates et votre point de rendez-vous le plus proche de chez vous.</p>
-      </div>
-      <div class="proc-step reveal d2">
-        <div class="proc-num">03</div>
-        <div class="proc-icon">✉️</div>
-        <h3 class="proc-step-title" data-i18n="step3.title">Recevez votre contrat</h3>
-        <p class="proc-step-desc" data-i18n="step3.desc">Un contrat complet est généré automatiquement et envoyé à votre adresse email en quelques secondes.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- REVIEWS -->
-  <section id="reviews">
-    <div class="rt reveal">
-      <div>
-        <div class="proc-label" data-i18n="reviews.label">Témoignages</div>
-        <h2 class="proc-title" style="margin-bottom:0" data-i18n="reviews.title">Ce que disent <em>nos clients</em></h2>
-      </div>
-      <div style="display:flex;align-items:center;gap:18px">
-        <div class="scn">5.0</div>
-        <div>
-          <div class="scs"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-          <div class="scm" data-i18n="reviews.source">Avis vérifiés via Turo</div>
+    <div class="mbd" id="mobBack"></div>
+    <div class="mpn" id="mobPanel">
+        <div class="mph">
+            <a href="index.html" class="logo" onclick="closeMob()"><img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:52px;width:auto;object-fit:contain;filter:drop-shadow(0 0 6px rgba(41,121,255,0.4));" /></a>
+            <button class="mph-close" onclick="closeMob()">✕</button>
         </div>
-      </div>
+        <div class="mn">
+            <div class="mn-sec">
+                <div class="mn-heading" data-i18n="nav.section.navigation">Navigation</div>
+                <a href="index.html" class="ma active" onclick="closeMob()">
+                    <div class="mn-left">
+                        <div class="mn-icon">🏠</div><span class="mn-lbl" data-i18n="nav.accueil">Accueil</span></div><span class="mn-arr">→</span></a>
+                <a href="vehicules.html" class="ma" onclick="closeMob()">
+                    <div class="mn-left">
+                        <div class="mn-icon">🚗</div><span class="mn-lbl" data-i18n="nav.flotte">Notre flotte</span></div><span class="mn-arr">→</span></a>
+                <a href="apropos.html" class="ma" onclick="closeMob()">
+                    <div class="mn-left">
+                        <div class="mn-icon">🏢</div><span class="mn-lbl" data-i18n="nav.apropos">À propos</span></div><span class="mn-arr">→</span></a>
+                <a href="partenaires.html" class="ma" onclick="closeMob()">
+                    <div class="mn-left">
+                        <div class="mn-icon">🤝</div><span class="mn-lbl" data-i18n="nav.partenaires">Partenaires</span></div><span class="mn-arr">→</span></a>
+                <a href="faq.html" class="ma" onclick="closeMob()">
+                    <div class="mn-left">
+                        <div class="mn-icon">❓</div><span class="mn-lbl" data-i18n="nav.faq">FAQ</span></div><span class="mn-arr">→</span></a>
+            </div>
+            <div class="mn-sec">
+                <div class="mn-heading" data-i18n="nav.section.legal">Légal</div>
+                <a href="confidentialite.html" class="ma" onclick="closeMob()">
+                    <div class="mn-left">
+                        <div class="mn-icon">🔒</div><span class="mn-lbl" data-i18n="nav.confidentialite">Confidentialité</span></div><span class="mn-arr">→</span></a>
+                <a href="engagement.html" class="ma" onclick="closeMob()">
+                    <div class="mn-left">
+                        <div class="mn-icon">📄</div><span class="mn-lbl" data-i18n="nav.engagement">Engagement</span></div><span class="mn-arr">→</span></a>
+            </div>
+        </div>
+        <div class="mpf">
+            <div class="mf" data-i18n="nav.copyright">NexDrive — Québec © 2026</div>
+        </div>
     </div>
-    <div class="rg" id="rvTrack">
-      <div class="rv"><div class="rvh"><div class="rva" style="background:#0a1628">M</div><div><div class="rvn">Marie-Claude T.</div><div class="rvd">Octobre 2024</div></div></div><div class="rvs"><span class="rvst">★★★★★</span></div><p class="rvt" data-i18n="rv1.txt">Véhicule impeccable, remise ponctuelle et proprio super sympa. Je recommande sans hésiter !</p><div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div></div>
-      <div class="rv"><div class="rvh"><div class="rva" style="background:#1454d4">J</div><div><div class="rvn">Jean-François B.</div><div class="rvd">Novembre 2024</div></div></div><div class="rvs"><span class="rvst">★★★★★</span></div><p class="rvt" data-i18n="rv2.txt">Communication rapide et professionnelle. Voiture en parfait état. Je reviendrai assurément.</p><div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div></div>
-      <div class="rv"><div class="rvh"><div class="rva" style="background:#0f2040">S</div><div><div class="rvn">Sophie L.</div><div class="rvd">Décembre 2024</div></div></div><div class="rvs"><span class="rvst">★★★★★</span></div><p class="rvt" data-i18n="rv3.txt">Parfait pour notre voyage en famille. Propre, spacieux, aucun problème. Le processus était rassurant.</p><div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div></div>
-      <div class="rv"><div class="rvh"><div class="rva" style="background:#1a3a5c">A</div><div><div class="rvn">Alexandre M.</div><div class="rvd">Janvier 2025</div></div></div><div class="rvs"><span class="rvst">★★★★★</span></div><p class="rvt" data-i18n="rv4.txt">Expérience au-delà de mes attentes. Le véhicule était comme neuf et la prise en charge ultra simple.</p><div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div></div>
-      <div class="rv"><div class="rvh"><div class="rva" style="background:#2979ff">V</div><div><div class="rvn">Valérie D.</div><div class="rvd">Février 2025</div></div></div><div class="rvs"><span class="rvst">★★★★★</span></div><p class="rvt" data-i18n="rv5.txt">Super proprio, très réactif aux messages. La voiture était propre et bien équipée. Merci NexDrive !</p><div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div></div>
-      <div class="rv"><div class="rvh"><div class="rva" style="background:#3a5068">P</div><div><div class="rvn">Philippe R.</div><div class="rvd">Mars 2025</div></div></div><div class="rvs"><span class="rvst">★★★★★</span></div><p class="rvt" data-i18n="rv6.txt">Deuxième fois que je loue chez NexDrive. Toujours aussi professionnel. Je ne vais nulle part ailleurs.</p><div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div></div>
-      <div class="rv"><div class="rvh"><div class="rva" style="background:#0a1628">C</div><div><div class="rvn">Claudie B.</div><div class="rvd">Avril 2025</div></div></div><div class="rvs"><span class="rvst">★★★★★</span></div><p class="rvt" data-i18n="rv7.txt">Livraison à l'aéroport impeccable. Tout s'est passé exactement comme prévu. 5 étoiles mérités !</p><div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div></div>
-      <div class="rv"><div class="rvh"><div class="rva" style="background:#1454d4">N</div><div><div class="rvn">Nicolas F.</div><div class="rvd">Mai 2025</div></div></div><div class="rvs"><span class="rvst">★★★★★</span></div><p class="rvt" data-i18n="rv8.txt">Très bonne expérience du début à la fin. Le proprio est disponible et de bonne humeur. Voiture top !</p><div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div></div>
+
+    <section id="hero" style="align-items:center;text-align:center;">
+        <div class="hey" style="justify-content:center;">
+            <div class="hey-box"><span class="eyd"></span><span class="eyt" data-i18n="hero.eyebrow">Location de véhicules premium — Québec, Canada</span></div>
+        </div>
+        <h1>
+            <span class="hr"><span class="hi" data-i18n="hero.title1">L'excellence</span></span>
+            <span class="hr"><span class="hi" data-i18n="hero.title2">automobile.</span></span>
+        </h1>
+        <p class="hs" data-i18n="hero.subtitle">Une flotte de véhicules haut de gamme, une réservation en quelques clics, un contrat envoyé automatiquement.</p>
+        <div class="hb2">
+            <a href="vehicules.html" class="bn"><span data-i18n="hero.btn.fleet">Voir la flotte</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+        <div class="hst" style="max-width:700px;width:100%;">
+            <div class="stat">
+                <div class="sn"><span>100%</span></div>
+                <div class="sl" data-i18n="stat1.label">Véhicules premium</div>
+            </div>
+            <div class="stat">
+                <div class="sn">0<span>h</span></div>
+                <div class="sl" data-i18n="stat2.label">Contrat automatique</div>
+            </div>
+            <div class="stat">
+                <div class="sn">24<span>/7</span></div>
+                <div class="sl" data-i18n="stat3.label">Disponible</div>
+            </div>
+            <div class="stat">
+                <div class="sn">QC</div>
+                <div class="sl" data-i18n="stat4.label">Tout le Québec</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="ticker-wrap">
+        <div class="ticker">
+            <span class="ticker-item accent">Véhicules Premium<span class="ticker-dot"></span></span>
+            <span class="ticker-item">Contrat Automatique<span class="ticker-dot"></span></span>
+            <span class="ticker-item accent">Tout le Québec<span class="ticker-dot"></span></span>
+            <span class="ticker-item">Réservation en ligne<span class="ticker-dot"></span></span>
+            <span class="ticker-item accent">Premium Vehicles<span class="ticker-dot"></span></span>
+            <span class="ticker-item">Automatic Contract<span class="ticker-dot"></span></span>
+            <span class="ticker-item accent">All over Quebec<span class="ticker-dot"></span></span>
+            <span class="ticker-item">Online Booking<span class="ticker-dot"></span></span>
+            <span class="ticker-item accent">Véhicules Premium<span class="ticker-dot"></span></span>
+            <span class="ticker-item">Contrat Automatique<span class="ticker-dot"></span></span>
+            <span class="ticker-item accent">Tout le Québec<span class="ticker-dot"></span></span>
+            <span class="ticker-item">Réservation en ligne<span class="ticker-dot"></span></span>
+            <span class="ticker-item accent">Premium Vehicles<span class="ticker-dot"></span></span>
+            <span class="ticker-item">Automatic Contract<span class="ticker-dot"></span></span>
+            <span class="ticker-item accent">All over Quebec<span class="ticker-dot"></span></span>
+            <span class="ticker-item">Online Booking<span class="ticker-dot"></span></span>
+        </div>
     </div>
-  </section>
 
-  <!-- CTA -->
-  <section id="cta">
-    <div class="ctal"></div>
-    <div class="proc-label" style="justify-content:center;color:rgba(255,255,255,.3);margin-bottom:20px" data-i18n="cta.label">Prêt à commencer</div>
-    <h2 class="ctah reveal"><span data-i18n="cta.title">Réservez</span> <em data-i18n="cta.title.em">maintenant</em></h2>
-    <p class="ctap reveal" data-i18n="cta.desc">Accédez à la meilleure flotte de véhicules premium au Québec.<br>Réservation en ligne, contrat automatique.</p>
-    <div class="ctab reveal">
-      <a href="vehicules.html" class="bw">
-        <span data-i18n="cta.btn.fleet">Voir la flotte</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
-    </div>
-  </section>
+    <section id="process">
+        <div class="proc-label reveal" data-i18n="process.label">Processus / Process</div>
+        <h2 class="proc-title reveal" data-i18n="process.title">Comment ça <em>fonctionne</em></h2>
+        <div class="proc-steps">
+            <div class="proc-step reveal">
+                <div class="proc-num">01</div>
+                <div class="proc-icon">🚗</div>
+                <h3 class="proc-step-title" data-i18n="step1.title">Choisissez votre véhicule</h3>
+                <p class="proc-step-desc" data-i18n="step1.desc">Parcourez notre flotte et sélectionnez le véhicule qui correspond à vos besoins et votre budget.</p>
+            </div>
+            <div class="proc-step reveal d1">
+                <div class="proc-num">02</div>
+                <div class="proc-icon">📋</div>
+                <h3 class="proc-step-title" data-i18n="step2.title">Réservez en ligne</h3>
+                <p class="proc-step-desc" data-i18n="step2.desc">Remplissez le formulaire, choisissez vos dates et votre point de rendez-vous le plus proche de chez vous.</p>
+            </div>
+            <div class="proc-step reveal d2">
+                <div class="proc-num">03</div>
+                <div class="proc-icon">✉️</div>
+                <h3 class="proc-step-title" data-i18n="step3.title">Recevez votre contrat</h3>
+                <p class="proc-step-desc" data-i18n="step3.desc">Un contrat complet est généré automatiquement et envoyé à votre adresse email en quelques secondes.</p>
+            </div>
+        </div>
+    </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="ftt">
-      <div>
-        <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:56px;width:auto;object-fit:contain;filter:brightness(0) invert(1) opacity(.55);margin-bottom:14px;" />
-        <p class="fd" data-i18n="footer.desc">Location de véhicules premium au Québec, Canada. Réservation en ligne, contrat automatique.</p>
-      </div>
-      <div class="fc">
-        <h4 data-i18n="footer.h.nav">Navigation</h4>
-        <a href="index.html"       data-i18n="footer.accueil">Accueil</a>
-        <a href="vehicules.html"   data-i18n="footer.flotte">Flotte</a>
-        <a href="apropos.html"     data-i18n="footer.apropos">À propos</a>
-        <a href="partenaires.html" data-i18n="nav.partenaires">Partenaires</a>
-        <a href="faq.html"         data-i18n="footer.faq">FAQ</a>
-      </div>
-      <div class="fc">
-        <h4 data-i18n="footer.h.legal">Légal</h4>
-        <a href="confidentialite.html" data-i18n="footer.confidentialite">Confidentialité</a>
-        <a href="engagement.html"      data-i18n="footer.engagement">Engagement</a>
-      </div>
-    </div>
-    <div class="ftb">
-      <div class="ftc" data-i18n="footer.copyright">© 2026 NexDrive — Québec, Canada. Tous droits réservés.</div>
-      <div class="ftr">Québec, Canada</div>
-    </div>
-  </footer>
+    <section id="reviews">
+        <div class="rt reveal">
+            <div>
+                <div class="proc-label" data-i18n="reviews.label">Témoignages</div>
+                <h2 class="proc-title" style="margin-bottom:0" data-i18n="reviews.title">Ce que disent <em>nos clients</em></h2>
+            </div>
+            <div style="display:flex;align-items:center;gap:18px">
+                <div class="scn">5.0</div>
+                <div>
+                    <div class="scs"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+                    <div class="scm" data-i18n="reviews.source">Avis vérifiés via Turo</div>
+                </div>
+            </div>
+        </div>
+        <div class="rg" id="rvTrack">
+            <div class="rv">
+                <div class="rvh">
+                    <div class="rva" style="background:#0a1628">M</div>
+                    <div>
+                        <div class="rvn">Marie-Claude T.</div>
+                        <div class="rvd">Octobre 2024</div>
+                    </div>
+                </div>
+                <div class="rvs"><span class="rvst">★★★★★</span></div>
+                <p class="rvt" data-i18n="rv1.txt">Véhicule impeccable, remise ponctuelle et proprio super sympa. Je recommande sans hésiter !</p>
+                <div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div>
+            </div>
+            <div class="rv">
+                <div class="rvh">
+                    <div class="rva" style="background:#1454d4">J</div>
+                    <div>
+                        <div class="rvn">Jean-François B.</div>
+                        <div class="rvd">Novembre 2024</div>
+                    </div>
+                </div>
+                <div class="rvs"><span class="rvst">★★★★★</span></div>
+                <p class="rvt" data-i18n="rv2.txt">Communication rapide et professionnelle. Voiture en parfait état. Je reviendrai assurément.</p>
+                <div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div>
+            </div>
+            <div class="rv">
+                <div class="rvh">
+                    <div class="rva" style="background:#0f2040">S</div>
+                    <div>
+                        <div class="rvn">Sophie L.</div>
+                        <div class="rvd">Décembre 2024</div>
+                    </div>
+                </div>
+                <div class="rvs"><span class="rvst">★★★★★</span></div>
+                <p class="rvt" data-i18n="rv3.txt">Parfait pour notre voyage en famille. Propre, spacieux, aucun problème. Le processus était rassurant.</p>
+                <div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div>
+            </div>
+            <div class="rv">
+                <div class="rvh">
+                    <div class="rva" style="background:#1a3a5c">A</div>
+                    <div>
+                        <div class="rvn">Alexandre M.</div>
+                        <div class="rvd">Janvier 2025</div>
+                    </div>
+                </div>
+                <div class="rvs"><span class="rvst">★★★★★</span></div>
+                <p class="rvt" data-i18n="rv4.txt">Expérience au-delà de mes attentes. Le véhicule était comme neuf et la prise en charge ultra simple.</p>
+                <div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div>
+            </div>
+            <div class="rv">
+                <div class="rvh">
+                    <div class="rva" style="background:#2979ff">V</div>
+                    <div>
+                        <div class="rvn">Valérie D.</div>
+                        <div class="rvd">Février 2025</div>
+                    </div>
+                </div>
+                <div class="rvs"><span class="rvst">★★★★★</span></div>
+                <p class="rvt" data-i18n="rv5.txt">Super proprio, très réactif aux messages. La voiture était propre et bien équipée. Merci NexDrive !</p>
+                <div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div>
+            </div>
+            <div class="rv">
+                <div class="rvh">
+                    <div class="rva" style="background:#3a5068">P</div>
+                    <div>
+                        <div class="rvn">Philippe R.</div>
+                        <div class="rvd">Mars 2025</div>
+                    </div>
+                </div>
+                <div class="rvs"><span class="rvst">★★★★★</span></div>
+                <p class="rvt" data-i18n="rv6.txt">Deuxième fois que je loue chez NexDrive. Toujours aussi professionnel. Je ne vais nulle part ailleurs.</p>
+                <div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div>
+            </div>
+            <div class="rv">
+                <div class="rvh">
+                    <div class="rva" style="background:#0a1628">C</div>
+                    <div>
+                        <div class="rvn">Claudie B.</div>
+                        <div class="rvd">Avril 2025</div>
+                    </div>
+                </div>
+                <div class="rvs"><span class="rvst">★★★★★</span></div>
+                <p class="rvt" data-i18n="rv7.txt">Livraison à l'aéroport impeccable. Tout s'est passé exactement comme prévu. 5 étoiles mérités !</p>
+                <div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div>
+            </div>
+            <div class="rv">
+                <div class="rvh">
+                    <div class="rva" style="background:#1454d4">N</div>
+                    <div>
+                        <div class="rvn">Nicolas F.</div>
+                        <div class="rvd">Mai 2025</div>
+                    </div>
+                </div>
+                <div class="rvs"><span class="rvst">★★★★★</span></div>
+                <p class="rvt" data-i18n="rv8.txt">Très bonne expérience du début à la fin. Le proprio est disponible et de bonne humeur. Voiture top !</p>
+                <div class="rvr" data-i18n="rv.verified">✓ Avis vérifié via Turo</div>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    // Nav scroll
-    var nav=document.getElementById('mainNav'), hero=document.getElementById('hero');
-    function onScroll(){
-      if(window.scrollY > hero.offsetHeight - 80){ nav.classList.remove('on-hero'); nav.classList.add('scrolled'); }
-      else { nav.classList.add('on-hero'); nav.classList.remove('scrolled'); }
-    }
-    window.addEventListener('scroll', onScroll, {passive:true});
-    onScroll();
+    <section id="cta">
+        <div class="ctag"></div>
+        <div class="ctal"></div>
+        <div class="proc-label" style="justify-content:center;color:rgba(255,255,255,.3);margin-bottom:20px" data-i18n="cta.label">Prêt à commencer</div>
+        <h2 class="ctah reveal"><span data-i18n="cta.title">Réservez</span> <em data-i18n="cta.title.em">maintenant</em></h2>
+        <p class="ctap reveal" data-i18n="cta.desc">Accédez à la meilleure flotte de véhicules premium au Québec.<br>Réservation en ligne, contrat automatique.</p>
+        <div class="ctab reveal">
+            <a href="vehicules.html" class="bw"><span data-i18n="cta.btn.fleet">Voir la flotte</span> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+    </section>
 
-    // Mobile nav
-    var hbBtn=document.getElementById('hbBtn'), mobB=document.getElementById('mobBack'), mobP=document.getElementById('mobPanel');
-    function openMob(){hbBtn.classList.add('open');mobP.classList.add('open');mobB.classList.add('open');document.body.style.overflow='hidden';}
-    function closeMob(){hbBtn.classList.remove('open');mobP.classList.remove('open');mobB.classList.remove('open');document.body.style.overflow='';}
-    hbBtn.addEventListener('click',function(){mobP.classList.contains('open')?closeMob():openMob();});
-    mobB.addEventListener('click',closeMob);
-    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMob();});
+    <footer>
+        <div class="ftt">
+            <div>
+                <img src="logo/image-removebg-preview.png" alt="NexDrive" style="height:60px;width:auto;object-fit:contain;filter:drop-shadow(0 0 6px rgba(41,121,255,0.4));margin-bottom:12px;" />
+                <p class="fd" data-i18n="footer.desc">Location de véhicules premium au Québec, Canada. Réservation en ligne, contrat automatique.</p>
+            </div>
+            <div class="fc">
+                <h4 data-i18n="footer.h.nav">Navigation</h4>
+                <a href="index.html" data-i18n="footer.accueil">Accueil</a>
+                <a href="vehicules.html" data-i18n="footer.flotte">Flotte</a>
+                <a href="apropos.html" data-i18n="footer.apropos">À propos</a>
+                <a href="partenaires.html" data-i18n="nav.partenaires">Partenaires</a>
+                <a href="faq.html" data-i18n="footer.faq">FAQ</a>
+            </div>
+            <div class="fc">
+                <h4 data-i18n="footer.h.legal">Légal</h4>
+                <a href="confidentialite.html" data-i18n="footer.confidentialite">Confidentialité</a>
+                <a href="engagement.html" data-i18n="footer.engagement">Engagement</a>
+            </div>
+        </div>
+        <div class="ftb">
+            <div class="ftc" data-i18n="footer.copyright">© 2026 NexDrive — Québec, Canada. Tous droits réservés.</div>
+            <div class="ftr">Québec, Canada</div>
+        </div>
+    </footer>
 
-    // Reviews auto-scroll + drag
-    (function(){
-      var track=document.getElementById('rvTrack');
-      if(!track)return;
-      var drag=false,sx=0,ss=0,pts=[],raf=null,target=0,cur=0,paused=false,timer=null;
-      function lerp(a,b,t){return a+(b-a)*t;}
-      function autoScroll(){
-        if(!paused&&!drag){target+=.6;if(target>=track.scrollWidth-track.clientWidth+1){target=0;cur=0;track.scrollLeft=0;}}
-        cur=lerp(cur,target,.06);track.scrollLeft=cur;requestAnimationFrame(autoScroll);
-      }
-      track.addEventListener('mousedown',function(e){drag=true;paused=true;clearTimeout(timer);sx=e.clientX;ss=track.scrollLeft;target=ss;cur=ss;pts=[];track.classList.add('grabbing');e.preventDefault();});
-      window.addEventListener('mousemove',function(e){if(!drag)return;var dx=e.clientX-sx;target=ss-dx;cur=target;track.scrollLeft=target;pts.push({x:e.clientX,t:Date.now()});if(pts.length>8)pts.shift();});
-      window.addEventListener('mouseup',function(){if(!drag)return;drag=false;track.classList.remove('grabbing');timer=setTimeout(function(){paused=false;},1800);});
-      track.addEventListener('mouseenter',function(){paused=true;clearTimeout(timer);});
-      track.addEventListener('mouseleave',function(){if(!drag){timer=setTimeout(function(){paused=false;},600);}});
-      requestAnimationFrame(autoScroll);
-    })();
+    <script>
+        (function() {
+            var c = document.getElementById('sc'),
+                x = c.getContext('2d'),
+                W, H, stars = [],
+                raf, last = 0;
 
-    // Reveal on scroll
-    var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}});},{threshold:.08});
-    document.querySelectorAll('.reveal').forEach(function(r){obs.observe(r);});
-  </script>
-  <script src="translate.js"></script>
+            function rnd(a, b) {
+                return a + Math.random() * (b - a)
+            }
+
+            function resize() {
+                W = c.width = window.innerWidth;
+                H = c.height = window.innerHeight;
+                stars = [];
+                var n = Math.min(Math.max(Math.floor(W * H / 2200), 140), 380);
+                for (var i = 0; i < n; i++) stars.push(mk());
+            }
+
+            function mk() {
+                var t = Math.random(),
+                    r, col, bA, spike;
+                if (t < .5) {
+                    r = rnd(.2, .5);
+                    col = '10,20,40';
+                    bA = rnd(.06, .16);
+                    spike = false;
+                } else if (t < .78) {
+                    r = rnd(.4, .8);
+                    col = '8,18,36';
+                    bA = rnd(.10, .22);
+                    spike = false;
+                } else if (t < .92) {
+                    r = rnd(.7, 1.2);
+                    col = '5,15,30';
+                    bA = rnd(.16, .30);
+                    spike = false;
+                } else {
+                    r = rnd(1.1, 1.8);
+                    col = '2,10,25';
+                    bA = rnd(.25, .42);
+                    spike = true;
+                }
+                return {
+                    x: Math.random() * W,
+                    y: Math.random() * H,
+                    r: r,
+                    bA: bA,
+                    al: bA,
+                    col: col,
+                    vx: (Math.random() - .5) * rnd(.12, .38),
+                    vy: (Math.random() - .5) * rnd(.12, .38),
+                    ph: Math.random() * Math.PI * 2,
+                    spd: rnd(.5, 1.4),
+                    spike: spike,
+                    twinkleAmt: rnd(.25, .6)
+                };
+            }
+
+            function drawStar(s) {
+                var a = s.al;
+                x.save();
+                if (s.r > 1.5) {
+                    var g = x.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 5);
+                    g.addColorStop(0, 'rgba(' + s.col + ',' + (a * .6) + ')');
+                    g.addColorStop(.35, 'rgba(' + s.col + ',' + (a * .18) + ')');
+                    g.addColorStop(1, 'rgba(' + s.col + ',0)');
+                    x.globalAlpha = 1;
+                    x.fillStyle = g;
+                    x.beginPath();
+                    x.arc(s.x, s.y, s.r * 5, 0, Math.PI * 2);
+                    x.fill();
+                }
+                x.shadowBlur = s.r * 7;
+                x.shadowColor = 'rgba(' + s.col + ',' + a + ')';
+                x.globalAlpha = a;
+                x.fillStyle = 'rgba(' + s.col + ',1)';
+                x.beginPath();
+                x.arc(s.x, s.y, s.r * .8, 0, Math.PI * 2);
+                x.fill();
+                if (s.spike) {
+                    var angles = [0, Math.PI / 2, Math.PI / 4, Math.PI * 3 / 4],
+                        lens = [s.r * 8, s.r * 6, s.r * 4.5, s.r * 4.5];
+                    for (var i = 0; i < 4; i++) {
+                        var lg = x.createLinearGradient(s.x + Math.cos(angles[i]) * lens[i], s.y + Math.sin(angles[i]) * lens[i], s.x - Math.cos(angles[i]) * lens[i], s.y - Math.sin(angles[i]) * lens[i]);
+                        lg.addColorStop(0, 'rgba(' + s.col + ',0)');
+                        lg.addColorStop(.5, 'rgba(' + s.col + ',' + (a * .85) + ')');
+                        lg.addColorStop(1, 'rgba(' + s.col + ',0)');
+                        x.strokeStyle = lg;
+                        x.lineWidth = s.r * .35;
+                        x.beginPath();
+                        x.moveTo(s.x + Math.cos(angles[i]) * lens[i], s.y + Math.sin(angles[i]) * lens[i]);
+                        x.lineTo(s.x - Math.cos(angles[i]) * lens[i], s.y - Math.sin(angles[i]) * lens[i]);
+                        x.stroke();
+                    }
+                }
+                x.restore();
+            }
+
+            function loop(ts) {
+                var dt = Math.min((ts - last) / 16, 2);
+                last = ts;
+                x.clearRect(0, 0, W, H);
+                for (var s of stars) {
+                    s.x += s.vx * dt;
+                    s.y += s.vy * dt;
+                    if (s.x < -10) s.x = W + 10;
+                    if (s.x > W + 10) s.x = -10;
+                    if (s.y < -10) s.y = H + 10;
+                    if (s.y > H + 10) s.y = -10;
+                    s.ph += s.spd * .013 * dt;
+                    var tw = s.bA * (1 - s.twinkleAmt) + s.bA * s.twinkleAmt * Math.max(0, Math.sin(s.ph) * Math.sin(s.ph * 2.1 + .9));
+                    s.al = Math.max(.06, tw);
+                    drawStar(s);
+                }
+                x.globalAlpha = 1;
+                raf = requestAnimationFrame(loop);
+            }
+            window.addEventListener('resize', function() {
+                cancelAnimationFrame(raf);
+                resize();
+                raf = requestAnimationFrame(loop);
+            });
+            resize();
+            raf = requestAnimationFrame(loop);
+        })();
+        (function() {
+            var track = document.getElementById('rvTrack');
+            if (!track) return;
+            var dragging = false,
+                startX = 0,
+                scrollStart = 0,
+                points = [],
+                raf = null,
+                targetScroll = 0,
+                currentScroll = 0,
+                autoRaf = null,
+                paused = false,
+                resumeTimer = null;
+
+            function lerp(a, b, t) {
+                return a + (b - a) * t
+            }
+
+            function autoScroll() {
+                if (!paused && !dragging) {
+                    targetScroll += .6;
+                    if (targetScroll >= track.scrollWidth - track.clientWidth + 1) {
+                        targetScroll = 0;
+                        currentScroll = 0;
+                        track.scrollLeft = 0;
+                    }
+                }
+                currentScroll = lerp(currentScroll, targetScroll, .06);
+                track.scrollLeft = currentScroll;
+                autoRaf = requestAnimationFrame(autoScroll);
+            }
+
+            function pause() {
+                paused = true;
+                clearTimeout(resumeTimer);
+            }
+
+            function resume() {
+                resumeTimer = setTimeout(function() {
+                    paused = false;
+                }, 1800);
+            }
+
+            function animateTo(t) {
+                if (raf) cancelAnimationFrame(raf);
+                currentScroll = track.scrollLeft;
+                targetScroll = t;
+
+                function step() {
+                    currentScroll = lerp(currentScroll, targetScroll, .12);
+                    track.scrollLeft = currentScroll;
+                    if (Math.abs(currentScroll - targetScroll) > .3) {
+                        raf = requestAnimationFrame(step);
+                    } else {
+                        track.scrollLeft = targetScroll;
+                        targetScroll = track.scrollLeft;
+                        currentScroll = targetScroll;
+                        raf = null;
+                    }
+                }
+                raf = requestAnimationFrame(step);
+            }
+            track.addEventListener('mousedown', function(e) {
+                dragging = true;
+                pause();
+                startX = e.clientX;
+                scrollStart = track.scrollLeft;
+                targetScroll = track.scrollLeft;
+                currentScroll = track.scrollLeft;
+                if (raf) cancelAnimationFrame(raf);
+                points = [];
+                track.classList.add('grabbing');
+                e.preventDefault();
+            });
+            window.addEventListener('mousemove', function(e) {
+                if (!dragging) return;
+                var dx = e.clientX - startX;
+                targetScroll = scrollStart - dx;
+                currentScroll = targetScroll;
+                track.scrollLeft = targetScroll;
+                points.push({
+                    x: e.clientX,
+                    t: Date.now()
+                });
+                if (points.length > 8) points.shift();
+            });
+            window.addEventListener('mouseup', function() {
+                if (!dragging) return;
+                dragging = false;
+                track.classList.remove('grabbing');
+                var vel = 0;
+                if (points.length >= 2) {
+                    var p0 = points[0],
+                        p1 = points[points.length - 1];
+                    vel = (p0.x - p1.x) / (p1.t - p0.t || 1) * 1.6;
+                }
+                var tgt = track.scrollLeft + vel * 80;
+                tgt = Math.max(0, Math.min(tgt, track.scrollWidth - track.clientWidth));
+                animateTo(tgt);
+                resume();
+            });
+            track.addEventListener('mouseenter', pause);
+            track.addEventListener('mouseleave', function() {
+                if (!dragging) resume();
+            });
+            autoRaf = requestAnimationFrame(autoScroll);
+        })();
+        var hbBtn = document.getElementById('hbBtn'),
+            mobB = document.getElementById('mobBack'),
+            mobP = document.getElementById('mobPanel');
+
+        function openMob() {
+            hbBtn.classList.add('open');
+            mobP.classList.add('open');
+            mobB.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMob() {
+            hbBtn.classList.remove('open');
+            mobP.classList.remove('open');
+            mobB.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        hbBtn.addEventListener('click', function() {
+            mobP.classList.contains('open') ? closeMob() : openMob();
+        });
+        mobB.addEventListener('click', closeMob);
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeMob();
+        });
+        (function() {
+            var links = mobP.querySelectorAll('.ma');
+            var mo = new MutationObserver(function() {
+                var open = mobP.classList.contains('open');
+                links.forEach(function(l, i) {
+                    l.style.transitionDelay = open ? (.06 + i * .05) + 's' : '0s';
+                });
+            });
+            mo.observe(mobP, {
+                attributes: true,
+                attributeFilter: ['class']
+            });
+        })();
+        var obs = new IntersectionObserver(function(es) {
+            es.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('vis');
+                    obs.unobserve(e.target);
+                }
+            });
+        }, {
+            threshold: .08
+        });
+        document.querySelectorAll('.reveal').forEach(function(r) {
+            obs.observe(r);
+        });
+    </script>
+    <script src="translate.js"></script>
 </body>
+
 </html>
