@@ -4,1278 +4,232 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>NexDrive — Tarifs Hors Turo | Québec</title>
+    <title>NexDrive — Location Tesla · Montréal & Québec</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <style>
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box
-        }
-        
-         :root {
-            --night: #0d1f3c;
-            --night-2: #0a1628;
-            --night-3: #091220;
-            --blue: #2979ff;
-            --blue-d: #1454d4;
-            --blue-l: #5b9fff;
-            --off-wh: #f5f7fa;
-            --gray-1: #e8eaed;
-            --gray-2: #aeaeb8;
-            --gray-3: #6c6c78;
-            --serif: 'Playfair Display', Georgia, serif;
-            --sans: 'DM Sans', sans-serif
-        }
-        
-        html {
-            scroll-behavior: smooth
-        }
-        
-        body {
-            background: var(--off-wh);
-            color: #1a1a2e;
-            font-family: var(--sans);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased
-        }
-        
-         ::-webkit-scrollbar {
-            width: 6px
-        }
-        
-         ::-webkit-scrollbar-track {
-            background: var(--night-3)
-        }
-        
-         ::-webkit-scrollbar-thumb {
-            background: var(--blue-d);
-            border-radius: 3px
-        }
-        
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            height: 68px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 48px;
-            background: var(--night);
-            border-bottom: 1px solid rgba(41, 121, 255, .2);
-            box-shadow: 0 4px 32px rgba(5, 12, 30, .5)
-        }
-        
-        nav::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(41, 121, 255, .2) 15%, rgba(91, 159, 255, .5) 50%, rgba(41, 121, 255, .2) 85%, transparent);
-            pointer-events: none
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none
-        }
-        
-        .nav-back {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: rgba(255, 255, 255, .65);
-            font-size: .85rem;
-            text-decoration: none;
-            transition: color .2s
-        }
-        
-        .nav-back:hover {
-            color: var(--blue-l)
-        }
-        
-        .nav-back svg {
-            width: 16px;
-            height: 16px;
-            stroke: currentColor;
-            stroke-width: 2;
-            fill: none
-        }
-        
-        #hero {
-            padding: 130px 64px 80px;
-            background: linear-gradient(180deg, #0f2448 0%, var(--night) 55%, #0a1628 100%);
-            position: relative;
-            overflow: hidden;
-            text-align: center
-        }
-        
-        #hero::before {
-            content: '';
-            position: absolute;
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 280px;
-            border-radius: 50%;
-            background: radial-gradient(ellipse, rgba(41, 121, 255, .12), transparent 65%);
-            pointer-events: none
-        }
-        
-        #hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(41, 121, 255, .3) 30%, rgba(91, 159, 255, .5) 50%, rgba(41, 121, 255, .3) 70%, transparent);
-            pointer-events: none
-        }
-        
-        .hero-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: .62rem;
-            font-weight: 500;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--blue-l);
-            margin-bottom: 18px;
-            animation: fu .8s ease .1s both
-        }
-        
-        .hero-label::before {
-            content: '';
-            width: 14px;
-            height: 1px;
-            background: var(--blue)
-        }
-        
-        .hero-h1 {
-            font-family: var(--serif);
-            font-size: clamp(2.2rem, 5vw, 4rem);
-            font-weight: 300;
-            line-height: 1.1;
-            letter-spacing: -.5px;
-            color: #fff;
-            margin-bottom: 18px;
-            animation: fu .9s cubic-bezier(.16, 1, .3, 1) .2s both
-        }
-        
-        .hero-h1 em {
-            font-style: italic;
-            color: var(--blue-l)
-        }
-        
-        .hero-sub {
-            font-size: .95rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, .4);
-            line-height: 1.7;
-            max-width: 520px;
-            margin: 0 auto;
-            animation: fu .8s ease .35s both
-        }
-        
-        .contact-strip {
-            background: var(--night-2);
-            border-bottom: 1px solid rgba(41, 121, 255, .15);
-            padding: 0 64px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            min-height: 64px
-        }
-        
-        .cstrip-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: .88rem;
-            color: rgba(255, 255, 255, .7)
-        }
-        
-        .cstrip-item svg {
-            width: 16px;
-            height: 16px;
-            stroke: var(--blue-l);
-            stroke-width: 2;
-            fill: none;
-            flex-shrink: 0
-        }
-        
-        .cstrip-item a {
-            color: var(--blue-l);
-            text-decoration: none;
-            font-weight: 500
-        }
-        
-        .cstrip-item a:hover {
-            color: #fff
-        }
-        
-        .cstrip-sep {
-            width: 1px;
-            height: 28px;
-            background: rgba(255, 255, 255, .1)
-        }
-        
-        section.content {
-            padding: 64px 64px
-        }
-        
-        .sec-header {
-            margin-bottom: 40px
-        }
-        
-        .sec-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: .6rem;
-            font-weight: 500;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--blue);
-            margin-bottom: 12px
-        }
-        
-        .sec-eyebrow::before {
-            content: '';
-            width: 14px;
-            height: 1px;
-            background: var(--blue)
-        }
-        
-        .sec-h2 {
-            font-family: var(--serif);
-            font-size: clamp(1.8rem, 3vw, 2.8rem);
-            font-weight: 300;
-            line-height: 1.15;
-            color: #1a1a2e
-        }
-        
-        .sec-h2 em {
-            font-style: italic;
-            color: var(--blue)
-        }
-        
-        .sec-sub {
-            font-size: .92rem;
-            color: var(--gray-3);
-            margin-top: 10px;
-            line-height: 1.65
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 28px
-        }
-        /* ── PRICING CARD avec effet shine ── */
-        
-        .pricing-card {
-            background: #fff;
-            border: 1px solid var(--gray-1);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, .06);
-            transition: transform .3s cubic-bezier(.22, .68, 0, 1.2), box-shadow .3s, border-color .3s;
-            position: relative
-        }
-        /* Effet shine — identique aux vcards */
-        
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, .5) 50%, transparent 70%);
-            pointer-events: none;
-            z-index: 2;
-            transition: none
-        }
-        
-        .pricing-card:hover::before {
-            left: 160%;
-            transition: left .55s ease
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(41, 121, 255, .3);
-            box-shadow: 0 14px 40px rgba(41, 121, 255, .1)
-        }
-        
-        .pc-carousel {
-            position: relative;
-            width: 100%;
-            height: 210px;
-            background: #1a2a3a;
-            overflow: hidden
-        }
-        
-        .pc-carousel-track {
-            display: flex;
-            height: 100%;
-            transition: transform .38s cubic-bezier(.22, .68, 0, 1.2)
-        }
-        
-        .pc-carousel-track img {
-            flex: 0 0 100%;
-            width: 100%;
-            height: 210px;
-            object-fit: cover;
-            display: block;
-            pointer-events: none;
-            user-select: none
-        }
-        
-        .pc-carousel-track .pc-slide-placeholder {
-            flex: 0 0 100%;
-            width: 100%;
-            height: 210px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            background: linear-gradient(145deg, #0d1f3c, #1a3060)
-        }
-        
-        .pc-car-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .92);
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 4;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, .18);
-            opacity: 0;
-            transition: opacity .2s, transform .2s, background .2s
-        }
-        
-        .pc-car-btn svg {
-            width: 13px;
-            height: 13px;
-            stroke: #111;
-            stroke-width: 2.5;
-            fill: none
-        }
-        
-        .pc-carousel:hover .pc-car-btn {
-            opacity: 1
-        }
-        
-        .pc-car-btn:hover {
-            background: #fff;
-            transform: translateY(-50%) scale(1.1)
-        }
-        
-        .pc-car-btn.prev {
-            left: 10px
-        }
-        
-        .pc-car-btn.next {
-            right: 10px
-        }
-        
-        .pc-car-dots {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 5px;
-            align-items: center;
-            z-index: 3
-        }
-        
-        .pc-car-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, .45);
-            cursor: pointer;
-            transition: all .2s
-        }
-        
-        .pc-car-dot.active {
-            background: #fff;
-            width: 14px;
-            border-radius: 3px
-        }
-        
-        .pc-tier-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            padding: 3px 10px;
-            border-radius: 50px;
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: .5px;
-            background: rgba(255, 255, 255, .95);
-            color: #1a1a2e;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            z-index: 3
-        }
-        
-        .pc-tier-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%
-        }
-        
-        .pc-body {
-            padding: 20px 22px
-        }
-        
-        .pc-title {
-            font-family: var(--serif);
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 3px
-        }
-        
-        .pc-sub {
-            font-size: .8rem;
-            color: var(--gray-3);
-            margin-bottom: 18px
-        }
-        
-        .price-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 16px
-        }
-        
-        .price-table thead tr {
-            background: var(--night);
-            border-radius: 8px
-        }
-        
-        .price-table th {
-            font-size: .58rem;
-            font-weight: 600;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .55);
-            padding: 9px 8px;
-            text-align: left
-        }
-        
-        .price-table th:not(:first-child) {
-            text-align: right
-        }
-        
-        .price-table th:first-child {
-            border-radius: 8px 0 0 8px
-        }
-        
-        .price-table th:last-child {
-            border-radius: 0 8px 8px 0
-        }
-        
-        .price-table td {
-            padding: 10px 8px;
-            border-top: 1px solid var(--gray-1);
-            font-size: .85rem
-        }
-        
-        .price-table td:first-child {
-            color: #1a1a2e;
-            font-weight: 500
-        }
-        
-        .price-table td:not(:first-child) {
-            text-align: right
-        }
-        
-        .td-km {
-            color: var(--gray-3);
-            font-size: .8rem;
-            font-weight: 400
-        }
-        
-        .td-price {
-            font-weight: 700;
-            color: #1a1a2e
-        }
-        
-        .row-highlight td {
-            background: rgba(41, 121, 255, .04)
-        }
-        
-        .row-highlight .td-price {
-            color: var(--blue-d)
-        }
-        
-        .row-best td {
-            background: rgba(41, 121, 255, .07)
-        }
-        
-        .row-best td:first-child {
-            color: var(--blue-d)
-        }
-        
-        .row-best .td-km {
-            color: var(--blue-d);
-            opacity: .7
-        }
-        
-        .row-best .td-price {
-            color: var(--blue-d);
-            font-size: .95rem
-        }
-        
-        .km-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
-            font-size: .7rem;
-            font-weight: 600;
-            color: var(--blue-d);
-            background: rgba(41, 121, 255, .1);
-            padding: 2px 7px;
-            border-radius: 50px;
-            white-space: nowrap
-        }
-        
-        .km-badge.inf {
-            color: #15803d;
-            background: rgba(22, 163, 74, .1)
-        }
-        
-        .km-note {
-            margin-bottom: 16px;
-            padding: 10px 14px;
-            background: linear-gradient(135deg, rgba(41, 121, 255, .06), rgba(91, 159, 255, .04));
-            border: 1px solid rgba(41, 121, 255, .15);
-            border-radius: 10px;
-            font-size: .78rem;
-            color: var(--gray-3);
-            line-height: 1.55;
-            display: flex;
-            gap: 8px;
-            align-items: flex-start
-        }
-        
-        .km-note-icon {
-            font-size: 1rem;
-            flex-shrink: 0;
-            margin-top: 1px
-        }
-        
-        .deposit-box {
-            margin-top: 16px;
-            border: 1px solid var(--gray-1);
-            border-radius: 12px;
-            overflow: hidden
-        }
-        
-        .deposit-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 14px;
-            background: var(--off-wh);
-            cursor: pointer;
-            user-select: none;
-            transition: background .2s
-        }
-        
-        .deposit-header:hover {
-            background: var(--gray-1)
-        }
-        
-        .deposit-header-left {
-            display: flex;
-            align-items: center;
-            gap: 8px
-        }
-        
-        .deposit-header-left svg {
-            width: 14px;
-            height: 14px;
-            stroke: var(--gray-3);
-            stroke-width: 2;
-            fill: none
-        }
-        
-        .deposit-title {
-            font-size: .78rem;
-            font-weight: 600;
-            color: #1a1a2e;
-            letter-spacing: .2px
-        }
-        
-        .deposit-toggle {
-            font-size: .7rem;
-            color: var(--blue);
-            font-weight: 600
-        }
-        
-        .deposit-content {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .35s ease, padding .25s ease
-        }
-        
-        .deposit-content.open {
-            max-height: 400px;
-            padding: 14px
-        }
-        
-        .deposit-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px
-        }
-        
-        .dep-item {
-            padding: 10px 12px;
-            border-radius: 8px;
-            border: 1px solid var(--gray-1)
-        }
-        
-        .dep-item.faq {
-            background: rgba(41, 121, 255, .04);
-            border-color: rgba(41, 121, 255, .15)
-        }
-        
-        .dep-item.nofaq {
-            background: rgba(239, 68, 68, .03);
-            border-color: rgba(239, 68, 68, .12)
-        }
-        
-        .dep-label {
-            font-size: .65rem;
-            font-weight: 600;
-            letter-spacing: .5px;
-            text-transform: uppercase;
-            margin-bottom: 6px
-        }
-        
-        .dep-label.faq {
-            color: var(--blue-d)
-        }
-        
-        .dep-label.nofaq {
-            color: #dc2626
-        }
-        
-        .dep-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 4px
-        }
-        
-        .dep-row:last-child {
-            margin-bottom: 0
-        }
-        
-        .dep-age {
-            font-size: .75rem;
-            color: var(--gray-3)
-        }
-        
-        .dep-amount {
-            font-size: .85rem;
-            font-weight: 700;
-            color: #1a1a2e
-        }
-        
-        .dep-disclaimer {
-            margin-top: 10px;
-            font-size: .72rem;
-            color: var(--gray-2);
-            line-height: 1.5
-        }
-        
-        .pc-specs {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin-bottom: 14px
-        }
-        
-        .pc-spec {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: rgba(0, 0, 0, .05);
-            color: #555;
-            font-size: 11px;
-            font-weight: 500;
-            padding: 4px 10px;
-            border-radius: 50px
-        }
-        
-        .pc-spec svg {
-            width: 11px;
-            height: 11px;
-            stroke: #888;
-            stroke-width: 1.8;
-            fill: none
-        }
-        
-        .btn-contact-car {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            padding: 12px;
-            background: var(--night);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-family: var(--sans);
-            font-size: .85rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all .25s;
-            margin-top: 16px
-        }
-        
-        .btn-contact-car:hover {
-            background: var(--blue-d);
-            box-shadow: 0 6px 20px rgba(41, 121, 255, .3)
-        }
-        
-        .btn-contact-car svg {
-            width: 14px;
-            height: 14px;
-            stroke: #fff;
-            stroke-width: 2.5;
-            fill: none
-        }
-        
-        .delivery-section {
-            background: #fff;
-            border-radius: 20px;
-            border: 1px solid var(--gray-1);
-            padding: 36px 40px;
-            box-shadow: 0 2px 16px rgba(0, 0, 0, .06)
-        }
-        
-        .delivery-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: start
-        }
-        
-        .delivery-info h3 {
-            font-family: var(--serif);
-            font-size: 1.4rem;
-            font-weight: 300;
-            color: #1a1a2e;
-            margin-bottom: 8px
-        }
-        
-        .delivery-info h3 em {
-            font-style: italic;
-            color: var(--blue)
-        }
-        
-        .delivery-info p {
-            font-size: .88rem;
-            color: var(--gray-3);
-            line-height: 1.7;
-            margin-bottom: 20px
-        }
-        
-        .delivery-zones {
-            display: flex;
-            flex-direction: column;
-            gap: 10px
-        }
-        
-        .zone-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 16px;
-            background: var(--off-wh);
-            border-radius: 10px;
-            border: 1px solid var(--gray-1)
-        }
-        
-        .zone-left {
-            display: flex;
-            align-items: center;
-            gap: 10px
-        }
-        
-        .zone-icon {
-            width: 34px;
-            height: 34px;
-            border-radius: 8px;
-            background: rgba(41, 121, 255, .08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem
-        }
-        
-        .zone-name {
-            font-weight: 500;
-            font-size: .88rem;
-            color: #1a1a2e
-        }
-        
-        .zone-dist {
-            font-size: .78rem;
-            color: var(--gray-3)
-        }
-        
-        .zone-price {
-            font-family: var(--serif);
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--night)
-        }
-        
-        .zone-free {
-            font-size: .78rem;
-            font-weight: 600;
-            color: #15803d;
-            background: rgba(22, 163, 74, .1);
-            padding: 2px 8px;
-            border-radius: 50px
-        }
-        
-        .delivery-note {
-            margin-top: 16px;
-            padding: 14px 18px;
-            background: rgba(41, 121, 255, .06);
-            border: 1px solid rgba(41, 121, 255, .15);
-            border-radius: 10px;
-            font-size: .82rem;
-            color: var(--gray-3);
-            line-height: 1.6
-        }
-        
-        .delivery-contact {
-            display: flex;
-            flex-direction: column;
-            gap: 14px
-        }
-        
-        .dcontact-h {
-            font-family: var(--serif);
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 6px
-        }
-        
-        .dcontact-p {
-            font-size: .85rem;
-            color: var(--gray-3);
-            line-height: 1.6;
-            margin-bottom: 16px
-        }
-        
-        .contact-method {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 14px 18px;
-            background: var(--off-wh);
-            border-radius: 12px;
-            border: 1px solid var(--gray-1);
-            text-decoration: none;
-            color: #1a1a2e;
-            transition: all .2s
-        }
-        
-        .contact-method:hover {
-            border-color: rgba(41, 121, 255, .35);
-            background: #fff;
-            box-shadow: 0 4px 16px rgba(41, 121, 255, .08)
-        }
-        
-        .cm-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0
-        }
-        
-        .cm-icon.phone {
-            background: rgba(41, 121, 255, .1)
-        }
-        
-        .cm-icon.email {
-            background: rgba(13, 148, 136, .1)
-        }
-        
-        .cm-icon.insta {
-            background: rgba(147, 51, 234, .1)
-        }
-        
-        .cm-icon svg {
-            width: 18px;
-            height: 18px;
-            stroke-width: 2;
-            fill: none
-        }
-        
-        .cm-icon.phone svg {
-            stroke: var(--blue)
-        }
-        
-        .cm-icon.email svg {
-            stroke: #0d9488
-        }
-        
-        .cm-icon.insta svg {
-            stroke: #9333ea
-        }
-        
-        .cm-label {
-            font-size: .72rem;
-            color: var(--gray-2);
-            font-weight: 500;
-            letter-spacing: .5px;
-            text-transform: uppercase;
-            margin-bottom: 2px
-        }
-        
-        .cm-value {
-            font-weight: 600;
-            font-size: .9rem
-        }
-        
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px
-        }
-        
-        .info-box {
-            background: #fff;
-            border: 1px solid var(--gray-1);
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, .05)
-        }
-        
-        .info-box-icon {
-            font-size: 1.8rem;
-            margin-bottom: 12px
-        }
-        
-        .info-box h4 {
-            font-family: var(--serif);
-            font-size: 1rem;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 8px
-        }
-        
-        .info-box p {
-            font-size: .83rem;
-            color: var(--gray-3);
-            line-height: 1.65
-        }
-        
-        #cta-final {
-            margin: 0 64px 80px;
-            padding: 56px 48px;
-            background: var(--night);
-            border-radius: 24px;
-            text-align: center;
-            position: relative;
-            overflow: hidden
-        }
-        
-        #cta-final::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 500px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(ellipse, rgba(41, 121, 255, .15), transparent 60%);
-            pointer-events: none
-        }
-        
-        .cta-h {
-            font-family: var(--serif);
-            font-size: clamp(1.8rem, 3vw, 3rem);
-            font-weight: 300;
-            color: #fff;
-            margin-bottom: 12px;
-            position: relative
-        }
-        
-        .cta-h em {
-            font-style: italic;
-            color: var(--blue-l)
-        }
-        
-        .cta-p {
-            font-size: .9rem;
-            color: rgba(255, 255, 255, .45);
-            max-width: 380px;
-            margin: 0 auto 32px;
-            line-height: 1.7;
-            position: relative
-        }
-        
-        .cta-btns {
-            display: flex;
-            gap: 14px;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: relative
-        }
-        
-        .cta-btn-main {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 32px;
-            border-radius: 8px;
-            background: var(--blue-d);
-            color: #fff;
-            font-family: var(--sans);
-            font-size: .9rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all .25s
-        }
-        
-        .cta-btn-main:hover {
-            background: var(--blue);
-            box-shadow: 0 6px 24px rgba(41, 121, 255, .35)
-        }
-        
-        .cta-btn-main svg {
-            width: 14px;
-            height: 14px;
-            stroke: #fff;
-            stroke-width: 2.5;
-            fill: none
-        }
-        
-        .cta-btn-sec {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            border-radius: 8px;
-            background: transparent;
-            color: rgba(255, 255, 255, .65);
-            border: 1px solid rgba(255, 255, 255, .2);
-            font-family: var(--sans);
-            font-size: .88rem;
-            text-decoration: none;
-            transition: all .3s
-        }
-        
-        .cta-btn-sec:hover {
-            border-color: rgba(91, 159, 255, .5);
-            color: var(--blue-l)
-        }
-        
-        footer {
-            background: var(--night-3);
-            border-top: 1px solid rgba(255, 255, 255, .06);
-            padding: 48px 64px 28px
-        }
-        
-        .ftt {
-            display: grid;
-            grid-template-columns: 1.8fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px
-        }
-        
-        .fb {
-            font-family: var(--serif);
-            font-size: 1.3rem;
-            color: #fff;
-            margin-bottom: 12px
-        }
-        
-        .fb em {
-            font-style: normal;
-            color: var(--blue-l)
-        }
-        
-        .fd {
-            font-size: .82rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, .4);
-            line-height: 1.75;
-            max-width: 220px
-        }
-        
-        .fc h4 {
-            font-size: .65rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .2);
-            margin-bottom: 14px
-        }
-        
-        .fc a {
-            display: block;
-            font-size: .82rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, .4);
-            text-decoration: none;
-            margin-bottom: 10px;
-            transition: color .2s
-        }
-        
-        .fc a:hover {
-            color: var(--blue-l)
-        }
-        
-        .ftb {
-            border-top: 1px solid rgba(255, 255, 255, .06);
-            padding-top: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px
-        }
-        
-        .ftc,
-        .ftr {
-            font-size: .75rem;
-            color: rgba(255, 255, 255, .22)
-        }
-        
-        .ftr a {
-            color: var(--blue-l);
-            text-decoration: none
-        }
-        
-        @keyframes fu {
-            from {
-                opacity: 0;
-                transform: translateY(22px)
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-        
-        .reveal {
-            opacity: 0;
-            transform: translateY(26px);
-            transition: opacity .7s ease, transform .7s ease
-        }
-        
-        .reveal.vis {
-            opacity: 1;
-            transform: translateY(0)
-        }
-        
-        .d1 {
-            transition-delay: .1s
-        }
-        
-        .d2 {
-            transition-delay: .2s
-        }
-        
-        .d3 {
-            transition-delay: .3s
-        }
-        
-        .d4 {
-            transition-delay: .4s
-        }
-        
-        @media(max-width:900px) {
-            nav {
-                padding: 0 20px;
-                height: 60px
-            }
-            #hero {
-                padding: 100px 20px 60px
-            }
-            .contact-strip {
-                padding: 12px 20px;
-                gap: 16px
-            }
-            .cstrip-sep {
-                display: none
-            }
-            section.content {
-                padding: 48px 20px
-            }
-            .pricing-grid {
-                grid-template-columns: 1fr
-            }
-            .delivery-grid {
-                grid-template-columns: 1fr
-            }
-            .info-grid {
-                grid-template-columns: 1fr
-            }
-            #cta-final {
-                margin: 0 20px 60px;
-                padding: 40px 24px
-            }
-            footer {
-                padding: 40px 20px 24px
-            }
-            .ftt {
-                grid-template-columns: 1fr;
-                gap: 24px
-            }
-            .ftb {
-                flex-direction: column;
-                text-align: center
-            }
-            .deposit-grid {
-                grid-template-columns: 1fr
-            }
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --night:#0d1f3c;--night-2:#0a1628;--night-3:#091220;
+            --blue:#2979ff;--blue-d:#1454d4;--blue-l:#5b9fff;
+            --off-wh:#f5f7fa;--gray-1:#e8eaed;--gray-2:#aeaeb8;--gray-3:#6c6c78;
+            --serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',sans-serif
+        }
+        html{scroll-behavior:smooth}
+        body{background:var(--off-wh);color:#1a1a2e;font-family:var(--sans);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+        ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--night-3)}::-webkit-scrollbar-thumb{background:var(--blue-d);border-radius:3px}
+
+        nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:var(--night);border-bottom:1px solid rgba(41,121,255,.2);box-shadow:0 4px 32px rgba(5,12,30,.5)}
+        nav::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(41,121,255,.2) 15%,rgba(91,159,255,.5) 50%,rgba(41,121,255,.2) 85%,transparent);pointer-events:none}
+        .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+        .nav-back{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.65);font-size:.85rem;text-decoration:none;transition:color .2s}
+        .nav-back:hover{color:var(--blue-l)}
+        .nav-back svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none}
+
+        #hero{padding:130px 64px 80px;background:linear-gradient(180deg,#0f2448 0%,var(--night) 55%,#0a1628 100%);position:relative;overflow:hidden;text-align:center}
+        #hero::before{content:'';position:absolute;bottom:-60px;left:50%;transform:translateX(-50%);width:600px;height:280px;border-radius:50%;background:radial-gradient(ellipse,rgba(41,121,255,.12),transparent 65%);pointer-events:none}
+        #hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(41,121,255,.3) 30%,rgba(91,159,255,.5) 50%,rgba(41,121,255,.3) 70%,transparent);pointer-events:none}
+        .hero-label{display:inline-flex;align-items:center;gap:8px;font-size:.62rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--blue-l);margin-bottom:18px;animation:fu .8s ease .1s both}
+        .hero-label::before{content:'';width:14px;height:1px;background:var(--blue)}
+        .hero-h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,4rem);font-weight:300;line-height:1.1;letter-spacing:-.5px;color:#fff;margin-bottom:18px;animation:fu .9s cubic-bezier(.16,1,.3,1) .2s both}
+        .hero-h1 em{font-style:italic;color:var(--blue-l)}
+        .hero-sub{font-size:.95rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7;max-width:520px;margin:0 auto;animation:fu .8s ease .35s both}
+
+        .contact-strip{background:var(--night-2);border-bottom:1px solid rgba(41,121,255,.15);padding:0 64px;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;min-height:64px}
+        .cstrip-item{display:flex;align-items:center;gap:10px;font-size:.88rem;color:rgba(255,255,255,.7)}
+        .cstrip-item svg{width:16px;height:16px;stroke:var(--blue-l);stroke-width:2;fill:none;flex-shrink:0}
+        .cstrip-item a{color:var(--blue-l);text-decoration:none;font-weight:500}
+        .cstrip-item a:hover{color:#fff}
+        .cstrip-sep{width:1px;height:28px;background:rgba(255,255,255,.1)}
+
+        section.content{padding:64px 64px}
+        .sec-header{margin-bottom:40px}
+        .sec-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.6rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+        .sec-eyebrow::before{content:'';width:14px;height:1px;background:var(--blue)}
+        .sec-h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;line-height:1.15;color:#1a1a2e}
+        .sec-h2 em{font-style:italic;color:var(--blue)}
+        .sec-sub{font-size:.92rem;color:var(--gray-3);margin-top:10px;line-height:1.65}
+
+        /* ── TRUST BADGES BAR ── */
+        .trust-bar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px;padding:16px 20px;background:#fff;border:1px solid var(--gray-1);border-radius:14px;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+        .trust-item{display:flex;align-items:center;gap:7px;font-size:.78rem;font-weight:500;color:#1a1a2e}
+        .trust-item span.ico{font-size:1rem}
+        .trust-sep{width:1px;height:16px;background:var(--gray-1)}
+
+        /* ── VEHICLE CARD ── */
+        .pricing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:32px}
+        .pricing-card{background:#fff;border:1px solid var(--gray-1);border-radius:24px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.07);transition:transform .3s cubic-bezier(.22,.68,0,1.2),box-shadow .3s,border-color .3s;position:relative}
+        .pricing-card::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.5) 50%,transparent 70%);pointer-events:none;z-index:2;transition:none}
+        .pricing-card:hover::before{left:160%;transition:left .55s ease}
+        .pricing-card:hover{transform:translateY(-5px);border-color:rgba(41,121,255,.3);box-shadow:0 18px 48px rgba(41,121,255,.12)}
+
+        /* Carousel */
+        .pc-carousel{position:relative;width:100%;height:220px;background:#1a2a3a;overflow:hidden}
+        .pc-carousel-track{display:flex;height:100%;transition:transform .38s cubic-bezier(.22,.68,0,1.2)}
+        .pc-carousel-track img{flex:0 0 100%;width:100%;height:220px;object-fit:cover;display:block;pointer-events:none;user-select:none}
+        .pc-carousel-track .pc-slide-placeholder{flex:0 0 100%;width:100%;height:220px;display:flex;align-items:center;justify-content:center;font-size:3.5rem;background:linear-gradient(145deg,#0d1f3c,#1a3060)}
+        .pc-car-btn{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:4;box-shadow:0 2px 8px rgba(0,0,0,.18);opacity:0;transition:opacity .2s,transform .2s,background .2s}
+        .pc-car-btn svg{width:13px;height:13px;stroke:#111;stroke-width:2.5;fill:none}
+        .pc-carousel:hover .pc-car-btn{opacity:1}
+        .pc-car-btn:hover{background:#fff;transform:translateY(-50%) scale(1.1)}
+        .pc-car-btn.prev{left:10px}.pc-car-btn.next{right:10px}
+        .pc-car-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:5px;align-items:center;z-index:3}
+        .pc-car-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer;transition:all .2s}
+        .pc-car-dot.active{background:#fff;width:14px;border-radius:3px}
+        .pc-tier-badge{position:absolute;top:12px;left:12px;padding:3px 10px;border-radius:50px;font-size:9px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.95);color:#1a1a2e;display:flex;align-items:center;gap:5px;z-index:3}
+        .pc-tier-dot{width:8px;height:8px;border-radius:50%}
+
+        .pc-body{padding:22px 24px}
+        .pc-title{font-family:var(--serif);font-size:1.2rem;font-weight:700;color:#1a1a2e;margin-bottom:2px}
+        .pc-sub{font-size:.8rem;color:var(--gray-3);margin-bottom:20px}
+
+        /* ── NOUVEAUX PRICING CARDS ── */
+        .offer-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+
+        .offer-card{position:relative;border-radius:14px;border:1.5px solid var(--gray-1);padding:14px 16px;cursor:pointer;transition:all .22s;background:#fff;overflow:hidden}
+        .offer-card::after{content:'';position:absolute;inset:0;border-radius:12px;opacity:0;transition:opacity .2s;background:linear-gradient(135deg,rgba(41,121,255,.04),rgba(91,159,255,.03))}
+        .offer-card:hover{border-color:rgba(41,121,255,.35);transform:translateX(3px);box-shadow:0 4px 16px rgba(41,121,255,.09)}
+        .offer-card:hover::after{opacity:1}
+
+        /* État "featured" — meilleur choix */
+        .offer-card.featured{border-color:var(--blue-d);background:linear-gradient(135deg,rgba(20,84,212,.06) 0%,rgba(41,121,255,.04) 100%);box-shadow:0 6px 28px rgba(41,121,255,.14)}
+        .offer-card.featured::after{opacity:1}
+
+        .offer-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:10px}
+        .offer-left{display:flex;flex-direction:column;gap:4px}
+        .offer-name-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+        .offer-name{font-size:.9rem;font-weight:700;color:#1a1a2e}
+        .offer-badge{font-size:.58rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:2px 8px;border-radius:50px}
+        .badge-best{background:linear-gradient(135deg,#1454d4,#2979ff);color:#fff}
+        .badge-popular{background:rgba(249,115,22,.12);color:#c2410c;border:1px solid rgba(249,115,22,.2)}
+        .badge-eco{background:rgba(22,163,74,.1);color:#15803d;border:1px solid rgba(22,163,74,.2)}
+        .badge-flex{background:rgba(147,51,234,.1);color:#7e22ce;border:1px solid rgba(147,51,234,.2)}
+        .offer-km{display:flex;align-items:center;gap:5px;font-size:.75rem;color:var(--gray-3)}
+        .offer-km-badge{display:inline-flex;align-items:center;gap:3px;font-size:.7rem;font-weight:600;padding:2px 7px;border-radius:50px}
+        .offer-km-badge.std{color:var(--blue-d);background:rgba(41,121,255,.1)}
+        .offer-km-badge.inf{color:#15803d;background:rgba(22,163,74,.1)}
+
+        .offer-right{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0}
+        .offer-price-main{font-family:var(--serif);font-size:1.45rem;font-weight:700;line-height:1;color:#1a1a2e}
+        .offer-card.featured .offer-price-main{color:var(--blue-d)}
+        .offer-price-per-day{font-size:.7rem;color:var(--gray-2);font-weight:500}
+        .offer-card.featured .offer-price-per-day{color:var(--blue-l)}
+
+        .offer-bottom{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+        .offer-pill{display:inline-flex;align-items:center;gap:4px;font-size:.68rem;font-weight:500;color:var(--gray-3);background:var(--off-wh);padding:3px 8px;border-radius:50px;border:1px solid var(--gray-1)}
+        .offer-card.featured .offer-pill{background:rgba(41,121,255,.06);border-color:rgba(41,121,255,.15);color:var(--blue-d)}
+
+        .offer-cta{display:flex;align-items:center;justify-content:center;gap:7px;width:100%;padding:11px;border-radius:9px;font-family:var(--sans);font-size:.82rem;font-weight:700;border:none;cursor:pointer;text-decoration:none;margin-top:10px;transition:all .22s;letter-spacing:.2px}
+        .offer-cta.primary{background:var(--blue-d);color:#fff;box-shadow:0 4px 16px rgba(41,121,255,.25)}
+        .offer-cta.primary:hover{background:var(--blue);box-shadow:0 8px 28px rgba(41,121,255,.38);transform:translateY(-1px)}
+        .offer-cta.secondary{background:var(--off-wh);color:#1a1a2e;border:1.5px solid var(--gray-1)}
+        .offer-cta.secondary:hover{background:#fff;border-color:rgba(41,121,255,.3);color:var(--blue-d);box-shadow:0 4px 12px rgba(0,0,0,.06)}
+        .offer-cta svg{width:13px;height:13px;stroke:currentColor;stroke-width:2.5;fill:none}
+
+        /* Diviseur featured */
+        .featured-divider{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:.6rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue-d);opacity:.65}
+        .featured-divider::before,.featured-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(41,121,255,.25))}
+
+        .km-note{margin:4px 0 14px;padding:10px 14px;background:linear-gradient(135deg,rgba(41,121,255,.06),rgba(91,159,255,.04));border:1px solid rgba(41,121,255,.15);border-radius:10px;font-size:.78rem;color:var(--gray-3);line-height:1.55;display:flex;gap:8px;align-items:flex-start}
+        .km-note-icon{font-size:1rem;flex-shrink:0;margin-top:1px}
+
+        /* Dépôt accordéon */
+        .deposit-box{margin-top:4px;border:1px solid var(--gray-1);border-radius:12px;overflow:hidden}
+        .deposit-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--off-wh);cursor:pointer;user-select:none;transition:background .2s}
+        .deposit-header:hover{background:var(--gray-1)}
+        .deposit-header-left{display:flex;align-items:center;gap:8px}
+        .deposit-header-left svg{width:14px;height:14px;stroke:var(--gray-3);stroke-width:2;fill:none}
+        .deposit-title{font-size:.78rem;font-weight:600;color:#1a1a2e;letter-spacing:.2px}
+        .deposit-toggle{font-size:.7rem;color:var(--blue);font-weight:600}
+        .deposit-content{padding:0;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .25s ease}
+        .deposit-content.open{max-height:400px;padding:14px}
+        .deposit-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+        .dep-item{padding:10px 12px;border-radius:8px;border:1px solid var(--gray-1)}
+        .dep-item.faq{background:rgba(41,121,255,.04);border-color:rgba(41,121,255,.15)}
+        .dep-item.nofaq{background:rgba(239,68,68,.03);border-color:rgba(239,68,68,.12)}
+        .dep-label{font-size:.65rem;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+        .dep-label.faq{color:var(--blue-d)}.dep-label.nofaq{color:#dc2626}
+        .dep-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+        .dep-row:last-child{margin-bottom:0}
+        .dep-age{font-size:.75rem;color:var(--gray-3)}.dep-amount{font-size:.85rem;font-weight:700;color:#1a1a2e}
+        .dep-disclaimer{margin-top:10px;font-size:.72rem;color:var(--gray-2);line-height:1.5}
+
+        /* Sections communes */
+        .delivery-section{background:#fff;border-radius:20px;border:1px solid var(--gray-1);padding:36px 40px;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+        .delivery-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+        .delivery-info h3{font-family:var(--serif);font-size:1.4rem;font-weight:300;color:#1a1a2e;margin-bottom:8px}
+        .delivery-info h3 em{font-style:italic;color:var(--blue)}
+        .delivery-info p{font-size:.88rem;color:var(--gray-3);line-height:1.7;margin-bottom:20px}
+        .delivery-zones{display:flex;flex-direction:column;gap:10px}
+        .zone-item{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--off-wh);border-radius:10px;border:1px solid var(--gray-1)}
+        .zone-left{display:flex;align-items:center;gap:10px}
+        .zone-icon{width:34px;height:34px;border-radius:8px;background:rgba(41,121,255,.08);display:flex;align-items:center;justify-content:center;font-size:1rem}
+        .zone-name{font-weight:500;font-size:.88rem;color:#1a1a2e}.zone-dist{font-size:.78rem;color:var(--gray-3)}
+        .zone-price{font-family:var(--serif);font-weight:700;font-size:1rem;color:var(--night)}
+        .zone-free{font-size:.78rem;font-weight:600;color:#15803d;background:rgba(22,163,74,.1);padding:2px 8px;border-radius:50px}
+        .delivery-note{margin-top:16px;padding:14px 18px;background:rgba(41,121,255,.06);border:1px solid rgba(41,121,255,.15);border-radius:10px;font-size:.82rem;color:var(--gray-3);line-height:1.6}
+        .delivery-contact{display:flex;flex-direction:column;gap:14px}
+        .dcontact-h{font-family:var(--serif);font-size:1.15rem;font-weight:700;color:#1a1a2e;margin-bottom:6px}
+        .dcontact-p{font-size:.85rem;color:var(--gray-3);line-height:1.6;margin-bottom:16px}
+        .contact-method{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--off-wh);border-radius:12px;border:1px solid var(--gray-1);text-decoration:none;color:#1a1a2e;transition:all .2s}
+        .contact-method:hover{border-color:rgba(41,121,255,.35);background:#fff;box-shadow:0 4px 16px rgba(41,121,255,.08)}
+        .cm-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+        .cm-icon.phone{background:rgba(41,121,255,.1)}.cm-icon.email{background:rgba(13,148,136,.1)}.cm-icon.insta{background:rgba(147,51,234,.1)}
+        .cm-icon svg{width:18px;height:18px;stroke-width:2;fill:none}
+        .cm-icon.phone svg{stroke:var(--blue)}.cm-icon.email svg{stroke:#0d9488}.cm-icon.insta svg{stroke:#9333ea}
+        .cm-label{font-size:.72rem;color:var(--gray-2);font-weight:500;letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px}
+        .cm-value{font-weight:600;font-size:.9rem}
+
+        .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+        .info-box{background:#fff;border:1px solid var(--gray-1);border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+        .info-box-icon{font-size:1.8rem;margin-bottom:12px}
+        .info-box h4{font-family:var(--serif);font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:8px}
+        .info-box p{font-size:.83rem;color:var(--gray-3);line-height:1.65}
+
+        #cta-final{margin:0 64px 80px;padding:56px 48px;background:var(--night);border-radius:24px;text-align:center;position:relative;overflow:hidden}
+        #cta-final::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(41,121,255,.15),transparent 60%);pointer-events:none}
+        .cta-h{font-family:var(--serif);font-size:clamp(1.8rem,3vw,3rem);font-weight:300;color:#fff;margin-bottom:12px;position:relative}
+        .cta-h em{font-style:italic;color:var(--blue-l)}
+        .cta-p{font-size:.9rem;color:rgba(255,255,255,.45);max-width:380px;margin:0 auto 32px;line-height:1.7;position:relative}
+        .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+        .cta-btn-main{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:8px;background:var(--blue-d);color:#fff;font-family:var(--sans);font-size:.9rem;font-weight:600;text-decoration:none;transition:all .25s}
+        .cta-btn-main:hover{background:var(--blue);box-shadow:0 6px 24px rgba(41,121,255,.35)}
+        .cta-btn-main svg{width:14px;height:14px;stroke:#fff;stroke-width:2.5;fill:none}
+        .cta-btn-sec{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:8px;background:transparent;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.2);font-family:var(--sans);font-size:.88rem;text-decoration:none;transition:all .3s}
+        .cta-btn-sec:hover{border-color:rgba(91,159,255,.5);color:var(--blue-l)}
+
+        footer{background:var(--night-3);border-top:1px solid rgba(255,255,255,.06);padding:48px 64px 28px}
+        .ftt{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:40px;margin-bottom:40px}
+        .fb{font-family:var(--serif);font-size:1.3rem;color:#fff;margin-bottom:12px}
+        .fb em{font-style:normal;color:var(--blue-l)}
+        .fd{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.4);line-height:1.75;max-width:220px}
+        .fc h4{font-size:.65rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:14px}
+        .fc a{display:block;font-size:.82rem;font-weight:300;color:rgba(255,255,255,.4);text-decoration:none;margin-bottom:10px;transition:color .2s}
+        .fc a:hover{color:var(--blue-l)}
+        .ftb{border-top:1px solid rgba(255,255,255,.06);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+        .ftc,.ftr{font-size:.75rem;color:rgba(255,255,255,.22)}
+        .ftr a{color:var(--blue-l);text-decoration:none}
+
+        @keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+        .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+        .reveal.vis{opacity:1;transform:translateY(0)}
+        .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+        @media(max-width:900px){
+            nav{padding:0 20px;height:60px}
+            #hero{padding:100px 20px 60px}
+            .contact-strip{padding:12px 20px;gap:16px}
+            .cstrip-sep{display:none}
+            section.content{padding:48px 20px}
+            .pricing-grid{grid-template-columns:1fr}
+            .delivery-grid{grid-template-columns:1fr}
+            .info-grid{grid-template-columns:1fr}
+            #cta-final{margin:0 20px 60px;padding:40px 24px}
+            footer{padding:40px 20px 24px}
+            .ftt{grid-template-columns:1fr;gap:24px}
+            .ftb{flex-direction:column;text-align:center}
+            .deposit-grid{grid-template-columns:1fr}
+            .trust-bar{gap:8px}
+            .trust-sep{display:none}
         }
     </style>
 </head>
@@ -1292,33 +246,19 @@
 
     <section id="hero">
         <div class="hero-label">Hors Turo</div>
-        <h1 class="hero-h1">Location directe — <em>sans commission</em></h1>
-        <p class="hero-sub">Réservez directement avec NexDrive. Tarifs à la journée, à la semaine ou au mois. Livraison disponible au Québec.</p>
+        <h1 class="hero-h1">Réservez hors Turo — <em>vérifié & assuré</em></h1>
+    
     </section>
 
-    <div class="contact-strip">
-        <div class="cstrip-item">
-            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.7a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span>Appelez-nous : <a href="tel:+15141234567">+1 (514) 123-4567</a></span>
-        </div>
-        <div class="cstrip-sep"></div>
-        <div class="cstrip-item">
-            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            <span>Email : <a href="mailto:location@nexdrive.ca">location@nexdrive.ca</a></span>
-        </div>
-        <div class="cstrip-sep"></div>
-        <div class="cstrip-item">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <span>Réponse sous 2h · Lun–Dim 8h–21h</span>
-        </div>
-    </div>
+
 
     <section class="content">
         <div class="sec-header reveal">
             <div class="sec-eyebrow">Tarifs</div>
             <h2 class="sec-h2">Nos véhicules <em>disponibles</em></h2>
-            <p class="sec-sub">Prix tout inclus · Assurance incluse · Kilométrage selon forfait</p>
+        
         </div>
+
         <div class="pricing-grid" id="pricingGrid"></div>
     </section>
 
@@ -1333,50 +273,35 @@
                         <div class="zone-item">
                             <div class="zone-left">
                                 <div class="zone-icon">📍</div>
-                                <div>
-                                    <div class="zone-name">Montréal (île)</div>
-                                    <div class="zone-dist">Livraison incluse</div>
-                                </div>
+                                <div><div class="zone-name">Montréal (île)</div><div class="zone-dist">Livraison incluse</div></div>
                             </div>
                             <span class="zone-free">GRATUIT</span>
                         </div>
                         <div class="zone-item">
                             <div class="zone-left">
                                 <div class="zone-icon">🗺️</div>
-                                <div>
-                                    <div class="zone-name">Laval · Longueuil · Rive-Sud</div>
-                                    <div class="zone-dist">jusqu'à 30 km</div>
-                                </div>
+                                <div><div class="zone-name">Laval · Longueuil · Rive-Sud</div><div class="zone-dist">jusqu'à 30 km</div></div>
                             </div>
                             <span class="zone-price">25 $</span>
                         </div>
                         <div class="zone-item">
                             <div class="zone-left">
                                 <div class="zone-icon">🚗</div>
-                                <div>
-                                    <div class="zone-name">Région de Montréal</div>
-                                    <div class="zone-dist">30–80 km</div>
-                                </div>
+                                <div><div class="zone-name">Région de Montréal</div><div class="zone-dist">30–80 km</div></div>
                             </div>
                             <span class="zone-price">50 $</span>
                         </div>
                         <div class="zone-item">
                             <div class="zone-left">
                                 <div class="zone-icon">✈️</div>
-                                <div>
-                                    <div class="zone-name">Aéroport YUL</div>
-                                    <div class="zone-dist">Livraison incluse</div>
-                                </div>
+                                <div><div class="zone-name">Aéroport YUL</div><div class="zone-dist">Livraison incluse</div></div>
                             </div>
                             <span class="zone-free">GRATUIT</span>
                         </div>
                         <div class="zone-item">
                             <div class="zone-left">
                                 <div class="zone-icon">📦</div>
-                                <div>
-                                    <div class="zone-name">Autres régions Québec</div>
-                                    <div class="zone-dist">+80 km · Sur devis</div>
-                                </div>
+                                <div><div class="zone-name">Autres régions Québec</div><div class="zone-dist">+80 km · Sur devis</div></div>
                             </div>
                             <span class="zone-price">Sur devis</span>
                         </div>
@@ -1388,61 +313,24 @@
                     <div class="dcontact-p">Disponibles 7j/7 de 8h à 21h pour toute question ou réservation.</div>
                     <a href="tel:+15141234567" class="contact-method">
                         <div class="cm-icon phone"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.7a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-                        <div>
-                            <div class="cm-label">Téléphone</div>
-                            <div class="cm-value">+1 (514) 123-4567</div>
-                        </div>
+                        <div><div class="cm-label">Téléphone</div><div class="cm-value">+1 (514) 123-4567</div></div>
                     </a>
                     <a href="mailto:location@nexdrive.ca" class="contact-method">
                         <div class="cm-icon email"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-                        <div>
-                            <div class="cm-label">Email</div>
-                            <div class="cm-value">location@nexdrive.ca</div>
-                        </div>
+                        <div><div class="cm-label">Email</div><div class="cm-value">location@nexdrive.ca</div></div>
                     </a>
                     <a href="https://instagram.com/nexdrive" target="_blank" class="contact-method">
                         <div class="cm-icon insta"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
-                        <div>
-                            <div class="cm-label">Instagram</div>
-                            <div class="cm-value">@nexdrive</div>
-                        </div>
+                        <div><div class="cm-label">Instagram</div><div class="cm-value">@nexdrive</div></div>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="content" style="padding-top:0">
-        <div class="info-grid">
-            <div class="info-box reveal">
-                <div class="info-box-icon">🛡️</div>
-                <h4>Assurance incluse</h4>
-                <p>Tous nos véhicules sont couverts par une assurance complète. Aucun frais supplémentaire caché.</p>
-            </div>
-            <div class="info-box reveal d1">
-                <div class="info-box-icon">📋</div>
-                <h4>Contrat simple</h4>
-                <p>Contrat de location clair et transparent signé électroniquement. Aucune surprise à la fin.</p>
-            </div>
-            <div class="info-box reveal d2">
-                <div class="info-box-icon">⛽</div>
-                <h4>Carburant & recharge</h4>
-                <p>Rendez le véhicule avec le même niveau d'essence ou de batterie. Sinon des frais s'appliquent.</p>
-            </div>
-        </div>
-    </section>
 
-    <div id="cta-final" class="reveal">
-        <h2 class="cta-h">Prêt à réserver <em>directement</em> ?</h2>
-        <p class="cta-p">Appelez-nous ou écrivez-nous. Nous confirmons votre réservation en moins de 2 heures.</p>
-        <div class="cta-btns">
-            <a href="tel:+15141234567" class="cta-btn-main">
-                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.7a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>                Appeler maintenant
-            </a>
-            <a href="mailto:location@nexdrive.ca" class="cta-btn-sec">Envoyer un email →</a>
-            <a href="vehicules.html" class="cta-btn-sec">Voir la flotte Turo →</a>
-        </div>
-    </div>
+
+
 
     <footer>
         <div class="ftt">
@@ -1473,232 +361,222 @@
     </footer>
 
     <script>
-        const vehicles = [{
-            id: 'tesla3',
-            title: 'Tesla Model 3',
-            sub: 'Électrique · 2021 · 5 places · 400 km d\'autonomie',
-            tier: 'Confort',
-            tierColor: '#0d9488',
-            emoji: '🚗',
-            specs: [{
-                icon: 'range',
-                txt: '400 km autonomie'
-            }, {
-                icon: 'drive',
-                txt: 'Autopilote'
-            }, {
-                icon: 'people',
-                txt: '5 places'
-            }],
-            imgs: [
-                'voiture/Tesla Model 3 Blanche 2023/1.png',
-                'voiture/Tesla Model 3 Blanche 2023/2.png',
-                'voiture/Tesla Model 3 Blanche 2023/3.png',
-                'voiture/Tesla Model 3 Blanche 2023/4.png'
-            ],
-            rows: [{
+    const vehicles = [{
+        id: 'tesla3',
+        title: 'Tesla Model Y',
+        sub: 'Électrique · 2023 · 5 places · 450 km d\'autonomie',
+        tier: 'Premium',
+        tierColor: '#2979ff',
+        emoji: '🚗',
+        imgs: [
+            'voiture/Tesla Model Y 2023/1.png',
+            'voiture/Tesla Model Y 2023/2.png',
+            'voiture/Tesla Model Y 2023/3.png',
+            'voiture/Tesla Model Y 2023/4.png'
+        ],
+        offers: [
+            {
+                id: 'j1',
                 label: '24 heures',
-                km: '250 km',
+                badge: null,
                 price: '200 $',
-                cls: ''
-            }, {
-                label: 'Semaine (7j)',
-                km: '700 km',
+                perDay: null,
+                km: '250 km',
+                inf: false,
+                pills: ['Assurance incluse'],
+                featured: false
+            },
+            {
+                id: 'sem',
+                label: '7 jours',
+                badge: { text: '⭐ Meilleur choix', cls: 'badge-best' },
                 price: '1 000 $',
-                cls: 'row-highlight'
-            }, {
-                label: 'Semaine+ (7j)',
-                km: '1 000 km',
+                perDay: '≈ 143 $/jour',
+                km: '700 km',
+                inf: false,
+                pills: ['Livraison incluse', 'Assurance incluse'],
+                featured: true
+            },
+            {
+                id: 'sem+',
+                label: '7 jours+',
+                badge: { text: '🔥 Populaire', cls: 'badge-popular' },
                 price: '1 400 $',
-                cls: 'row-highlight'
-            }, {
-                label: 'Semaine illimité',
-                km: '∞ Illimité',
+                perDay: '≈ 200 $/jour',
+                km: '1 000 km',
+                inf: false,
+                pills: ['Livraison incluse', 'Assurance incluse'],
+                featured: false
+            },
+            {
+                id: 'ill',
+                label: '7 jours+  · Illimité',
+                badge: { text: '♾️ Liberté totale', cls: 'badge-eco' },
                 price: '2 000 $',
-                cls: 'row-best',
-                inf: true
-            }]
-        }, {
-            id: 'coming',
-            title: 'Nouveau véhicule',
-            sub: 'Bientôt disponible · Contactez-nous',
-            tier: null,
-            emoji: '✨',
-            imgs: [],
-            coming: true
-        }];
+                perDay: '≈ 286 $/jour',
+                km: '∞ Illimité',
+                inf: true,
+                pills: ['Livraison incluse', 'Assurance incluse'],
+                featured: false
+            }
+        ]
+    }, {
+        id: 'coming',
+        coming: true
+    }];
 
-        const ICONS = {
-            people: `<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>`,
-            power: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/></svg>`,
-            drive: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>`,
-            range: `<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
-            auto: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/></svg>`
-        };
+    const PHONE_SVG = `<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.7a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`;
+    const LOCK_SVG = `<svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
 
-        const PHONE_SVG = `<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.7a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`;
-        const LOCK_SVG = `<svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
+    function buildCarousel(v) {
+        var imgs = v.imgs || [];
+        var slides = imgs.length ?
+            imgs.map(function(src){ return '<img src="'+src+'" alt="'+v.title+'" loading="lazy">'; }).join('') :
+            '<div class="pc-slide-placeholder">'+v.emoji+'</div>';
+        var tierBadge = v.tier ?
+            '<div class="pc-tier-badge"><div class="pc-tier-dot" style="background:'+v.tierColor+'"></div>'+v.tier+'</div>' : '';
+        var btns = imgs.length > 1 ?
+            '<button class="pc-car-btn prev" onclick="pcSlide(\''+v.id+'\',-1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button>'+
+            '<button class="pc-car-btn next" onclick="pcSlide(\''+v.id+'\',1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="9 18 15 12 9 6"/></svg></button>'+
+            '<div class="pc-car-dots" id="pcdots-'+v.id+'"></div>' : '';
+        return '<div class="pc-carousel" id="pccar-'+v.id+'">'+tierBadge+'<div class="pc-carousel-track" id="pct-'+v.id+'">'+slides+'</div>'+btns+'</div>';
+    }
 
-        function buildCarousel(v) {
-            var imgs = v.imgs || [];
-            var slides = imgs.length ?
-                imgs.map(function(src) {
-                    return '<img src="' + src + '" alt="' + v.title + '" loading="lazy">';
-                }).join('') :
-                '<div class="pc-slide-placeholder">' + v.emoji + '</div>';
-            var tierBadge = v.tier ?
-                '<div class="pc-tier-badge"><div class="pc-tier-dot" style="background:' + v.tierColor + '"></div>' + v.tier + '</div>' : '';
-            var btns = imgs.length > 1 ?
-                '<button class="pc-car-btn prev" onclick="pcSlide(\'' + v.id + '\',-1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button>' +
-                '<button class="pc-car-btn next" onclick="pcSlide(\'' + v.id + '\',1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="9 18 15 12 9 6"/></svg></button>' +
-                '<div class="pc-car-dots" id="pcdots-' + v.id + '"></div>' : '';
-            return '<div class="pc-carousel" id="pccar-' + v.id + '">' + tierBadge + '<div class="pc-carousel-track" id="pct-' + v.id + '">' + slides + '</div>' + btns + '</div>';
-        }
+    function buildOfferCards(v) {
+        return v.offers.map(function(o, idx) {
+            var badgeHtml = o.badge ? '<span class="offer-badge '+o.badge.cls+'">'+o.badge.text+'</span>' : '';
+            var kmBadge = o.inf ?
+                '<span class="offer-km-badge inf">'+o.km+'</span>' :
+                '<span class="offer-km-badge std">'+o.km+'</span>';
+            var pills = o.pills.map(function(p){ return '<span class="offer-pill">'+p+'</span>'; }).join('');
+            var perDay = o.perDay ? '<div class="offer-price-per-day">'+o.perDay+'</div>' : '';
+            var featCls = o.featured ? ' featured' : '';
+            var ctaCls = o.featured ? 'primary' : 'secondary';
+            var ctaTxt = o.featured ? PHONE_SVG+' Réserver — Meilleur prix' : PHONE_SVG+' Réserver ce forfait';
 
-        function buildPriceRows(rows) {
-            return rows.map(function(r) {
-                var kmBadge = r.inf ?
-                    '<span class="km-badge inf">' + r.km + '</span>' :
-                    '<span class="km-badge">' + r.km + '</span>';
-                return '<tr class="' + r.cls + '"><td>' + r.label + '</td><td class="td-km">' + kmBadge + '</td><td class="td-price">' + r.price + '</td></tr>';
-            }).join('');
-        }
+            // Diviseur avant le featured
+            var divider = '';
+            if(o.featured && idx > 0) divider = '<div class="featured-divider">Offre recommandée</div>';
 
-        function buildDepositAccordion(id) {
-            return '<div class="deposit-box">' +
-                '<div class="deposit-header" onclick="toggleDeposit(this)">' +
-                '<div class="deposit-header-left">' + LOCK_SVG + '<span class="deposit-title">Dépôt de garantie</span></div>' +
-                '<span class="deposit-toggle">Voir ▾</span>' +
-                '</div>' +
-                '<div class="deposit-content">' +
-                '<div class="deposit-grid">' +
-                '<div class="dep-item faq"><div class="dep-label faq">✅ Avec FAQ27</div>' +
-                '<div class="dep-row"><span class="dep-age">Moins de 25 ans</span><span class="dep-amount">1 500 $</span></div>' +
-                '<div class="dep-row"><span class="dep-age">25 ans et plus</span><span class="dep-amount">1 000 $</span></div></div>' +
-                '<div class="dep-item nofaq"><div class="dep-label nofaq">❌ Sans FAQ27</div>' +
-                '<div class="dep-row"><span class="dep-age">Moins de 25 ans</span><span class="dep-amount">3 500 $</span></div>' +
-                '<div class="dep-row"><span class="dep-age">25 ans et plus</span><span class="dep-amount">2 500 $</span></div></div>' +
-                '</div>' +
-                '<p class="dep-disclaimer">Le dépôt est retenu en pré-autorisation sur votre carte et libéré au retour du véhicule en bon état. L\'avenant FAQ27 se retrouve sur votre police d\'assurance auto.</p>' +
+            return divider+
+                '<div class="offer-card'+featCls+'" onclick="window.location=\'tel:+15141234567\'" style="cursor:pointer">'+
+                  '<div class="offer-top">'+
+                    '<div class="offer-left">'+
+                      '<div class="offer-name-row">'+
+                        '<span class="offer-name">'+o.label+'</span>'+
+                        badgeHtml+
+                      '</div>'+
+                      '<div class="offer-km">'+kmBadge+' inclus</div>'+
+                    '</div>'+
+                    '<div class="offer-right">'+
+                      '<div class="offer-price-main">'+o.price+'</div>'+
+                      perDay+
+                    '</div>'+
+                  '</div>'+
+                  '<div class="offer-bottom">'+pills+'</div>'+
+                  '<a href="tel:+15141234567" class="offer-cta '+ctaCls+'" onclick="event.stopPropagation()">'+ctaTxt+'</a>'+
+                '</div>';
+        }).join('');
+    }
+
+    function buildDepositAccordion(id) {
+        return '<div class="deposit-box">'+
+            '<div class="deposit-header" onclick="toggleDeposit(this)">'+
+            '<div class="deposit-header-left">'+LOCK_SVG+'<span class="deposit-title">Dépôt de garantie</span></div>'+
+            '<span class="deposit-toggle">Voir ▾</span>'+
+            '</div>'+
+            '<div class="deposit-content">'+
+            '<div class="deposit-grid">'+
+            '<div class="dep-item faq"><div class="dep-label faq">✅ Avec FAQ27</div>'+
+            '<div class="dep-row"><span class="dep-age">Moins de 25 ans</span><span class="dep-amount">1 500 $</span></div>'+
+            '<div class="dep-row"><span class="dep-age">25 ans et plus</span><span class="dep-amount">1 000 $</span></div></div>'+
+            '<div class="dep-item nofaq"><div class="dep-label nofaq">❌ Sans FAQ27</div>'+
+            '<div class="dep-row"><span class="dep-age">Moins de 25 ans</span><span class="dep-amount">3 500 $</span></div>'+
+            '<div class="dep-row"><span class="dep-age">25 ans et plus</span><span class="dep-amount">2 500 $</span></div></div>'+
+            '</div>'+
+            '<p class="dep-disclaimer">Le dépôt est retenu en pré-autorisation sur votre carte et libéré au retour du véhicule en bon état. L\'avenant FAQ27 se retrouve sur votre police d\'assurance auto.</p>'+
+            '</div></div>';
+    }
+
+    function renderGrid() {
+        var grid = document.getElementById('pricingGrid');
+        var delays = ['reveal','reveal d1','reveal d2','reveal d3'];
+        grid.innerHTML = vehicles.map(function(v, i) {
+            var cls = 'pricing-card '+(delays[i]||'reveal');
+            if(v.coming) {
+                return '<div class="'+cls+'" style="opacity:.7;border-style:dashed">'+
+                    '<div class="pc-carousel" style="background:linear-gradient(145deg,#0d1f3c,#0a1628)">'+
+                    '<div class="pc-carousel-track"><div class="pc-slide-placeholder">✨</div></div></div>'+
+                    '<div class="pc-body">'+
+                    '<div class="pc-title">Nouveau véhicule</div>'+
+                    '<div class="pc-sub">Bientôt disponible · Contactez-nous</div>'+
+                    '<div style="padding:24px 0;text-align:center;color:var(--gray-3);font-size:.88rem;line-height:1.7">Nous ajoutons régulièrement de nouveaux véhicules.<br><br>Contactez-nous pour les prochaines disponibilités.</div>'+
+                    '<a href="mailto:location@nexdrive.ca" class="offer-cta secondary" style="text-decoration:none">'+
+                    '<svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Me notifier'+
+                    '</a></div></div>';
+            }
+            return '<div class="'+cls+'">'+
+                buildCarousel(v)+
+                '<div class="pc-body">'+
+                '<div class="pc-title">'+v.title+'</div>'+
+                '<div class="pc-sub">'+v.sub+'</div>'+
+                '<div class="offer-cards">'+buildOfferCards(v)+'</div>'+
+                '<div class="km-note"><span class="km-note-icon">📏</span><span>Kilométrage supplémentaire facturé à <strong>0,25 $/km</strong> au-delà du forfait. Pour les longs trajets, l\'option illimitée est recommandée.</span></div>'+
+                buildDepositAccordion(v.id)+
                 '</div></div>';
-        }
+        }).join('');
 
-        function renderGrid() {
-            var grid = document.getElementById('pricingGrid');
-            var delays = ['reveal', 'reveal d1', 'reveal d2', 'reveal d3'];
-            grid.innerHTML = vehicles.map(function(v, i) {
-                var cls = 'pricing-card ' + (delays[i] || 'reveal');
-                if (v.coming) {
-                    return '<div class="' + cls + '" style="opacity:.7;border-style:dashed">' +
-                        '<div class="pc-carousel" style="background:linear-gradient(145deg,#0d1f3c,#0a1628)">' +
-                        '<div class="pc-carousel-track"><div class="pc-slide-placeholder">✨</div></div></div>' +
-                        '<div class="pc-body">' +
-                        '<div class="pc-title">Nouveau véhicule</div>' +
-                        '<div class="pc-sub">Bientôt disponible · Contactez-nous</div>' +
-                        '<div style="padding:24px 0;text-align:center;color:var(--gray-3);font-size:.88rem;line-height:1.7">Nous ajoutons régulièrement de nouveaux véhicules.<br><br>Contactez-nous pour les prochaines disponibilités.</div>' +
-                        '<a href="mailto:location@nexdrive.ca" class="btn-contact-car" style="background:rgba(13,31,60,.1);color:var(--night);border:1.5px solid var(--night)">' +
-                        '<svg viewBox="0 0 24 24" stroke="var(--night)" stroke-width="2.5" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Me notifier' +
-                        '</a></div></div>';
-                }
-                var specs = (v.specs || []).map(function(s) {
-                    return '<span class="pc-spec">' + (ICONS[s.icon] || '') + s.txt + '</span>';
-                }).join('');
-                return '<div class="' + cls + '">' +
-                    buildCarousel(v) +
-                    '<div class="pc-body">' +
-                    '<div class="pc-title">' + v.title + '</div>' +
-                    '<div class="pc-sub">' + v.sub + '</div>' +
-                    '<div class="pc-specs">' + specs + '</div>' +
-                    '<table class="price-table"><thead><tr><th>Forfait</th><th>KM inclus</th><th>Prix</th></tr></thead>' +
-                    '<tbody>' + buildPriceRows(v.rows) + '</tbody></table>' +
-                    '<div class="km-note"><span class="km-note-icon">📏</span><span>Kilométrage supplémentaire facturé à <strong>0,25 $/km</strong> au-delà du forfait. Pour les longs trajets, l\'option illimitée est recommandée.</span></div>' +
-                    buildDepositAccordion(v.id) +
-                    '<a href="tel:+15141234567" class="btn-contact-car">' + PHONE_SVG + ' Réserver ce véhicule</a>' +
-                    '</div></div>';
-            }).join('');
-
-            window._pc = {};
-            vehicles.forEach(function(v) {
-                if (v.coming || !v.imgs || v.imgs.length <= 1) return;
-                var track = document.getElementById('pct-' + v.id);
-                var dotsEl = document.getElementById('pcdots-' + v.id);
-                var total = v.imgs.length;
-                for (var i = 0; i < total; i++) {
-                    var d = document.createElement('span');
-                    d.className = 'pc-car-dot' + (i === 0 ? ' active' : '');
-                    (function(n) {
-                        d.addEventListener('click', function(e) {
-                            e.stopPropagation();
-                            pcGoTo(v.id, n);
-                        });
-                    })(i);
-                    dotsEl.appendChild(d);
-                }
-                window._pc[v.id] = {
-                    track: track,
-                    total: total,
-                    idx: 0,
-                    dots: dotsEl
-                };
-            });
-        }
-
-        function pcGoTo(id, n) {
-            var c = window._pc[id];
-            if (!c) return;
-            c.idx = (n + c.total) % c.total;
-            c.track.style.transform = 'translateX(-' + (c.idx * 100) + '%)';
-            c.dots.querySelectorAll('.pc-car-dot').forEach(function(d, i) {
-                d.className = 'pc-car-dot' + (i === c.idx ? ' active' : '');
-            });
-        }
-
-        function pcSlide(id, dir) {
-            var c = window._pc[id];
-            if (c) pcGoTo(id, c.idx + dir);
-        }
-
-        renderGrid();
-
-        function toggleDeposit(header) {
-            var content = header.nextElementSibling;
-            var toggle = header.querySelector('.deposit-toggle');
-            content.classList.toggle('open');
-            toggle.textContent = content.classList.contains('open') ? 'Masquer ▴' : 'Voir ▾';
-        }
-
-        var obs = new IntersectionObserver(function(es) {
-            es.forEach(function(e) {
-                if (e.isIntersecting) {
-                    e.target.classList.add('vis');
-                    obs.unobserve(e.target);
-                }
-            });
-        }, {
-            threshold: .08
+        window._pc = {};
+        vehicles.forEach(function(v) {
+            if(v.coming || !v.imgs || v.imgs.length <= 1) return;
+            var track = document.getElementById('pct-'+v.id);
+            var dotsEl = document.getElementById('pcdots-'+v.id);
+            var total = v.imgs.length;
+            for(var i=0;i<total;i++){
+                var d = document.createElement('span');
+                d.className = 'pc-car-dot'+(i===0?' active':'');
+                (function(n){ d.addEventListener('click',function(e){ e.stopPropagation(); pcGoTo(v.id,n); }); })(i);
+                dotsEl.appendChild(d);
+            }
+            window._pc[v.id] = { track:track, total:total, idx:0, dots:dotsEl };
         });
-        document.querySelectorAll('.reveal').forEach(function(r) {
-            obs.observe(r);
-        });
+    }
 
-        var params = new URLSearchParams(window.location.search);
-        var vc = params.get('voiture');
-        if (vc) {
-            document.querySelectorAll('.pricing-card').forEach(function(c) {
-                var t = c.querySelector('.pc-title');
-                if (t && t.textContent.includes(vc)) {
-                    c.style.borderColor = 'rgba(41,121,255,.5)';
-                    c.style.boxShadow = '0 0 0 3px rgba(41,121,255,.15)';
-                    setTimeout(function() {
-                        c.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'center'
-                        });
-                    }, 600);
-                }
-            });
-        }
+    function pcGoTo(id, n) {
+        var c = window._pc[id];
+        if(!c) return;
+        c.idx = (n+c.total)%c.total;
+        c.track.style.transform = 'translateX(-'+(c.idx*100)+'%)';
+        c.dots.querySelectorAll('.pc-car-dot').forEach(function(d,i){ d.className='pc-car-dot'+(i===c.idx?' active':''); });
+    }
+    function pcSlide(id,dir){ var c=window._pc[id]; if(c) pcGoTo(id,c.idx+dir); }
+
+    renderGrid();
+
+    function toggleDeposit(header) {
+        var content = header.nextElementSibling;
+        var toggle = header.querySelector('.deposit-toggle');
+        content.classList.toggle('open');
+        toggle.textContent = content.classList.contains('open') ? 'Masquer ▴' : 'Voir ▾';
+    }
+
+    var obs = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); obs.unobserve(e.target); } });
+    }, { threshold:.08 });
+    document.querySelectorAll('.reveal').forEach(function(r){ obs.observe(r); });
+
+    var params = new URLSearchParams(window.location.search);
+    var vc = params.get('voiture');
+    if(vc) {
+        document.querySelectorAll('.pricing-card').forEach(function(c){
+            var t = c.querySelector('.pc-title');
+            if(t && t.textContent.includes(vc)){
+                c.style.borderColor='rgba(41,121,255,.5)';
+                c.style.boxShadow='0 0 0 3px rgba(41,121,255,.15)';
+                setTimeout(function(){ c.scrollIntoView({behavior:'smooth',block:'center'}); },600);
+            }
+        });
+    }
     </script>
 </body>
-
 </html>
