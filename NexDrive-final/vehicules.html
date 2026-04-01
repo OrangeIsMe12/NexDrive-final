@@ -1,21 +1,12 @@
 <!DOCTYPE html>
- 
 <html lang="fr">
- 
+
 <head>
     <meta charset="UTF-8" />
-    <script>
-        (function() {
-            function g(n) {
-                var m = document.cookie.match(new RegExp('(^| )' + n + '=([^;]+)'));
-                return m ? m[2] : null
-            }
-            if (!g('nd_lang')) window.location.replace('landing.html')
-        })()
-    </script>
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>NexDrive — Notre Flotte | Québec</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="logo/1-removebg-preview.png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <style>
         *,
         *::before,
@@ -26,73 +17,89 @@
         }
         
          :root {
-            --night: #0d1f3c;
-            --night-2: #0a1628;
-            --night-3: #091220;
-            --blue: #3d7fc1;
-            --blue-d: #2d6aa8;
-            --blue-l: #4a90d9;
-            --white: #ffffff;
-            --off-wh: #f5f7fa;
-            --gray-1: #e8eaed;
-            --gray-2: #aeaeb8;
-            --gray-3: #6c6c78;
+            --bg: #f5f5f5;
+            --bg2: #ffffff;
+            --bg3: #f0f0f0;
+            --bg4: #e8e8e8;
+            --line: rgba(0, 0, 0, .08);
+            --line2: rgba(0, 0, 0, .14);
+            --txt: #1a1a1a;
+            --txt2: #555;
+            --txt3: #888;
+            --accent: #1a1a2e;
+            --acc-l: #2979ff;
+            --gold: #c9a84c;
+            --gold-l: #b8860b;
+            --green: #16a34a;
+            --red: #dc2626;
             --serif: 'Playfair Display', Georgia, serif;
             --sans: 'DM Sans', sans-serif;
-            --t-essentiel: #64748b;
-            --t-confort: #0d9488;
-            --t-premium: #3d7fc1;
-            --t-luxe: #c9900a;
-            --t-prestige: #9333ea
+            --card-bg: #111111;
+            --card-bg2: #181818;
+            --card-border: rgba(255, 255, 255, .07);
+            --card-txt: #ffffff;
+            --card-txt2: rgba(255, 255, 255, .55);
+            --card-txt3: rgba(255, 255, 255, .35);
+            --card-line: rgba(255, 255, 255, .07);
+            --fleet-navy: #0c0e22;
+            --fleet-navy-line: rgba(255, 255, 255, .12);
+            --blue-l: #60a5fa;
         }
         
         html {
-            scroll-behavior: smooth
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--acc-l) #e8eef8
         }
         
         body {
-            background: var(--off-wh);
-            color: #1a1a2e;
+            background: var(--bg);
+            color: var(--txt);
             font-family: var(--sans);
+            font-size: 14px;
+            line-height: 1.5;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased
+            -webkit-font-smoothing: antialiased;
+            padding-top: 72px
         }
         
          ::-webkit-scrollbar {
-            width: 6px
+            width: 9px
         }
         
          ::-webkit-scrollbar-track {
-            background: var(--night-3)
+            background: #e8eef8;
+            border-radius: 6px
         }
         
          ::-webkit-scrollbar-thumb {
-            background: var(--blue-d);
-            border-radius: 3px
+            background: var(--acc-l);
+            border-radius: 6px;
+            border: 2px solid #e8eef8
         }
         
-        nav,
-        section,
-        footer {
-            position: relative;
-            z-index: 1
+         ::-webkit-scrollbar-thumb:hover {
+            background: #1565c0
         }
+        /* NAV — aligné page référence (fixed, logo 220px, trait lumineux) */
         
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
+            width: 100%;
+            z-index: 200;
             height: 72px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 48px 0 24px;
-            background: var(--night);
+            background: var(--fleet-navy);
             border-bottom: 1px solid rgba(41, 121, 255, .2);
             box-shadow: 0 4px 32px rgba(5, 12, 30, .5);
-            overflow: visible
+            overflow: visible;
+            box-sizing: border-box
         }
         
         nav::after {
@@ -110,7 +117,31 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            text-decoration: none
+            text-decoration: none;
+            overflow: visible;
+            flex-shrink: 0
+        }
+        
+        nav .logo img {
+            height: 220px;
+            width: auto;
+            max-width: min(90vw, 520px);
+            object-fit: contain;
+            object-position: left center;
+            filter: brightness(0) invert(1);
+            position: relative;
+            z-index: 101;
+            display: block
+        }
+        
+        .mph .logo img {
+            height: 220px;
+            width: auto;
+            max-width: min(90vw, 520px);
+            object-fit: contain;
+            object-position: left center;
+            filter: brightness(0) invert(1);
+            display: block
         }
         
         .hbg {
@@ -137,8 +168,13 @@
         }
         
         .hbg:hover {
-            background: rgba(41, 121, 255, .12);
-            border-color: rgba(91, 159, 255, .4)
+            background: rgba(41, 121, 255, .2);
+            border-color: rgba(91, 159, 255, .45)
+        }
+        
+        .hbg.open {
+            background: rgba(41, 121, 255, .22);
+            border-color: rgba(91, 159, 255, .55)
         }
         
         .hb {
@@ -146,14 +182,19 @@
             width: 20px;
             height: 1.5px;
             border-radius: 2px;
-            background: #fff;
+            background: rgba(255, 255, 255, .88);
             pointer-events: none;
-            transition: transform .38s cubic-bezier(.68, -.55, .265, 1.55), opacity .25s
+            transition: transform .38s cubic-bezier(.68, -.55, .265, 1.55), opacity .25s, background .22s ease, box-shadow .22s ease
         }
         
-        .hbg.open {
-            background: rgba(41, 121, 255, .18);
-            border-color: rgba(41, 121, 255, .5)
+        .hbg:hover .hb {
+            background: rgba(147, 197, 253, .55);
+            box-shadow: 0 0 10px rgba(41, 121, 255, .4)
+        }
+        
+        .hbg.open .hb {
+            background: rgba(186, 230, 253, .75);
+            box-shadow: 0 0 8px rgba(59, 130, 246, .35)
         }
         
         .hbg.open .hb:nth-child(1) {
@@ -168,11 +209,12 @@
         .hbg.open .hb:nth-child(3) {
             transform: translateY(-6.5px) rotate(-45deg)
         }
+        /* MENU PANEL */
         
         .mbd {
             position: fixed;
             inset: 0;
-            z-index: 140;
+            z-index: 240;
             background: rgba(5, 10, 20, .6);
             backdrop-filter: blur(6px);
             opacity: 0;
@@ -191,7 +233,7 @@
             right: 0;
             bottom: 0;
             width: min(320px, 100vw);
-            z-index: 150;
+            z-index: 250;
             background: rgba(10, 18, 36, .95);
             backdrop-filter: blur(28px);
             border-left: 1px solid rgba(255, 255, 255, .08);
@@ -209,11 +251,13 @@
         
         .mph {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: space-between;
-            padding: 18px 22px;
+            gap: 12px;
+            padding: 14px 18px 18px;
             border-bottom: 1px solid rgba(255, 255, 255, .07);
-            flex-shrink: 0
+            flex-shrink: 0;
+            overflow-x: hidden
         }
         
         .mph-close {
@@ -232,9 +276,9 @@
         }
         
         .mph-close:hover {
-            border-color: rgba(91, 159, 255, .5);
-            color: #fff;
-            background: rgba(41, 121, 255, .15)
+            border-color: rgba(91, 159, 255, .45);
+            color: rgba(186, 230, 253, .95);
+            background: rgba(41, 121, 255, .18)
         }
         
         .mn {
@@ -285,13 +329,13 @@
         }
         
         .ma:hover {
-            background: rgba(255, 255, 255, .06);
-            border-color: rgba(255, 255, 255, .08)
+            background: rgba(41, 121, 255, .14);
+            border-color: rgba(91, 159, 255, .28)
         }
         
         .ma.active {
-            background: rgba(41, 121, 255, .15);
-            border-color: rgba(41, 121, 255, .3)
+            background: rgba(41, 121, 255, .18);
+            border-color: rgba(91, 159, 255, .35)
         }
         
         .mn-left {
@@ -308,12 +352,23 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: .8rem;
             flex-shrink: 0
+        }
+        
+        .mpn .mn-icon svg {
+            stroke: rgba(255, 255, 255, .55) !important
         }
         
         .ma.active .mn-icon {
             background: rgba(41, 121, 255, .22)
+        }
+        
+        .ma:hover .mn-icon {
+            background: rgba(41, 121, 255, .16)
+        }
+        
+        .ma.active:hover .mn-icon {
+            background: rgba(41, 121, 255, .28)
         }
         
         .mn-lbl {
@@ -325,24 +380,34 @@
             transition: color .18s
         }
         
-        .ma.active .mn-lbl,
         .ma:hover .mn-lbl {
-            color: rgba(255, 255, 255, .95)
+            color: rgba(186, 230, 253, .92)
         }
         
-        .mn-arr {
-            color: rgba(255, 255, 255, .2);
-            font-size: .75rem;
-            transition: transform .22s, color .18s
+        .ma.active .mn-lbl {
+            color: rgba(255, 255, 255, .88)
         }
         
-        .ma:hover .mn-arr {
-            transform: translateX(4px);
-            color: var(--blue-l)
+        .ma::after {
+            content: '';
+            display: block;
+            width: 5px;
+            height: 5px;
+            border-top: 1px solid rgba(255, 255, 255, .2);
+            border-right: 1px solid rgba(255, 255, 255, .2);
+            transform: rotate(45deg);
+            flex-shrink: 0;
+            transition: border-color .2s, transform .2s;
+            margin-right: 2px
         }
         
-        .ma.active .mn-arr {
-            color: rgba(74, 144, 217, .6)
+        .ma:hover::after {
+            border-color: var(--acc-l);
+            transform: rotate(45deg) translateX(3px)
+        }
+        
+        .ma.active::after {
+            border-color: rgba(74, 144, 217, .6)
         }
         
         .mpf {
@@ -364,133 +429,80 @@
             color: rgba(255, 255, 255, .25);
             text-align: center
         }
+        /* ── Turo / Hors Turo (haut de la colonne filtres + mobile) ── */
         
-        #page-header {
-            padding: 140px 64px 80px;
-            text-align: center;
-            background: #0c0e22;
-            min-height: 48vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 80px rgba(61, 127, 193, .08), inset 0 -1px 0 rgba(61, 127, 193, .12)
-        }
-        
-        #page-header::before {
-            content: '';
-            position: absolute;
-            bottom: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 700px;
-            height: 340px;
-            border-radius: 50%;
-            background: radial-gradient(ellipse, rgba(61, 127, 193, .22) 0%, rgba(45, 106, 168, .08) 45%, transparent 70%);
-            pointer-events: none
-        }
-        
-        .ph-label {
-            display: inline-flex;
-            align-items: center;
+        .sidebar-platform {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 8px;
-            font-size: .62rem;
-            font-weight: 500;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: #4a90d9;
-            margin-bottom: 18px;
-            animation: fu .8s ease .1s both
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, .12)
         }
         
-        .ph-label::before {
-            content: '';
-            width: 14px;
-            height: 1px;
-            background: #3d7fc1
-        }
-        
-        .ph-h1 {
-            font-family: var(--serif);
-            font-size: clamp(2.4rem, 5vw, 4.2rem);
-            font-weight: 300;
-            line-height: 1.1;
-            letter-spacing: -.5px;
-            color: #fff;
-            animation: fu .9s cubic-bezier(.16, 1, .3, 1) .2s both
-        }
-        
-        .ph-h1 em,
-        .ctah em {
-            font-style: italic;
-            color: #4a90d9
-        }
-        
-        .ph-sub {
-            font-size: .95rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, .4);
-            margin-top: 14px;
-            animation: fu .8s ease .35s both
-        }
-        
-        .filters-bar {
-            position: sticky;
-            top: 68px;
-            z-index: 90;
-            background: rgba(255, 255, 255, .98);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--gray-1);
-            padding: 0 48px;
-            display: flex;
-            align-items: center;
-            overflow-x: auto;
-            scrollbar-width: none;
-            white-space: nowrap;
-            gap: 0
-        }
-        
-        .filters-bar::-webkit-scrollbar {
+        .fleet-platform-mobile {
             display: none
         }
         
-        .platform-tabs {
-            display: flex;
-            align-items: stretch;
-            flex-shrink: 0;
-            border-right: 1px solid var(--gray-1);
-            margin-right: 20px;
-            padding-right: 20px
-        }
-        
-        .ptab {
-            display: flex;
+        .sidebar-platform .ptab {
+            display: inline-flex;
             align-items: center;
-            gap: 7px;
-            padding: 0 18px;
-            height: 46px;
+            justify-content: center;
+            gap: 6px;
+            min-height: 40px;
+            padding: 0 10px;
             font-family: var(--sans);
-            font-size: .82rem;
+            font-size: .78rem;
             font-weight: 500;
-            color: var(--gray-3);
+            color: var(--txt2);
             cursor: pointer;
-            border: none;
-            background: transparent;
-            border-bottom: 2px solid transparent;
+            border: 1px solid var(--line2);
+            border-radius: 10px;
+            background: #fff;
             transition: all .2s;
-            white-space: nowrap;
             flex-shrink: 0
         }
         
-        .ptab:hover {
-            color: var(--night)
+        .sidebar-platform .ptab:hover {
+            color: var(--txt);
+            border-color: rgba(41, 121, 255, .35)
         }
         
-        .ptab.active {
-            color: var(--night);
-            border-bottom-color: var(--blue);
+        .sidebar-platform .ptab.active {
+            color: var(--acc-l);
+            border-color: rgba(41, 121, 255, .45);
+            background: rgba(41, 121, 255, .1);
+            font-weight: 600
+        }
+        
+        .fleet-platform-mobile .ptab {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            min-height: 40px;
+            padding: 0 10px;
+            font-family: var(--sans);
+            font-size: .78rem;
+            font-weight: 500;
+            color: var(--txt2);
+            cursor: pointer;
+            border: 1px solid var(--line2);
+            border-radius: 10px;
+            background: var(--bg3);
+            transition: all .2s;
+            flex-shrink: 0
+        }
+        
+        .fleet-platform-mobile .ptab:hover {
+            color: var(--txt);
+            border-color: rgba(41, 121, 255, .35)
+        }
+        
+        .fleet-platform-mobile .ptab.active {
+            color: var(--acc-l);
+            border-color: rgba(41, 121, 255, .45);
+            background: rgba(41, 121, 255, .1);
             font-weight: 600
         }
         
@@ -506,267 +518,607 @@
         }
         
         .ptab[data-platform="hors-turo"] .ptab-dot {
-            background: var(--blue)
+            background: var(--acc-l)
+        }
+        /* MAIN LAYOUT */
+        
+        .main-layout {
+            display: flex;
+            gap: 0;
+            padding: 0;
+            width: 100%;
+            min-height: calc(100vh - 72px)
+        }
+        /* SIDEBAR FILTER */
+        
+        .sidebar {
+            width: 280px;
+            flex-shrink: 0;
+            padding: 28px 20px;
+            border-right: 1px solid rgba(0, 0, 0, .1);
+            background: #fff;
+            position: sticky;
+            top: 84px;
+            align-self: flex-start;
+            max-height: calc(100vh - 84px);
+            overflow-y: auto
         }
         
-        .filter-group {
+        .sidebar-header {
             display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 10px 0;
-            flex-shrink: 0
+            justify-content: space-between;
+            margin-bottom: 24px
         }
         
-        .filter-group+.filter-group {
-            padding-left: 14px;
-            margin-left: 14px;
-            border-left: 1px solid var(--gray-1)
+        .sidebar-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--txt);
+            letter-spacing: -.2px
         }
         
-        .filter-label {
-            font-size: .58rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--gray-2);
-            flex-shrink: 0
-        }
-        
-        .filter-btn {
-            padding: 5px 13px;
-            border-radius: 50px;
-            border: 1px solid var(--gray-1);
-            background: #fff;
-            color: var(--gray-3);
-            font-family: var(--sans);
-            font-size: .75rem;
-            font-weight: 500;
+        .clear-all {
+            font-size: .72rem;
+            color: var(--acc-l);
             cursor: pointer;
-            transition: all .22s;
+            background: none;
+            border: none;
+            font-family: var(--sans);
+            padding: 0;
+            transition: opacity .2s
+        }
+        
+        .clear-all:hover {
+            opacity: .7
+        }
+        
+        .filter-section {
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 20px
+        }
+        
+        .filter-section:last-child {
+            border-bottom: none;
+            padding-bottom: 0
+        }
+        
+        .fs-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            cursor: pointer
+        }
+        
+        .fs-title {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--txt)
+        }
+        
+        .fs-arrow {
+            width: 14px;
+            height: 14px;
+            border-top: 2.5px solid #0a0a0a;
+            border-right: 2.5px solid #0a0a0a;
+            transform: rotate(-45deg);
+            transition: transform .2s;
+            flex-shrink: 0
+        }
+        
+        .fs-arrow.open {
+            transform: rotate(135deg)
+        }
+        
+        .fs-body {
+            display: flex;
+            flex-direction: column;
+            gap: 8px
+        }
+        
+        .fs-body.collapsed {
+            display: none
+        }
+        
+        .check-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 3px 0
+        }
+        
+        .check-row input[type="checkbox"],
+        .check-row input[type="radio"] {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 1.5px solid var(--line2);
+            border-radius: 3px;
+            background: #fff;
+            cursor: pointer;
             flex-shrink: 0;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, .05)
-        }
-        
-        .filter-btn:hover {
-            border-color: rgba(41, 121, 255, .35);
-            color: var(--blue-d)
-        }
-        
-        .filter-btn.active {
-            background: var(--night);
-            border-color: var(--night);
-            color: #fff;
-            box-shadow: 0 2px 10px rgba(13, 31, 60, .2)
-        }
-        
-        .filter-btn[data-tier="essentiel"].active {
-            background: var(--t-essentiel);
-            border-color: var(--t-essentiel)
-        }
-        
-        .filter-btn[data-tier="confort"].active {
-            background: var(--t-confort);
-            border-color: var(--t-confort)
-        }
-        
-        .filter-btn[data-tier="premium"].active {
-            background: #2d6aa8;
-            border-color: #3d7fc1
-        }
-        
-        .filter-btn[data-tier="luxe"].active {
-            background: #a07010;
-            border-color: var(--t-luxe)
-        }
-        
-        .filter-btn[data-tier="prestige"].active {
-            background: #7a22ce;
-            border-color: var(--t-prestige)
-        }
-        
-        #fleet {
-            padding: 40px 48px 100px;
-            background: var(--off-wh);
             position: relative;
-            z-index: 1
+            transition: all .15s
         }
         
-        .proc-label {
+        .check-row input[type="radio"] {
+            border-radius: 50%
+        }
+        
+        .check-row input[type="checkbox"]:checked {
+            background: var(--accent);
+            border-color: var(--accent)
+        }
+        
+        .check-row input[type="radio"]:checked {
+            background: var(--accent);
+            border-color: var(--accent)
+        }
+        
+        .check-row input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 1.5px;
+            width: 6px;
+            height: 9px;
+            border: 2px solid #fff;
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg)
+        }
+        
+        .check-row input[type="radio"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #fff
+        }
+        
+        .check-label {
+            font-size: .8rem;
+            color: var(--txt2);
+            flex: 1;
+            transition: color .15s
+        }
+        
+        .check-row:hover .check-label {
+            color: var(--txt)
+        }
+        
+        .check-count {
+            font-size: .68rem;
+            color: var(--txt3);
+            background: var(--bg3);
+            padding: 1px 7px;
+            border-radius: 20px
+        }
+        
+        .cat-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background .15s;
+            margin: -2px 0
+        }
+        
+        .cat-row:hover {
+            background: var(--bg3)
+        }
+        
+        .cat-row.active-cat {
+            background: rgba(41, 121, 255, .07)
+        }
+        
+        .cat-icon {
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0
+        }
+        
+        .cat-icon svg {
+            width: 22px;
+            height: 22px;
+            stroke: var(--txt2);
+            stroke-width: 1.5;
+            fill: none
+        }
+        
+        .cat-row.active-cat .cat-icon svg {
+            stroke: var(--acc-l)
+        }
+        
+        .cat-lbl {
+            font-size: .82rem;
+            color: var(--txt2);
+            flex: 1
+        }
+        
+        .cat-row.active-cat .cat-lbl {
+            color: var(--acc-l);
+            font-weight: 600
+        }
+        
+        .cat-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 1.5px solid var(--line2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all .15s
+        }
+        
+        .cat-row.active-cat .cat-check {
+            background: var(--acc-l);
+            border-color: var(--acc-l)
+        }
+        
+        .cat-check::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #fff;
+            opacity: 0;
+            transition: opacity .15s
+        }
+        
+        .cat-row.active-cat .cat-check::after {
+            opacity: 1
+        }
+        
+        .dispo-toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 0
+        }
+        
+        .toggle-label {
+            font-size: .82rem;
+            color: var(--txt)
+        }
+        
+        .toggle {
+            width: 40px;
+            height: 22px;
+            background: var(--bg4);
+            border-radius: 11px;
+            cursor: pointer;
+            position: relative;
+            transition: background .25s;
+            flex-shrink: 0;
+            border: none;
+            padding: 0
+        }
+        
+        .toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #fff;
+            transition: transform .25s;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .15)
+        }
+        
+        .toggle.on {
+            background: var(--green)
+        }
+        
+        .toggle.on::after {
+            transform: translateX(18px)
+        }
+        
+        .results-count {
+            font-size: .72rem;
+            color: var(--txt3);
+            margin-top: 12px
+        }
+        
+        .results-count strong {
+            color: var(--acc-l)
+        }
+        /* FLEET CONTENT */
+        
+        .fleet-content {
+            flex: 1;
+            padding: 28px 32px 48px;
+            min-width: 0
+        }
+        
+        .fleet-page-title {
+            margin-bottom: 22px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--line)
+        }
+        
+        .fleet-page-label {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-size: .62rem;
-            font-weight: 500;
+            font-size: .6rem;
+            font-weight: 600;
             letter-spacing: 3px;
             text-transform: uppercase;
-            color: var(--gray-2);
-            margin-bottom: 18px
+            color: var(--acc-l);
+            margin-bottom: 8px
         }
         
-        .proc-label::before {
+        .fleet-page-label::before {
             content: '';
             width: 14px;
             height: 1px;
-            background: var(--gray-2)
+            background: var(--acc-l)
+        }
+        
+        .fleet-page-h1 {
+            font-family: var(--serif);
+            font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -.4px;
+            color: var(--txt)
+        }
+        
+        .fleet-page-h1 em {
+            font-style: italic;
+            color: var(--acc-l)
+        }
+        
+        .fleet-page-sub {
+            font-size: .82rem;
+            font-weight: 300;
+            color: var(--txt3);
+            margin-top: 6px
         }
         
         .fleet-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px
+            gap: 16px;
+            align-items: start
         }
+        /* VEHICLE CARD */
         
         .vcard {
-            background: #fff;
-            border: 1px solid var(--gray-1);
-            border-radius: 20px;
-            padding: 12px 12px 16px;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, .06);
-            transition: transform .35s cubic-bezier(.22, .68, 0, 1.2), box-shadow .35s, border-color .3s;
-            animation: fu .5s ease both;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: box-shadow .35s, transform .28s, border-color .28s;
+            animation: cardIn .4s ease both;
             position: relative;
-            overflow: hidden
-        }
-        
-        .vcard::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, .5) 50%, transparent 70%);
-            pointer-events: none;
-            z-index: 2;
-            transition: none
-        }
-        
-        .vcard:hover::before {
-            left: 160%;
-            transition: left .55s ease
+            cursor: pointer;
+            width: 100%;
+            height: fit-content
         }
         
         .vcard:hover {
-            transform: translateY(-6px)
-        }
-        
-        .vcard[data-tier="essentiel"]:hover {
-            border-color: rgba(100, 116, 139, .35);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, .10)
-        }
-        
-        .vcard[data-tier="confort"]:hover {
-            border-color: rgba(13, 148, 136, .35);
-            box-shadow: 0 16px 48px rgba(13, 148, 136, .08)
-        }
-        
-        .vcard[data-tier="premium"]:hover {
-            border-color: rgba(41, 121, 255, .35);
-            box-shadow: 0 16px 48px rgba(41, 121, 255, .10)
-        }
-        
-        .vcard[data-tier="luxe"]:hover {
-            border-color: rgba(201, 144, 10, .4);
-            box-shadow: 0 16px 48px rgba(201, 144, 10, .10)
-        }
-        
-        .vcard[data-tier="prestige"]:hover {
-            border-color: rgba(147, 51, 234, .35);
-            box-shadow: 0 16px 48px rgba(147, 51, 234, .10)
+            box-shadow: 0 16px 48px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 255, 255, .1);
+            transform: translateY(-4px);
+            border-color: rgba(255, 255, 255, .13)
         }
         
         .vcard.hidden {
             display: none
         }
         
-        .loue-overlay {
+        .badge-promo {
             position: absolute;
-            inset: 0;
-            background: rgba(255, 0, 10, .08);
-            pointer-events: none;
-            z-index: 5;
-            border-radius: 20px
-        }
-        
-        .dispo-corner {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 80px;
-            height: 80px;
-            overflow: hidden;
+            top: 12px;
+            left: 12px;
             z-index: 6;
-            border-radius: 0 20px 0 0;
-            pointer-events: none
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: .6rem;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            text-transform: uppercase
         }
         
-        .dispo-corner::after {
-            content: 'DISPO';
+        .badge-promo.advice {
+            background: rgba(255, 255, 255, .15);
+            color: #fff;
+            backdrop-filter: blur(6px)
+        }
+        
+        .badge-promo.earlybird {
+            background: #2979ff;
+            color: #fff
+        }
+        
+        .badge-dispo-corner {
             position: absolute;
-            top: 18px;
-            right: -22px;
-            width: 90px;
-            text-align: center;
+            bottom: 12px;
+            right: 12px;
+            top: auto;
+            left: auto;
+            z-index: 8;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 11px 6px 9px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, .52);
+            border: 1px solid rgba(34, 197, 94, .45);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 14px rgba(0, 0, 0, .35);
+            transform: scale(.5);
+            transform-origin: bottom right
+        }
+        
+        .badge-dispo-pulse {
+            flex-shrink: 0;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
             background: #22c55e;
-            color: #fff;
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            padding: 4px 0;
-            transform: rotate(45deg);
-            box-shadow: 0 2px 6px rgba(34, 197, 94, .35)
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, .65);
+            animation: pulseDispo 1.5s ease infinite
         }
         
-        .loue-corner {
+        @keyframes pulseDispo {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, .55);
+                opacity: 1
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+                opacity: .85
+            }
+        }
+        
+        .badge-dispo-txt {
+            font-family: var(--sans);
+            font-size: calc(.58rem * 1.8);
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #86efac
+        }
+        
+        .badge-confort-corner {
             position: absolute;
-            top: 0;
-            right: 0;
-            width: 80px;
-            height: 80px;
-            overflow: hidden;
+            top: 12px;
+            left: 12px;
+            right: auto;
+            bottom: auto;
+            z-index: 9;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px 7px 11px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, rgba(30, 64, 175, .92), rgba(41, 121, 255, .88));
+            border: 1px solid rgba(147, 197, 253, .55);
+            box-shadow: 0 4px 18px rgba(37, 99, 235, .35), inset 0 1px 0 rgba(255, 255, 255, .2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transform: scale(.5);
+            transform-origin: top left
+        }
+        
+        .badge-confort-accent {
+            flex-shrink: 0;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #e0f2fe;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, .35), 0 0 12px rgba(191, 219, 254, .95)
+        }
+        
+        .badge-confort-txt {
+            font-family: var(--sans);
+            font-size: calc(.58rem * 1.8);
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, .2)
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .carousel-track {
+                transition-duration: .12s
+            }
+            .badge-dispo-pulse {
+                animation: none
+            }
+        }
+        
+        .badge-loue-corner {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            top: auto;
+            left: auto;
+            z-index: 8;
+            padding: 3px 9px;
+            border-radius: 20px;
+            font-size: .62rem;
+            font-weight: 700;
+            background: rgba(220, 38, 38, .2);
+            color: #f87171;
+            border: 1px solid rgba(248, 113, 113, .25)
+        }
+        
+        .badge-tier-corner {
+            position: absolute;
+            top: 12px;
+            left: 12px;
             z-index: 6;
-            border-radius: 0 20px 0 0;
-            pointer-events: none
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: .6rem;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            backdrop-filter: blur(8px)
         }
         
-        .loue-corner::after {
-            content: 'LOUÉ';
-            position: absolute;
-            top: 18px;
-            right: -22px;
-            width: 90px;
-            text-align: center;
-            background: #ff000a;
-            color: #fff;
-            font-size: 9px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            padding: 4px 0;
-            transform: rotate(45deg);
-            box-shadow: 0 2px 6px rgba(255, 0, 10, .35)
+        .badge-tier-corner.essentiel {
+            background: rgba(100, 116, 139, .2);
+            border: 1px solid rgba(100, 116, 139, .35);
+            color: #94a3b8
         }
         
-        .vcard[data-dispo="non"] {
-            border-color: rgba(255, 0, 10, .2)
+        .badge-tier-corner.confort {
+            background: rgba(13, 148, 136, .2);
+            border: 1px solid rgba(20, 184, 166, .35);
+            color: #2dd4bf
+        }
+        
+        .badge-tier-corner.premium {
+            background: rgba(41, 121, 255, .2);
+            border: 1px solid rgba(41, 121, 255, .4);
+            color: #60a5fa
+        }
+        
+        .badge-tier-corner.luxe {
+            background: rgba(201, 168, 76, .15);
+            border: 1px solid rgba(201, 168, 76, .35);
+            color: #f0c040
+        }
+        
+        .badge-tier-corner.prestige {
+            background: rgba(147, 51, 234, .2);
+            border: 1px solid rgba(167, 71, 254, .35);
+            color: #c084fc
         }
         
         .coming-overlay {
             position: absolute;
             inset: 0;
             z-index: 20;
-            background: rgba(245, 247, 250, .85);
-            backdrop-filter: blur(6px);
-            border-radius: 20px;
+            background: rgba(0, 0, 0, .72);
+            backdrop-filter: blur(3px);
+            border-radius: 14px;
             pointer-events: none
-        }
-        
-        .coming-ribbon {
-            position: absolute;
-            inset: 0;
-            z-index: 21;
-            pointer-events: none;
-            border-radius: 20px;
-            border: 1.5px solid rgba(0, 0, 0, .08)
         }
         
         .coming-label {
@@ -780,61 +1132,73 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px
-        }
-        
-        .coming-label .gift {
-            font-size: 2.4rem
+            gap: 8px
         }
         
         .coming-label .txt {
             font-family: var(--serif);
-            font-size: .78rem;
+            font-size: .75rem;
             font-weight: 700;
-            color: var(--night);
+            color: #fff;
             letter-spacing: 2px;
             text-transform: uppercase;
             padding: 7px 20px;
-            border: 1.5px solid rgba(13, 31, 60, .15);
+            border: 1px solid rgba(255, 255, 255, .2);
             border-radius: 4px;
-            background: #fff
+            background: rgba(255, 255, 255, .07)
         }
         
         .carousel {
             position: relative;
             width: 100%;
-            height: 210px;
-            border-radius: 14px;
+            height: clamp(220px, 36vw, 280px);
             overflow: hidden;
-            margin-bottom: 14px;
-            background: #1a2a3a
+            background: var(--card-bg)
         }
         
         .carousel-track {
             display: flex;
             height: 100%;
-            transition: transform .35s cubic-bezier(.22, .68, 0, 1.2)
+            transition: transform .62s cubic-bezier(.33, 1, .32, 1);
+            backface-visibility: hidden
         }
         
         .carousel-track img {
             flex: 0 0 100%;
             width: 100%;
-            height: 210px;
+            height: 100%;
+            min-height: 220px;
             object-fit: cover;
+            object-position: center;
             display: block;
-            pointer-events: none;
-            user-select: none
+            pointer-events: none
+        }
+        
+        .carousel::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 88px;
+            background: linear-gradient(to bottom, transparent, var(--card-bg));
+            z-index: 2;
+            pointer-events: none
         }
         
         .car-placeholder {
             flex: 0 0 100%;
             width: 100%;
-            height: 210px;
+            height: 100%;
+            min-height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            background: linear-gradient(135deg, #0d1f3c, #1a2f50)
+            background: linear-gradient(135deg, #1a1a1a, #0e0e0e)
+        }
+        
+        .car-placeholder svg {
+            opacity: .12
         }
         
         .car-btn {
@@ -844,22 +1208,22 @@
             width: 30px;
             height: 30px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, .92);
-            border: none;
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .15);
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 4;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, .18);
-            opacity: 0;
-            transition: opacity .2s, transform .2s, background .2s
+            z-index: 15;
+            opacity: .9;
+            transition: opacity .2s, transform .2s, background .2s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .3)
         }
         
         .car-btn svg {
-            width: 13px;
-            height: 13px;
-            stroke: #111;
+            width: 12px;
+            height: 12px;
+            stroke: #fff;
             stroke-width: 2.5;
             fill: none
         }
@@ -868,8 +1232,22 @@
             opacity: 1
         }
         
+        @media (hover: hover) and (pointer: fine) {
+            .carousel .car-btn {
+                opacity: 0
+            }
+            .carousel:hover .car-btn {
+                opacity: 1
+            }
+        }
+        
+        .carousel--single .car-btn,
+        .carousel--single .car-dots {
+            display: none
+        }
+        
         .car-btn:hover {
-            background: #fff;
+            background: rgba(255, 255, 255, .2);
             transform: translateY(-50%) scale(1.1)
         }
         
@@ -883,146 +1261,294 @@
         
         .car-dots {
             position: absolute;
-            bottom: 10px;
+            bottom: 8px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 5px;
             align-items: center;
-            z-index: 3
+            z-index: 15
         }
         
         .car-dot {
-            width: 6px;
-            height: 6px;
+            width: 5px;
+            height: 5px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, .45);
+            background: rgba(255, 255, 255, .3);
             cursor: pointer;
             transition: all .2s
         }
         
         .car-dot.active {
-            background: #fff;
+            background: rgba(255, 255, 255, .9);
             width: 14px;
             border-radius: 3px
         }
         
-        .badge-special {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: rgba(255, 255, 255, .96);
-            border-radius: 50px;
-            padding: 4px 8px 4px 7px;
-            font-size: 9.5px;
-            font-weight: 600;
-            color: #111;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
-            backdrop-filter: blur(6px);
-            z-index: 3
+        .card-body {
+            padding: 14px 14px 0;
+            background: var(--card-bg);
+            display: flex;
+            flex-direction: column;
+            flex: 0 0 auto;
+            min-height: 0
         }
         
-        .badge-special .diamond {
-            width: 11px;
-            height: 11px;
-            border-radius: 2px;
-            transform: rotate(45deg);
+        .card-body>.specs-row {
+            margin-left: -14px;
+            margin-right: -14px;
+            margin-bottom: 0;
             flex-shrink: 0
         }
         
-        .badge-special.essentiel .diamond {
-            background: var(--t-essentiel)
+        .card-headline {
+            text-align: left;
+            padding: 2px 4px 0;
+            flex: 0 0 auto
         }
         
-        .badge-special.confort .diamond {
-            background: var(--t-confort)
+        .card-headline .card-meta-row {
+            justify-content: flex-start;
+            margin-bottom: 6px
         }
         
-        .badge-special.premium .diamond {
-            background: var(--t-premium)
-        }
-        
-        .badge-special.luxe .diamond {
-            background: var(--t-luxe)
-        }
-        
-        .badge-special.prestige .diamond {
-            background: var(--t-prestige)
-        }
-        
-        .badge-platform {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 3px 9px;
-            border-radius: 50px;
-            font-size: 9px;
+        .card-headline .card-title {
+            font-family: var(--sans);
+            font-size: 1.05rem;
             font-weight: 700;
-            z-index: 3;
-            letter-spacing: .5px
+            letter-spacing: -.02em;
+            color: #fff;
+            line-height: 1.25;
+            margin-bottom: 4px
         }
         
-        .badge-platform.turo {
-            background: rgba(0, 180, 216, .15);
-            color: #0077a8;
-            border: 1px solid rgba(0, 180, 216, .3)
+        .card-year-line {
+            font-family: var(--sans);
+            font-size: .74rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .45);
+            margin-bottom: 10px;
+            letter-spacing: .02em
         }
         
-        .badge-platform.hors {
-            background: rgba(41, 121, 255, .15);
-            color: var(--blue-d);
-            border: 1px solid rgba(41, 121, 255, .3)
-        }
- 
-        /* ✅ CORRIGÉ : fond blanc pour que le ● vert soit visible sur toutes les photos */
-        .badge-dispo {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            padding: 3px 9px;
-            border-radius: 50px;
-            font-size: 10px;
-            font-weight: 700;
-            background: rgba(255, 255, 255, 0.92);
-            color: #15803d;
-            border: 1px solid rgba(22, 163, 74, .35);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, .12);
-            z-index: 3
+        .card-headline .price-row {
+            justify-content: flex-start;
+            margin-bottom: 2px
         }
         
-        .badge-loue {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            padding: 3px 9px;
-            border-radius: 50px;
-            font-size: 10px;
-            font-weight: 700;
-            background: rgba(255, 255, 255, .92);
-            color: #dc2626;
-            border: 1px solid rgba(220, 38, 38, .4);
-            box-shadow: 0 2px 6px rgba(220, 38, 38, .15);
-            z-index: 3
-        }
-        
-        .card-header-row {
+        .card-headline .price-row.price-row-inline-btn {
             display: flex;
+            flex-direction: row;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 9px;
-            padding: 0 2px;
-            gap: 8px
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 6px;
+            flex-wrap: nowrap
+        }
+        
+        .card-headline .price-row-inline-btn .price-main {
+            flex: 0 1 auto;
+            min-width: 0;
+            align-items: baseline;
+            justify-content: flex-start
+        }
+        
+        .card-headline .price-row-inline-btn .price-row-btn-wrap {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center
+        }
+        
+        .card-swatch-row {
+            display: flex;
+            align-items: center;
+            padding: 0 0 10px;
+            background: var(--card-bg)
+        }
+        
+        .card-headline .price-main {
+            align-items: baseline;
+            justify-content: flex-start
+        }
+        
+        .card-headline .price-main .currency {
+            font-family: var(--sans);
+            font-size: .85rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .85);
+            padding-top: 2px
+        }
+        
+        .card-headline .price-main .amount {
+            font-family: var(--sans);
+            font-size: 1.42rem;
+            font-weight: 700;
+            letter-spacing: -.03em;
+            color: #fff
+        }
+        
+        .card-headline .price-main .per {
+            font-family: var(--sans);
+            font-size: .72rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, .45);
+            margin-left: 3px
+        }
+        /* ── Brand + Year row ── */
+        
+        .card-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 5px
+        }
+        
+        .brand-badge {
+            display: inline-block;
+            font-family: var(--sans);
+            font-size: .62rem;
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 5px;
+            border: 1px solid transparent;
+            letter-spacing: .02em
+        }
+        /* Par marque */
+        
+        .brand-badge.brand-tesla {
+            color: #e05050;
+            background: rgba(204, 0, 0, .12);
+            border-color: rgba(204, 0, 0, .3)
+        }
+        
+        .brand-badge.brand-bmw {
+            color: #5b9cf6;
+            background: rgba(28, 105, 212, .12);
+            border-color: rgba(28, 105, 212, .35)
+        }
+        
+        .brand-badge.brand-toyota {
+            color: #eb8a8a;
+            background: rgba(235, 10, 30, .1);
+            border-color: rgba(235, 10, 30, .25)
+        }
+        
+        .brand-badge.brand-ford {
+            color: #7aabf7;
+            background: rgba(0, 52, 120, .15);
+            border-color: rgba(0, 100, 200, .3)
+        }
+        
+        .brand-badge.brand-porsche {
+            color: #dbb96a;
+            background: rgba(201, 168, 76, .12);
+            border-color: rgba(201, 168, 76, .3)
+        }
+        
+        .brand-badge.brand-ferrari {
+            color: #f07070;
+            background: rgba(204, 0, 0, .14);
+            border-color: rgba(220, 38, 38, .35)
+        }
+        
+        .brand-badge.brand-lamborghini {
+            color: #f0c040;
+            background: rgba(245, 197, 24, .1);
+            border-color: rgba(245, 197, 24, .3)
+        }
+        
+        .brand-badge.brand-mercedes {
+            color: #b0bec5;
+            background: rgba(160, 174, 192, .1);
+            border-color: rgba(160, 174, 192, .25)
+        }
+        
+        .brand-badge.brand-audi {
+            color: #c0c0c0;
+            background: rgba(180, 180, 180, .1);
+            border-color: rgba(180, 180, 180, .25)
+        }
+        
+        .brand-badge.brand-default {
+            color: var(--card-txt3);
+            background: rgba(255, 255, 255, .06);
+            border-color: rgba(255, 255, 255, .12)
         }
         
         .card-title {
             font-family: var(--serif);
-            font-size: 1rem;
+            font-size: 1.12rem;
             font-weight: 700;
-            color: #1a1a2e;
-            line-height: 1.2
+            color: var(--card-txt);
+            line-height: 1.2;
+            margin-bottom: 10px;
+            letter-spacing: -.2px
+        }
+        
+        .price-row {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 3px
+        }
+        
+        .price-main {
+            display: flex;
+            align-items: baseline;
+            gap: 1px
+        }
+        
+        .price-main .currency {
+            font-size: .9rem;
+            font-weight: 700;
+            color: var(--card-txt);
+            align-self: flex-start;
+            padding-top: 5px;
+            opacity: .75
+        }
+        
+        .price-main .amount {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: var(--serif);
+            color: var(--card-txt);
+            line-height: 1;
+            letter-spacing: -1px
+        }
+        
+        .price-main .per {
+            font-size: .7rem;
+            color: var(--card-txt3);
+            margin-left: 4px;
+            font-weight: 400
+        }
+        
+        .price-total {
+            font-size: .7rem;
+            color: var(--card-txt3);
+            text-align: right;
+            line-height: 1.5
+        }
+        
+        .price-total span {
+            display: block;
+            font-size: .68rem;
+            color: var(--card-txt3)
+        }
+        
+        .price-total strong {
+            color: var(--card-txt2);
+            font-weight: 600
+        }
+        
+        .price-km {
+            font-size: .68rem;
+            color: var(--card-txt3);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 4px
         }
         
         .color-swatches {
@@ -1037,7 +1563,7 @@
             width: 14px;
             height: 14px;
             border-radius: 50%;
-            border: 1.5px solid rgba(0, 0, 0, .12);
+            border: 1.5px solid rgba(255, 255, 255, .15);
             cursor: pointer;
             transition: transform .15s;
             flex-shrink: 0
@@ -1048,39 +1574,41 @@
         }
         
         .cswatch.active {
-            outline: 2.5px solid #444;
+            outline: 2px solid rgba(255, 255, 255, .5);
             outline-offset: 2px
         }
         
         .cswatch-more-btn {
-            height: 14px;
-            padding: 0 6px;
-            border-radius: 50px;
-            background: rgba(0, 0, 0, .07);
-            border: 1px solid rgba(0, 0, 0, .09);
+            height: 16px;
+            padding: 0 7px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .08);
+            border: 1px solid rgba(255, 255, 255, .12);
             font-size: 10px;
             font-weight: 600;
-            color: #555;
+            color: var(--card-txt2);
             cursor: pointer;
             display: flex;
             align-items: center;
-            font-family: var(--sans)
+            font-family: var(--sans);
+            transition: all .18s
         }
         
         .cswatch-more-btn:hover {
-            background: rgba(41, 121, 255, .1);
-            color: var(--blue-d)
+            background: rgba(41, 121, 255, .2);
+            color: #60a5fa;
+            border-color: rgba(41, 121, 255, .4)
         }
         
         .color-popover {
             position: absolute;
             top: calc(100% + 8px);
             right: 0;
-            background: #fff;
-            border: 1px solid rgba(0, 0, 0, .1);
-            border-radius: 14px;
+            background: #1e1e1e;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 12px;
             padding: 10px 12px;
-            box-shadow: 0 8px 28px rgba(0, 0, 0, .12);
+            box-shadow: 0 12px 36px rgba(0, 0, 0, .5);
             z-index: 50;
             display: none;
             flex-direction: column;
@@ -1093,23 +1621,12 @@
             display: flex
         }
         
-        @keyframes popIn {
-            from {
-                opacity: 0;
-                transform: translateY(-6px) scale(.96)
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1)
-            }
-        }
-        
         .color-popover-title {
-            font-size: 9px;
+            font-size: .58rem;
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #999
+            color: var(--card-txt3)
         }
         
         .color-popover-swatches {
@@ -1122,7 +1639,7 @@
             width: 18px;
             height: 18px;
             border-radius: 50%;
-            border: 1.5px solid rgba(0, 0, 0, .12);
+            border: 1.5px solid rgba(255, 255, 255, .15);
             cursor: pointer;
             transition: transform .15s
         }
@@ -1132,115 +1649,38 @@
         }
         
         .cpop-swatch.active {
-            outline: 2.5px solid #444;
+            outline: 2px solid rgba(255, 255, 255, .5);
             outline-offset: 2px
         }
         
-        .card-specs {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin-bottom: 11px;
-            padding: 0 2px
-        }
-        
-        .spec-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            background: rgba(0, 0, 0, .05);
-            color: #555;
-            font-size: 11px;
-            font-weight: 500;
-            padding: 4px 10px;
-            border-radius: 50px
-        }
-        
-        .spec-tag svg {
-            width: 12px;
-            height: 12px;
-            stroke: #888;
-            stroke-width: 1.8;
-            fill: none;
-            flex-shrink: 0
-        }
-        
-        .card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2px
-        }
-        
-        .price-txt {
-            font-size: 12.5px;
-            color: #666
-        }
-        
-        .price-txt strong {
-            color: #1a1a2e;
-            font-weight: 700
-        }
-        
         .btn-reserver {
-            padding: 7px 16px;
-            border-radius: 50px;
-            background: #2979ff;
-            border: 1px solid rgba(41, 121, 255, .4);
+            padding: 8px 16px;
+            border-radius: 7px;
+            background: rgba(0, 0, 0, .35);
+            border: 1px solid rgba(34, 197, 94, .45);
             cursor: pointer;
-            flex-shrink: 0;
-            transition: background .25s ease, border-color .25s ease, box-shadow .25s ease, transform .25s ease;
-            display: flex;
-            align-items: center;
-            font-family: var(--sans);
-            font-size: .76rem;
-            font-weight: 700;
-            color: #fff;
-            gap: 5px
-        }
-        
-        .btn-reserver:hover {
-            background: #22c55e;
-            border-color: #22c55e;
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 28px rgba(34, 197, 94, .45), 0 0 0 3px rgba(34, 197, 94, .15)
-        }
-        
-        .btn-reserver svg {
-            width: 11px;
-            height: 11px;
-            stroke: #fff;
-            stroke-width: 2.5;
-            fill: none
-        }
-        
-        .btn-contacter {
-            padding: 7px 16px;
-            border-radius: 50px;
-            background: transparent;
-            border: 1.5px solid var(--night);
-            cursor: pointer;
-            flex-shrink: 0;
-            transition: all .25s;
+            transition: all .22s;
             display: flex;
             align-items: center;
             font-family: var(--sans);
             font-size: .76rem;
             font-weight: 600;
-            color: var(--night);
+            color: #86efac;
             gap: 5px;
-            text-decoration: none
+            letter-spacing: .2px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .2)
         }
         
-        .btn-contacter:hover {
-            background: var(--night);
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(13, 31, 60, .2)
+        .btn-reserver:hover {
+            background: rgba(34, 197, 94, .18);
+            border-color: rgba(34, 197, 94, .75);
+            color: #bbf7d0;
+            box-shadow: 0 4px 18px rgba(34, 197, 94, .28)
         }
         
-        .btn-contacter svg {
+        .btn-reserver svg {
             width: 11px;
             height: 11px;
             stroke: currentColor;
@@ -1249,30 +1689,67 @@
         }
         
         .btn-indispo {
-            padding: 7px 16px;
-            border-radius: 50px;
+            padding: 8px 16px;
+            border-radius: 7px;
             background: rgba(220, 38, 38, .1);
-            border: 1px solid rgba(220, 38, 38, .35);
+            border: 1px solid rgba(220, 38, 38, .25);
             cursor: not-allowed;
-            flex-shrink: 0;
             font-family: var(--sans);
             font-size: .76rem;
-            font-weight: 700;
-            color: #dc2626;
-            letter-spacing: .3px;
+            font-weight: 600;
+            color: #f87171;
             display: flex;
             align-items: center;
             gap: 5px
         }
         
-        .btn-indispo::before {
-            content: '●';
-            font-size: 8px;
-            color: #dc2626
+        .specs-row {
+            display: flex;
+            gap: 0;
+            align-items: center;
+            padding: 10px 14px 16px;
+            margin: 0;
+            border-top: 1px solid var(--card-line);
+            background: rgba(255, 255, 255, .03);
+            border-radius: 0 0 14px 14px;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            row-gap: 6px;
+            line-height: 1;
+            box-sizing: border-box;
+            flex: 0 0 auto
         }
         
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin: 0 14px 0 0;
+            line-height: 1;
+            padding: 0
+        }
+        
+        .spec-item svg {
+            width: 13px;
+            height: 13px;
+            stroke: var(--card-txt3);
+            stroke-width: 1.8;
+            fill: none;
+            flex-shrink: 0;
+            display: block
+        }
+        
+        .spec-item span {
+            font-size: .72rem;
+            color: var(--card-txt2);
+            font-weight: 500;
+            line-height: 1;
+            display: inline-block
+        }
+        /* CTA — footer (style page alternate : #0c0e22, halo centré, trait .ctal) */
+        
         #cta {
-            padding: 120px 64px;
+            padding: 52px 48px 56px;
             text-align: center;
             background: #0c0e22;
             position: relative;
@@ -1286,55 +1763,97 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(61, 127, 193, .3) 30%, rgba(74, 144, 217, .5) 50%, rgba(61, 127, 193, .3) 70%, transparent)
+            background: linear-gradient(90deg, transparent, rgba(61, 127, 193, .3) 30%, rgba(74, 144, 217, .5) 50%, rgba(61, 127, 193, .3) 70%, transparent);
+            pointer-events: none;
+            z-index: 2
         }
         
-        .ctag {
+        #cta .ctag {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 700px;
-            height: 500px;
+            width: min(520px, 120vw);
+            height: 280px;
+            max-height: 45vh;
             border-radius: 50%;
             background: radial-gradient(ellipse, rgba(61, 127, 193, .2) 0%, rgba(45, 106, 168, .07) 45%, transparent 70%);
-            pointer-events: none
+            pointer-events: none;
+            z-index: 0
         }
         
-        .ctal {
+        #cta .ctal {
+            position: relative;
+            z-index: 1;
             width: 48px;
             height: 1px;
-            margin: 0 auto 28px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent)
+            margin: 0 auto 14px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
+            flex-shrink: 0
         }
         
-        .ctah {
+        #cta .proc-label {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: .58rem;
+            font-weight: 500;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, .3);
+            margin-bottom: 12px
+        }
+        
+        #cta .ctah {
+            position: relative;
+            z-index: 1;
             font-family: var(--serif);
-            font-size: clamp(2.2rem, 5vw, 4.5rem);
+            font-size: clamp(1.65rem, 3.5vw, 2.85rem);
             font-weight: 300;
-            line-height: 1.1;
+            line-height: 1.12;
             letter-spacing: -.5px;
             color: #fff;
-            margin-bottom: 18px
+            margin-bottom: 10px
         }
         
-        .ctap {
-            font-size: .95rem;
+        #cta .ctah em {
+            font-style: italic;
+            color: #4a90d9
+        }
+        
+        #cta .ctap {
+            position: relative;
+            z-index: 1;
+            font-size: .88rem;
             font-weight: 300;
             color: rgba(255, 255, 255, .45);
-            line-height: 1.8;
-            max-width: 420px;
-            margin: 0 auto 48px
+            line-height: 1.55;
+            max-width: 400px;
+            margin: 0 auto 22px
         }
         
-        .ctab {
+        #cta .ctab {
+            position: relative;
+            z-index: 1;
             display: flex;
-            gap: 14px;
+            gap: 10px;
             justify-content: center;
             flex-wrap: wrap
         }
         
-        .bow {
+        #cta .reveal {
+            transform: translateY(26px);
+            transition: opacity .7s ease, transform .7s ease
+        }
+        
+        #cta .reveal.vis {
+            opacity: 1;
+            transform: translateY(0)
+        }
+        
+        #cta .bow {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -1348,15 +1867,28 @@
             transition: all .3s
         }
         
-        .bow:hover {
+        #cta .bow:hover {
             border-color: rgba(91, 159, 255, .5);
-            color: var(--blue-l)
+            color: var(--blue-l);
+            background: transparent
+        }
+        
+        #cta .bow.bow-bluetour {
+            border-color: rgba(41, 121, 255, .4);
+            color: var(--blue-l);
+            background: transparent
+        }
+        
+        #cta .bow.bow-bluetour:hover {
+            border-color: rgba(91, 159, 255, .55);
+            color: #fff;
+            background: rgba(41, 121, 255, .12)
         }
         
         @keyframes fu {
             from {
                 opacity: 0;
-                transform: translateY(22px)
+                transform: translateY(18px)
             }
             to {
                 opacity: 1;
@@ -1364,10 +1896,32 @@
             }
         }
         
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+        
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: translateY(-5px) scale(.96)
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1)
+            }
+        }
+        
         .reveal {
             opacity: 0;
-            transform: translateY(26px);
-            transition: opacity .7s ease, transform .7s ease
+            transform: translateY(22px);
+            transition: opacity .6s ease, transform .6s ease
         }
         
         .reveal.vis {
@@ -1375,163 +1929,286 @@
             transform: translateY(0)
         }
         
-        .d1 {
-            transition-delay: .12s
-        }
-        
-        .d2 {
-            transition-delay: .24s
-        }
-        
-        .d3 {
-            transition-delay: .36s
-        }
-        
-        @media(max-width:900px) {
+        @media(max-width:960px) {
+            body {
+                padding-top: 60px
+            }
+            .sidebar {
+                display: none
+            }
             nav {
                 padding: 0 20px;
-                height: 60px
+                height: 60px;
+                top: 0
             }
-            .filters-bar {
+            .fleet-platform-mobile {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                padding: 10px 16px;
+                background: #fff;
+                border-bottom: 1px solid var(--line);
+                position: sticky;
                 top: 60px;
-                padding: 0 20px
+                z-index: 89
             }
-            #page-header {
-                padding: 100px 20px 60px
+            .main-layout {
+                min-height: calc(100vh - 60px)
             }
-            #fleet {
-                padding: 32px 20px 72px
+            .fleet-content {
+                padding: 20px 16px 40px
             }
             .fleet-grid {
                 grid-template-columns: 1fr
             }
             #cta {
-                padding: 80px 20px
+                padding: 40px 20px 44px
             }
-            .ctab {
+            #cta .ctab {
                 flex-direction: column;
                 align-items: center
             }
-            .bow {
+            #cta .bow {
                 width: 100%;
                 max-width: 320px;
                 justify-content: center
             }
         }
-        
-        @media(max-width:420px) {
-            nav {
-                padding: 0 16px
-            }
-            .filters-bar {
-                padding: 0 12px
-            }
-            #fleet,
-            #cta {
-                padding-left: 16px;
-                padding-right: 16px
-            }
-        }
     </style>
 </head>
- 
+
 <body>
+
     <nav>
-        <a href="index.html" class="logo" style="overflow:visible;"><img src="logo/3.png" alt="NexDrive" style="height:220px;width:auto;object-fit:contain;filter:brightness(0) invert(1);position:relative;z-index:101;" /></a>
+        <a href="index.html" class="logo"><img src="logo/3.png" alt="NexDrive" /></a>
         <button class="hbg" id="hbBtn" type="button" aria-label="Menu"><span class="hb"></span><span class="hb"></span><span class="hb"></span></button>
     </nav>
+
+    <div class="fleet-platform-mobile" aria-label="Plateforme">
+        <button type="button" class="ptab active" data-platform="turo"><span class="ptab-dot"></span> Turo</button>
+        <button type="button" class="ptab" data-platform="hors-turo" onclick="window.location.href='tarifs-hors-turo (1) (1).html'"><span class="ptab-dot"></span> Hors Turo</button>
+    </div>
+
     <div class="mbd" id="mobBack"></div>
     <div class="mpn" id="mobPanel">
         <div class="mph">
-            <a href="index.html" class="logo" onclick="closeMob()"><img src="logo/3.png" alt="NexDrive" style="height:34px;width:auto;object-fit:contain;filter:brightness(0) invert(1) drop-shadow(0 0 8px rgba(41,121,255,0.3))" /></a>
-            <button class="mph-close" onclick="closeMob()" aria-label="Fermer">&#x2715;</button>
+            <a href="index.html" class="logo" onclick="closeMob()"><img src="logo/3.png" alt="NexDrive" /></a>
+            <button class="mph-close" onclick="closeMob()">✕</button>
         </div>
         <div class="mn">
             <div class="mn-sec">
-                <div class="mn-heading" data-i18n="nav.section.navigation">Navigation</div>
+                <div class="mn-heading">Navigation</div>
                 <a href="index.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">&#x1F3E0;</div><span class="mn-lbl" data-i18n="nav.accueil">Accueil</span></div><span class="mn-arr">&#x2192;</span></a>
+                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/></svg></div><span class="mn-lbl">Accueil</span></div>
+                </a>
                 <a href="vehicules.html" class="ma active" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">&#x1F697;</div><span class="mn-lbl" data-i18n="nav.flotte">Notre flotte</span></div><span class="mn-arr">&#x2192;</span></a>
- 
+                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M5 17H3v-5l2-5h14l2 5v5h-2M5 17a2 2 0 104 0M15 17a2 2 0 104 0"/></svg></div><span class="mn-lbl">Notre flotte</span></div>
+                </a>
                 <a href="apropos.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">&#x1F3E2;</div><span class="mn-lbl" data-i18n="nav.apropos">&Agrave; propos</span></div><span class="mn-arr">&#x2192;</span></a>
+                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/></svg></div>
+                        <span class="mn-lbl">À propos</span>
+                    </div>
+                </a>
                 <a href="partenaires.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">&#x1F91D;</div><span class="mn-lbl" data-i18n="nav.partenaires">Partenaires</span></div><span class="mn-arr">&#x2192;</span></a>
+                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+                        <span class="mn-lbl">Partenaires</span>
+                    </div>
+                </a>
                 <a href="faq.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">&#x2753;</div><span class="mn-lbl" data-i18n="nav.faq">FAQ</span></div><span class="mn-arr">&#x2192;</span></a>
+                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg></div>
+                        <span class="mn-lbl">FAQ</span>
+                    </div>
+                </a>
             </div>
             <div class="mn-sec">
-                <div class="mn-heading" data-i18n="nav.section.legal">L&eacute;gal</div>
+                <div class="mn-heading">Légal</div>
                 <a href="confidentialite.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">&#x1F512;</div><span class="mn-lbl" data-i18n="nav.confidentialite">Confidentialit&eacute;</span></div><span class="mn-arr">&#x2192;</span></a>
+                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+                        <span class="mn-lbl">Confidentialité</span>
+                    </div>
+                </a>
                 <a href="engagement.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
-                        <div class="mn-icon">&#x1F4C4;</div><span class="mn-lbl" data-i18n="nav.engagement">Engagement</span></div><span class="mn-arr">&#x2192;</span></a>
+                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 11 17 15 13"/></svg></div>
+                        <span class="mn-lbl">Engagement</span>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="mpf">
-            <div class="mf" data-i18n="nav.copyright">NexDrive &mdash; Qu&eacute;bec &copy; 2026</div>
+            <div class="mf">NexDrive — Québec © 2026</div>
         </div>
     </div>
- 
-    <section id="page-header">
-        <div class="ph-label" data-i18n="vehicules.ph.label">Notre Flotte</div>
-        <h1 class="ph-h1"><span data-i18n="vehicules.ph.h1">V&eacute;hicules</span> <em data-i18n="vehicules.ph.h1.em">premium</em></h1>
-        <p class="ph-sub" data-i18n="vehicules.ph.sub">Tous les v&eacute;hicules disponibles au Qu&eacute;bec</p>
-    </section>
- 
-    <div class="filters-bar">
-        <div class="platform-tabs">
-            <button class="ptab active" data-platform="turo" onclick="switchPlatform('turo',this)"><span class="ptab-dot"></span> Turo</button>
-            <button class="ptab" data-platform="hors-turo" onclick="window.location.href='tarifs-hors-turo (1) (1).html'"><span class="ptab-dot"></span> Hors Turo</button>
-        </div>
-        <div class="filter-group">
-            <span class="filter-label" data-i18n="vehicules.filter.type.label">Type</span>
-            <button class="filter-btn active" data-filter="tous">Tous</button>
-            <button class="filter-btn" data-filter="berline">Berline</button>
-            <button class="filter-btn" data-filter="vus">VUS</button>
-            <button class="filter-btn" data-filter="sport">Sport</button>
-            <button class="filter-btn" data-filter="electrique">Électrique</button>
-        </div>
-        <div class="filter-group">
-            <span class="filter-label">Tier</span>
-            <button class="filter-btn active" data-tier="tous">Tous</button>
-            <button class="filter-btn" data-tier="essentiel">Essentiel</button>
-            <button class="filter-btn" data-tier="confort">Confort</button>
-            <button class="filter-btn" data-tier="premium">Premium</button>
-            <button class="filter-btn" data-tier="luxe">Luxe</button>
-            <button class="filter-btn" data-tier="prestige">Prestige</button>
-        </div>
-        <div class="filter-group">
-            <span class="filter-label" data-i18n="vehicules.filter.dispo.label">Dispo</span>
-            <button class="filter-btn" id="dispoToggle">Disponible maintenant</button>
+
+    <div class="main-layout">
+
+        <!-- SIDEBAR FILTERS -->
+        <aside class="sidebar">
+            <div class="sidebar-platform">
+                <button type="button" class="ptab active" data-platform="turo"><span class="ptab-dot"></span> Turo</button>
+                <button type="button" class="ptab" data-platform="hors-turo" onclick="window.location.href='tarifs-hors-turo (1) (1).html'"><span class="ptab-dot"></span> Hors Turo</button>
+            </div>
+            <div class="sidebar-header">
+                <span class="sidebar-title">Filtres</span>
+                <button class="clear-all" id="clearAll">Effacer tout</button>
+            </div>
+
+            <div class="filter-section">
+                <div class="fs-header">
+                    <span class="fs-title">Disponibilité</span>
+                    <div class="fs-arrow open" data-target="fs-dispo"></div>
+                </div>
+                <div class="fs-body" id="fs-dispo">
+                    <div class="dispo-toggle-row">
+                        <span class="toggle-label">Disponible maintenant</span>
+                        <button class="toggle" id="dispoToggle" aria-pressed="false"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="fs-header">
+                    <span class="fs-title">Prix / Jour</span>
+                    <div class="fs-arrow open" data-target="fs-prix"></div>
+                </div>
+                <div class="fs-body" id="fs-prix">
+                    <label class="check-row"><input type="checkbox" class="price-chk" data-min="0" data-max="100"><span class="check-label">0 $ – 100 $</span><span class="check-count" id="cnt-prix-0">4</span></label>
+                    <label class="check-row"><input type="checkbox" class="price-chk" data-min="100" data-max="200"><span class="check-label">100 $ – 200 $</span><span class="check-count" id="cnt-prix-1">3</span></label>
+                    <label class="check-row"><input type="checkbox" class="price-chk" data-min="200" data-max="500"><span class="check-label">200 $ – 500 $</span><span class="check-count" id="cnt-prix-2">1</span></label>
+                    <label class="check-row"><input type="checkbox" class="price-chk" data-min="500" data-max="99999"><span class="check-label">500 $ +</span><span class="check-count" id="cnt-prix-3">2</span></label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="fs-header">
+                    <span class="fs-title">Catégorie</span>
+                    <div class="fs-arrow open" data-target="fs-cat"></div>
+                </div>
+                <div class="fs-body" id="fs-cat">
+                    <div class="cat-row active-cat" data-cat="tous">
+                        <div class="cat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M4.5 9h15M4.5 15h15M12 3a7 7 0 010 18M12 3a7 7 0 000 18"/></svg></div>
+                        <span class="cat-lbl">Tous</span>
+                        <div class="cat-check"></div>
+                    </div>
+                    <div class="cat-row" data-cat="berline">
+                        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M5 17H3v-5l2-5h14l2 5v5h-2"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/><path d="M9 8h6l1 4H8L9 8z"/></svg></div>
+                        <span class="cat-lbl">Berline</span>
+                        <div class="cat-check"></div>
+                    </div>
+                    <div class="cat-row" data-cat="vus">
+                        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M4 17H2v-4l3-6h14l3 6v4h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 10h14"/></svg></div>
+                        <span class="cat-lbl">SUV / VUS</span>
+                        <div class="cat-check"></div>
+                    </div>
+                    <div class="cat-row" data-cat="sport">
+                        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M3 17h18v-3L17 7H7L3 14v3z"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg></div>
+                        <span class="cat-lbl">Sport / Coupé</span>
+                        <div class="cat-check"></div>
+                    </div>
+                    <div class="cat-row" data-cat="electrique">
+                        <div class="cat-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                        <span class="cat-lbl">Électrique</span>
+                        <div class="cat-check"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="fs-header">
+                    <span class="fs-title">Gamme</span>
+                    <div class="fs-arrow open" data-target="fs-tier"></div>
+                </div>
+                <div class="fs-body" id="fs-tier">
+                    <label class="check-row"><input type="radio" name="tier" class="tier-radio" value="tous" checked><span class="check-label">Toutes les gammes</span></label>
+                    <label class="check-row"><input type="radio" name="tier" class="tier-radio" value="essentiel"><span class="check-label">Essentiel</span></label>
+                    <label class="check-row"><input type="radio" name="tier" class="tier-radio" value="confort"><span class="check-label">Confort</span></label>
+                    <label class="check-row"><input type="radio" name="tier" class="tier-radio" value="premium"><span class="check-label">Premium</span></label>
+                    <label class="check-row"><input type="radio" name="tier" class="tier-radio" value="luxe"><span class="check-label">Luxe</span></label>
+                    <label class="check-row"><input type="radio" name="tier" class="tier-radio" value="prestige"><span class="check-label">Prestige</span></label>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="fs-header">
+                    <span class="fs-title">Transmission</span>
+                    <div class="fs-arrow open" data-target="fs-trans"></div>
+                </div>
+                <div class="fs-body" id="fs-trans">
+                    <label class="check-row"><input type="radio" name="trans" class="trans-radio" value="tous" checked><span class="check-label">Toutes</span></label>
+                    <label class="check-row"><input type="radio" name="trans" class="trans-radio" value="auto"><span class="check-label">Automatique</span></label>
+                    <label class="check-row"><input type="radio" name="trans" class="trans-radio" value="manuel"><span class="check-label">Manuelle</span></label>
+                </div>
+            </div>
+
+            <!-- ✅ NOUVEAU FILTRE ANNÉE -->
+            <div class="filter-section">
+                <div class="fs-header">
+                    <span class="fs-title">Année</span>
+                    <div class="fs-arrow open" data-target="fs-annee"></div>
+                </div>
+                <div class="fs-body" id="fs-annee">
+                    <label class="check-row"><input type="checkbox" class="annee-chk" value="2021"><span class="check-label">2021</span><span class="check-count" id="cnt-annee-2021">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="annee-chk" value="2022"><span class="check-label">2022</span><span class="check-count" id="cnt-annee-2022">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="annee-chk" value="2023"><span class="check-label">2023</span><span class="check-count" id="cnt-annee-2023">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="annee-chk" value="2024"><span class="check-label">2024</span><span class="check-count" id="cnt-annee-2024">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="annee-chk" value="2025"><span class="check-label">2025</span><span class="check-count" id="cnt-annee-2025">0</span></label>
+                </div>
+            </div>
+
+            <!-- ✅ NOUVEAU FILTRE MARQUE / MODÈLE -->
+            <div class="filter-section">
+                <div class="fs-header">
+                    <span class="fs-title">Marque</span>
+                    <div class="fs-arrow open" data-target="fs-modele"></div>
+                </div>
+                <div class="fs-body" id="fs-modele">
+                    <label class="check-row"><input type="checkbox" class="modele-chk" value="Toyota"><span class="check-label">Toyota</span><span class="check-count" id="cnt-modele-Toyota">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="modele-chk" value="Honda"><span class="check-label">Honda</span><span class="check-count" id="cnt-modele-Honda">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="modele-chk" value="Hyundai"><span class="check-label">Hyundai</span><span class="check-count" id="cnt-modele-Hyundai">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="modele-chk" value="Tesla"><span class="check-label">Tesla</span><span class="check-count" id="cnt-modele-Tesla">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="modele-chk" value="BMW"><span class="check-label">BMW</span><span class="check-count" id="cnt-modele-BMW">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="modele-chk" value="Ford"><span class="check-label">Ford</span><span class="check-count" id="cnt-modele-Ford">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="modele-chk" value="Mercedes"><span class="check-label">Mercedes</span><span class="check-count" id="cnt-modele-Mercedes">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="modele-chk" value="Audi"><span class="check-label">Audi</span><span class="check-count" id="cnt-modele-Audi">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="modele-chk" value="Porsche"><span class="check-label">Porsche</span><span class="check-count" id="cnt-modele-Porsche">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="modele-chk" value="Lamborghini"><span class="check-label">Lamborghini</span><span class="check-count" id="cnt-modele-Lamborghini">0</span></label>
+                    <label class="check-row"><input type="checkbox" class="modele-chk" value="Ferrari"><span class="check-label">Ferrari</span><span class="check-count" id="cnt-modele-Ferrari">0</span></label>
+                </div>
+            </div>
+
+            <div class="results-count" id="sidebarCount"></div>
+        </aside>
+
+        <!-- FLEET GRID -->
+        <div class="fleet-content">
+            <div class="fleet-page-title">
+                <div class="fleet-page-label">Notre Flotte</div>
+                <h1 class="fleet-page-h1">Choisissez votre <em>véhicule</em></h1>
+                <p class="fleet-page-sub">La meilleure flotte premium au Québec</p>
+            </div>
+
+            <div class="fleet-grid" id="fleetGrid"></div>
         </div>
     </div>
- 
-    <section id="fleet">
-        <div class="proc-label reveal" data-i18n="vehicules.fleet.label">Flotte / Fleet</div>
-        <div class="fleet-grid" id="fleetGrid"></div>
-    </section>
- 
+
     <section id="cta">
-        <div class="ctag"></div>
-        <div class="ctal"></div>
-        <div class="proc-label" style="justify-content:center;color:rgba(255,255,255,.3);margin-bottom:20px">Pr&ecirc;t &agrave; commencer</div>
-        <h2 class="ctah reveal"><span data-i18n="vehicules.cta.h">R&eacute;servez</span> <em data-i18n="vehicules.cta.h.em">maintenant</em></h2>
-        <p class="ctap reveal" data-i18n="vehicules.cta.p">Acc&eacute;dez &agrave; la meilleure flotte de v&eacute;hicules premium au Qu&eacute;bec.<br>R&eacute;servation en ligne, contrat automatique.</p>
-        <div class="ctab reveal">
-            <a href="index.html" class="bow">Retour &agrave; l&apos;accueil &#x2192;</a>
-            <a href="tarifs-hors-turo (1) (1).html" class="bow" style="border-color:rgba(41,121,255,.4);color:var(--blue-l)">Tarifs Hors Turo &#x2192;</a>
+        <div class="ctag" aria-hidden="true"></div>
+        <div class="ctal" aria-hidden="true"></div>
+        <div class="proc-label" data-i18n="vehicules.cta.label">Prêt à commencer</div>
+        <h2 class="ctah reveal vis"><span data-i18n="vehicules.cta.h">Réservez</span> <em data-i18n="vehicules.cta.h.em">maintenant</em></h2>
+        <p class="ctap reveal vis" data-i18n="vehicules.cta.p">Accédez à la meilleure flotte de véhicules premium au Québec.<br>Réservation en ligne, contrat automatique.</p>
+        <div class="ctab reveal vis">
+            <a href="index.html" class="bow" data-i18n="vehicules.cta.btn.home">Retour à l'accueil →</a>
+            <a href="tarifs-hors-turo (1) (1).html" class="bow bow-bluetour" data-i18n="vehicules.cta.btn.turo">Tarifs Hors Turo →</a>
         </div>
     </section>
- 
+
     <script>
         const TL = {
             essentiel: 'Essentiel',
@@ -1542,32 +2219,67 @@
         };
         const ICONS = {
             people: `<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+            doors: `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><circle cx="17" cy="13" r="1"/></svg>`,
             power: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>`,
             bolt: `<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
             drive: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>`,
             range: `<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
-            auto: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>`
+            auto: `<svg viewBox="0 0 24 24"><path d="M12 20v-8"/><path d="M6 20V10"/><path d="M18 20V4"/></svg>`
         };
         const ARR = `<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
-        const PHONE_ICO = `<svg viewBox="0 0 24 24" stroke-width="2.5" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.7a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`;
- 
+
+        const BRAND_CLASS = {
+            'Tesla': 'brand-tesla',
+            'BMW': 'brand-bmw',
+            'Toyota': 'brand-toyota',
+            'Ford': 'brand-ford',
+            'Porsche': 'brand-porsche',
+            'Ferrari': 'brand-ferrari',
+            'Lamborghini': 'brand-lamborghini',
+            'Mercedes': 'brand-mercedes',
+            'Audi': 'brand-audi'
+        };
+
+        var TESLA3_CAROUSEL_IMGS = ['voiture/Tesla Model 3 Bleu 2021/0.jpg', 'voiture/Tesla Model 3 Bleu 2021/00.jpg', 'voiture/Tesla Model 3 Bleu 2021/000.jpg', 'voiture/Tesla Model 3 Bleu 2021/0000.jpg', 'voiture/Tesla Model 3 Bleu 2021/00000.jpg', 'voiture/Tesla Model 3 Bleu 2021/000000.jpg'];
+
+        var CAR_PLACEHOLDER_SVG = '<svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3v-5l2-5h14l2 5v5h-2M5 17a2 2 0 104 0M15 17a2 2 0 104 0"/></svg>';
+
+        function slideImgsForVehicle(v, colorIdx) {
+            var c = v.colors && v.colors[colorIdx];
+            if (c && c.imgs && c.imgs.length) return c.imgs;
+            return [];
+        }
+
+        function carouselTrackHTML(v, colorIdx) {
+            var imgs = slideImgsForVehicle(v, colorIdx);
+            if (imgs && imgs.length) {
+                return imgs.map(function(s) {
+                    return '<img src="' + s + '" alt="' + v.title + '"/>';
+                }).join('');
+            }
+            return '<div class="car-placeholder">' + CAR_PLACEHOLDER_SVG + '</div>';
+        }
+
         const vehicles = [{
             id: 'corolla',
-            platform: 'turo',
             cat: 'berline',
             tier: 'essentiel',
+            brand: 'Toyota',
+            year: 2023,
             dispo: true,
             comingSoon: true,
             title: 'Toyota Corolla',
             sub: 'Berline · 2023',
-            price: '65$',
-            delay: '',
+            price: '65',
+            km: 'illimité',
+            priceNum: 65,
+            trans: 'auto',
             specs: [{
                 icon: 'people',
-                txt: '5 places'
+                txt: '5'
             }, {
-                icon: 'bolt',
-                txt: 'Éco'
+                icon: 'doors',
+                txt: '4 portes'
             }, {
                 icon: 'auto',
                 txt: 'Auto'
@@ -1578,18 +2290,21 @@
             }]
         }, {
             id: 'bmw5',
-            platform: 'turo',
             cat: 'berline',
             tier: 'premium',
+            brand: 'BMW',
+            year: 2024,
             dispo: true,
             comingSoon: true,
             title: 'BMW Série 5',
             sub: 'Berline · 2024',
-            price: '120$',
-            delay: 'd1',
+            price: '120',
+            km: 'illimité',
+            priceNum: 120,
+            trans: 'auto',
             specs: [{
                 icon: 'people',
-                txt: '5 places'
+                txt: '5'
             }, {
                 icon: 'power',
                 txt: '330 ch'
@@ -1606,18 +2321,21 @@
             }]
         }, {
             id: 'rav4',
-            platform: 'turo',
             cat: 'vus',
             tier: 'essentiel',
+            brand: 'Toyota',
+            year: 2023,
             dispo: true,
             comingSoon: true,
             title: 'Toyota RAV4',
             sub: 'VUS · 2023',
-            price: '80$',
-            delay: '',
+            price: '80',
+            km: 'illimité',
+            priceNum: 80,
+            trans: 'auto',
             specs: [{
                 icon: 'people',
-                txt: '5 places'
+                txt: '5'
             }, {
                 icon: 'drive',
                 txt: 'AWD'
@@ -1637,18 +2355,21 @@
             }]
         }, {
             id: 'bmwx5',
-            platform: 'turo',
             cat: 'vus',
             tier: 'premium',
+            brand: 'BMW',
+            year: 2024,
             dispo: true,
             comingSoon: true,
             title: 'BMW X5',
             sub: 'VUS · 2024',
-            price: '155$',
-            delay: 'd1',
+            price: '155',
+            km: 'illimité',
+            priceNum: 155,
+            trans: 'auto',
             specs: [{
                 icon: 'people',
-                txt: '5 places'
+                txt: '5'
             }, {
                 icon: 'drive',
                 txt: 'AWD'
@@ -1668,18 +2389,21 @@
             }]
         }, {
             id: 'urus',
-            platform: 'turo',
             cat: 'vus',
             tier: 'prestige',
+            brand: 'Lamborghini',
+            year: 2023,
             dispo: true,
             comingSoon: true,
             title: 'Lamborghini Urus',
             sub: 'VUS · 2023',
-            price: '750$',
-            delay: 'd2',
+            price: '750',
+            km: '200 km',
+            priceNum: 750,
+            trans: 'auto',
             specs: [{
                 icon: 'people',
-                txt: '5 places'
+                txt: '5'
             }, {
                 icon: 'drive',
                 txt: 'AWD'
@@ -1696,18 +2420,21 @@
             }]
         }, {
             id: 'mustang',
-            platform: 'turo',
             cat: 'sport',
             tier: 'confort',
+            brand: 'Ford',
+            year: 2024,
             dispo: true,
             comingSoon: true,
             title: 'Ford Mustang',
             sub: 'Sport · 2024',
-            price: '115$',
-            delay: '',
+            price: '115',
+            km: '300 km',
+            priceNum: 115,
+            trans: 'auto',
             specs: [{
                 icon: 'people',
-                txt: '4 places'
+                txt: '4'
             }, {
                 icon: 'power',
                 txt: '450 ch'
@@ -1727,18 +2454,21 @@
             }]
         }, {
             id: 'ferrari',
-            platform: 'turo',
             cat: 'sport',
             tier: 'prestige',
+            brand: 'Ferrari',
+            year: 2023,
             dispo: true,
             comingSoon: true,
             title: 'Ferrari 296 GTB',
             sub: 'Sport · 2023',
-            price: '1100$',
-            delay: 'd1',
+            price: '1100',
+            km: '200 km',
+            priceNum: 1100,
+            trans: 'auto',
             specs: [{
                 icon: 'people',
-                txt: '2 places'
+                txt: '2'
             }, {
                 icon: 'power',
                 txt: '830 ch'
@@ -1755,18 +2485,21 @@
             }]
         }, {
             id: 'teslay',
-            platform: 'turo',
             cat: 'electrique vus',
             tier: 'premium',
+            brand: 'Tesla',
+            year: 2024,
             dispo: true,
             comingSoon: true,
             title: 'Tesla Model Y',
             sub: 'VUS Électrique · 2024',
-            price: '130$',
-            delay: 'd1',
+            price: '130',
+            km: 'illimité',
+            priceNum: 130,
+            trans: 'auto',
             specs: [{
                 icon: 'people',
-                txt: '5 places'
+                txt: '5'
             }, {
                 icon: 'range',
                 txt: '533 km'
@@ -1783,24 +2516,27 @@
             }]
         }, {
             id: 'taycan',
-            platform: 'turo',
             cat: 'electrique',
             tier: 'luxe',
+            brand: 'Porsche',
+            year: 2024,
             dispo: true,
             comingSoon: true,
             title: 'Porsche Taycan',
             sub: 'Électrique · 2024',
-            price: '295$',
-            delay: 'd2',
+            price: '295',
+            km: '250 km',
+            priceNum: 295,
+            trans: 'auto',
             specs: [{
                 icon: 'people',
-                txt: '4 places'
+                txt: '4'
+            }, {
+                icon: 'range',
+                txt: '400 km'
             }, {
                 icon: 'drive',
                 txt: 'AWD'
-            }, {
-                icon: 'auto',
-                txt: 'Auto'
             }],
             colors: [{
                 hex: '#1a1a1a',
@@ -1817,18 +2553,21 @@
             }]
         }, {
             id: 'tesla3',
-            platform: 'turo',
             cat: 'electrique',
             tier: 'confort',
+            brand: 'Tesla',
+            year: 2021,
             dispo: true,
             comingSoon: false,
-            title: 'Tesla Model 3 2021',
+            title: 'Tesla Model 3',
             sub: 'Électrique · 2021',
-            price: '110$',
-            delay: '',
+            price: '110',
+            km: 'illimité',
+            priceNum: 110,
+            trans: 'auto',
             specs: [{
                 icon: 'people',
-                txt: '5 places'
+                txt: '5'
             }, {
                 icon: 'range',
                 txt: '400 km'
@@ -1837,77 +2576,109 @@
                 txt: 'Auto'
             }],
             colors: [{
-                hex: '#1c3d6b',
-                imgs: [
-                    'voiture/Tesla Model 3 Bleu 2021/12.png',
-                    'voiture/Tesla Model 3 Bleu 2021/13.png',
-                    'voiture/Tesla Model 3 Bleu 2021/14.png',
-                    'voiture/Tesla Model 3 Bleu 2021/15.png'
-                ]
+                hex: '#1F3B73',
+                imgs: TESLA3_CAROUSEL_IMGS
             }]
         }];
- 
-        var sbScript = document.createElement('script');
-        sbScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-        sbScript.onload = async function() {
-            var sb = supabase.createClient('https://igftridkkchvjaxtburi.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnZnRyaWRra2NodmpheHRidXJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwODcxMzgsImV4cCI6MjA4ODY2MzEzOH0.SuUO_seWElDPnm3lnGEEn8OwflJhbocyJjVF8nvrf4Y');
-            await sb.auth.getSession()
-        };
-        document.head.appendChild(sbScript);
- 
-        function reserver(t, p, s, u) {
-            window.location.href = 'confirmation.html?voiture=' + encodeURIComponent(t) + '&prix=' + encodeURIComponent(p) + '&sub=' + encodeURIComponent(s) + '&turo=' + encodeURIComponent(u)
+
+        // ─── Mise à jour dynamique des compteurs ───
+        function updateCounts() {
+            // Années
+            var anneeIds = ['2021', '2022', '2023', '2024', '2025'];
+            anneeIds.forEach(function(yr) {
+                var el = document.getElementById('cnt-annee-' + yr);
+                if (el) el.textContent = vehicles.filter(function(v) {
+                    return String(v.year) === yr;
+                }).length;
+            });
+
+            // Marques
+            var marques = ['Toyota', 'Honda', 'Hyundai', 'Tesla', 'BMW', 'Ford', 'Mercedes', 'Audi', 'Porsche', 'Lamborghini', 'Ferrari'];
+            marques.forEach(function(m) {
+                var el = document.getElementById('cnt-modele-' + m);
+                if (el) el.textContent = vehicles.filter(function(v) {
+                    return v.brand === m;
+                }).length;
+            });
         }
- 
+
         function buildSwatches(v) {
-            if (!v.colors || v.colors.length <= 1) return '';
+            if (!v.colors || v.colors.length < 1) return '';
+            if (v.colors.length === 1) {
+                var c0 = v.colors[0];
+                var b0 = (c0.hex === '#fff' || c0.hex === '#ffffff') ? 'border-color:rgba(255,255,255,.4)' : '';
+                return '<div class="color-swatches" id="sw-' + v.id + '">' +
+                    '<span class="cswatch active" data-cidx="0" style="background:' + c0.hex + ';' + b0 + '" onclick="swSet(this,\'' + v.id + '\',0)"></span></div>';
+            }
             var shown = v.colors.slice(0, 2),
                 extra = v.colors.slice(2),
                 h = '<div class="color-swatches" id="sw-' + v.id + '">';
             shown.forEach(function(c, i) {
-                var b = c.hex === '#fff' || c.hex === '#ffffff' ? 'border-color:rgba(0,0,0,.25)' : '';
+                var b = (c.hex === '#fff' || c.hex === '#ffffff') ? 'border-color:rgba(255,255,255,.4)' : '';
                 h += '<span class="cswatch' + (i === 0 ? ' active' : '') + '" data-cidx="' + i + '" style="background:' + c.hex + ';' + b + '" onclick="swSet(this,\'' + v.id + '\',' + i + ')"></span>'
             });
             if (extra.length) {
-                h += '<button class="cswatch-more-btn" onclick="swPop(event,\'' + v.id + '\')">+' + extra.length + '</button><div class="color-popover" id="cpop-' + v.id + '"><div class="color-popover-title">Couleurs dispo</div><div class="color-popover-swatches">';
+                h += '<button class="cswatch-more-btn" onclick="swPop(event,\'' + v.id + '\')">+' + extra.length + '</button><div class="color-popover" id="cpop-' + v.id + '"><div class="color-popover-title">Couleurs</div><div class="color-popover-swatches">';
                 v.colors.forEach(function(c, i) {
-                    var b = c.hex === '#fff' || c.hex === '#ffffff' ? 'border-color:rgba(0,0,0,.25)' : '';
+                    var b = (c.hex === '#fff' || c.hex === '#ffffff') ? 'border-color:rgba(255,255,255,.4)' : '';
                     h += '<span class="cpop-swatch' + (i === 0 ? ' active' : '') + '" data-cidx="' + i + '" style="background:' + c.hex + ';' + b + '" onclick="swPopSet(event,this,\'' + v.id + '\',' + i + ')"></span>'
                 });
                 h += '</div></div>'
             }
             return h + '</div>'
         }
- 
-        function renderGrid() {
-            document.getElementById('fleetGrid').innerHTML = vehicles.map(function(v) {
-                var imgs = v.colors[0].imgs,
-                    slides = imgs && imgs.length ? imgs.map(function(s) {
-                        return '<img src="' + s + '" alt="' + v.title + '"/>'
-                    }).join('') : '<div class="car-placeholder"></div>';
+
+        function renderGrid(list) {
+            var grid = document.getElementById('fleetGrid');
+            grid.innerHTML = list.map(function(v) {
+                var imgs = slideImgsForVehicle(v, 0),
+                    slides = carouselTrackHTML(v, 0);
                 var sw = buildSwatches(v);
-                var platBadge = '';
-                var dispoBadge = '';
-                var dispoCorner = v.dispo ? '<div class="dispo-corner"></div>' : '';
-                var btn;
-                if (!v.dispo) {
-                    btn = '<button class="btn-indispo" disabled>Indisponible</button>'
-                } else {
-                    btn = '<button class="btn-reserver" onclick="reserver(\'' + v.title.replace(/'/g, "\\'") + '\',\'' + v.price + '\',\'' + v.sub.replace(/'/g, "\\'") + '\',\'https://turo.com\')"><span>R&eacute;server</span>' + ARR + '</button>'
-                }
+                var dispoBadge = v.dispo ? '<span class="badge-dispo-corner"><span class="badge-dispo-pulse" aria-hidden="true"></span><span class="badge-dispo-txt">DISPONIBLE</span></span>' : '<span class="badge-loue-corner">● Loué</span>';
+                var confortBadge = v.tier === 'confort' ? '<span class="badge-confort-corner"><span class="badge-confort-accent" aria-hidden="true"></span><span class="badge-confort-txt">Confort</span></span>' : '';
+                var btn = !v.dispo ? '<button class="btn-indispo" disabled>Indisponible</button>' : '<button class="btn-reserver" onclick="reserver(\'' + v.title.replace(/'/g, "\\'") + '\',\'' + v.price + '$\',\'' + v.sub.replace(/'/g, "\\'") + '\',\'https://turo.com\')"><span>Réserver</span>' + ARR + '</button>';
                 var specs = v.specs.map(function(s) {
-                    return '<span class="spec-tag">' + (ICONS[s.icon] || '') + s.txt + '</span>'
+                    return '<div class="spec-item">' + (ICONS[s.icon] || '') + '<span>' + s.txt + '</span></div>'
                 }).join('');
-                var loueOverlay = v.dispo ? '' : '<div class="loue-overlay"></div>';
-                var cornerRibbon = v.dispo ? '<div class="dispo-corner"></div>' : '<div class="loue-corner"></div>';
-                var comingHTML = v.comingSoon ? '<div class="coming-overlay"></div><div class="coming-ribbon"></div><div class="coming-label"><span class="gift">&#x1F381;</span><span class="txt">Bient&ocirc;t disponible</span></div>' : '';
-                return '<div class="vcard reveal' + (v.delay ? ' ' + v.delay : '') + '" data-cat="' + v.cat + '" data-tier="' + v.tier + '" data-dispo="' + (v.dispo ? 'oui' : 'non') + '" data-coming="' + (v.comingSoon ? 'oui' : 'non') + '" id="vc-' + v.id + '">' + loueOverlay + cornerRibbon + comingHTML + '<div class="carousel" id="carousel-' + v.id + '"><div class="badge-special ' + v.tier + '"><span class="diamond"></span>' + TL[v.tier] + '</div>' + platBadge + dispoBadge + '<div class="carousel-track" id="ct-' + v.id + '">' + slides + '</div><button class="car-btn prev" onclick="slideVcard(\'' + v.id + '\',-1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button><button class="car-btn next" onclick="slideVcard(\'' + v.id + '\',1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="9 18 15 12 9 6"/></svg></button><div class="car-dots" id="dots-' + v.id + '"></div></div><div class="card-header-row"><div class="card-title">' + v.title + '</div>' + sw + '</div><div class="card-specs">' + specs + '</div><div class="card-footer"><div class="price-txt">&agrave; partir de <strong>' + v.price + '</strong> /jour</div>' + btn + '</div></div>';
+                var comingHTML = v.comingSoon ? '<div class="coming-overlay"></div><div class="coming-label"><span class="txt">Bientôt disponible</span></div>' : '';
+                var totalEst = v.priceNum * 3;
+                var brandCls = BRAND_CLASS[v.brand] || 'brand-default';
+                var brandHTML = v.brand && v.brand !== 'Tesla' ? '<span class="brand-badge ' + brandCls + '">' + v.brand + '</span>' : '';
+                var metaHTML = brandHTML ? '<div class="card-meta-row">' + brandHTML + '</div>' : '';
+                var yearLineHTML = v.year ? '<div class="card-year-line">' + v.year + '</div>' : '';
+                var imgCount = (imgs && imgs.length) ? imgs.length : 1;
+                var carouselClass = 'carousel' + (imgCount <= 1 ? ' carousel--single' : '');
+                return '<div class="vcard" data-cat="' + v.cat + '" data-tier="' + v.tier + '" data-dispo="' + (v.dispo ? 'oui' : 'non') + '" data-coming="' + (v.comingSoon ? 'oui' : 'non') + '" data-price="' + v.priceNum + '" data-trans="' + v.trans + '" data-title="' + v.title + '" id="vc-' + v.id + '">' + comingHTML +
+                    '<div class="' + carouselClass + '" id="carousel-' + v.id + '">' +
+                    dispoBadge +
+                    confortBadge +
+                    '<div class="carousel-track" id="ct-' + v.id + '">' + slides + '</div>' +
+                    '<button class="car-btn prev" onclick="slideVcard(\'' + v.id + '\',-1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button>' +
+                    '<button class="car-btn next" onclick="slideVcard(\'' + v.id + '\',1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="9 18 15 12 9 6"/></svg></button>' +
+                    '<div class="car-dots" id="dots-' + v.id + '"></div>' +
+                    '</div>' +
+                    '<div class="card-body">' +
+                    '<div class="card-headline">' +
+                    metaHTML +
+                    '<div class="card-title">' + v.title + '</div>' +
+                    yearLineHTML +
+                    '<div class="price-row price-row-inline-btn">' +
+                    '<div class="price-main"><span class="currency">$</span><span class="amount">' + v.price + '</span><span class="per">/ jour</span></div>' +
+                    '<div class="price-row-btn-wrap">' + btn + '</div>' +
+                    '</div>' +
+                    (sw ? '<div class="card-swatch-row">' + sw + '</div>' : '') +
+                    '</div>' +
+                    '<div class="specs-row">' + specs + '</div>' +
+                    '</div>' +
+                    '</div>'
             }).join('');
+
             var car = {};
-            vehicles.forEach(function(v) {
+            list.forEach(function(v) {
                 var t = document.getElementById('ct-' + v.id);
                 if (!t) return;
-                var tot = t.children.length,
+                var imgs0 = slideImgsForVehicle(v, 0);
+                var tot = (imgs0 && imgs0.length) ? imgs0.length : 1,
                     de = document.getElementById('dots-' + v.id);
                 for (var i = 0; i < tot; i++) {
                     var d = document.createElement('span');
@@ -1928,22 +2699,8 @@
                 }
             });
             window._car = car;
-            var o2 = new IntersectionObserver(function(es) {
-                es.forEach(function(e) {
-                    if (e.isIntersecting) {
-                        e.target.classList.add('vis');
-                        o2.unobserve(e.target)
-                    }
-                })
-            }, {
-                threshold: .08
-            });
-            document.querySelectorAll('.vcard.reveal').forEach(function(r) {
-                o2.observe(r)
-            });
         }
-        renderGrid();
- 
+
         function goTo(id, n) {
             var c = window._car[id];
             if (!c) return;
@@ -1953,26 +2710,28 @@
                 d.className = 'car-dot' + (i === c.idx ? ' active' : '')
             })
         }
- 
+
         function slideVcard(id, dir) {
             var c = window._car[id];
             if (c) goTo(id, c.idx + dir)
         }
- 
+
+        function reserver(t, p, s, u) {
+            window.location.href = 'confirmation.html?voiture=' + encodeURIComponent(t) + '&prix=' + encodeURIComponent(p) + '&sub=' + encodeURIComponent(s) + '&turo=' + encodeURIComponent(u)
+        }
+
         function updImgs(vid, ci) {
             var v = vehicles.find(function(x) {
                 return x.id === vid
             });
             if (!v) return;
-            var imgs = v.colors[ci] ? v.colors[ci].imgs : [];
-            if (!imgs || !imgs.length) return;
+            var imgs = slideImgsForVehicle(v, ci);
+            var tot = (imgs && imgs.length) ? imgs.length : 1;
             var t = document.getElementById('ct-' + vid),
                 de = document.getElementById('dots-' + vid);
-            t.innerHTML = imgs.map(function(s) {
-                return '<img src="' + s + '" alt="' + v.title + '"/>'
-            }).join('');
+            t.innerHTML = carouselTrackHTML(v, ci);
             de.innerHTML = '';
-            imgs.forEach(function(_, i) {
+            for (var i = 0; i < tot; i++) {
                 var d = document.createElement('span');
                 d.className = 'car-dot' + (i === 0 ? ' active' : '');
                 (function(n) {
@@ -1982,16 +2741,18 @@
                     })
                 })(i);
                 de.appendChild(d)
-            });
+            }
             window._car[vid] = {
                 track: t,
-                total: imgs.length,
+                total: tot,
                 idx: 0,
                 dots: de
             };
-            t.style.transform = 'translateX(0)'
+            t.style.transform = 'translateX(0)';
+            var carEl = document.getElementById('carousel-' + vid);
+            if (carEl) carEl.classList.toggle('carousel--single', tot <= 1)
         }
- 
+
         function swSet(el, vid, ci) {
             el.closest('.color-swatches').querySelectorAll('.cswatch').forEach(function(s) {
                 s.classList.remove('active')
@@ -1999,7 +2760,7 @@
             el.classList.add('active');
             updImgs(vid, ci)
         }
- 
+
         function swPop(e, vid) {
             e.stopPropagation();
             var p = document.getElementById('cpop-' + vid);
@@ -2014,7 +2775,7 @@
                 p.classList.remove('open')
             })
         });
- 
+
         function swPopSet(e, el, vid, ci) {
             e.stopPropagation();
             el.closest('.color-popover-swatches').querySelectorAll('.cpop-swatch').forEach(function(s) {
@@ -2028,67 +2789,165 @@
             });
             updImgs(vid, ci)
         }
- 
-        var aTi = 'tous',
-            aT = 'tous',
-            aD = 'tous';
- 
-        function switchPlatform(p, btn) {
-            // Only Turo is handled here; Hors Turo redirects directly
+
+        // ─── STATE avec annees + modeles ───
+        var state = {
+            dispo: false,
+            prices: [],
+            cat: 'tous',
+            tier: 'tous',
+            trans: 'tous',
+            annees: [],
+            modeles: [],
+            sort: 'default'
+        };
+
+        function applyFilters() {
+            var filtered = vehicles.filter(function(v) {
+                if (state.dispo && !(v.dispo && !v.comingSoon)) return false;
+                if (state.prices.length) {
+                    var ok = state.prices.some(function(p) {
+                        return v.priceNum >= p.min && v.priceNum <= p.max
+                    });
+                    if (!ok) return false
+                }
+                if (state.cat !== 'tous' && !v.cat.includes(state.cat)) return false;
+                if (state.tier !== 'tous' && v.tier !== state.tier) return false;
+                if (state.trans !== 'tous' && v.trans !== state.trans) return false;
+                // ✅ Filtre Année
+                if (state.annees.length && !state.annees.includes(String(v.year))) return false;
+                // ✅ Filtre Marque
+                if (state.modeles.length && !state.modeles.includes(v.brand)) return false;
+                return true;
+            });
+            renderGrid(filtered);
+            var n = filtered.length;
+            document.getElementById('sidebarCount').innerHTML = '<strong>' + n + '</strong> résultat' + (n !== 1 ? 's' : '')
         }
- 
-        function applyF() {
-            document.querySelectorAll('.vcard').forEach(function(c) {
-                var ok = (aT === 'tous' || c.dataset.cat.includes(aT)) &&
-                    (aTi === 'tous' || c.dataset.tier === aTi) &&
-                    (aD === 'tous' || (c.dataset.dispo === 'oui' && c.dataset.coming === 'non'));
-                if (ok) {
-                    c.classList.remove('hidden');
-                    c.style.animation = 'none';
-                    void c.offsetHeight;
-                    c.style.animation = 'fu .4s ease both'
-                } else c.classList.add('hidden')
-            })
-        }
-        applyF();
- 
+
         document.getElementById('dispoToggle').addEventListener('click', function() {
-            this.classList.toggle('active');
-            aD = this.classList.contains('active') ? 'dispo' : 'tous';
-            applyF()
+            state.dispo = !state.dispo;
+            this.classList.toggle('on', state.dispo);
+            this.setAttribute('aria-pressed', state.dispo);
+            applyFilters()
         });
-        document.querySelectorAll('.filter-btn[data-tier]').forEach(function(b) {
-            b.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn[data-tier]').forEach(function(x) {
-                    x.classList.remove('active')
+        document.querySelectorAll('.price-chk').forEach(function(chk) {
+            chk.addEventListener('change', function() {
+                if (this.checked) state.prices.push({
+                    min: +this.dataset.min,
+                    max: +this.dataset.max
                 });
-                b.classList.add('active');
-                aTi = b.dataset.tier;
-                applyF()
+                else state.prices = state.prices.filter(function(p) {
+                    return !(p.min === +chk.dataset.min && p.max === +chk.dataset.max)
+                });
+                applyFilters()
             })
         });
-        document.querySelectorAll('.filter-btn[data-filter]').forEach(function(b) {
-            b.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn[data-filter]').forEach(function(x) {
-                    x.classList.remove('active')
+        document.querySelectorAll('.cat-row').forEach(function(r) {
+            r.addEventListener('click', function() {
+                document.querySelectorAll('.cat-row').forEach(function(x) {
+                    x.classList.remove('active-cat')
                 });
-                b.classList.add('active');
-                aT = b.dataset.filter;
-                applyF()
+                r.classList.add('active-cat');
+                state.cat = r.dataset.cat;
+                applyFilters()
             })
         });
- 
+        document.querySelectorAll('.tier-radio').forEach(function(r) {
+            r.addEventListener('change', function() {
+                state.tier = this.value;
+                applyFilters()
+            })
+        });
+        document.querySelectorAll('.trans-radio').forEach(function(r) {
+            r.addEventListener('change', function() {
+                state.trans = this.value;
+                applyFilters()
+            })
+        });
+
+        // ✅ Listeners ANNÉE
+        document.querySelectorAll('.annee-chk').forEach(function(chk) {
+            chk.addEventListener('change', function() {
+                if (this.checked) state.annees.push(this.value);
+                else state.annees = state.annees.filter(function(a) {
+                    return a !== chk.value
+                });
+                applyFilters()
+            })
+        });
+
+        // ✅ Listeners MARQUE
+        document.querySelectorAll('.modele-chk').forEach(function(chk) {
+            chk.addEventListener('change', function() {
+                if (this.checked) state.modeles.push(this.value);
+                else state.modeles = state.modeles.filter(function(m) {
+                    return m !== chk.value
+                });
+                applyFilters()
+            })
+        });
+
+        document.getElementById('clearAll').addEventListener('click', function() {
+            state = {
+                dispo: false,
+                prices: [],
+                cat: 'tous',
+                tier: 'tous',
+                trans: 'tous',
+                annees: [],
+                modeles: [],
+                sort: 'default'
+            };
+            document.getElementById('dispoToggle').classList.remove('on');
+            document.querySelectorAll('.price-chk').forEach(function(c) {
+                c.checked = false
+            });
+            document.querySelectorAll('.cat-row').forEach(function(r) {
+                r.classList.toggle('active-cat', r.dataset.cat === 'tous')
+            });
+            document.querySelectorAll('.tier-radio').forEach(function(r) {
+                r.checked = r.value === 'tous'
+            });
+            document.querySelectorAll('.trans-radio').forEach(function(r) {
+                r.checked = r.value === 'tous'
+            });
+            // ✅ Reset Année + Marque
+            document.querySelectorAll('.annee-chk').forEach(function(c) {
+                c.checked = false
+            });
+            document.querySelectorAll('.modele-chk').forEach(function(c) {
+                c.checked = false
+            });
+            applyFilters()
+        });
+
+        document.querySelectorAll('.fs-header').forEach(function(h) {
+            h.addEventListener('click', function() {
+                var target = h.querySelector('.fs-arrow').dataset.target;
+                var body = document.getElementById(target);
+                var arrow = h.querySelector('.fs-arrow');
+                if (body.classList.contains('collapsed')) {
+                    body.classList.remove('collapsed');
+                    arrow.classList.add('open')
+                } else {
+                    body.classList.add('collapsed');
+                    arrow.classList.remove('open')
+                }
+            })
+        });
+
         var hbBtn = document.getElementById('hbBtn'),
             mobB = document.getElementById('mobBack'),
             mobP = document.getElementById('mobPanel');
- 
+
         function openMob() {
             hbBtn.classList.add('open');
             mobP.classList.add('open');
             mobB.classList.add('open');
             document.body.style.overflow = 'hidden'
         }
- 
+
         function closeMob() {
             hbBtn.classList.remove('open');
             mobP.classList.remove('open');
@@ -2114,7 +2973,7 @@
                 attributeFilter: ['class']
             })
         })();
- 
+
         var obs = new IntersectionObserver(function(es) {
             es.forEach(function(e) {
                 if (e.isIntersecting) {
@@ -2125,11 +2984,15 @@
         }, {
             threshold: .08
         });
-        document.querySelectorAll('.reveal:not(.vcard)').forEach(function(r) {
+        document.querySelectorAll('.reveal').forEach(function(r) {
             obs.observe(r)
         });
+
+        // Init
+        updateCounts();
+        applyFilters();
     </script>
     <script src="translate.js"></script>
 </body>
- 
+
 </html>
