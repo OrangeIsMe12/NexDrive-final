@@ -81,7 +81,7 @@
          ::-webkit-scrollbar-thumb:hover {
             background: #1565c0
         }
-        /* NAV — aligné page référence (fixed, logo 220px, trait lumineux) */
+        /* NAV */
         
         nav {
             position: fixed;
@@ -429,7 +429,7 @@
             color: rgba(255, 255, 255, .25);
             text-align: center
         }
-        /* ── Turo / Hors Turo (haut de la colonne filtres + mobile) ── */
+        /* ── Turo / Hors Turo ── */
         
         .sidebar-platform {
             display: grid;
@@ -926,30 +926,6 @@
             display: none
         }
         
-        .badge-promo {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            z-index: 6;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: .6rem;
-            font-weight: 800;
-            letter-spacing: 1.2px;
-            text-transform: uppercase
-        }
-        
-        .badge-promo.advice {
-            background: rgba(255, 255, 255, .15);
-            color: #fff;
-            backdrop-filter: blur(6px)
-        }
-        
-        .badge-promo.earlybird {
-            background: #2979ff;
-            color: #fff
-        }
-        
         .badge-dispo-corner {
             position: absolute;
             bottom: 12px;
@@ -1395,7 +1371,6 @@
             color: rgba(255, 255, 255, .45);
             margin-left: 3px
         }
-        /* ── Brand + Year row ── */
         
         .card-meta-row {
             display: flex;
@@ -1414,7 +1389,6 @@
             border: 1px solid transparent;
             letter-spacing: .02em
         }
-        /* Par marque */
         
         .brand-badge.brand-tesla {
             color: #e05050;
@@ -1522,33 +1496,6 @@
             color: var(--card-txt3);
             margin-left: 4px;
             font-weight: 400
-        }
-        
-        .price-total {
-            font-size: .7rem;
-            color: var(--card-txt3);
-            text-align: right;
-            line-height: 1.5
-        }
-        
-        .price-total span {
-            display: block;
-            font-size: .68rem;
-            color: var(--card-txt3)
-        }
-        
-        .price-total strong {
-            color: var(--card-txt2);
-            font-weight: 600
-        }
-        
-        .price-km {
-            font-size: .68rem;
-            color: var(--card-txt3);
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 4px
         }
         
         .color-swatches {
@@ -1746,7 +1693,7 @@
             line-height: 1;
             display: inline-block
         }
-        /* CTA — footer (style page alternate : #0c0e22, halo centré, trait .ctal) */
+        /* CTA */
         
         #cta {
             padding: 52px 48px 56px;
@@ -1984,9 +1931,10 @@
         <button class="hbg" id="hbBtn" type="button" aria-label="Menu"><span class="hb"></span><span class="hb"></span><span class="hb"></span></button>
     </nav>
 
+    <!-- ✅ CORRIGÉ : href vers tarifs-hors-turo.html -->
     <div class="fleet-platform-mobile" aria-label="Plateforme">
         <button type="button" class="ptab active" data-platform="turo"><span class="ptab-dot"></span> Turo</button>
-        <button type="button" class="ptab" data-platform="hors-turo" onclick="window.location.href='tarifs-hors-turo (1) (1).html'"><span class="ptab-dot"></span> Hors Turo</button>
+        <button type="button" class="ptab" data-platform="hors-turo" onclick="window.location.href='tarifs-hors-turo.html'"><span class="ptab-dot"></span> Hors Turo</button>
     </div>
 
     <div class="mbd" id="mobBack"></div>
@@ -2050,9 +1998,10 @@
 
         <!-- SIDEBAR FILTERS -->
         <aside class="sidebar">
+            <!-- ✅ CORRIGÉ : href vers tarifs-hors-turo.html -->
             <div class="sidebar-platform">
                 <button type="button" class="ptab active" data-platform="turo"><span class="ptab-dot"></span> Turo</button>
-                <button type="button" class="ptab" data-platform="hors-turo" onclick="window.location.href='tarifs-hors-turo (1) (1).html'"><span class="ptab-dot"></span> Hors Turo</button>
+                <button type="button" class="ptab" data-platform="hors-turo" onclick="window.location.href='tarifs-hors-turo.html'"><span class="ptab-dot"></span> Hors Turo</button>
             </div>
             <div class="sidebar-header">
                 <span class="sidebar-title">Filtres</span>
@@ -2146,7 +2095,6 @@
                 </div>
             </div>
 
-            <!-- ✅ NOUVEAU FILTRE ANNÉE -->
             <div class="filter-section">
                 <div class="fs-header">
                     <span class="fs-title">Année</span>
@@ -2161,7 +2109,6 @@
                 </div>
             </div>
 
-            <!-- ✅ NOUVEAU FILTRE MARQUE / MODÈLE -->
             <div class="filter-section">
                 <div class="fs-header">
                     <span class="fs-title">Marque</span>
@@ -2200,12 +2147,13 @@
     <section id="cta">
         <div class="ctag" aria-hidden="true"></div>
         <div class="ctal" aria-hidden="true"></div>
-        <div class="proc-label" data-i18n="vehicules.cta.label">Prêt à commencer</div>
-        <h2 class="ctah reveal vis"><span data-i18n="vehicules.cta.h">Réservez</span> <em data-i18n="vehicules.cta.h.em">maintenant</em></h2>
-        <p class="ctap reveal vis" data-i18n="vehicules.cta.p">Accédez à la meilleure flotte de véhicules premium au Québec.<br>Réservation en ligne, contrat automatique.</p>
+        <div class="proc-label">Prêt à commencer</div>
+        <h2 class="ctah reveal vis">Réservez <em>maintenant</em></h2>
+        <p class="ctap reveal vis">Accédez à la meilleure flotte de véhicules premium au Québec.<br>Réservation en ligne, contrat automatique.</p>
         <div class="ctab reveal vis">
-            <a href="index.html" class="bow" data-i18n="vehicules.cta.btn.home">Retour à l'accueil →</a>
-            <a href="tarifs-hors-turo (1) (1).html" class="bow bow-bluetour" data-i18n="vehicules.cta.btn.turo">Tarifs Hors Turo →</a>
+            <a href="index.html" class="bow">Retour à l'accueil →</a>
+            <!-- ✅ CORRIGÉ : href vers tarifs-hors-turo.html -->
+            <a href="tarifs-hors-turo.html" class="bow bow-bluetour">Tarifs Hors Turo →</a>
         </div>
     </section>
 
@@ -2274,20 +2222,8 @@
             km: 'illimité',
             priceNum: 65,
             trans: 'auto',
-            specs: [{
-                icon: 'people',
-                txt: '5'
-            }, {
-                icon: 'doors',
-                txt: '4 portes'
-            }, {
-                icon: 'auto',
-                txt: 'Auto'
-            }],
-            colors: [{
-                hex: '#c0c0c0',
-                imgs: []
-            }]
+            specs: [{icon: 'people', txt: '5'}, {icon: 'doors', txt: '4 portes'}, {icon: 'auto', txt: 'Auto'}],
+            colors: [{hex: '#c0c0c0', imgs: []}]
         }, {
             id: 'bmw5',
             cat: 'berline',
@@ -2302,23 +2238,8 @@
             km: 'illimité',
             priceNum: 120,
             trans: 'auto',
-            specs: [{
-                icon: 'people',
-                txt: '5'
-            }, {
-                icon: 'power',
-                txt: '330 ch'
-            }, {
-                icon: 'auto',
-                txt: 'Auto'
-            }],
-            colors: [{
-                hex: '#1a1a1a',
-                imgs: []
-            }, {
-                hex: '#e8e4dc',
-                imgs: []
-            }]
+            specs: [{icon: 'people', txt: '5'}, {icon: 'power', txt: '330 ch'}, {icon: 'auto', txt: 'Auto'}],
+            colors: [{hex: '#1a1a1a', imgs: []}, {hex: '#e8e4dc', imgs: []}]
         }, {
             id: 'rav4',
             cat: 'vus',
@@ -2333,26 +2254,8 @@
             km: 'illimité',
             priceNum: 80,
             trans: 'auto',
-            specs: [{
-                icon: 'people',
-                txt: '5'
-            }, {
-                icon: 'drive',
-                txt: 'AWD'
-            }, {
-                icon: 'auto',
-                txt: 'Auto'
-            }],
-            colors: [{
-                hex: '#2c3e6b',
-                imgs: []
-            }, {
-                hex: '#ffffff',
-                imgs: []
-            }, {
-                hex: '#8b0000',
-                imgs: []
-            }]
+            specs: [{icon: 'people', txt: '5'}, {icon: 'drive', txt: 'AWD'}, {icon: 'auto', txt: 'Auto'}],
+            colors: [{hex: '#2c3e6b', imgs: []}, {hex: '#ffffff', imgs: []}, {hex: '#8b0000', imgs: []}]
         }, {
             id: 'bmwx5',
             cat: 'vus',
@@ -2367,26 +2270,8 @@
             km: 'illimité',
             priceNum: 155,
             trans: 'auto',
-            specs: [{
-                icon: 'people',
-                txt: '5'
-            }, {
-                icon: 'drive',
-                txt: 'AWD'
-            }, {
-                icon: 'auto',
-                txt: 'Auto'
-            }],
-            colors: [{
-                hex: '#f5f0e8',
-                imgs: []
-            }, {
-                hex: '#1a1a1a',
-                imgs: []
-            }, {
-                hex: '#2c3e6b',
-                imgs: []
-            }]
+            specs: [{icon: 'people', txt: '5'}, {icon: 'drive', txt: 'AWD'}, {icon: 'auto', txt: 'Auto'}],
+            colors: [{hex: '#f5f0e8', imgs: []}, {hex: '#1a1a1a', imgs: []}, {hex: '#2c3e6b', imgs: []}]
         }, {
             id: 'urus',
             cat: 'vus',
@@ -2401,23 +2286,8 @@
             km: '200 km',
             priceNum: 750,
             trans: 'auto',
-            specs: [{
-                icon: 'people',
-                txt: '5'
-            }, {
-                icon: 'drive',
-                txt: 'AWD'
-            }, {
-                icon: 'power',
-                txt: '650 ch'
-            }],
-            colors: [{
-                hex: '#f5c518',
-                imgs: []
-            }, {
-                hex: '#1a1a1a',
-                imgs: []
-            }]
+            specs: [{icon: 'people', txt: '5'}, {icon: 'drive', txt: 'AWD'}, {icon: 'power', txt: '650 ch'}],
+            colors: [{hex: '#f5c518', imgs: []}, {hex: '#1a1a1a', imgs: []}]
         }, {
             id: 'mustang',
             cat: 'sport',
@@ -2432,26 +2302,8 @@
             km: '300 km',
             priceNum: 115,
             trans: 'auto',
-            specs: [{
-                icon: 'people',
-                txt: '4'
-            }, {
-                icon: 'power',
-                txt: '450 ch'
-            }, {
-                icon: 'auto',
-                txt: 'Auto'
-            }],
-            colors: [{
-                hex: '#8b0000',
-                imgs: []
-            }, {
-                hex: '#1a1a1a',
-                imgs: []
-            }, {
-                hex: '#ffffff',
-                imgs: []
-            }]
+            specs: [{icon: 'people', txt: '4'}, {icon: 'power', txt: '450 ch'}, {icon: 'auto', txt: 'Auto'}],
+            colors: [{hex: '#8b0000', imgs: []}, {hex: '#1a1a1a', imgs: []}, {hex: '#ffffff', imgs: []}]
         }, {
             id: 'ferrari',
             cat: 'sport',
@@ -2466,23 +2318,8 @@
             km: '200 km',
             priceNum: 1100,
             trans: 'auto',
-            specs: [{
-                icon: 'people',
-                txt: '2'
-            }, {
-                icon: 'power',
-                txt: '830 ch'
-            }, {
-                icon: 'auto',
-                txt: 'Auto'
-            }],
-            colors: [{
-                hex: '#cc0000',
-                imgs: []
-            }, {
-                hex: '#1a1a1a',
-                imgs: []
-            }]
+            specs: [{icon: 'people', txt: '2'}, {icon: 'power', txt: '830 ch'}, {icon: 'auto', txt: 'Auto'}],
+            colors: [{hex: '#cc0000', imgs: []}, {hex: '#1a1a1a', imgs: []}]
         }, {
             id: 'teslay',
             cat: 'electrique vus',
@@ -2497,23 +2334,8 @@
             km: 'illimité',
             priceNum: 130,
             trans: 'auto',
-            specs: [{
-                icon: 'people',
-                txt: '5'
-            }, {
-                icon: 'range',
-                txt: '533 km'
-            }, {
-                icon: 'drive',
-                txt: 'AWD'
-            }],
-            colors: [{
-                hex: '#ffffff',
-                imgs: []
-            }, {
-                hex: '#1a1a1a',
-                imgs: []
-            }]
+            specs: [{icon: 'people', txt: '5'}, {icon: 'range', txt: '533 km'}, {icon: 'drive', txt: 'AWD'}],
+            colors: [{hex: '#ffffff', imgs: []}, {hex: '#1a1a1a', imgs: []}]
         }, {
             id: 'taycan',
             cat: 'electrique',
@@ -2528,29 +2350,8 @@
             km: '250 km',
             priceNum: 295,
             trans: 'auto',
-            specs: [{
-                icon: 'people',
-                txt: '4'
-            }, {
-                icon: 'range',
-                txt: '400 km'
-            }, {
-                icon: 'drive',
-                txt: 'AWD'
-            }],
-            colors: [{
-                hex: '#1a1a1a',
-                imgs: []
-            }, {
-                hex: '#8b0000',
-                imgs: []
-            }, {
-                hex: '#e8e4dc',
-                imgs: []
-            }, {
-                hex: '#2d5a2d',
-                imgs: []
-            }]
+            specs: [{icon: 'people', txt: '4'}, {icon: 'range', txt: '400 km'}, {icon: 'drive', txt: 'AWD'}],
+            colors: [{hex: '#1a1a1a', imgs: []}, {hex: '#8b0000', imgs: []}, {hex: '#e8e4dc', imgs: []}, {hex: '#2d5a2d', imgs: []}]
         }, {
             id: 'tesla3',
             cat: 'electrique',
@@ -2565,40 +2366,18 @@
             km: 'illimité',
             priceNum: 110,
             trans: 'auto',
-            specs: [{
-                icon: 'people',
-                txt: '5'
-            }, {
-                icon: 'range',
-                txt: '400 km'
-            }, {
-                icon: 'auto',
-                txt: 'Auto'
-            }],
-            colors: [{
-                hex: '#1F3B73',
-                imgs: TESLA3_CAROUSEL_IMGS
-            }]
+            specs: [{icon: 'people', txt: '5'}, {icon: 'range', txt: '400 km'}, {icon: 'auto', txt: 'Auto'}],
+            colors: [{hex: '#1F3B73', imgs: TESLA3_CAROUSEL_IMGS}]
         }];
 
-        // ─── Mise à jour dynamique des compteurs ───
         function updateCounts() {
-            // Années
-            var anneeIds = ['2021', '2022', '2023', '2024', '2025'];
-            anneeIds.forEach(function(yr) {
+            ['2021','2022','2023','2024','2025'].forEach(function(yr) {
                 var el = document.getElementById('cnt-annee-' + yr);
-                if (el) el.textContent = vehicles.filter(function(v) {
-                    return String(v.year) === yr;
-                }).length;
+                if (el) el.textContent = vehicles.filter(function(v) { return String(v.year) === yr; }).length;
             });
-
-            // Marques
-            var marques = ['Toyota', 'Honda', 'Hyundai', 'Tesla', 'BMW', 'Ford', 'Mercedes', 'Audi', 'Porsche', 'Lamborghini', 'Ferrari'];
-            marques.forEach(function(m) {
+            ['Toyota','Honda','Hyundai','Tesla','BMW','Ford','Mercedes','Audi','Porsche','Lamborghini','Ferrari'].forEach(function(m) {
                 var el = document.getElementById('cnt-modele-' + m);
-                if (el) el.textContent = vehicles.filter(function(v) {
-                    return v.brand === m;
-                }).length;
+                if (el) el.textContent = vehicles.filter(function(v) { return v.brand === m; }).length;
             });
         }
 
@@ -2607,41 +2386,35 @@
             if (v.colors.length === 1) {
                 var c0 = v.colors[0];
                 var b0 = (c0.hex === '#fff' || c0.hex === '#ffffff') ? 'border-color:rgba(255,255,255,.4)' : '';
-                return '<div class="color-swatches" id="sw-' + v.id + '">' +
-                    '<span class="cswatch active" data-cidx="0" style="background:' + c0.hex + ';' + b0 + '" onclick="swSet(this,\'' + v.id + '\',0)"></span></div>';
+                return '<div class="color-swatches" id="sw-' + v.id + '"><span class="cswatch active" data-cidx="0" style="background:' + c0.hex + ';' + b0 + '" onclick="swSet(this,\'' + v.id + '\',0)"></span></div>';
             }
-            var shown = v.colors.slice(0, 2),
-                extra = v.colors.slice(2),
-                h = '<div class="color-swatches" id="sw-' + v.id + '">';
+            var shown = v.colors.slice(0, 2), extra = v.colors.slice(2);
+            var h = '<div class="color-swatches" id="sw-' + v.id + '">';
             shown.forEach(function(c, i) {
                 var b = (c.hex === '#fff' || c.hex === '#ffffff') ? 'border-color:rgba(255,255,255,.4)' : '';
-                h += '<span class="cswatch' + (i === 0 ? ' active' : '') + '" data-cidx="' + i + '" style="background:' + c.hex + ';' + b + '" onclick="swSet(this,\'' + v.id + '\',' + i + ')"></span>'
+                h += '<span class="cswatch' + (i === 0 ? ' active' : '') + '" data-cidx="' + i + '" style="background:' + c.hex + ';' + b + '" onclick="swSet(this,\'' + v.id + '\',' + i + ')"></span>';
             });
             if (extra.length) {
                 h += '<button class="cswatch-more-btn" onclick="swPop(event,\'' + v.id + '\')">+' + extra.length + '</button><div class="color-popover" id="cpop-' + v.id + '"><div class="color-popover-title">Couleurs</div><div class="color-popover-swatches">';
                 v.colors.forEach(function(c, i) {
                     var b = (c.hex === '#fff' || c.hex === '#ffffff') ? 'border-color:rgba(255,255,255,.4)' : '';
-                    h += '<span class="cpop-swatch' + (i === 0 ? ' active' : '') + '" data-cidx="' + i + '" style="background:' + c.hex + ';' + b + '" onclick="swPopSet(event,this,\'' + v.id + '\',' + i + ')"></span>'
+                    h += '<span class="cpop-swatch' + (i === 0 ? ' active' : '') + '" data-cidx="' + i + '" style="background:' + c.hex + ';' + b + '" onclick="swPopSet(event,this,\'' + v.id + '\',' + i + ')"></span>';
                 });
-                h += '</div></div>'
+                h += '</div></div>';
             }
-            return h + '</div>'
+            return h + '</div>';
         }
 
         function renderGrid(list) {
             var grid = document.getElementById('fleetGrid');
             grid.innerHTML = list.map(function(v) {
-                var imgs = slideImgsForVehicle(v, 0),
-                    slides = carouselTrackHTML(v, 0);
+                var imgs = slideImgsForVehicle(v, 0), slides = carouselTrackHTML(v, 0);
                 var sw = buildSwatches(v);
                 var dispoBadge = v.dispo ? '<span class="badge-dispo-corner"><span class="badge-dispo-pulse" aria-hidden="true"></span><span class="badge-dispo-txt">DISPONIBLE</span></span>' : '<span class="badge-loue-corner">● Loué</span>';
                 var confortBadge = v.tier === 'confort' ? '<span class="badge-confort-corner"><span class="badge-confort-accent" aria-hidden="true"></span><span class="badge-confort-txt">Confort</span></span>' : '';
                 var btn = !v.dispo ? '<button class="btn-indispo" disabled>Indisponible</button>' : '<button class="btn-reserver" onclick="reserver(\'' + v.title.replace(/'/g, "\\'") + '\',\'' + v.price + '$\',\'' + v.sub.replace(/'/g, "\\'") + '\',\'https://turo.com\')"><span>Réserver</span>' + ARR + '</button>';
-                var specs = v.specs.map(function(s) {
-                    return '<div class="spec-item">' + (ICONS[s.icon] || '') + '<span>' + s.txt + '</span></div>'
-                }).join('');
+                var specs = v.specs.map(function(s) { return '<div class="spec-item">' + (ICONS[s.icon] || '') + '<span>' + s.txt + '</span></div>'; }).join('');
                 var comingHTML = v.comingSoon ? '<div class="coming-overlay"></div><div class="coming-label"><span class="txt">Bientôt disponible</span></div>' : '';
-                var totalEst = v.priceNum * 3;
                 var brandCls = BRAND_CLASS[v.brand] || 'brand-default';
                 var brandHTML = v.brand && v.brand !== 'Tesla' ? '<span class="brand-badge ' + brandCls + '">' + v.brand + '</span>' : '';
                 var metaHTML = brandHTML ? '<div class="card-meta-row">' + brandHTML + '</div>' : '';
@@ -2650,18 +2423,15 @@
                 var carouselClass = 'carousel' + (imgCount <= 1 ? ' carousel--single' : '');
                 return '<div class="vcard" data-cat="' + v.cat + '" data-tier="' + v.tier + '" data-dispo="' + (v.dispo ? 'oui' : 'non') + '" data-coming="' + (v.comingSoon ? 'oui' : 'non') + '" data-price="' + v.priceNum + '" data-trans="' + v.trans + '" data-title="' + v.title + '" id="vc-' + v.id + '">' + comingHTML +
                     '<div class="' + carouselClass + '" id="carousel-' + v.id + '">' +
-                    dispoBadge +
-                    confortBadge +
+                    dispoBadge + confortBadge +
                     '<div class="carousel-track" id="ct-' + v.id + '">' + slides + '</div>' +
                     '<button class="car-btn prev" onclick="slideVcard(\'' + v.id + '\',-1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button>' +
                     '<button class="car-btn next" onclick="slideVcard(\'' + v.id + '\',1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="9 18 15 12 9 6"/></svg></button>' +
                     '<div class="car-dots" id="dots-' + v.id + '"></div>' +
                     '</div>' +
                     '<div class="card-body">' +
-                    '<div class="card-headline">' +
-                    metaHTML +
-                    '<div class="card-title">' + v.title + '</div>' +
-                    yearLineHTML +
+                    '<div class="card-headline">' + metaHTML +
+                    '<div class="card-title">' + v.title + '</div>' + yearLineHTML +
                     '<div class="price-row price-row-inline-btn">' +
                     '<div class="price-main"><span class="currency">$</span><span class="amount">' + v.price + '</span><span class="per">/ jour</span></div>' +
                     '<div class="price-row-btn-wrap">' + btn + '</div>' +
@@ -2670,7 +2440,7 @@
                     '</div>' +
                     '<div class="specs-row">' + specs + '</div>' +
                     '</div>' +
-                    '</div>'
+                    '</div>';
             }).join('');
 
             var car = {};
@@ -2678,25 +2448,14 @@
                 var t = document.getElementById('ct-' + v.id);
                 if (!t) return;
                 var imgs0 = slideImgsForVehicle(v, 0);
-                var tot = (imgs0 && imgs0.length) ? imgs0.length : 1,
-                    de = document.getElementById('dots-' + v.id);
+                var tot = (imgs0 && imgs0.length) ? imgs0.length : 1, de = document.getElementById('dots-' + v.id);
                 for (var i = 0; i < tot; i++) {
                     var d = document.createElement('span');
                     d.className = 'car-dot' + (i === 0 ? ' active' : '');
-                    (function(n) {
-                        d.addEventListener('click', function(e) {
-                            e.stopPropagation();
-                            goTo(v.id, n)
-                        })
-                    })(i);
-                    de.appendChild(d)
+                    (function(n) { d.addEventListener('click', function(e) { e.stopPropagation(); goTo(v.id, n); }); })(i);
+                    de.appendChild(d);
                 }
-                car[v.id] = {
-                    track: t,
-                    total: tot,
-                    idx: 0,
-                    dots: de
-                }
+                car[v.id] = {track: t, total: tot, idx: 0, dots: de};
             });
             window._car = car;
         }
@@ -2706,220 +2465,128 @@
             if (!c) return;
             c.idx = (n + c.total) % c.total;
             c.track.style.transform = 'translateX(-' + (c.idx * 100) + '%)';
-            c.dots.querySelectorAll('.car-dot').forEach(function(d, i) {
-                d.className = 'car-dot' + (i === c.idx ? ' active' : '')
-            })
+            c.dots.querySelectorAll('.car-dot').forEach(function(d, i) { d.className = 'car-dot' + (i === c.idx ? ' active' : ''); });
         }
 
-        function slideVcard(id, dir) {
-            var c = window._car[id];
-            if (c) goTo(id, c.idx + dir)
-        }
+        function slideVcard(id, dir) { var c = window._car[id]; if (c) goTo(id, c.idx + dir); }
 
         function reserver(t, p, s, u) {
-            window.location.href = 'confirmation.html?voiture=' + encodeURIComponent(t) + '&prix=' + encodeURIComponent(p) + '&sub=' + encodeURIComponent(s) + '&turo=' + encodeURIComponent(u)
+            window.location.href = 'confirmation.html?voiture=' + encodeURIComponent(t) + '&prix=' + encodeURIComponent(p) + '&sub=' + encodeURIComponent(s) + '&turo=' + encodeURIComponent(u);
         }
 
         function updImgs(vid, ci) {
-            var v = vehicles.find(function(x) {
-                return x.id === vid
-            });
+            var v = vehicles.find(function(x) { return x.id === vid; });
             if (!v) return;
             var imgs = slideImgsForVehicle(v, ci);
             var tot = (imgs && imgs.length) ? imgs.length : 1;
-            var t = document.getElementById('ct-' + vid),
-                de = document.getElementById('dots-' + vid);
+            var t = document.getElementById('ct-' + vid), de = document.getElementById('dots-' + vid);
             t.innerHTML = carouselTrackHTML(v, ci);
             de.innerHTML = '';
             for (var i = 0; i < tot; i++) {
                 var d = document.createElement('span');
                 d.className = 'car-dot' + (i === 0 ? ' active' : '');
-                (function(n) {
-                    d.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        goTo(vid, n)
-                    })
-                })(i);
-                de.appendChild(d)
+                (function(n) { d.addEventListener('click', function(e) { e.stopPropagation(); goTo(vid, n); }); })(i);
+                de.appendChild(d);
             }
-            window._car[vid] = {
-                track: t,
-                total: tot,
-                idx: 0,
-                dots: de
-            };
+            window._car[vid] = {track: t, total: tot, idx: 0, dots: de};
             t.style.transform = 'translateX(0)';
             var carEl = document.getElementById('carousel-' + vid);
-            if (carEl) carEl.classList.toggle('carousel--single', tot <= 1)
+            if (carEl) carEl.classList.toggle('carousel--single', tot <= 1);
         }
 
         function swSet(el, vid, ci) {
-            el.closest('.color-swatches').querySelectorAll('.cswatch').forEach(function(s) {
-                s.classList.remove('active')
-            });
+            el.closest('.color-swatches').querySelectorAll('.cswatch').forEach(function(s) { s.classList.remove('active'); });
             el.classList.add('active');
-            updImgs(vid, ci)
+            updImgs(vid, ci);
         }
 
         function swPop(e, vid) {
             e.stopPropagation();
             var p = document.getElementById('cpop-' + vid);
             if (!p) return;
-            document.querySelectorAll('.color-popover.open').forEach(function(x) {
-                if (x !== p) x.classList.remove('open')
-            });
-            p.classList.toggle('open')
+            document.querySelectorAll('.color-popover.open').forEach(function(x) { if (x !== p) x.classList.remove('open'); });
+            p.classList.toggle('open');
         }
-        document.addEventListener('click', function() {
-            document.querySelectorAll('.color-popover.open').forEach(function(p) {
-                p.classList.remove('open')
-            })
-        });
+        document.addEventListener('click', function() { document.querySelectorAll('.color-popover.open').forEach(function(p) { p.classList.remove('open'); }); });
 
         function swPopSet(e, el, vid, ci) {
             e.stopPropagation();
-            el.closest('.color-popover-swatches').querySelectorAll('.cpop-swatch').forEach(function(s) {
-                s.classList.remove('active')
-            });
+            el.closest('.color-popover-swatches').querySelectorAll('.cpop-swatch').forEach(function(s) { s.classList.remove('active'); });
             el.classList.add('active');
             var sw = document.getElementById('sw-' + vid);
-            if (sw) sw.querySelectorAll('.cswatch').forEach(function(s) {
-                s.classList.remove('active');
-                if (parseInt(s.dataset.cidx) === ci) s.classList.add('active')
-            });
-            updImgs(vid, ci)
+            if (sw) sw.querySelectorAll('.cswatch').forEach(function(s) { s.classList.remove('active'); if (parseInt(s.dataset.cidx) === ci) s.classList.add('active'); });
+            updImgs(vid, ci);
         }
 
-        // ─── STATE avec annees + modeles ───
-        var state = {
-            dispo: false,
-            prices: [],
-            cat: 'tous',
-            tier: 'tous',
-            trans: 'tous',
-            annees: [],
-            modeles: [],
-            sort: 'default'
-        };
+        var state = {dispo: false, prices: [], cat: 'tous', tier: 'tous', trans: 'tous', annees: [], modeles: [], sort: 'default'};
 
         function applyFilters() {
             var filtered = vehicles.filter(function(v) {
                 if (state.dispo && !(v.dispo && !v.comingSoon)) return false;
                 if (state.prices.length) {
-                    var ok = state.prices.some(function(p) {
-                        return v.priceNum >= p.min && v.priceNum <= p.max
-                    });
-                    if (!ok) return false
+                    var ok = state.prices.some(function(p) { return v.priceNum >= p.min && v.priceNum <= p.max; });
+                    if (!ok) return false;
                 }
                 if (state.cat !== 'tous' && !v.cat.includes(state.cat)) return false;
                 if (state.tier !== 'tous' && v.tier !== state.tier) return false;
                 if (state.trans !== 'tous' && v.trans !== state.trans) return false;
-                // ✅ Filtre Année
                 if (state.annees.length && !state.annees.includes(String(v.year))) return false;
-                // ✅ Filtre Marque
                 if (state.modeles.length && !state.modeles.includes(v.brand)) return false;
                 return true;
             });
             renderGrid(filtered);
             var n = filtered.length;
-            document.getElementById('sidebarCount').innerHTML = '<strong>' + n + '</strong> résultat' + (n !== 1 ? 's' : '')
+            document.getElementById('sidebarCount').innerHTML = '<strong>' + n + '</strong> résultat' + (n !== 1 ? 's' : '');
         }
 
         document.getElementById('dispoToggle').addEventListener('click', function() {
             state.dispo = !state.dispo;
             this.classList.toggle('on', state.dispo);
             this.setAttribute('aria-pressed', state.dispo);
-            applyFilters()
+            applyFilters();
         });
         document.querySelectorAll('.price-chk').forEach(function(chk) {
             chk.addEventListener('change', function() {
-                if (this.checked) state.prices.push({
-                    min: +this.dataset.min,
-                    max: +this.dataset.max
-                });
-                else state.prices = state.prices.filter(function(p) {
-                    return !(p.min === +chk.dataset.min && p.max === +chk.dataset.max)
-                });
-                applyFilters()
-            })
+                if (this.checked) state.prices.push({min: +this.dataset.min, max: +this.dataset.max});
+                else state.prices = state.prices.filter(function(p) { return !(p.min === +chk.dataset.min && p.max === +chk.dataset.max); });
+                applyFilters();
+            });
         });
         document.querySelectorAll('.cat-row').forEach(function(r) {
             r.addEventListener('click', function() {
-                document.querySelectorAll('.cat-row').forEach(function(x) {
-                    x.classList.remove('active-cat')
-                });
+                document.querySelectorAll('.cat-row').forEach(function(x) { x.classList.remove('active-cat'); });
                 r.classList.add('active-cat');
                 state.cat = r.dataset.cat;
-                applyFilters()
-            })
+                applyFilters();
+            });
         });
-        document.querySelectorAll('.tier-radio').forEach(function(r) {
-            r.addEventListener('change', function() {
-                state.tier = this.value;
-                applyFilters()
-            })
-        });
-        document.querySelectorAll('.trans-radio').forEach(function(r) {
-            r.addEventListener('change', function() {
-                state.trans = this.value;
-                applyFilters()
-            })
-        });
-
-        // ✅ Listeners ANNÉE
+        document.querySelectorAll('.tier-radio').forEach(function(r) { r.addEventListener('change', function() { state.tier = this.value; applyFilters(); }); });
+        document.querySelectorAll('.trans-radio').forEach(function(r) { r.addEventListener('change', function() { state.trans = this.value; applyFilters(); }); });
         document.querySelectorAll('.annee-chk').forEach(function(chk) {
             chk.addEventListener('change', function() {
                 if (this.checked) state.annees.push(this.value);
-                else state.annees = state.annees.filter(function(a) {
-                    return a !== chk.value
-                });
-                applyFilters()
-            })
+                else state.annees = state.annees.filter(function(a) { return a !== chk.value; });
+                applyFilters();
+            });
         });
-
-        // ✅ Listeners MARQUE
         document.querySelectorAll('.modele-chk').forEach(function(chk) {
             chk.addEventListener('change', function() {
                 if (this.checked) state.modeles.push(this.value);
-                else state.modeles = state.modeles.filter(function(m) {
-                    return m !== chk.value
-                });
-                applyFilters()
-            })
+                else state.modeles = state.modeles.filter(function(m) { return m !== chk.value; });
+                applyFilters();
+            });
         });
 
         document.getElementById('clearAll').addEventListener('click', function() {
-            state = {
-                dispo: false,
-                prices: [],
-                cat: 'tous',
-                tier: 'tous',
-                trans: 'tous',
-                annees: [],
-                modeles: [],
-                sort: 'default'
-            };
+            state = {dispo: false, prices: [], cat: 'tous', tier: 'tous', trans: 'tous', annees: [], modeles: [], sort: 'default'};
             document.getElementById('dispoToggle').classList.remove('on');
-            document.querySelectorAll('.price-chk').forEach(function(c) {
-                c.checked = false
-            });
-            document.querySelectorAll('.cat-row').forEach(function(r) {
-                r.classList.toggle('active-cat', r.dataset.cat === 'tous')
-            });
-            document.querySelectorAll('.tier-radio').forEach(function(r) {
-                r.checked = r.value === 'tous'
-            });
-            document.querySelectorAll('.trans-radio').forEach(function(r) {
-                r.checked = r.value === 'tous'
-            });
-            // ✅ Reset Année + Marque
-            document.querySelectorAll('.annee-chk').forEach(function(c) {
-                c.checked = false
-            });
-            document.querySelectorAll('.modele-chk').forEach(function(c) {
-                c.checked = false
-            });
-            applyFilters()
+            document.querySelectorAll('.price-chk').forEach(function(c) { c.checked = false; });
+            document.querySelectorAll('.cat-row').forEach(function(r) { r.classList.toggle('active-cat', r.dataset.cat === 'tous'); });
+            document.querySelectorAll('.tier-radio').forEach(function(r) { r.checked = r.value === 'tous'; });
+            document.querySelectorAll('.trans-radio').forEach(function(r) { r.checked = r.value === 'tous'; });
+            document.querySelectorAll('.annee-chk').forEach(function(c) { c.checked = false; });
+            document.querySelectorAll('.modele-chk').forEach(function(c) { c.checked = false; });
+            applyFilters();
         });
 
         document.querySelectorAll('.fs-header').forEach(function(h) {
@@ -2927,68 +2594,31 @@
                 var target = h.querySelector('.fs-arrow').dataset.target;
                 var body = document.getElementById(target);
                 var arrow = h.querySelector('.fs-arrow');
-                if (body.classList.contains('collapsed')) {
-                    body.classList.remove('collapsed');
-                    arrow.classList.add('open')
-                } else {
-                    body.classList.add('collapsed');
-                    arrow.classList.remove('open')
-                }
-            })
+                if (body.classList.contains('collapsed')) { body.classList.remove('collapsed'); arrow.classList.add('open'); }
+                else { body.classList.add('collapsed'); arrow.classList.remove('open'); }
+            });
         });
 
-        var hbBtn = document.getElementById('hbBtn'),
-            mobB = document.getElementById('mobBack'),
-            mobP = document.getElementById('mobPanel');
+        var hbBtn = document.getElementById('hbBtn'), mobB = document.getElementById('mobBack'), mobP = document.getElementById('mobPanel');
 
-        function openMob() {
-            hbBtn.classList.add('open');
-            mobP.classList.add('open');
-            mobB.classList.add('open');
-            document.body.style.overflow = 'hidden'
-        }
-
-        function closeMob() {
-            hbBtn.classList.remove('open');
-            mobP.classList.remove('open');
-            mobB.classList.remove('open');
-            document.body.style.overflow = ''
-        }
-        hbBtn.addEventListener('click', function() {
-            mobP.classList.contains('open') ? closeMob() : openMob()
-        });
+        function openMob() { hbBtn.classList.add('open'); mobP.classList.add('open'); mobB.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeMob() { hbBtn.classList.remove('open'); mobP.classList.remove('open'); mobB.classList.remove('open'); document.body.style.overflow = ''; }
+        hbBtn.addEventListener('click', function() { mobP.classList.contains('open') ? closeMob() : openMob(); });
         mobB.addEventListener('click', closeMob);
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeMob()
-        });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMob(); });
         (function() {
             var ls = mobP.querySelectorAll('.ma');
             new MutationObserver(function() {
                 var o = mobP.classList.contains('open');
-                ls.forEach(function(l, i) {
-                    l.style.transitionDelay = o ? (.06 + i * .05) + 's' : '0s'
-                })
-            }).observe(mobP, {
-                attributes: true,
-                attributeFilter: ['class']
-            })
+                ls.forEach(function(l, i) { l.style.transitionDelay = o ? (.06 + i * .05) + 's' : '0s'; });
+            }).observe(mobP, {attributes: true, attributeFilter: ['class']});
         })();
 
         var obs = new IntersectionObserver(function(es) {
-            es.forEach(function(e) {
-                if (e.isIntersecting) {
-                    e.target.classList.add('vis');
-                    obs.unobserve(e.target)
-                }
-            })
-        }, {
-            threshold: .08
-        });
-        document.querySelectorAll('.reveal').forEach(function(r) {
-            obs.observe(r)
-        });
+            es.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+        }, {threshold: .08});
+        document.querySelectorAll('.reveal').forEach(function(r) { obs.observe(r); });
 
-        // Init
         updateCounts();
         applyFilters();
     </script>
