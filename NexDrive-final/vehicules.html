@@ -462,7 +462,8 @@
             border-radius: 10px;
             background: #fff;
             transition: all .2s;
-            flex-shrink: 0
+            flex-shrink: 0;
+            text-decoration: none
         }
         
         .sidebar-platform .ptab:hover {
@@ -493,7 +494,8 @@
             border-radius: 10px;
             background: var(--bg3);
             transition: all .2s;
-            flex-shrink: 0
+            flex-shrink: 0;
+            text-decoration: none
         }
         
         .fleet-platform-mobile .ptab:hover {
@@ -1934,8 +1936,8 @@
     </nav>
  
     <div class="fleet-platform-mobile" aria-label="Plateforme">
-        <button type="button" class="ptab active" data-platform="turo"><span class="ptab-dot"></span> Turo</button>
-        <button type="button" class="ptab" data-platform="hors-turo" onclick="window.location.href='tarifs-hors-turo.html'"><span class="ptab-dot"></span> Hors Turo</button>
+        <a class="ptab active" data-platform="turo" href="vehicules.html"><span class="ptab-dot"></span> Turo</a>
+        <a class="ptab" data-platform="hors-turo" href="tarifs-hors-turo.html"><span class="ptab-dot"></span> Hors Turo</a>
     </div>
  
     <div class="mbd" id="mobBack"></div>
@@ -2007,8 +2009,8 @@
         <!-- SIDEBAR FILTERS -->
         <aside class="sidebar">
             <div class="sidebar-platform">
-                <button type="button" class="ptab active" data-platform="turo"><span class="ptab-dot"></span> Turo</button>
-                <button type="button" class="ptab" data-platform="hors-turo" onclick="window.location.href='tarifs-hors-turo.html'"><span class="ptab-dot"></span> Hors Turo</button>
+                <a class="ptab active" data-platform="turo" href="vehicules.html"><span class="ptab-dot"></span> Turo</a>
+                <a class="ptab" data-platform="hors-turo" href="tarifs-hors-turo.html"><span class="ptab-dot"></span> Hors Turo</a>
             </div>
             <div class="sidebar-header">
                 <span class="sidebar-title">Filtres</span>
@@ -2629,6 +2631,7 @@
         applyFilters();
     </script>
     <!-- ✅ CORRECTION : translate.js supprimé (fichier inexistant causant une erreur JS) -->
+    <script src="translate.js"></script>
 </body>
  
 </html>
