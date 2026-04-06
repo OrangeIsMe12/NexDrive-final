@@ -1,6 +1,9 @@
+Vehicules · HTML
+Copier
+
 <!DOCTYPE html>
 <html lang="fr">
-
+ 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -1923,20 +1926,19 @@
         }
     </style>
 </head>
-
+ 
 <body>
-
+ 
     <nav>
         <a href="index.html" class="logo"><img src="logo/3.png" alt="NexDrive" /></a>
         <button class="hbg" id="hbBtn" type="button" aria-label="Menu"><span class="hb"></span><span class="hb"></span><span class="hb"></span></button>
     </nav>
-
-    <!-- ✅ CORRIGÉ : href vers tarifs-hors-turo.html -->
+ 
     <div class="fleet-platform-mobile" aria-label="Plateforme">
         <button type="button" class="ptab active" data-platform="turo"><span class="ptab-dot"></span> Turo</button>
         <button type="button" class="ptab" data-platform="hors-turo" onclick="window.location.href='tarifs-hors-turo.html'"><span class="ptab-dot"></span> Hors Turo</button>
     </div>
-
+ 
     <div class="mbd" id="mobBack"></div>
     <div class="mpn" id="mobPanel">
         <div class="mph">
@@ -1966,6 +1968,13 @@
                         <span class="mn-lbl">Partenaires</span>
                     </div>
                 </a>
+                <!-- ✅ CORRECTION : Lien Tarifs Hors Turo ajouté dans le menu mobile -->
+                <a href="tarifs-hors-turo.html" class="ma" onclick="closeMob()">
+                    <div class="mn-left">
+                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+                        <span class="mn-lbl">Tarifs Hors Turo</span>
+                    </div>
+                </a>
                 <a href="faq.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
                         <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg></div>
@@ -1993,12 +2002,11 @@
             <div class="mf">NexDrive — Québec © 2026</div>
         </div>
     </div>
-
+ 
     <div class="main-layout">
-
+ 
         <!-- SIDEBAR FILTERS -->
         <aside class="sidebar">
-            <!-- ✅ CORRIGÉ : href vers tarifs-hors-turo.html -->
             <div class="sidebar-platform">
                 <button type="button" class="ptab active" data-platform="turo"><span class="ptab-dot"></span> Turo</button>
                 <button type="button" class="ptab" data-platform="hors-turo" onclick="window.location.href='tarifs-hors-turo.html'"><span class="ptab-dot"></span> Hors Turo</button>
@@ -2007,7 +2015,7 @@
                 <span class="sidebar-title">Filtres</span>
                 <button class="clear-all" id="clearAll">Effacer tout</button>
             </div>
-
+ 
             <div class="filter-section">
                 <div class="fs-header">
                     <span class="fs-title">Disponibilité</span>
@@ -2020,7 +2028,7 @@
                     </div>
                 </div>
             </div>
-
+ 
             <div class="filter-section">
                 <div class="fs-header">
                     <span class="fs-title">Prix / Jour</span>
@@ -2033,7 +2041,7 @@
                     <label class="check-row"><input type="checkbox" class="price-chk" data-min="500" data-max="99999"><span class="check-label">500 $ +</span><span class="check-count" id="cnt-prix-3">2</span></label>
                 </div>
             </div>
-
+ 
             <div class="filter-section">
                 <div class="fs-header">
                     <span class="fs-title">Catégorie</span>
@@ -2067,7 +2075,7 @@
                     </div>
                 </div>
             </div>
-
+ 
             <div class="filter-section">
                 <div class="fs-header">
                     <span class="fs-title">Gamme</span>
@@ -2082,7 +2090,7 @@
                     <label class="check-row"><input type="radio" name="tier" class="tier-radio" value="prestige"><span class="check-label">Prestige</span></label>
                 </div>
             </div>
-
+ 
             <div class="filter-section">
                 <div class="fs-header">
                     <span class="fs-title">Transmission</span>
@@ -2094,7 +2102,7 @@
                     <label class="check-row"><input type="radio" name="trans" class="trans-radio" value="manuel"><span class="check-label">Manuelle</span></label>
                 </div>
             </div>
-
+ 
             <div class="filter-section">
                 <div class="fs-header">
                     <span class="fs-title">Année</span>
@@ -2108,7 +2116,7 @@
                     <label class="check-row"><input type="checkbox" class="annee-chk" value="2025"><span class="check-label">2025</span><span class="check-count" id="cnt-annee-2025">0</span></label>
                 </div>
             </div>
-
+ 
             <div class="filter-section">
                 <div class="fs-header">
                     <span class="fs-title">Marque</span>
@@ -2128,10 +2136,10 @@
                     <label class="check-row"><input type="checkbox" class="modele-chk" value="Ferrari"><span class="check-label">Ferrari</span><span class="check-count" id="cnt-modele-Ferrari">0</span></label>
                 </div>
             </div>
-
+ 
             <div class="results-count" id="sidebarCount"></div>
         </aside>
-
+ 
         <!-- FLEET GRID -->
         <div class="fleet-content">
             <div class="fleet-page-title">
@@ -2139,11 +2147,11 @@
                 <h1 class="fleet-page-h1">Choisissez votre <em>véhicule</em></h1>
                 <p class="fleet-page-sub">La meilleure flotte premium au Québec</p>
             </div>
-
+ 
             <div class="fleet-grid" id="fleetGrid"></div>
         </div>
     </div>
-
+ 
     <section id="cta">
         <div class="ctag" aria-hidden="true"></div>
         <div class="ctal" aria-hidden="true"></div>
@@ -2152,11 +2160,10 @@
         <p class="ctap reveal vis">Accédez à la meilleure flotte de véhicules premium au Québec.<br>Réservation en ligne, contrat automatique.</p>
         <div class="ctab reveal vis">
             <a href="index.html" class="bow">Retour à l'accueil →</a>
-            <!-- ✅ CORRIGÉ : href vers tarifs-hors-turo.html -->
             <a href="tarifs-hors-turo.html" class="bow bow-bluetour">Tarifs Hors Turo →</a>
         </div>
     </section>
-
+ 
     <script>
         const TL = {
             essentiel: 'Essentiel',
@@ -2175,7 +2182,7 @@
             auto: `<svg viewBox="0 0 24 24"><path d="M12 20v-8"/><path d="M6 20V10"/><path d="M18 20V4"/></svg>`
         };
         const ARR = `<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
-
+ 
         const BRAND_CLASS = {
             'Tesla': 'brand-tesla',
             'BMW': 'brand-bmw',
@@ -2187,17 +2194,17 @@
             'Mercedes': 'brand-mercedes',
             'Audi': 'brand-audi'
         };
-
+ 
         var TESLA3_CAROUSEL_IMGS = ['voiture/Tesla Model 3 Bleu 2021/0.jpg', 'voiture/Tesla Model 3 Bleu 2021/00.jpg', 'voiture/Tesla Model 3 Bleu 2021/000.jpg', 'voiture/Tesla Model 3 Bleu 2021/0000.jpg', 'voiture/Tesla Model 3 Bleu 2021/00000.jpg', 'voiture/Tesla Model 3 Bleu 2021/000000.jpg'];
-
+ 
         var CAR_PLACEHOLDER_SVG = '<svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3v-5l2-5h14l2 5v5h-2M5 17a2 2 0 104 0M15 17a2 2 0 104 0"/></svg>';
-
+ 
         function slideImgsForVehicle(v, colorIdx) {
             var c = v.colors && v.colors[colorIdx];
             if (c && c.imgs && c.imgs.length) return c.imgs;
             return [];
         }
-
+ 
         function carouselTrackHTML(v, colorIdx) {
             var imgs = slideImgsForVehicle(v, colorIdx);
             if (imgs && imgs.length) {
@@ -2207,7 +2214,7 @@
             }
             return '<div class="car-placeholder">' + CAR_PLACEHOLDER_SVG + '</div>';
         }
-
+ 
         const vehicles = [{
             id: 'corolla',
             cat: 'berline',
@@ -2369,7 +2376,7 @@
             specs: [{icon: 'people', txt: '5'}, {icon: 'range', txt: '400 km'}, {icon: 'auto', txt: 'Auto'}],
             colors: [{hex: '#1F3B73', imgs: TESLA3_CAROUSEL_IMGS}]
         }];
-
+ 
         function updateCounts() {
             ['2021','2022','2023','2024','2025'].forEach(function(yr) {
                 var el = document.getElementById('cnt-annee-' + yr);
@@ -2380,7 +2387,7 @@
                 if (el) el.textContent = vehicles.filter(function(v) { return v.brand === m; }).length;
             });
         }
-
+ 
         function buildSwatches(v) {
             if (!v.colors || v.colors.length < 1) return '';
             if (v.colors.length === 1) {
@@ -2404,7 +2411,7 @@
             }
             return h + '</div>';
         }
-
+ 
         function renderGrid(list) {
             var grid = document.getElementById('fleetGrid');
             grid.innerHTML = list.map(function(v) {
@@ -2442,7 +2449,7 @@
                     '</div>' +
                     '</div>';
             }).join('');
-
+ 
             var car = {};
             list.forEach(function(v) {
                 var t = document.getElementById('ct-' + v.id);
@@ -2459,7 +2466,7 @@
             });
             window._car = car;
         }
-
+ 
         function goTo(id, n) {
             var c = window._car[id];
             if (!c) return;
@@ -2467,13 +2474,13 @@
             c.track.style.transform = 'translateX(-' + (c.idx * 100) + '%)';
             c.dots.querySelectorAll('.car-dot').forEach(function(d, i) { d.className = 'car-dot' + (i === c.idx ? ' active' : ''); });
         }
-
+ 
         function slideVcard(id, dir) { var c = window._car[id]; if (c) goTo(id, c.idx + dir); }
-
+ 
         function reserver(t, p, s, u) {
             window.location.href = 'confirmation.html?voiture=' + encodeURIComponent(t) + '&prix=' + encodeURIComponent(p) + '&sub=' + encodeURIComponent(s) + '&turo=' + encodeURIComponent(u);
         }
-
+ 
         function updImgs(vid, ci) {
             var v = vehicles.find(function(x) { return x.id === vid; });
             if (!v) return;
@@ -2493,13 +2500,13 @@
             var carEl = document.getElementById('carousel-' + vid);
             if (carEl) carEl.classList.toggle('carousel--single', tot <= 1);
         }
-
+ 
         function swSet(el, vid, ci) {
             el.closest('.color-swatches').querySelectorAll('.cswatch').forEach(function(s) { s.classList.remove('active'); });
             el.classList.add('active');
             updImgs(vid, ci);
         }
-
+ 
         function swPop(e, vid) {
             e.stopPropagation();
             var p = document.getElementById('cpop-' + vid);
@@ -2508,7 +2515,7 @@
             p.classList.toggle('open');
         }
         document.addEventListener('click', function() { document.querySelectorAll('.color-popover.open').forEach(function(p) { p.classList.remove('open'); }); });
-
+ 
         function swPopSet(e, el, vid, ci) {
             e.stopPropagation();
             el.closest('.color-popover-swatches').querySelectorAll('.cpop-swatch').forEach(function(s) { s.classList.remove('active'); });
@@ -2517,9 +2524,9 @@
             if (sw) sw.querySelectorAll('.cswatch').forEach(function(s) { s.classList.remove('active'); if (parseInt(s.dataset.cidx) === ci) s.classList.add('active'); });
             updImgs(vid, ci);
         }
-
+ 
         var state = {dispo: false, prices: [], cat: 'tous', tier: 'tous', trans: 'tous', annees: [], modeles: [], sort: 'default'};
-
+ 
         function applyFilters() {
             var filtered = vehicles.filter(function(v) {
                 if (state.dispo && !(v.dispo && !v.comingSoon)) return false;
@@ -2538,7 +2545,7 @@
             var n = filtered.length;
             document.getElementById('sidebarCount').innerHTML = '<strong>' + n + '</strong> résultat' + (n !== 1 ? 's' : '');
         }
-
+ 
         document.getElementById('dispoToggle').addEventListener('click', function() {
             state.dispo = !state.dispo;
             this.classList.toggle('on', state.dispo);
@@ -2576,7 +2583,7 @@
                 applyFilters();
             });
         });
-
+ 
         document.getElementById('clearAll').addEventListener('click', function() {
             state = {dispo: false, prices: [], cat: 'tous', tier: 'tous', trans: 'tous', annees: [], modeles: [], sort: 'default'};
             document.getElementById('dispoToggle').classList.remove('on');
@@ -2588,7 +2595,7 @@
             document.querySelectorAll('.modele-chk').forEach(function(c) { c.checked = false; });
             applyFilters();
         });
-
+ 
         document.querySelectorAll('.fs-header').forEach(function(h) {
             h.addEventListener('click', function() {
                 var target = h.querySelector('.fs-arrow').dataset.target;
@@ -2598,9 +2605,9 @@
                 else { body.classList.add('collapsed'); arrow.classList.remove('open'); }
             });
         });
-
+ 
         var hbBtn = document.getElementById('hbBtn'), mobB = document.getElementById('mobBack'), mobP = document.getElementById('mobPanel');
-
+ 
         function openMob() { hbBtn.classList.add('open'); mobP.classList.add('open'); mobB.classList.add('open'); document.body.style.overflow = 'hidden'; }
         function closeMob() { hbBtn.classList.remove('open'); mobP.classList.remove('open'); mobB.classList.remove('open'); document.body.style.overflow = ''; }
         hbBtn.addEventListener('click', function() { mobP.classList.contains('open') ? closeMob() : openMob(); });
@@ -2613,16 +2620,16 @@
                 ls.forEach(function(l, i) { l.style.transitionDelay = o ? (.06 + i * .05) + 's' : '0s'; });
             }).observe(mobP, {attributes: true, attributeFilter: ['class']});
         })();
-
+ 
         var obs = new IntersectionObserver(function(es) {
             es.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
         }, {threshold: .08});
         document.querySelectorAll('.reveal').forEach(function(r) { obs.observe(r); });
-
+ 
         updateCounts();
         applyFilters();
     </script>
-    <script src="translate.js"></script>
+    <!-- ✅ CORRECTION : translate.js supprimé (fichier inexistant causant une erreur JS) -->
 </body>
-
+ 
 </html>
