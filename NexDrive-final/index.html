@@ -11,8 +11,12 @@
                 var m = document.cookie.match(new RegExp('(^| )' + n + '=([^;]+)'));
                 return m ? m[2] : null;
             }
-            if (!g('nd_lang')) window.location.replace('landing.html');
-        })()
+            if (!g('nd_lang')) {
+        document.cookie = 'nd_lang=fr; expires=' +
+            new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString() +
+            '; path=/; SameSite=Lax';
+    }
+})()
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Locations NexDrive — Véhicules Premium | Québec</title>
