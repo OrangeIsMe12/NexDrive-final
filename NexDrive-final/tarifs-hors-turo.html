@@ -1,7 +1,9 @@
+
+
 <!DOCTYPE html>
-
+ 
 <html lang="fr">
-
+ 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -443,7 +445,8 @@
             border-radius: 10px;
             background: #fff;
             transition: all .2s;
-            flex-shrink: 0
+            flex-shrink: 0;
+            text-decoration: none
         }
         
         .fleet-platform-mobile .ptab {
@@ -1895,20 +1898,20 @@
         }
     </style>
 </head>
-
+ 
 <body>
-
+ 
     <nav>
         <a href="index.html" class="logo"><img src="logo/3.png" alt="NexDrive" /></a>
         <button class="hbg" id="hbBtn" type="button" aria-label="Menu"><span class="hb"></span><span class="hb"></span><span class="hb"></span></button>
     </nav>
-
-    <!-- Mobile platform tabs -->
+ 
+    <!-- ✅ Mobile platform tabs — vrais liens <a> -->
     <div class="fleet-platform-mobile" aria-label="Plateforme">
-        <button type="button" class="ptab" data-platform="turo" onclick="window.location.href='vehicules.html'"><span class="ptab-dot"></span> Turo</button>
-        <button type="button" class="ptab active" data-platform="hors-turo"><span class="ptab-dot"></span> Hors Turo</button>
+        <a class="ptab" data-platform="turo" href="vehicules.html"><span class="ptab-dot"></span> Turo</a>
+        <a class="ptab active" data-platform="hors-turo" href="tarifs-hors-turo.html"><span class="ptab-dot"></span> Hors Turo</a>
     </div>
-
+ 
     <!-- Mobile menu -->
     <div class="mbd" id="mobBack"></div>
     <div class="mpn" id="mobPanel">
@@ -1930,29 +1933,25 @@
                 <a href="apropos.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
                         <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/></svg></div>
-                        <span
-                            class="mn-lbl">À propos</span>
+                        <span class="mn-lbl">À propos</span>
                     </div>
                 </a>
                 <a href="partenaires.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
                         <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-                        <span
-                            class="mn-lbl">Partenaires</span>
+                        <span class="mn-lbl">Partenaires</span>
                     </div>
                 </a>
                 <a href="tarifs-hors-turo.html" class="ma active" onclick="closeMob()">
                     <div class="mn-left">
                         <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
-                        <span
-                            class="mn-lbl">Tarifs Hors Turo</span>
+                        <span class="mn-lbl">Tarifs Hors Turo</span>
                     </div>
                 </a>
                 <a href="faq.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
                         <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg></div>
-                        <span
-                            class="mn-lbl">FAQ</span>
+                        <span class="mn-lbl">FAQ</span>
                     </div>
                 </a>
             </div>
@@ -1961,15 +1960,13 @@
                 <a href="confidentialite.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
                         <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
-                        <span
-                            class="mn-lbl">Confidentialité</span>
+                        <span class="mn-lbl">Confidentialité</span>
                     </div>
                 </a>
                 <a href="engagement.html" class="ma" onclick="closeMob()">
                     <div class="mn-left">
                         <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 11 17 15 13"/></svg></div>
-                        <span
-                            class="mn-lbl">Engagement</span>
+                        <span class="mn-lbl">Engagement</span>
                     </div>
                 </a>
             </div>
@@ -1978,24 +1975,22 @@
             <div class="mf">NexDrive — Québec © 2026</div>
         </div>
     </div>
-
-    <!-- ══════════════════════════════════
-     MAIN LAYOUT (sidebar + content)
-═══════════════════════════════════ -->
+ 
     <div class="main-layout">
-
+ 
         <!-- ── SIDEBAR FILTRES ── -->
         <aside class="sidebar">
+            <!-- ✅ Vrais liens <a> au lieu de boutons avec onclick -->
             <div class="sidebar-platform">
-                <button type="button" class="ptab" data-platform="turo" onclick="window.location.href='vehicules.html'"><span class="ptab-dot"></span> Turo</button>
-                <button type="button" class="ptab active" data-platform="hors-turo"><span class="ptab-dot"></span> Hors Turo</button>
+                <a class="ptab" data-platform="turo" href="vehicules.html"><span class="ptab-dot"></span> Turo</a>
+                <a class="ptab active" data-platform="hors-turo" href="tarifs-hors-turo.html"><span class="ptab-dot"></span> Hors Turo</a>
             </div>
-
+ 
             <div class="sidebar-header">
                 <span class="sidebar-title">Filtres</span>
                 <button class="clear-all" id="clearAll">Effacer tout</button>
             </div>
-
+ 
             <!-- Gamme -->
             <div class="filter-section">
                 <div class="fs-header">
@@ -2035,7 +2030,7 @@
                     </div>
                 </div>
             </div>
-
+ 
             <!-- Durée -->
             <div class="filter-section">
                 <div class="fs-header">
@@ -2048,7 +2043,7 @@
                     <label class="check-row"><input type="checkbox" class="duree-chk" value="mois"><span class="check-label">1 mois</span></label>
                 </div>
             </div>
-
+ 
             <!-- Kilométrage -->
             <div class="filter-section">
                 <div class="fs-header">
@@ -2061,7 +2056,7 @@
                     <label class="check-row"><input type="radio" name="km" class="km-radio" value="illimite"><span class="check-label">Kilométrage illimité</span></label>
                 </div>
             </div>
-
+ 
             <!-- Prix max / jour -->
             <div class="filter-section">
                 <div class="fs-header">
@@ -2075,10 +2070,10 @@
                     <label class="check-row"><input type="checkbox" class="prix-chk" data-max="99999"><span class="check-label">Tous les budgets</span></label>
                 </div>
             </div>
-
+ 
             <div class="results-count" id="sidebarCount"></div>
         </aside>
-
+ 
         <!-- ── FLEET CONTENT ── -->
         <div class="fleet-content">
             <div class="fleet-page-title">
@@ -2086,15 +2081,15 @@
                 <h1 class="fleet-page-h1">Réservez <em>directement</em></h1>
                 <p class="fleet-page-sub">Contrat automatique · Assurance incluse · Livraison disponible</p>
             </div>
-
+ 
             <div class="pricing-grid" id="pricingGrid"></div>
-
+ 
             <!-- Delivery -->
             <div class="section-header reveal" style="margin-bottom:20px">
                 <div class="section-label">Logistique</div>
                 <h2 class="section-h2">Livraison <em>& contact</em></h2>
             </div>
-
+ 
             <div class="delivery-section reveal">
                 <div class="delivery-inner">
                     <div class="delivery-col">
@@ -2184,11 +2179,9 @@
                 </div>
             </div>
         </div>
-        <!-- /fleet-content -->
-
+ 
     </div>
-    <!-- /main-layout -->
-
+ 
     <!-- CTA -->
     <section id="cta">
         <div class="ctag" aria-hidden="true"></div>
@@ -2200,7 +2193,7 @@
             <a href="tel:+15141234567" class="bow bow-blue">Appeler pour réserver →</a>
         </div>
     </section>
-
+ 
     <script>
         const LOCK = `<svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
         const PHONE_SVG = `<svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.38 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.7a16 16 0 0 0 6 6l.86-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`;
@@ -2210,103 +2203,43 @@
             drive: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>`,
             power: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>`
         };
-
-        // ── DATA ──
-        // Chaque offre porte: label, duree ('24h'|'7j'|'mois'), km (nombre ou Infinity), price, perDay, badge, featured, pills
+ 
         const vehicles = [{
             id: 'tesla3',
             title: 'Tesla Model Y',
             sub: 'Électrique · 2023',
             tier: 'premium',
             imgs: ['voiture/Tesla Model 3 Blanche 2023/1.png', 'voiture/Tesla Model 3 Blanche 2023/2.png', 'voiture/Tesla Model 3 Blanche 2023/3.png', 'voiture/Tesla Model 3 Blanche 2023/4.png'],
-            specs: [{
-                icon: 'people',
-                txt: '5'
-            }, {
-                icon: 'range',
-                txt: '450 km'
-            }, {
-                icon: 'drive',
-                txt: 'AWD'
-            }],
+            specs: [{icon: 'people', txt: '5'}, {icon: 'range', txt: '450 km'}, {icon: 'drive', txt: 'AWD'}],
             offers: [{
-                label: '24 heures',
-                duree: '24h',
-                km: 250,
-                inf: false,
-                price: '200 $',
-                priceNum: 200,
-                perDay: null,
-                badge: null,
-                pills: ['Assurance incluse'],
-                featured: false
+                label: '24 heures', duree: '24h', km: 250, inf: false,
+                price: '200 $', priceNum: 200, perDay: null, badge: null,
+                pills: ['Assurance incluse'], featured: false
             }, {
-                label: '7 jours',
-                duree: '7j',
-                km: 700,
-                inf: false,
-                price: '1 000 $',
-                priceNum: 143,
-                perDay: '≈ 143 $/jour',
-                badge: {
-                    text: '⭐ Meilleur choix',
-                    cls: 'badge-best'
-                },
-                pills: ['Livraison incluse', 'Assurance incluse'],
-                featured: true
+                label: '7 jours', duree: '7j', km: 700, inf: false,
+                price: '1 000 $', priceNum: 143, perDay: '≈ 143 $/jour',
+                badge: {text: '⭐ Meilleur choix', cls: 'badge-best'},
+                pills: ['Livraison incluse', 'Assurance incluse'], featured: true
             }, {
-                label: '7 jours+',
-                duree: '7j',
-                km: 1000,
-                inf: false,
-                price: '1 400 $',
-                priceNum: 200,
-                perDay: '≈ 200 $/jour',
-                badge: {
-                    text: '🔥 Populaire',
-                    cls: 'badge-popular'
-                },
-                pills: ['Livraison incluse', 'Assurance incluse'],
-                featured: false
+                label: '7 jours+', duree: '7j', km: 1000, inf: false,
+                price: '1 400 $', priceNum: 200, perDay: '≈ 200 $/jour',
+                badge: {text: '🔥 Populaire', cls: 'badge-popular'},
+                pills: ['Livraison incluse', 'Assurance incluse'], featured: false
             }, {
-                label: '7 jours · Illimité',
-                duree: '7j',
-                km: Infinity,
-                inf: true,
-                price: '2 000 $',
-                priceNum: 286,
-                perDay: '≈ 286 $/jour',
-                badge: {
-                    text: '♾️ Liberté totale',
-                    cls: 'badge-eco'
-                },
-                pills: ['Livraison incluse', 'Assurance incluse'],
-                featured: false
+                label: '7 jours · Illimité', duree: '7j', km: Infinity, inf: true,
+                price: '2 000 $', priceNum: 286, perDay: '≈ 286 $/jour',
+                badge: {text: '♾️ Liberté totale', cls: 'badge-eco'},
+                pills: ['Livraison incluse', 'Assurance incluse'], featured: false
             }]
         }];
-
-        // ── STATE ──
-        var state = {
-            tier: 'tous',
-            durees: [],
-            km: 'tous',
-            prixMax: null
-        };
-
-        // ── FILTER ──
+ 
+        var state = { tier: 'tous', durees: [], km: 'tous', prixMax: null };
+ 
         function vehicleMatchesFilters(v) {
             if (state.tier !== 'tous' && v.tier !== state.tier) return false;
-            // Filter offers
-            var matchingOffers = v.offers.filter(function(o) {
-                if (state.durees.length && !state.durees.includes(o.duree)) return false;
-                if (state.km === 'illimite' && !o.inf) return false;
-                if (state.km === 'standard' && o.inf) return false;
-                if (state.prixMax !== null && o.priceNum > state.prixMax) return false;
-                return true;
-            });
-            return matchingOffers.length > 0;
+            return filteredOffers(v).length > 0;
         }
-
+ 
         function filteredOffers(v) {
             return v.offers.filter(function(o) {
                 if (state.durees.length && !state.durees.includes(o.duree)) return false;
@@ -2316,8 +2249,7 @@
                 return true;
             });
         }
-
-        // ── RENDER ──
+ 
         function buildCarousel(v) {
             var imgs = v.imgs || [];
             var slides = imgs.length ? imgs.map(function(s) {
@@ -2332,14 +2264,12 @@
                 '<span class="badge-tier ' + v.tier + '">' + v.tier.charAt(0).toUpperCase() + v.tier.slice(1) + '</span>' +
                 '<div class="carousel-track" id="ct-' + v.id + '">' + slides + '</div>' + btns + '</div>';
         }
-
+ 
         function buildOffersHTML(offers) {
             return offers.map(function(o, idx) {
                 var badgeH = o.badge ? '<span class="offer-badge ' + o.badge.cls + '">' + o.badge.text + '</span>' : '';
                 var kmH = '<span class="km-pill ' + (o.inf ? 'inf' : 'std') + '">' + (o.inf ? '∞ Illimité' : o.km + ' km') + ' inclus</span>';
-                var pills = o.pills.map(function(p) {
-                    return '<span class="offer-pill">' + p + '</span>';
-                }).join('');
+                var pills = o.pills.map(function(p) { return '<span class="offer-pill">' + p + '</span>'; }).join('');
                 var perDay = o.perDay ? '<div class="offer-perday">' + o.perDay + '</div>' : '';
                 var divider = (o.featured && idx > 0) ? '<div class="featured-divider">Offre recommandée</div>' : '';
                 return divider +
@@ -2350,7 +2280,7 @@
                     '</div><div class="offer-pills">' + pills + '</div></div>';
             }).join('');
         }
-
+ 
         function buildDeposit(id) {
             return '<div class="deposit-box">' +
                 '<div class="deposit-header" onclick="toggleDep(this)">' +
@@ -2367,23 +2297,21 @@
                 '</div><p class="dep-disclaimer">Le dépôt est retenu en pré-autorisation et libéré au retour du véhicule en bon état. L\'avenant FAQ27 se retrouve sur votre police d\'assurance auto.</p>' +
                 '</div></div>';
         }
-
+ 
         function buildSpecs(v) {
             return v.specs.map(function(s) {
                 return '<div class="spec-item">' + (ICONS[s.icon] || '') + '<span>' + s.txt + '</span></div>';
             }).join('');
         }
-
+ 
         function renderGrid() {
             var grid = document.getElementById('pricingGrid');
             var visible = vehicles.filter(vehicleMatchesFilters);
-
             if (!visible.length) {
                 grid.innerHTML = '<div class="no-results"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><h3>Aucun résultat</h3><p>Modifiez vos filtres pour voir plus de véhicules.</p></div>';
                 document.getElementById('sidebarCount').innerHTML = '<strong>0</strong> résultat';
                 return;
             }
-
             grid.innerHTML = visible.map(function(v, i) {
                 var offers = filteredOffers(v);
                 return '<div class="vcard" style="animation-delay:' + (i * .1) + 's" id="vc-' + v.id + '">' +
@@ -2399,8 +2327,7 @@
                     '<div class="specs-row">' + buildSpecs(v) + '</div>' +
                     '</div>';
             }).join('');
-
-            // init carousels
+ 
             window._car = window._car || {};
             visible.forEach(function(v) {
                 if (!v.imgs || v.imgs.length <= 1) return;
@@ -2412,117 +2339,66 @@
                 for (var i = 0; i < total; i++) {
                     var d = document.createElement('span');
                     d.className = 'car-dot' + (i === 0 ? ' active' : '');
-                    (function(n) {
-                        d.addEventListener('click', function(e) {
-                            e.stopPropagation();
-                            cGoTo(v.id, n);
-                        });
-                    })(i);
+                    (function(n) { d.addEventListener('click', function(e) { e.stopPropagation(); cGoTo(v.id, n); }); })(i);
                     dotsEl.appendChild(d);
                 }
-                window._car[v.id] = {
-                    track: track,
-                    total: total,
-                    idx: 0,
-                    dots: dotsEl
-                };
+                window._car[v.id] = { track: track, total: total, idx: 0, dots: dotsEl };
             });
-
+ 
             var n = visible.length;
             document.getElementById('sidebarCount').innerHTML = '<strong>' + n + '</strong> véhicule' + (n !== 1 ? 's' : '');
         }
-
+ 
         function cGoTo(id, n) {
             var c = window._car[id];
             if (!c) return;
             c.idx = (n + c.total) % c.total;
             c.track.style.transform = 'translateX(-' + (c.idx * 100) + '%)';
-            c.dots.querySelectorAll('.car-dot').forEach(function(d, i) {
-                d.className = 'car-dot' + (i === c.idx ? ' active' : '');
-            });
+            c.dots.querySelectorAll('.car-dot').forEach(function(d, i) { d.className = 'car-dot' + (i === c.idx ? ' active' : ''); });
         }
-
-        function cSlide(id, dir) {
-            var c = window._car[id];
-            if (c) cGoTo(id, c.idx + dir);
-        }
-
+ 
+        function cSlide(id, dir) { var c = window._car[id]; if (c) cGoTo(id, c.idx + dir); }
+ 
         function toggleDep(h) {
-            var c = h.nextElementSibling,
-                t = h.querySelector('.deposit-toggle');
+            var c = h.nextElementSibling, t = h.querySelector('.deposit-toggle');
             c.classList.toggle('open');
             t.textContent = c.classList.contains('open') ? 'Masquer ▴' : 'Voir ▾';
         }
-
-        // ── FILTER LISTENERS ──
-
-        // Gamme (tier)
+ 
+        // Filtres
         document.querySelectorAll('.cat-row[data-tier]').forEach(function(r) {
             r.addEventListener('click', function() {
-                document.querySelectorAll('.cat-row[data-tier]').forEach(function(x) {
-                    x.classList.remove('active-cat');
-                });
+                document.querySelectorAll('.cat-row[data-tier]').forEach(function(x) { x.classList.remove('active-cat'); });
                 r.classList.add('active-cat');
                 state.tier = r.dataset.tier;
                 renderGrid();
             });
         });
-
-        // Durée
         document.querySelectorAll('.duree-chk').forEach(function(chk) {
             chk.addEventListener('change', function() {
                 if (this.checked) state.durees.push(this.value);
-                else state.durees = state.durees.filter(function(d) {
-                    return d !== chk.value;
-                });
+                else state.durees = state.durees.filter(function(d) { return d !== chk.value; });
                 renderGrid();
             });
         });
-
-        // Kilométrage
         document.querySelectorAll('.km-radio').forEach(function(r) {
-            r.addEventListener('change', function() {
-                state.km = this.value;
-                renderGrid();
-            });
+            r.addEventListener('change', function() { state.km = this.value; renderGrid(); });
         });
-
-        // Prix
         document.querySelectorAll('.prix-chk').forEach(function(chk) {
             chk.addEventListener('change', function() {
-                // radio-like: uncheck others
-                document.querySelectorAll('.prix-chk').forEach(function(c) {
-                    if (c !== chk) c.checked = false;
-                });
+                document.querySelectorAll('.prix-chk').forEach(function(c) { if (c !== chk) c.checked = false; });
                 state.prixMax = this.checked ? +this.dataset.max : null;
                 renderGrid();
             });
         });
-
-        // Clear all
         document.getElementById('clearAll').addEventListener('click', function() {
-            state = {
-                tier: 'tous',
-                durees: [],
-                km: 'tous',
-                prixMax: null
-            };
-            document.querySelectorAll('.cat-row[data-tier]').forEach(function(r) {
-                r.classList.toggle('active-cat', r.dataset.tier === 'tous');
-            });
-            document.querySelectorAll('.duree-chk').forEach(function(c) {
-                c.checked = false;
-            });
-            document.querySelectorAll('.km-radio').forEach(function(r) {
-                r.checked = r.value === 'tous';
-            });
-            document.querySelectorAll('.prix-chk').forEach(function(c) {
-                c.checked = false;
-            });
+            state = { tier: 'tous', durees: [], km: 'tous', prixMax: null };
+            document.querySelectorAll('.cat-row[data-tier]').forEach(function(r) { r.classList.toggle('active-cat', r.dataset.tier === 'tous'); });
+            document.querySelectorAll('.duree-chk').forEach(function(c) { c.checked = false; });
+            document.querySelectorAll('.km-radio').forEach(function(r) { r.checked = r.value === 'tous'; });
+            document.querySelectorAll('.prix-chk').forEach(function(c) { c.checked = false; });
             renderGrid();
         });
-
-        // Collapse/expand filter sections
         document.querySelectorAll('.fs-header').forEach(function(h) {
             h.addEventListener('click', function() {
                 var target = h.querySelector('.fs-arrow').dataset.target;
@@ -2532,63 +2408,31 @@
                 arrow.classList.toggle('open', !body.classList.contains('collapsed'));
             });
         });
-
-        // ── NAV ──
-        var hbBtn = document.getElementById('hbBtn'),
-            mobB = document.getElementById('mobBack'),
-            mobP = document.getElementById('mobPanel');
-
-        function openMob() {
-            hbBtn.classList.add('open');
-            mobP.classList.add('open');
-            mobB.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMob() {
-            hbBtn.classList.remove('open');
-            mobP.classList.remove('open');
-            mobB.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-        hbBtn.addEventListener('click', function() {
-            mobP.classList.contains('open') ? closeMob() : openMob();
-        });
+ 
+        // Nav
+        var hbBtn = document.getElementById('hbBtn'), mobB = document.getElementById('mobBack'), mobP = document.getElementById('mobPanel');
+        function openMob() { hbBtn.classList.add('open'); mobP.classList.add('open'); mobB.classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeMob() { hbBtn.classList.remove('open'); mobP.classList.remove('open'); mobB.classList.remove('open'); document.body.style.overflow = ''; }
+        hbBtn.addEventListener('click', function() { mobP.classList.contains('open') ? closeMob() : openMob(); });
         mobB.addEventListener('click', closeMob);
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeMob();
-        });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMob(); });
         (function() {
             var ls = mobP.querySelectorAll('.ma');
             new MutationObserver(function() {
                 var o = mobP.classList.contains('open');
-                ls.forEach(function(l, i) {
-                    l.style.transitionDelay = o ? (.06 + i * .05) + 's' : '0s';
-                });
-            }).observe(mobP, {
-                attributes: true,
-                attributeFilter: ['class']
-            });
+                ls.forEach(function(l, i) { l.style.transitionDelay = o ? (.06 + i * .05) + 's' : '0s'; });
+            }).observe(mobP, { attributes: true, attributeFilter: ['class'] });
         })();
-
+ 
         // Scroll reveal
         var obs = new IntersectionObserver(function(es) {
-            es.forEach(function(e) {
-                if (e.isIntersecting) {
-                    e.target.classList.add('vis');
-                    obs.unobserve(e.target);
-                }
-            });
-        }, {
-            threshold: .08
-        });
-        document.querySelectorAll('.reveal').forEach(function(r) {
-            obs.observe(r);
-        });
-
-        // Init
+            es.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
+        }, { threshold: .08 });
+        document.querySelectorAll('.reveal').forEach(function(r) { obs.observe(r); });
+ 
         renderGrid();
     </script>
+    <script src="translate.js"></script>
 </body>
-
+ 
 </html>
