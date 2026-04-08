@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="fr">
  
@@ -431,22 +430,22 @@
             color: rgba(255, 255, 255, .25);
             text-align: center
         }
-        /* ── Turo / Hors Turo ── */
-        
-        .sidebar-platform {
+ 
+        /* ── Platform switcher ── */
+        .platform-switcher {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
+        }
+        .sidebar .platform-switcher {
             margin-bottom: 20px;
             padding-bottom: 20px;
-            border-bottom: 1px solid rgba(0, 0, 0, .12)
+            border-bottom: 1px solid rgba(0,0,0,.12);
         }
-        
         .fleet-platform-mobile {
-            display: none
+            display: none;
         }
-        
-        .sidebar-platform .ptab {
+        .ptab {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -463,67 +462,31 @@
             background: #fff;
             transition: all .2s;
             flex-shrink: 0;
-            text-decoration: none
+            text-decoration: none;
         }
-        
-        .sidebar-platform .ptab:hover {
-            color: var(--txt);
-            border-color: rgba(41, 121, 255, .35)
-        }
-        
-        .sidebar-platform .ptab.active {
-            color: var(--acc-l);
-            border-color: rgba(41, 121, 255, .45);
-            background: rgba(41, 121, 255, .1);
-            font-weight: 600
-        }
-        
         .fleet-platform-mobile .ptab {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            min-height: 40px;
-            padding: 0 10px;
-            font-family: var(--sans);
-            font-size: .78rem;
-            font-weight: 500;
-            color: var(--txt2);
-            cursor: pointer;
-            border: 1px solid var(--line2);
-            border-radius: 10px;
             background: var(--bg3);
-            transition: all .2s;
-            flex-shrink: 0;
-            text-decoration: none
         }
-        
-        .fleet-platform-mobile .ptab:hover {
+        .ptab:hover {
             color: var(--txt);
-            border-color: rgba(41, 121, 255, .35)
+            border-color: rgba(41, 121, 255, .35);
         }
-        
-        .fleet-platform-mobile .ptab.active {
+        .ptab.active {
             color: var(--acc-l);
             border-color: rgba(41, 121, 255, .45);
             background: rgba(41, 121, 255, .1);
-            font-weight: 600
+            font-weight: 600;
+            pointer-events: none;
         }
-        
         .ptab-dot {
             width: 7px;
             height: 7px;
             border-radius: 50%;
-            flex-shrink: 0
+            flex-shrink: 0;
         }
+        .ptab[data-platform="turo"] .ptab-dot { background: #00b4d8; }
+        .ptab[data-platform="hors-turo"] .ptab-dot { background: var(--acc-l); }
         
-        .ptab[data-platform="turo"] .ptab-dot {
-            background: #00b4d8
-        }
-        
-        .ptab[data-platform="hors-turo"] .ptab-dot {
-            background: var(--acc-l)
-        }
         /* MAIN LAYOUT */
         
         .main-layout {
@@ -845,6 +808,7 @@
         .results-count strong {
             color: var(--acc-l)
         }
+        
         /* FLEET CONTENT */
         
         .fleet-content {
@@ -1394,65 +1358,16 @@
             letter-spacing: .02em
         }
         
-        .brand-badge.brand-tesla {
-            color: #e05050;
-            background: rgba(204, 0, 0, .12);
-            border-color: rgba(204, 0, 0, .3)
-        }
-        
-        .brand-badge.brand-bmw {
-            color: #5b9cf6;
-            background: rgba(28, 105, 212, .12);
-            border-color: rgba(28, 105, 212, .35)
-        }
-        
-        .brand-badge.brand-toyota {
-            color: #eb8a8a;
-            background: rgba(235, 10, 30, .1);
-            border-color: rgba(235, 10, 30, .25)
-        }
-        
-        .brand-badge.brand-ford {
-            color: #7aabf7;
-            background: rgba(0, 52, 120, .15);
-            border-color: rgba(0, 100, 200, .3)
-        }
-        
-        .brand-badge.brand-porsche {
-            color: #dbb96a;
-            background: rgba(201, 168, 76, .12);
-            border-color: rgba(201, 168, 76, .3)
-        }
-        
-        .brand-badge.brand-ferrari {
-            color: #f07070;
-            background: rgba(204, 0, 0, .14);
-            border-color: rgba(220, 38, 38, .35)
-        }
-        
-        .brand-badge.brand-lamborghini {
-            color: #f0c040;
-            background: rgba(245, 197, 24, .1);
-            border-color: rgba(245, 197, 24, .3)
-        }
-        
-        .brand-badge.brand-mercedes {
-            color: #b0bec5;
-            background: rgba(160, 174, 192, .1);
-            border-color: rgba(160, 174, 192, .25)
-        }
-        
-        .brand-badge.brand-audi {
-            color: #c0c0c0;
-            background: rgba(180, 180, 180, .1);
-            border-color: rgba(180, 180, 180, .25)
-        }
-        
-        .brand-badge.brand-default {
-            color: var(--card-txt3);
-            background: rgba(255, 255, 255, .06);
-            border-color: rgba(255, 255, 255, .12)
-        }
+        .brand-badge.brand-tesla { color: #e05050; background: rgba(204,0,0,.12); border-color: rgba(204,0,0,.3) }
+        .brand-badge.brand-bmw { color: #5b9cf6; background: rgba(28,105,212,.12); border-color: rgba(28,105,212,.35) }
+        .brand-badge.brand-toyota { color: #eb8a8a; background: rgba(235,10,30,.1); border-color: rgba(235,10,30,.25) }
+        .brand-badge.brand-ford { color: #7aabf7; background: rgba(0,52,120,.15); border-color: rgba(0,100,200,.3) }
+        .brand-badge.brand-porsche { color: #dbb96a; background: rgba(201,168,76,.12); border-color: rgba(201,168,76,.3) }
+        .brand-badge.brand-ferrari { color: #f07070; background: rgba(204,0,0,.14); border-color: rgba(220,38,38,.35) }
+        .brand-badge.brand-lamborghini { color: #f0c040; background: rgba(245,197,24,.1); border-color: rgba(245,197,24,.3) }
+        .brand-badge.brand-mercedes { color: #b0bec5; background: rgba(160,174,192,.1); border-color: rgba(160,174,192,.25) }
+        .brand-badge.brand-audi { color: #c0c0c0; background: rgba(180,180,180,.1); border-color: rgba(180,180,180,.25) }
+        .brand-badge.brand-default { color: var(--card-txt3); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12) }
         
         .card-title {
             font-family: var(--serif);
@@ -1477,453 +1392,65 @@
             gap: 1px
         }
         
-        .price-main .currency {
-            font-size: .9rem;
-            font-weight: 700;
-            color: var(--card-txt);
-            align-self: flex-start;
-            padding-top: 5px;
-            opacity: .75
-        }
+        .price-main .currency { font-size: .9rem; font-weight: 700; color: var(--card-txt); align-self: flex-start; padding-top: 5px; opacity: .75 }
+        .price-main .amount { font-size: 1.8rem; font-weight: 800; font-family: var(--serif); color: var(--card-txt); line-height: 1; letter-spacing: -1px }
+        .price-main .per { font-size: .7rem; color: var(--card-txt3); margin-left: 4px; font-weight: 400 }
         
-        .price-main .amount {
-            font-size: 1.8rem;
-            font-weight: 800;
-            font-family: var(--serif);
-            color: var(--card-txt);
-            line-height: 1;
-            letter-spacing: -1px
-        }
+        .color-swatches { display: flex; align-items: center; gap: 4px; flex-shrink: 0; position: relative }
+        .cswatch { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.15); cursor: pointer; transition: transform .15s; flex-shrink: 0 }
+        .cswatch:hover { transform: scale(1.2) }
+        .cswatch.active { outline: 2px solid rgba(255,255,255,.5); outline-offset: 2px }
+        .cswatch-more-btn { height: 16px; padding: 0 7px; border-radius: 20px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); font-size: 10px; font-weight: 600; color: var(--card-txt2); cursor: pointer; display: flex; align-items: center; font-family: var(--sans); transition: all .18s }
+        .cswatch-more-btn:hover { background: rgba(41,121,255,.2); color: #60a5fa; border-color: rgba(41,121,255,.4) }
+        .color-popover { position: absolute; top: calc(100% + 8px); right: 0; background: #1e1e1e; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; padding: 10px 12px; box-shadow: 0 12px 36px rgba(0,0,0,.5); z-index: 50; display: none; flex-direction: column; gap: 8px; min-width: 110px; animation: popIn .18s cubic-bezier(.22,.68,0,1.2) both }
+        .color-popover.open { display: flex }
+        .color-popover-title { font-size: .58rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--card-txt3) }
+        .color-popover-swatches { display: flex; flex-wrap: wrap; gap: 6px }
+        .cpop-swatch { width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,.15); cursor: pointer; transition: transform .15s }
+        .cpop-swatch:hover { transform: scale(1.2) }
+        .cpop-swatch.active { outline: 2px solid rgba(255,255,255,.5); outline-offset: 2px }
         
-        .price-main .per {
-            font-size: .7rem;
-            color: var(--card-txt3);
-            margin-left: 4px;
-            font-weight: 400
-        }
+        .btn-reserver { padding: 8px 16px; border-radius: 7px; background: rgba(0,0,0,.35); border: 1px solid rgba(34,197,94,.45); cursor: pointer; transition: all .22s; display: flex; align-items: center; font-family: var(--sans); font-size: .76rem; font-weight: 600; color: #86efac; gap: 5px; letter-spacing: .2px; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); box-shadow: 0 2px 10px rgba(0,0,0,.2) }
+        .btn-reserver:hover { background: rgba(34,197,94,.18); border-color: rgba(34,197,94,.75); color: #bbf7d0; box-shadow: 0 4px 18px rgba(34,197,94,.28) }
+        .btn-reserver svg { width: 11px; height: 11px; stroke: currentColor; stroke-width: 2.5; fill: none }
+        .btn-indispo { padding: 8px 16px; border-radius: 7px; background: rgba(220,38,38,.1); border: 1px solid rgba(220,38,38,.25); cursor: not-allowed; font-family: var(--sans); font-size: .76rem; font-weight: 600; color: #f87171; display: flex; align-items: center; gap: 5px }
         
-        .color-swatches {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            flex-shrink: 0;
-            position: relative
-        }
+        .specs-row { display: flex; gap: 0; align-items: center; padding: 10px 14px 16px; margin: 0; border-top: 1px solid var(--card-line); background: rgba(255,255,255,.03); border-radius: 0 0 14px 14px; flex-wrap: wrap; align-content: flex-start; row-gap: 6px; line-height: 1; box-sizing: border-box; flex: 0 0 auto }
+        .spec-item { display: flex; align-items: center; gap: 5px; margin: 0 14px 0 0; line-height: 1; padding: 0 }
+        .spec-item svg { width: 13px; height: 13px; stroke: var(--card-txt3); stroke-width: 1.8; fill: none; flex-shrink: 0; display: block }
+        .spec-item span { font-size: .72rem; color: var(--card-txt2); font-weight: 500; line-height: 1; display: inline-block }
         
-        .cswatch {
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            border: 1.5px solid rgba(255, 255, 255, .15);
-            cursor: pointer;
-            transition: transform .15s;
-            flex-shrink: 0
-        }
-        
-        .cswatch:hover {
-            transform: scale(1.2)
-        }
-        
-        .cswatch.active {
-            outline: 2px solid rgba(255, 255, 255, .5);
-            outline-offset: 2px
-        }
-        
-        .cswatch-more-btn {
-            height: 16px;
-            padding: 0 7px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, .08);
-            border: 1px solid rgba(255, 255, 255, .12);
-            font-size: 10px;
-            font-weight: 600;
-            color: var(--card-txt2);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            font-family: var(--sans);
-            transition: all .18s
-        }
-        
-        .cswatch-more-btn:hover {
-            background: rgba(41, 121, 255, .2);
-            color: #60a5fa;
-            border-color: rgba(41, 121, 255, .4)
-        }
-        
-        .color-popover {
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
-            background: #1e1e1e;
-            border: 1px solid rgba(255, 255, 255, .12);
-            border-radius: 12px;
-            padding: 10px 12px;
-            box-shadow: 0 12px 36px rgba(0, 0, 0, .5);
-            z-index: 50;
-            display: none;
-            flex-direction: column;
-            gap: 8px;
-            min-width: 110px;
-            animation: popIn .18s cubic-bezier(.22, .68, 0, 1.2) both
-        }
-        
-        .color-popover.open {
-            display: flex
-        }
-        
-        .color-popover-title {
-            font-size: .58rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--card-txt3)
-        }
-        
-        .color-popover-swatches {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px
-        }
-        
-        .cpop-swatch {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            border: 1.5px solid rgba(255, 255, 255, .15);
-            cursor: pointer;
-            transition: transform .15s
-        }
-        
-        .cpop-swatch:hover {
-            transform: scale(1.2)
-        }
-        
-        .cpop-swatch.active {
-            outline: 2px solid rgba(255, 255, 255, .5);
-            outline-offset: 2px
-        }
-        
-        .btn-reserver {
-            padding: 8px 16px;
-            border-radius: 7px;
-            background: rgba(0, 0, 0, .35);
-            border: 1px solid rgba(34, 197, 94, .45);
-            cursor: pointer;
-            transition: all .22s;
-            display: flex;
-            align-items: center;
-            font-family: var(--sans);
-            font-size: .76rem;
-            font-weight: 600;
-            color: #86efac;
-            gap: 5px;
-            letter-spacing: .2px;
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, .2)
-        }
-        
-        .btn-reserver:hover {
-            background: rgba(34, 197, 94, .18);
-            border-color: rgba(34, 197, 94, .75);
-            color: #bbf7d0;
-            box-shadow: 0 4px 18px rgba(34, 197, 94, .28)
-        }
-        
-        .btn-reserver svg {
-            width: 11px;
-            height: 11px;
-            stroke: currentColor;
-            stroke-width: 2.5;
-            fill: none
-        }
-        
-        .btn-indispo {
-            padding: 8px 16px;
-            border-radius: 7px;
-            background: rgba(220, 38, 38, .1);
-            border: 1px solid rgba(220, 38, 38, .25);
-            cursor: not-allowed;
-            font-family: var(--sans);
-            font-size: .76rem;
-            font-weight: 600;
-            color: #f87171;
-            display: flex;
-            align-items: center;
-            gap: 5px
-        }
-        
-        .specs-row {
-            display: flex;
-            gap: 0;
-            align-items: center;
-            padding: 10px 14px 16px;
-            margin: 0;
-            border-top: 1px solid var(--card-line);
-            background: rgba(255, 255, 255, .03);
-            border-radius: 0 0 14px 14px;
-            flex-wrap: wrap;
-            align-content: flex-start;
-            row-gap: 6px;
-            line-height: 1;
-            box-sizing: border-box;
-            flex: 0 0 auto
-        }
-        
-        .spec-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin: 0 14px 0 0;
-            line-height: 1;
-            padding: 0
-        }
-        
-        .spec-item svg {
-            width: 13px;
-            height: 13px;
-            stroke: var(--card-txt3);
-            stroke-width: 1.8;
-            fill: none;
-            flex-shrink: 0;
-            display: block
-        }
-        
-        .spec-item span {
-            font-size: .72rem;
-            color: var(--card-txt2);
-            font-weight: 500;
-            line-height: 1;
-            display: inline-block
-        }
         /* CTA */
+        #cta { padding: 52px 48px 56px; text-align: center; background: #0c0e22; position: relative; overflow: hidden }
+        #cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg,transparent,rgba(61,127,193,.3) 30%,rgba(74,144,217,.5) 50%,rgba(61,127,193,.3) 70%,transparent); pointer-events: none; z-index: 2 }
+        #cta .ctag { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: min(520px,120vw); height: 280px; max-height: 45vh; border-radius: 50%; background: radial-gradient(ellipse,rgba(61,127,193,.2) 0%,rgba(45,106,168,.07) 45%,transparent 70%); pointer-events: none; z-index: 0 }
+        #cta .ctal { position: relative; z-index: 1; width: 48px; height: 1px; margin: 0 auto 14px; background: linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent); flex-shrink: 0 }
+        #cta .proc-label { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; font-size: .58rem; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 12px }
+        #cta .ctah { position: relative; z-index: 1; font-family: var(--serif); font-size: clamp(1.65rem,3.5vw,2.85rem); font-weight: 300; line-height: 1.12; letter-spacing: -.5px; color: #fff; margin-bottom: 10px }
+        #cta .ctah em { font-style: italic; color: #4a90d9 }
+        #cta .ctap { position: relative; z-index: 1; font-size: .88rem; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.55; max-width: 400px; margin: 0 auto 22px }
+        #cta .ctab { position: relative; z-index: 1; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap }
+        #cta .bow { display: flex; align-items: center; gap: 8px; background: transparent; color: rgba(255,255,255,.7); border: 1px solid rgba(255,255,255,.2); padding: 14px 28px; border-radius: 8px; font-size: .88rem; text-decoration: none; transition: all .3s }
+        #cta .bow:hover { border-color: rgba(91,159,255,.5); color: var(--blue-l); background: transparent }
+        #cta .bow.bow-bluetour { border-color: rgba(41,121,255,.4); color: var(--blue-l); background: transparent }
+        #cta .bow.bow-bluetour:hover { border-color: rgba(91,159,255,.55); color: #fff; background: rgba(41,121,255,.12) }
         
-        #cta {
-            padding: 52px 48px 56px;
-            text-align: center;
-            background: #0c0e22;
-            position: relative;
-            overflow: hidden
-        }
-        
-        #cta::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(61, 127, 193, .3) 30%, rgba(74, 144, 217, .5) 50%, rgba(61, 127, 193, .3) 70%, transparent);
-            pointer-events: none;
-            z-index: 2
-        }
-        
-        #cta .ctag {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: min(520px, 120vw);
-            height: 280px;
-            max-height: 45vh;
-            border-radius: 50%;
-            background: radial-gradient(ellipse, rgba(61, 127, 193, .2) 0%, rgba(45, 106, 168, .07) 45%, transparent 70%);
-            pointer-events: none;
-            z-index: 0
-        }
-        
-        #cta .ctal {
-            position: relative;
-            z-index: 1;
-            width: 48px;
-            height: 1px;
-            margin: 0 auto 14px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .2), transparent);
-            flex-shrink: 0
-        }
-        
-        #cta .proc-label {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: .58rem;
-            font-weight: 500;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, .3);
-            margin-bottom: 12px
-        }
-        
-        #cta .ctah {
-            position: relative;
-            z-index: 1;
-            font-family: var(--serif);
-            font-size: clamp(1.65rem, 3.5vw, 2.85rem);
-            font-weight: 300;
-            line-height: 1.12;
-            letter-spacing: -.5px;
-            color: #fff;
-            margin-bottom: 10px
-        }
-        
-        #cta .ctah em {
-            font-style: italic;
-            color: #4a90d9
-        }
-        
-        #cta .ctap {
-            position: relative;
-            z-index: 1;
-            font-size: .88rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, .45);
-            line-height: 1.55;
-            max-width: 400px;
-            margin: 0 auto 22px
-        }
-        
-        #cta .ctab {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap
-        }
-        
-        #cta .reveal {
-            transform: translateY(26px);
-            transition: opacity .7s ease, transform .7s ease
-        }
-        
-        #cta .reveal.vis {
-            opacity: 1;
-            transform: translateY(0)
-        }
-        
-        #cta .bow {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: transparent;
-            color: rgba(255, 255, 255, .7);
-            border: 1px solid rgba(255, 255, 255, .2);
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-size: .88rem;
-            text-decoration: none;
-            transition: all .3s
-        }
-        
-        #cta .bow:hover {
-            border-color: rgba(91, 159, 255, .5);
-            color: var(--blue-l);
-            background: transparent
-        }
-        
-        #cta .bow.bow-bluetour {
-            border-color: rgba(41, 121, 255, .4);
-            color: var(--blue-l);
-            background: transparent
-        }
-        
-        #cta .bow.bow-bluetour:hover {
-            border-color: rgba(91, 159, 255, .55);
-            color: #fff;
-            background: rgba(41, 121, 255, .12)
-        }
-        
-        @keyframes fu {
-            from {
-                opacity: 0;
-                transform: translateY(18px)
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-        
-        @keyframes cardIn {
-            from {
-                opacity: 0;
-                transform: translateY(12px)
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0)
-            }
-        }
-        
-        @keyframes popIn {
-            from {
-                opacity: 0;
-                transform: translateY(-5px) scale(.96)
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1)
-            }
-        }
-        
-        .reveal {
-            opacity: 0;
-            transform: translateY(22px);
-            transition: opacity .6s ease, transform .6s ease
-        }
-        
-        .reveal.vis {
-            opacity: 1;
-            transform: translateY(0)
-        }
+        @keyframes cardIn { from { opacity: 0; transform: translateY(12px) } to { opacity: 1; transform: translateY(0) } }
+        @keyframes popIn { from { opacity: 0; transform: translateY(-5px) scale(.96) } to { opacity: 1; transform: translateY(0) scale(1) } }
+        .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease }
+        .reveal.vis { opacity: 1; transform: translateY(0) }
         
         @media(max-width:960px) {
-            body {
-                padding-top: 60px
-            }
-            .sidebar {
-                display: none
-            }
-            nav {
-                padding: 0 20px;
-                height: 60px;
-                top: 0
-            }
-            .fleet-platform-mobile {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-                padding: 10px 16px;
-                background: #fff;
-                border-bottom: 1px solid var(--line);
-                position: sticky;
-                top: 60px;
-                z-index: 89
-            }
-            .main-layout {
-                min-height: calc(100vh - 60px)
-            }
-            .fleet-content {
-                padding: 20px 16px 40px
-            }
-            .fleet-grid {
-                grid-template-columns: 1fr
-            }
-            #cta {
-                padding: 40px 20px 44px
-            }
-            #cta .ctab {
-                flex-direction: column;
-                align-items: center
-            }
-            #cta .bow {
-                width: 100%;
-                max-width: 320px;
-                justify-content: center
-            }
+            body { padding-top: 60px }
+            .sidebar { display: none }
+            nav { padding: 0 20px; height: 60px; top: 0 }
+            .fleet-platform-mobile { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px 16px; background: #fff; border-bottom: 1px solid var(--line); position: sticky; top: 60px; z-index: 89 }
+            .main-layout { min-height: calc(100vh - 60px) }
+            .fleet-content { padding: 20px 16px 40px }
+            .fleet-grid { grid-template-columns: 1fr }
+            #cta { padding: 40px 20px 44px }
+            #cta .ctab { flex-direction: column; align-items: center }
+            #cta .bow { width: 100%; max-width: 320px; justify-content: center }
         }
     </style>
 </head>
@@ -1935,6 +1462,7 @@
         <button class="hbg" id="hbBtn" type="button" aria-label="Menu"><span class="hb"></span><span class="hb"></span><span class="hb"></span></button>
     </nav>
  
+    <!-- Platform switcher mobile (sticky sous la nav) -->
     <div class="fleet-platform-mobile" aria-label="Plateforme">
         <a class="ptab active" data-platform="turo" href="vehicules.html"><span class="ptab-dot"></span> Turo</a>
         <a class="ptab" data-platform="hors-turo" href="tarifs-hors-turo.html"><span class="ptab-dot"></span> Hors Turo</a>
@@ -1950,51 +1478,31 @@
             <div class="mn-sec">
                 <div class="mn-heading">Navigation</div>
                 <a href="index.html" class="ma" onclick="closeMob()">
-                    <div class="mn-left">
-                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/></svg></div><span class="mn-lbl">Accueil</span></div>
+                    <div class="mn-left"><div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/></svg></div><span class="mn-lbl">Accueil</span></div>
                 </a>
                 <a href="vehicules.html" class="ma active" onclick="closeMob()">
-                    <div class="mn-left">
-                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M5 17H3v-5l2-5h14l2 5v5h-2M5 17a2 2 0 104 0M15 17a2 2 0 104 0"/></svg></div><span class="mn-lbl">Notre flotte</span></div>
+                    <div class="mn-left"><div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M5 17H3v-5l2-5h14l2 5v5h-2M5 17a2 2 0 104 0M15 17a2 2 0 104 0"/></svg></div><span class="mn-lbl">Notre flotte</span></div>
                 </a>
                 <a href="apropos.html" class="ma" onclick="closeMob()">
-                    <div class="mn-left">
-                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/></svg></div>
-                        <span class="mn-lbl">À propos</span>
-                    </div>
+                    <div class="mn-left"><div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="18" rx="2"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="12" y2="16"/></svg></div><span class="mn-lbl">À propos</span></div>
                 </a>
                 <a href="partenaires.html" class="ma" onclick="closeMob()">
-                    <div class="mn-left">
-                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-                        <span class="mn-lbl">Partenaires</span>
-                    </div>
+                    <div class="mn-left"><div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><span class="mn-lbl">Partenaires</span></div>
                 </a>
                 <a href="tarifs-hors-turo.html" class="ma" onclick="closeMob()">
-                    <div class="mn-left">
-                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
-                        <span class="mn-lbl">Tarifs Hors Turo</span>
-                    </div>
+                    <div class="mn-left"><div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div><span class="mn-lbl">Tarifs Hors Turo</span></div>
                 </a>
                 <a href="faq.html" class="ma" onclick="closeMob()">
-                    <div class="mn-left">
-                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg></div>
-                        <span class="mn-lbl">FAQ</span>
-                    </div>
+                    <div class="mn-left"><div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg></div><span class="mn-lbl">FAQ</span></div>
                 </a>
             </div>
             <div class="mn-sec">
                 <div class="mn-heading">Légal</div>
                 <a href="confidentialite.html" class="ma" onclick="closeMob()">
-                    <div class="mn-left">
-                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
-                        <span class="mn-lbl">Confidentialité</span>
-                    </div>
+                    <div class="mn-left"><div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><span class="mn-lbl">Confidentialité</span></div>
                 </a>
                 <a href="engagement.html" class="ma" onclick="closeMob()">
-                    <div class="mn-left">
-                        <div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 11 17 15 13"/></svg></div>
-                        <span class="mn-lbl">Engagement</span>
-                    </div>
+                    <div class="mn-left"><div class="mn-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><polyline points="9 15 11 17 15 13"/></svg></div><span class="mn-lbl">Engagement</span></div>
                 </a>
             </div>
         </div>
@@ -2006,20 +1514,19 @@
     <div class="main-layout">
  
         <aside class="sidebar">
-            <div class="sidebar-platform">
+            <!-- Platform switcher sidebar -->
+            <div class="platform-switcher">
                 <a class="ptab active" data-platform="turo" href="vehicules.html"><span class="ptab-dot"></span> Turo</a>
                 <a class="ptab" data-platform="hors-turo" href="tarifs-hors-turo.html"><span class="ptab-dot"></span> Hors Turo</a>
             </div>
+ 
             <div class="sidebar-header">
                 <span class="sidebar-title">Filtres</span>
                 <button class="clear-all" id="clearAll">Effacer tout</button>
             </div>
  
             <div class="filter-section">
-                <div class="fs-header">
-                    <span class="fs-title">Disponibilité</span>
-                    <div class="fs-arrow open" data-target="fs-dispo"></div>
-                </div>
+                <div class="fs-header"><span class="fs-title">Disponibilité</span><div class="fs-arrow open" data-target="fs-dispo"></div></div>
                 <div class="fs-body" id="fs-dispo">
                     <div class="dispo-toggle-row">
                         <span class="toggle-label">Disponible maintenant</span>
@@ -2029,10 +1536,7 @@
             </div>
  
             <div class="filter-section">
-                <div class="fs-header">
-                    <span class="fs-title">Prix / Jour</span>
-                    <div class="fs-arrow open" data-target="fs-prix"></div>
-                </div>
+                <div class="fs-header"><span class="fs-title">Prix / Jour</span><div class="fs-arrow open" data-target="fs-prix"></div></div>
                 <div class="fs-body" id="fs-prix">
                     <label class="check-row"><input type="checkbox" class="price-chk" data-min="0" data-max="100"><span class="check-label">0 $ – 100 $</span><span class="check-count" id="cnt-prix-0">4</span></label>
                     <label class="check-row"><input type="checkbox" class="price-chk" data-min="100" data-max="200"><span class="check-label">100 $ – 200 $</span><span class="check-count" id="cnt-prix-1">3</span></label>
@@ -2042,44 +1546,18 @@
             </div>
  
             <div class="filter-section">
-                <div class="fs-header">
-                    <span class="fs-title">Catégorie</span>
-                    <div class="fs-arrow open" data-target="fs-cat"></div>
-                </div>
+                <div class="fs-header"><span class="fs-title">Catégorie</span><div class="fs-arrow open" data-target="fs-cat"></div></div>
                 <div class="fs-body" id="fs-cat">
-                    <div class="cat-row active-cat" data-cat="tous">
-                        <div class="cat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M4.5 9h15M4.5 15h15M12 3a7 7 0 010 18M12 3a7 7 0 000 18"/></svg></div>
-                        <span class="cat-lbl">Tous</span>
-                        <div class="cat-check"></div>
-                    </div>
-                    <div class="cat-row" data-cat="berline">
-                        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M5 17H3v-5l2-5h14l2 5v5h-2"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/><path d="M9 8h6l1 4H8L9 8z"/></svg></div>
-                        <span class="cat-lbl">Berline</span>
-                        <div class="cat-check"></div>
-                    </div>
-                    <div class="cat-row" data-cat="vus">
-                        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M4 17H2v-4l3-6h14l3 6v4h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 10h14"/></svg></div>
-                        <span class="cat-lbl">SUV / VUS</span>
-                        <div class="cat-check"></div>
-                    </div>
-                    <div class="cat-row" data-cat="sport">
-                        <div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M3 17h18v-3L17 7H7L3 14v3z"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg></div>
-                        <span class="cat-lbl">Sport / Coupé</span>
-                        <div class="cat-check"></div>
-                    </div>
-                    <div class="cat-row" data-cat="electrique">
-                        <div class="cat-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-                        <span class="cat-lbl">Électrique</span>
-                        <div class="cat-check"></div>
-                    </div>
+                    <div class="cat-row active-cat" data-cat="tous"><div class="cat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M4.5 9h15M4.5 15h15M12 3a7 7 0 010 18M12 3a7 7 0 000 18"/></svg></div><span class="cat-lbl">Tous</span><div class="cat-check"></div></div>
+                    <div class="cat-row" data-cat="berline"><div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M5 17H3v-5l2-5h14l2 5v5h-2"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/><path d="M9 8h6l1 4H8L9 8z"/></svg></div><span class="cat-lbl">Berline</span><div class="cat-check"></div></div>
+                    <div class="cat-row" data-cat="vus"><div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M4 17H2v-4l3-6h14l3 6v4h-2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 10h14"/></svg></div><span class="cat-lbl">SUV / VUS</span><div class="cat-check"></div></div>
+                    <div class="cat-row" data-cat="sport"><div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M3 17h18v-3L17 7H7L3 14v3z"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg></div><span class="cat-lbl">Sport / Coupé</span><div class="cat-check"></div></div>
+                    <div class="cat-row" data-cat="electrique"><div class="cat-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><span class="cat-lbl">Électrique</span><div class="cat-check"></div></div>
                 </div>
             </div>
  
             <div class="filter-section">
-                <div class="fs-header">
-                    <span class="fs-title">Gamme</span>
-                    <div class="fs-arrow open" data-target="fs-tier"></div>
-                </div>
+                <div class="fs-header"><span class="fs-title">Gamme</span><div class="fs-arrow open" data-target="fs-tier"></div></div>
                 <div class="fs-body" id="fs-tier">
                     <label class="check-row"><input type="radio" name="tier" class="tier-radio" value="tous" checked><span class="check-label">Toutes les gammes</span></label>
                     <label class="check-row"><input type="radio" name="tier" class="tier-radio" value="essentiel"><span class="check-label">Essentiel</span></label>
@@ -2091,10 +1569,7 @@
             </div>
  
             <div class="filter-section">
-                <div class="fs-header">
-                    <span class="fs-title">Transmission</span>
-                    <div class="fs-arrow open" data-target="fs-trans"></div>
-                </div>
+                <div class="fs-header"><span class="fs-title">Transmission</span><div class="fs-arrow open" data-target="fs-trans"></div></div>
                 <div class="fs-body" id="fs-trans">
                     <label class="check-row"><input type="radio" name="trans" class="trans-radio" value="tous" checked><span class="check-label">Toutes</span></label>
                     <label class="check-row"><input type="radio" name="trans" class="trans-radio" value="auto"><span class="check-label">Automatique</span></label>
@@ -2103,10 +1578,7 @@
             </div>
  
             <div class="filter-section">
-                <div class="fs-header">
-                    <span class="fs-title">Année</span>
-                    <div class="fs-arrow open" data-target="fs-annee"></div>
-                </div>
+                <div class="fs-header"><span class="fs-title">Année</span><div class="fs-arrow open" data-target="fs-annee"></div></div>
                 <div class="fs-body" id="fs-annee">
                     <label class="check-row"><input type="checkbox" class="annee-chk" value="2021"><span class="check-label">2021</span><span class="check-count" id="cnt-annee-2021">0</span></label>
                     <label class="check-row"><input type="checkbox" class="annee-chk" value="2022"><span class="check-label">2022</span><span class="check-count" id="cnt-annee-2022">0</span></label>
@@ -2117,10 +1589,7 @@
             </div>
  
             <div class="filter-section">
-                <div class="fs-header">
-                    <span class="fs-title">Marque</span>
-                    <div class="fs-arrow open" data-target="fs-modele"></div>
-                </div>
+                <div class="fs-header"><span class="fs-title">Marque</span><div class="fs-arrow open" data-target="fs-modele"></div></div>
                 <div class="fs-body" id="fs-modele">
                     <label class="check-row"><input type="checkbox" class="modele-chk" value="Toyota"><span class="check-label">Toyota</span><span class="check-count" id="cnt-modele-Toyota">0</span></label>
                     <label class="check-row"><input type="checkbox" class="modele-chk" value="Honda"><span class="check-label">Honda</span><span class="check-count" id="cnt-modele-Honda">0</span></label>
@@ -2145,7 +1614,6 @@
                 <h1 class="fleet-page-h1">Choisissez votre <em>véhicule</em></h1>
                 <p class="fleet-page-sub">La meilleure flotte premium au Québec</p>
             </div>
- 
             <div class="fleet-grid" id="fleetGrid"></div>
         </div>
     </div>
@@ -2163,38 +1631,20 @@
     </section>
  
     <script>
-        const TL = {
-            essentiel: 'Essentiel',
-            confort: 'Confort',
-            premium: 'Premium',
-            luxe: 'Luxe',
-            prestige: 'Prestige'
-        };
+        const TL = { essentiel:'Essentiel', confort:'Confort', premium:'Premium', luxe:'Luxe', prestige:'Prestige' };
         const ICONS = {
             people: `<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
-            doors: `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><circle cx="17" cy="13" r="1"/></svg>`,
-            power: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>`,
-            bolt: `<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
-            drive: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>`,
-            range: `<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
-            auto: `<svg viewBox="0 0 24 24"><path d="M12 20v-8"/><path d="M6 20V10"/><path d="M18 20V4"/></svg>`
+            doors:  `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><circle cx="17" cy="13" r="1"/></svg>`,
+            power:  `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>`,
+            bolt:   `<svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
+            drive:  `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>`,
+            range:  `<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+            auto:   `<svg viewBox="0 0 24 24"><path d="M12 20v-8"/><path d="M6 20V10"/><path d="M18 20V4"/></svg>`
         };
         const ARR = `<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>`;
+        const BRAND_CLASS = { 'Tesla':'brand-tesla','BMW':'brand-bmw','Toyota':'brand-toyota','Ford':'brand-ford','Porsche':'brand-porsche','Ferrari':'brand-ferrari','Lamborghini':'brand-lamborghini','Mercedes':'brand-mercedes','Audi':'brand-audi' };
  
-        const BRAND_CLASS = {
-            'Tesla': 'brand-tesla',
-            'BMW': 'brand-bmw',
-            'Toyota': 'brand-toyota',
-            'Ford': 'brand-ford',
-            'Porsche': 'brand-porsche',
-            'Ferrari': 'brand-ferrari',
-            'Lamborghini': 'brand-lamborghini',
-            'Mercedes': 'brand-mercedes',
-            'Audi': 'brand-audi'
-        };
- 
-        var TESLA3_CAROUSEL_IMGS = ['voiture/Tesla Model 3 Bleu 2021/0.jpg', 'voiture/Tesla Model 3 Bleu 2021/00.jpg', 'voiture/Tesla Model 3 Bleu 2021/000.jpg', 'voiture/Tesla Model 3 Bleu 2021/0000.jpg', 'voiture/Tesla Model 3 Bleu 2021/00000.jpg', 'voiture/Tesla Model 3 Bleu 2021/000000.jpg'];
- 
+        var TESLA3_CAROUSEL_IMGS = ['voiture/Tesla Model 3 Bleu 2021/0.jpg','voiture/Tesla Model 3 Bleu 2021/00.jpg','voiture/Tesla Model 3 Bleu 2021/000.jpg','voiture/Tesla Model 3 Bleu 2021/0000.jpg','voiture/Tesla Model 3 Bleu 2021/00000.jpg','voiture/Tesla Model 3 Bleu 2021/000000.jpg'];
         var CAR_PLACEHOLDER_SVG = '<svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3v-5l2-5h14l2 5v5h-2M5 17a2 2 0 104 0M15 17a2 2 0 104 0"/></svg>';
  
         function slideImgsForVehicle(v, colorIdx) {
@@ -2202,187 +1652,33 @@
             if (c && c.imgs && c.imgs.length) return c.imgs;
             return [];
         }
- 
         function carouselTrackHTML(v, colorIdx) {
             var imgs = slideImgsForVehicle(v, colorIdx);
-            if (imgs && imgs.length) {
-                return imgs.map(function(s) {
-                    return '<img src="' + s + '" alt="' + v.title + '"/>';
-                }).join('');
-            }
-            return '<div class="car-placeholder">' + CAR_PLACEHOLDER_SVG + '</div>';
+            if (imgs && imgs.length) return imgs.map(function(s){ return '<img src="'+s+'" alt="'+v.title+'"/>'; }).join('');
+            return '<div class="car-placeholder">'+CAR_PLACEHOLDER_SVG+'</div>';
         }
  
-        const vehicles = [{
-            id: 'corolla',
-            cat: 'berline',
-            tier: 'essentiel',
-            brand: 'Toyota',
-            year: 2023,
-            dispo: true,
-            comingSoon: true,
-            title: 'Toyota Corolla',
-            sub: 'Berline · 2023',
-            price: '65',
-            km: 'illimité',
-            priceNum: 65,
-            trans: 'auto',
-            specs: [{icon: 'people', txt: '5'}, {icon: 'doors', txt: '4 portes'}, {icon: 'auto', txt: 'Auto'}],
-            colors: [{hex: '#c0c0c0', imgs: []}]
-        }, {
-            id: 'bmw5',
-            cat: 'berline',
-            tier: 'premium',
-            brand: 'BMW',
-            year: 2024,
-            dispo: true,
-            comingSoon: true,
-            title: 'BMW Série 5',
-            sub: 'Berline · 2024',
-            price: '120',
-            km: 'illimité',
-            priceNum: 120,
-            trans: 'auto',
-            specs: [{icon: 'people', txt: '5'}, {icon: 'power', txt: '330 ch'}, {icon: 'auto', txt: 'Auto'}],
-            colors: [{hex: '#1a1a1a', imgs: []}, {hex: '#e8e4dc', imgs: []}]
-        }, {
-            id: 'rav4',
-            cat: 'vus',
-            tier: 'essentiel',
-            brand: 'Toyota',
-            year: 2023,
-            dispo: true,
-            comingSoon: true,
-            title: 'Toyota RAV4',
-            sub: 'VUS · 2023',
-            price: '80',
-            km: 'illimité',
-            priceNum: 80,
-            trans: 'auto',
-            specs: [{icon: 'people', txt: '5'}, {icon: 'drive', txt: 'AWD'}, {icon: 'auto', txt: 'Auto'}],
-            colors: [{hex: '#2c3e6b', imgs: []}, {hex: '#ffffff', imgs: []}, {hex: '#8b0000', imgs: []}]
-        }, {
-            id: 'bmwx5',
-            cat: 'vus',
-            tier: 'premium',
-            brand: 'BMW',
-            year: 2024,
-            dispo: true,
-            comingSoon: true,
-            title: 'BMW X5',
-            sub: 'VUS · 2024',
-            price: '155',
-            km: 'illimité',
-            priceNum: 155,
-            trans: 'auto',
-            specs: [{icon: 'people', txt: '5'}, {icon: 'drive', txt: 'AWD'}, {icon: 'auto', txt: 'Auto'}],
-            colors: [{hex: '#f5f0e8', imgs: []}, {hex: '#1a1a1a', imgs: []}, {hex: '#2c3e6b', imgs: []}]
-        }, {
-            id: 'urus',
-            cat: 'vus',
-            tier: 'prestige',
-            brand: 'Lamborghini',
-            year: 2023,
-            dispo: true,
-            comingSoon: true,
-            title: 'Lamborghini Urus',
-            sub: 'VUS · 2023',
-            price: '750',
-            km: '200 km',
-            priceNum: 750,
-            trans: 'auto',
-            specs: [{icon: 'people', txt: '5'}, {icon: 'drive', txt: 'AWD'}, {icon: 'power', txt: '650 ch'}],
-            colors: [{hex: '#f5c518', imgs: []}, {hex: '#1a1a1a', imgs: []}]
-        }, {
-            id: 'mustang',
-            cat: 'sport',
-            tier: 'confort',
-            brand: 'Ford',
-            year: 2024,
-            dispo: true,
-            comingSoon: true,
-            title: 'Ford Mustang',
-            sub: 'Sport · 2024',
-            price: '115',
-            km: '300 km',
-            priceNum: 115,
-            trans: 'auto',
-            specs: [{icon: 'people', txt: '4'}, {icon: 'power', txt: '450 ch'}, {icon: 'auto', txt: 'Auto'}],
-            colors: [{hex: '#8b0000', imgs: []}, {hex: '#1a1a1a', imgs: []}, {hex: '#ffffff', imgs: []}]
-        }, {
-            id: 'ferrari',
-            cat: 'sport',
-            tier: 'prestige',
-            brand: 'Ferrari',
-            year: 2023,
-            dispo: true,
-            comingSoon: true,
-            title: 'Ferrari 296 GTB',
-            sub: 'Sport · 2023',
-            price: '1100',
-            km: '200 km',
-            priceNum: 1100,
-            trans: 'auto',
-            specs: [{icon: 'people', txt: '2'}, {icon: 'power', txt: '830 ch'}, {icon: 'auto', txt: 'Auto'}],
-            colors: [{hex: '#cc0000', imgs: []}, {hex: '#1a1a1a', imgs: []}]
-        }, {
-            id: 'teslay',
-            cat: 'electrique vus',
-            tier: 'premium',
-            brand: 'Tesla',
-            year: 2024,
-            dispo: true,
-            comingSoon: true,
-            title: 'Tesla Model Y',
-            sub: 'VUS Électrique · 2024',
-            price: '130',
-            km: 'illimité',
-            priceNum: 130,
-            trans: 'auto',
-            specs: [{icon: 'people', txt: '5'}, {icon: 'range', txt: '533 km'}, {icon: 'drive', txt: 'AWD'}],
-            colors: [{hex: '#ffffff', imgs: []}, {hex: '#1a1a1a', imgs: []}]
-        }, {
-            id: 'taycan',
-            cat: 'electrique',
-            tier: 'luxe',
-            brand: 'Porsche',
-            year: 2024,
-            dispo: true,
-            comingSoon: true,
-            title: 'Porsche Taycan',
-            sub: 'Électrique · 2024',
-            price: '295',
-            km: '250 km',
-            priceNum: 295,
-            trans: 'auto',
-            specs: [{icon: 'people', txt: '4'}, {icon: 'range', txt: '400 km'}, {icon: 'drive', txt: 'AWD'}],
-            colors: [{hex: '#1a1a1a', imgs: []}, {hex: '#8b0000', imgs: []}, {hex: '#e8e4dc', imgs: []}, {hex: '#2d5a2d', imgs: []}]
-        }, {
-            id: 'tesla3',
-            cat: 'electrique',
-            tier: 'confort',
-            brand: 'Tesla',
-            year: 2021,
-            dispo: true,
-            comingSoon: false,
-            title: 'Tesla Model 3',
-            sub: 'Électrique · 2021',
-            price: '110',
-            km: 'illimité',
-            priceNum: 110,
-            trans: 'auto',
-            specs: [{icon: 'people', txt: '5'}, {icon: 'range', txt: '400 km'}, {icon: 'auto', txt: 'Auto'}],
-            colors: [{hex: '#1F3B73', imgs: TESLA3_CAROUSEL_IMGS}]
-        }];
+        const vehicles = [
+            { id:'corolla', cat:'berline', tier:'essentiel', brand:'Toyota', year:2023, dispo:true, comingSoon:true, title:'Toyota Corolla', sub:'Berline · 2023', price:'65', km:'illimité', priceNum:65, trans:'auto', specs:[{icon:'people',txt:'5'},{icon:'doors',txt:'4 portes'},{icon:'auto',txt:'Auto'}], colors:[{hex:'#c0c0c0',imgs:[]}] },
+            { id:'bmw5', cat:'berline', tier:'premium', brand:'BMW', year:2024, dispo:true, comingSoon:true, title:'BMW Série 5', sub:'Berline · 2024', price:'120', km:'illimité', priceNum:120, trans:'auto', specs:[{icon:'people',txt:'5'},{icon:'power',txt:'330 ch'},{icon:'auto',txt:'Auto'}], colors:[{hex:'#1a1a1a',imgs:[]},{hex:'#e8e4dc',imgs:[]}] },
+            { id:'rav4', cat:'vus', tier:'essentiel', brand:'Toyota', year:2023, dispo:true, comingSoon:true, title:'Toyota RAV4', sub:'VUS · 2023', price:'80', km:'illimité', priceNum:80, trans:'auto', specs:[{icon:'people',txt:'5'},{icon:'drive',txt:'AWD'},{icon:'auto',txt:'Auto'}], colors:[{hex:'#2c3e6b',imgs:[]},{hex:'#ffffff',imgs:[]},{hex:'#8b0000',imgs:[]}] },
+            { id:'bmwx5', cat:'vus', tier:'premium', brand:'BMW', year:2024, dispo:true, comingSoon:true, title:'BMW X5', sub:'VUS · 2024', price:'155', km:'illimité', priceNum:155, trans:'auto', specs:[{icon:'people',txt:'5'},{icon:'drive',txt:'AWD'},{icon:'auto',txt:'Auto'}], colors:[{hex:'#f5f0e8',imgs:[]},{hex:'#1a1a1a',imgs:[]},{hex:'#2c3e6b',imgs:[]}] },
+            { id:'urus', cat:'vus', tier:'prestige', brand:'Lamborghini', year:2023, dispo:true, comingSoon:true, title:'Lamborghini Urus', sub:'VUS · 2023', price:'750', km:'200 km', priceNum:750, trans:'auto', specs:[{icon:'people',txt:'5'},{icon:'drive',txt:'AWD'},{icon:'power',txt:'650 ch'}], colors:[{hex:'#f5c518',imgs:[]},{hex:'#1a1a1a',imgs:[]}] },
+            { id:'mustang', cat:'sport', tier:'confort', brand:'Ford', year:2024, dispo:true, comingSoon:true, title:'Ford Mustang', sub:'Sport · 2024', price:'115', km:'300 km', priceNum:115, trans:'auto', specs:[{icon:'people',txt:'4'},{icon:'power',txt:'450 ch'},{icon:'auto',txt:'Auto'}], colors:[{hex:'#8b0000',imgs:[]},{hex:'#1a1a1a',imgs:[]},{hex:'#ffffff',imgs:[]}] },
+            { id:'ferrari', cat:'sport', tier:'prestige', brand:'Ferrari', year:2023, dispo:true, comingSoon:true, title:'Ferrari 296 GTB', sub:'Sport · 2023', price:'1100', km:'200 km', priceNum:1100, trans:'auto', specs:[{icon:'people',txt:'2'},{icon:'power',txt:'830 ch'},{icon:'auto',txt:'Auto'}], colors:[{hex:'#cc0000',imgs:[]},{hex:'#1a1a1a',imgs:[]}] },
+            { id:'teslay', cat:'electrique vus', tier:'premium', brand:'Tesla', year:2024, dispo:true, comingSoon:true, title:'Tesla Model Y', sub:'VUS Électrique · 2024', price:'130', km:'illimité', priceNum:130, trans:'auto', specs:[{icon:'people',txt:'5'},{icon:'range',txt:'533 km'},{icon:'drive',txt:'AWD'}], colors:[{hex:'#ffffff',imgs:[]},{hex:'#1a1a1a',imgs:[]}] },
+            { id:'taycan', cat:'electrique', tier:'luxe', brand:'Porsche', year:2024, dispo:true, comingSoon:true, title:'Porsche Taycan', sub:'Électrique · 2024', price:'295', km:'250 km', priceNum:295, trans:'auto', specs:[{icon:'people',txt:'4'},{icon:'range',txt:'400 km'},{icon:'drive',txt:'AWD'}], colors:[{hex:'#1a1a1a',imgs:[]},{hex:'#8b0000',imgs:[]},{hex:'#e8e4dc',imgs:[]},{hex:'#2d5a2d',imgs:[]}] },
+            { id:'tesla3', cat:'electrique', tier:'confort', brand:'Tesla', year:2021, dispo:true, comingSoon:false, title:'Tesla Model 3', sub:'Électrique · 2021', price:'110', km:'illimité', priceNum:110, trans:'auto', specs:[{icon:'people',txt:'5'},{icon:'range',txt:'400 km'},{icon:'auto',txt:'Auto'}], colors:[{hex:'#1F3B73',imgs:TESLA3_CAROUSEL_IMGS}] }
+        ];
  
         function updateCounts() {
             ['2021','2022','2023','2024','2025'].forEach(function(yr) {
-                var el = document.getElementById('cnt-annee-' + yr);
-                if (el) el.textContent = vehicles.filter(function(v) { return String(v.year) === yr; }).length;
+                var el = document.getElementById('cnt-annee-'+yr);
+                if (el) el.textContent = vehicles.filter(function(v){ return String(v.year)===yr; }).length;
             });
             ['Toyota','Honda','Hyundai','Tesla','BMW','Ford','Mercedes','Audi','Porsche','Lamborghini','Ferrari'].forEach(function(m) {
-                var el = document.getElementById('cnt-modele-' + m);
-                if (el) el.textContent = vehicles.filter(function(v) { return v.brand === m; }).length;
+                var el = document.getElementById('cnt-modele-'+m);
+                if (el) el.textContent = vehicles.filter(function(v){ return v.brand===m; }).length;
             });
         }
  
@@ -2390,20 +1686,20 @@
             if (!v.colors || v.colors.length < 1) return '';
             if (v.colors.length === 1) {
                 var c0 = v.colors[0];
-                var b0 = (c0.hex === '#fff' || c0.hex === '#ffffff') ? 'border-color:rgba(255,255,255,.4)' : '';
-                return '<div class="color-swatches" id="sw-' + v.id + '"><span class="cswatch active" data-cidx="0" style="background:' + c0.hex + ';' + b0 + '" onclick="swSet(this,\'' + v.id + '\',0)"></span></div>';
+                var b0 = (c0.hex==='#fff'||c0.hex==='#ffffff') ? 'border-color:rgba(255,255,255,.4)' : '';
+                return '<div class="color-swatches" id="sw-'+v.id+'"><span class="cswatch active" data-cidx="0" style="background:'+c0.hex+';'+b0+'" onclick="swSet(this,\''+v.id+'\',0)"></span></div>';
             }
-            var shown = v.colors.slice(0, 2), extra = v.colors.slice(2);
-            var h = '<div class="color-swatches" id="sw-' + v.id + '">';
-            shown.forEach(function(c, i) {
-                var b = (c.hex === '#fff' || c.hex === '#ffffff') ? 'border-color:rgba(255,255,255,.4)' : '';
-                h += '<span class="cswatch' + (i === 0 ? ' active' : '') + '" data-cidx="' + i + '" style="background:' + c.hex + ';' + b + '" onclick="swSet(this,\'' + v.id + '\',' + i + ')"></span>';
+            var shown = v.colors.slice(0,2), extra = v.colors.slice(2);
+            var h = '<div class="color-swatches" id="sw-'+v.id+'">';
+            shown.forEach(function(c,i) {
+                var b = (c.hex==='#fff'||c.hex==='#ffffff') ? 'border-color:rgba(255,255,255,.4)' : '';
+                h += '<span class="cswatch'+(i===0?' active':'')+'" data-cidx="'+i+'" style="background:'+c.hex+';'+b+'" onclick="swSet(this,\''+v.id+'\','+i+')"></span>';
             });
             if (extra.length) {
-                h += '<button class="cswatch-more-btn" onclick="swPop(event,\'' + v.id + '\')">+' + extra.length + '</button><div class="color-popover" id="cpop-' + v.id + '"><div class="color-popover-title">Couleurs</div><div class="color-popover-swatches">';
-                v.colors.forEach(function(c, i) {
-                    var b = (c.hex === '#fff' || c.hex === '#ffffff') ? 'border-color:rgba(255,255,255,.4)' : '';
-                    h += '<span class="cpop-swatch' + (i === 0 ? ' active' : '') + '" data-cidx="' + i + '" style="background:' + c.hex + ';' + b + '" onclick="swPopSet(event,this,\'' + v.id + '\',' + i + ')"></span>';
+                h += '<button class="cswatch-more-btn" onclick="swPop(event,\''+v.id+'\')">+'+extra.length+'</button><div class="color-popover" id="cpop-'+v.id+'"><div class="color-popover-title">Couleurs</div><div class="color-popover-swatches">';
+                v.colors.forEach(function(c,i) {
+                    var b = (c.hex==='#fff'||c.hex==='#ffffff') ? 'border-color:rgba(255,255,255,.4)' : '';
+                    h += '<span class="cpop-swatch'+(i===0?' active':'')+'" data-cidx="'+i+'" style="background:'+c.hex+';'+b+'" onclick="swPopSet(event,this,\''+v.id+'\','+i+')"></span>';
                 });
                 h += '</div></div>';
             }
@@ -2413,220 +1709,176 @@
         function renderGrid(list) {
             var grid = document.getElementById('fleetGrid');
             grid.innerHTML = list.map(function(v) {
-                var imgs = slideImgsForVehicle(v, 0), slides = carouselTrackHTML(v, 0);
+                var imgs = slideImgsForVehicle(v,0), slides = carouselTrackHTML(v,0);
                 var sw = buildSwatches(v);
                 var dispoBadge = v.dispo ? '<span class="badge-dispo-corner"><span class="badge-dispo-pulse" aria-hidden="true"></span><span class="badge-dispo-txt">DISPONIBLE</span></span>' : '<span class="badge-loue-corner">● Loué</span>';
-                var confortBadge = v.tier === 'confort' ? '<span class="badge-confort-corner"><span class="badge-confort-accent" aria-hidden="true"></span><span class="badge-confort-txt">Confort</span></span>' : '';
-                var btn = !v.dispo ? '<button class="btn-indispo" disabled>Indisponible</button>' : '<button class="btn-reserver" onclick="reserver(\'' + v.title.replace(/'/g, "\\'") + '\',\'' + v.price + '$\',\'' + v.sub.replace(/'/g, "\\'") + '\',\'https://turo.com\')"><span>Réserver</span>' + ARR + '</button>';
-                var specs = v.specs.map(function(s) { return '<div class="spec-item">' + (ICONS[s.icon] || '') + '<span>' + s.txt + '</span></div>'; }).join('');
+                var confortBadge = v.tier==='confort' ? '<span class="badge-confort-corner"><span class="badge-confort-accent" aria-hidden="true"></span><span class="badge-confort-txt">Confort</span></span>' : '';
+                var btn = !v.dispo ? '<button class="btn-indispo" disabled>Indisponible</button>' : '<button class="btn-reserver" onclick="reserver(\''+v.title.replace(/'/g,"\\'")+'\',\''+v.price+'$\',\''+v.sub.replace(/'/g,"\\'")+'\',\'https://turo.com\')"><span>Réserver</span>'+ARR+'</button>';
+                var specs = v.specs.map(function(s){ return '<div class="spec-item">'+(ICONS[s.icon]||'')+'<span>'+s.txt+'</span></div>'; }).join('');
                 var comingHTML = v.comingSoon ? '<div class="coming-overlay"></div><div class="coming-label"><span class="txt">Bientôt disponible</span></div>' : '';
-                var brandCls = BRAND_CLASS[v.brand] || 'brand-default';
-                var brandHTML = v.brand && v.brand !== 'Tesla' ? '<span class="brand-badge ' + brandCls + '">' + v.brand + '</span>' : '';
-                var metaHTML = brandHTML ? '<div class="card-meta-row">' + brandHTML + '</div>' : '';
-                var yearLineHTML = v.year ? '<div class="card-year-line">' + v.year + '</div>' : '';
+                var brandCls = BRAND_CLASS[v.brand]||'brand-default';
+                var brandHTML = v.brand && v.brand!=='Tesla' ? '<span class="brand-badge '+brandCls+'">'+v.brand+'</span>' : '';
+                var metaHTML = brandHTML ? '<div class="card-meta-row">'+brandHTML+'</div>' : '';
+                var yearLineHTML = v.year ? '<div class="card-year-line">'+v.year+'</div>' : '';
                 var imgCount = (imgs && imgs.length) ? imgs.length : 1;
-                var carouselClass = 'carousel' + (imgCount <= 1 ? ' carousel--single' : '');
-                return '<div class="vcard" data-cat="' + v.cat + '" data-tier="' + v.tier + '" data-dispo="' + (v.dispo ? 'oui' : 'non') + '" data-coming="' + (v.comingSoon ? 'oui' : 'non') + '" data-price="' + v.priceNum + '" data-trans="' + v.trans + '" data-title="' + v.title + '" id="vc-' + v.id + '">' + comingHTML +
-                    '<div class="' + carouselClass + '" id="carousel-' + v.id + '">' +
-                    dispoBadge + confortBadge +
-                    '<div class="carousel-track" id="ct-' + v.id + '">' + slides + '</div>' +
-                    '<button class="car-btn prev" onclick="slideVcard(\'' + v.id + '\',-1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button>' +
-                    '<button class="car-btn next" onclick="slideVcard(\'' + v.id + '\',1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="9 18 15 12 9 6"/></svg></button>' +
-                    '<div class="car-dots" id="dots-' + v.id + '"></div>' +
-                    '</div>' +
-                    '<div class="card-body">' +
-                    '<div class="card-headline">' + metaHTML +
-                    '<div class="card-title">' + v.title + '</div>' + yearLineHTML +
-                    '<div class="price-row price-row-inline-btn">' +
-                    '<div class="price-main"><span class="currency">$</span><span class="amount">' + v.price + '</span><span class="per">/ jour</span></div>' +
-                    '<div class="price-row-btn-wrap">' + btn + '</div>' +
-                    '</div>' +
-                    (sw ? '<div class="card-swatch-row">' + sw + '</div>' : '') +
-                    '</div>' +
-                    '<div class="specs-row">' + specs + '</div>' +
-                    '</div>' +
+                var carouselClass = 'carousel'+(imgCount<=1?' carousel--single':'');
+                return '<div class="vcard" data-cat="'+v.cat+'" data-tier="'+v.tier+'" data-dispo="'+(v.dispo?'oui':'non')+'" data-coming="'+(v.comingSoon?'oui':'non')+'" data-price="'+v.priceNum+'" data-trans="'+v.trans+'" data-title="'+v.title+'" id="vc-'+v.id+'">'+comingHTML+
+                    '<div class="'+carouselClass+'" id="carousel-'+v.id+'">'+
+                    dispoBadge+confortBadge+
+                    '<div class="carousel-track" id="ct-'+v.id+'">'+slides+'</div>'+
+                    '<button class="car-btn prev" onclick="slideVcard(\''+v.id+'\',-1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="15 18 9 12 15 6"/></svg></button>'+
+                    '<button class="car-btn next" onclick="slideVcard(\''+v.id+'\',1)"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" fill="none"><polyline points="9 18 15 12 9 6"/></svg></button>'+
+                    '<div class="car-dots" id="dots-'+v.id+'"></div>'+
+                    '</div>'+
+                    '<div class="card-body">'+
+                    '<div class="card-headline">'+metaHTML+
+                    '<div class="card-title">'+v.title+'</div>'+yearLineHTML+
+                    '<div class="price-row price-row-inline-btn">'+
+                    '<div class="price-main"><span class="currency">$</span><span class="amount">'+v.price+'</span><span class="per">/ jour</span></div>'+
+                    '<div class="price-row-btn-wrap">'+btn+'</div>'+
+                    '</div>'+
+                    (sw?'<div class="card-swatch-row">'+sw+'</div>':'')+
+                    '</div>'+
+                    '<div class="specs-row">'+specs+'</div>'+
+                    '</div>'+
                     '</div>';
             }).join('');
  
             var car = {};
             list.forEach(function(v) {
-                var t = document.getElementById('ct-' + v.id);
+                var t = document.getElementById('ct-'+v.id);
                 if (!t) return;
-                var imgs0 = slideImgsForVehicle(v, 0);
-                var tot = (imgs0 && imgs0.length) ? imgs0.length : 1, de = document.getElementById('dots-' + v.id);
-                for (var i = 0; i < tot; i++) {
+                var imgs0 = slideImgsForVehicle(v,0);
+                var tot = (imgs0 && imgs0.length) ? imgs0.length : 1, de = document.getElementById('dots-'+v.id);
+                for (var i=0;i<tot;i++) {
                     var d = document.createElement('span');
-                    d.className = 'car-dot' + (i === 0 ? ' active' : '');
-                    (function(n) { d.addEventListener('click', function(e) { e.stopPropagation(); goTo(v.id, n); }); })(i);
+                    d.className = 'car-dot'+(i===0?' active':'');
+                    (function(n){ d.addEventListener('click',function(e){ e.stopPropagation(); goTo(v.id,n); }); })(i);
                     de.appendChild(d);
                 }
-                car[v.id] = {track: t, total: tot, idx: 0, dots: de};
+                car[v.id]={track:t,total:tot,idx:0,dots:de};
             });
             window._car = car;
         }
  
-        function goTo(id, n) {
-            var c = window._car[id];
-            if (!c) return;
-            c.idx = (n + c.total) % c.total;
-            c.track.style.transform = 'translateX(-' + (c.idx * 100) + '%)';
-            c.dots.querySelectorAll('.car-dot').forEach(function(d, i) { d.className = 'car-dot' + (i === c.idx ? ' active' : ''); });
+        function goTo(id,n) {
+            var c = window._car[id]; if (!c) return;
+            c.idx = (n+c.total)%c.total;
+            c.track.style.transform = 'translateX(-'+(c.idx*100)+'%)';
+            c.dots.querySelectorAll('.car-dot').forEach(function(d,i){ d.className='car-dot'+(i===c.idx?' active':''); });
+        }
+        function slideVcard(id,dir){ var c=window._car[id]; if(c) goTo(id,c.idx+dir); }
+ 
+        function reserver(t,p,s,u) {
+            window.location.href='confirmation.html?voiture='+encodeURIComponent(t)+'&prix='+encodeURIComponent(p)+'&sub='+encodeURIComponent(s)+'&turo='+encodeURIComponent(u);
         }
  
-        function slideVcard(id, dir) { var c = window._car[id]; if (c) goTo(id, c.idx + dir); }
- 
-        function reserver(t, p, s, u) {
-            window.location.href = 'confirmation.html?voiture=' + encodeURIComponent(t) + '&prix=' + encodeURIComponent(p) + '&sub=' + encodeURIComponent(s) + '&turo=' + encodeURIComponent(u);
-        }
- 
-        function updImgs(vid, ci) {
-            var v = vehicles.find(function(x) { return x.id === vid; });
-            if (!v) return;
-            var imgs = slideImgsForVehicle(v, ci);
+        function updImgs(vid,ci) {
+            var v = vehicles.find(function(x){ return x.id===vid; }); if (!v) return;
+            var imgs = slideImgsForVehicle(v,ci);
             var tot = (imgs && imgs.length) ? imgs.length : 1;
-            var t = document.getElementById('ct-' + vid), de = document.getElementById('dots-' + vid);
-            t.innerHTML = carouselTrackHTML(v, ci);
+            var t = document.getElementById('ct-'+vid), de = document.getElementById('dots-'+vid);
+            t.innerHTML = carouselTrackHTML(v,ci);
             de.innerHTML = '';
-            for (var i = 0; i < tot; i++) {
+            for (var i=0;i<tot;i++) {
                 var d = document.createElement('span');
-                d.className = 'car-dot' + (i === 0 ? ' active' : '');
-                (function(n) { d.addEventListener('click', function(e) { e.stopPropagation(); goTo(vid, n); }); })(i);
+                d.className = 'car-dot'+(i===0?' active':'');
+                (function(n){ d.addEventListener('click',function(e){ e.stopPropagation(); goTo(vid,n); }); })(i);
                 de.appendChild(d);
             }
-            window._car[vid] = {track: t, total: tot, idx: 0, dots: de};
-            t.style.transform = 'translateX(0)';
-            var carEl = document.getElementById('carousel-' + vid);
-            if (carEl) carEl.classList.toggle('carousel--single', tot <= 1);
+            window._car[vid]={track:t,total:tot,idx:0,dots:de};
+            t.style.transform='translateX(0)';
+            var carEl=document.getElementById('carousel-'+vid);
+            if (carEl) carEl.classList.toggle('carousel--single',tot<=1);
         }
  
-        function swSet(el, vid, ci) {
-            el.closest('.color-swatches').querySelectorAll('.cswatch').forEach(function(s) { s.classList.remove('active'); });
-            el.classList.add('active');
-            updImgs(vid, ci);
+        function swSet(el,vid,ci) {
+            el.closest('.color-swatches').querySelectorAll('.cswatch').forEach(function(s){ s.classList.remove('active'); });
+            el.classList.add('active'); updImgs(vid,ci);
         }
- 
-        function swPop(e, vid) {
+        function swPop(e,vid) {
             e.stopPropagation();
-            var p = document.getElementById('cpop-' + vid);
-            if (!p) return;
-            document.querySelectorAll('.color-popover.open').forEach(function(x) { if (x !== p) x.classList.remove('open'); });
+            var p=document.getElementById('cpop-'+vid); if (!p) return;
+            document.querySelectorAll('.color-popover.open').forEach(function(x){ if(x!==p) x.classList.remove('open'); });
             p.classList.toggle('open');
         }
-        document.addEventListener('click', function() { document.querySelectorAll('.color-popover.open').forEach(function(p) { p.classList.remove('open'); }); });
- 
-        function swPopSet(e, el, vid, ci) {
+        document.addEventListener('click',function(){ document.querySelectorAll('.color-popover.open').forEach(function(p){ p.classList.remove('open'); }); });
+        function swPopSet(e,el,vid,ci) {
             e.stopPropagation();
-            el.closest('.color-popover-swatches').querySelectorAll('.cpop-swatch').forEach(function(s) { s.classList.remove('active'); });
+            el.closest('.color-popover-swatches').querySelectorAll('.cpop-swatch').forEach(function(s){ s.classList.remove('active'); });
             el.classList.add('active');
-            var sw = document.getElementById('sw-' + vid);
-            if (sw) sw.querySelectorAll('.cswatch').forEach(function(s) { s.classList.remove('active'); if (parseInt(s.dataset.cidx) === ci) s.classList.add('active'); });
-            updImgs(vid, ci);
+            var sw=document.getElementById('sw-'+vid);
+            if (sw) sw.querySelectorAll('.cswatch').forEach(function(s){ s.classList.remove('active'); if(parseInt(s.dataset.cidx)===ci) s.classList.add('active'); });
+            updImgs(vid,ci);
         }
  
-        var state = {dispo: false, prices: [], cat: 'tous', tier: 'tous', trans: 'tous', annees: [], modeles: [], sort: 'default'};
+        var state = {dispo:false,prices:[],cat:'tous',tier:'tous',trans:'tous',annees:[],modeles:[],sort:'default'};
  
         function applyFilters() {
             var filtered = vehicles.filter(function(v) {
                 if (state.dispo && !(v.dispo && !v.comingSoon)) return false;
-                if (state.prices.length) {
-                    var ok = state.prices.some(function(p) { return v.priceNum >= p.min && v.priceNum <= p.max; });
-                    if (!ok) return false;
-                }
-                if (state.cat !== 'tous' && !v.cat.includes(state.cat)) return false;
-                if (state.tier !== 'tous' && v.tier !== state.tier) return false;
-                if (state.trans !== 'tous' && v.trans !== state.trans) return false;
+                if (state.prices.length) { var ok=state.prices.some(function(p){ return v.priceNum>=p.min && v.priceNum<=p.max; }); if (!ok) return false; }
+                if (state.cat!=='tous' && !v.cat.includes(state.cat)) return false;
+                if (state.tier!=='tous' && v.tier!==state.tier) return false;
+                if (state.trans!=='tous' && v.trans!==state.trans) return false;
                 if (state.annees.length && !state.annees.includes(String(v.year))) return false;
                 if (state.modeles.length && !state.modeles.includes(v.brand)) return false;
                 return true;
             });
             renderGrid(filtered);
-            var n = filtered.length;
-            document.getElementById('sidebarCount').innerHTML = '<strong>' + n + '</strong> résultat' + (n !== 1 ? 's' : '');
+            var n=filtered.length;
+            document.getElementById('sidebarCount').innerHTML='<strong>'+n+'</strong> résultat'+(n!==1?'s':'');
         }
  
-        document.getElementById('dispoToggle').addEventListener('click', function() {
-            state.dispo = !state.dispo;
-            this.classList.toggle('on', state.dispo);
-            this.setAttribute('aria-pressed', state.dispo);
-            applyFilters();
-        });
-        document.querySelectorAll('.price-chk').forEach(function(chk) {
-            chk.addEventListener('change', function() {
-                if (this.checked) state.prices.push({min: +this.dataset.min, max: +this.dataset.max});
-                else state.prices = state.prices.filter(function(p) { return !(p.min === +chk.dataset.min && p.max === +chk.dataset.max); });
-                applyFilters();
-            });
-        });
-        document.querySelectorAll('.cat-row').forEach(function(r) {
-            r.addEventListener('click', function() {
-                document.querySelectorAll('.cat-row').forEach(function(x) { x.classList.remove('active-cat'); });
-                r.classList.add('active-cat');
-                state.cat = r.dataset.cat;
-                applyFilters();
-            });
-        });
-        document.querySelectorAll('.tier-radio').forEach(function(r) { r.addEventListener('change', function() { state.tier = this.value; applyFilters(); }); });
-        document.querySelectorAll('.trans-radio').forEach(function(r) { r.addEventListener('change', function() { state.trans = this.value; applyFilters(); }); });
-        document.querySelectorAll('.annee-chk').forEach(function(chk) {
-            chk.addEventListener('change', function() {
-                if (this.checked) state.annees.push(this.value);
-                else state.annees = state.annees.filter(function(a) { return a !== chk.value; });
-                applyFilters();
-            });
-        });
-        document.querySelectorAll('.modele-chk').forEach(function(chk) {
-            chk.addEventListener('change', function() {
-                if (this.checked) state.modeles.push(this.value);
-                else state.modeles = state.modeles.filter(function(m) { return m !== chk.value; });
-                applyFilters();
-            });
-        });
+        document.getElementById('dispoToggle').addEventListener('click',function(){ state.dispo=!state.dispo; this.classList.toggle('on',state.dispo); this.setAttribute('aria-pressed',state.dispo); applyFilters(); });
+        document.querySelectorAll('.price-chk').forEach(function(chk){ chk.addEventListener('change',function(){ if(this.checked) state.prices.push({min:+this.dataset.min,max:+this.dataset.max}); else state.prices=state.prices.filter(function(p){ return !(p.min===+chk.dataset.min && p.max===+chk.dataset.max); }); applyFilters(); }); });
+        document.querySelectorAll('.cat-row').forEach(function(r){ r.addEventListener('click',function(){ document.querySelectorAll('.cat-row').forEach(function(x){ x.classList.remove('active-cat'); }); r.classList.add('active-cat'); state.cat=r.dataset.cat; applyFilters(); }); });
+        document.querySelectorAll('.tier-radio').forEach(function(r){ r.addEventListener('change',function(){ state.tier=this.value; applyFilters(); }); });
+        document.querySelectorAll('.trans-radio').forEach(function(r){ r.addEventListener('change',function(){ state.trans=this.value; applyFilters(); }); });
+        document.querySelectorAll('.annee-chk').forEach(function(chk){ chk.addEventListener('change',function(){ if(this.checked) state.annees.push(this.value); else state.annees=state.annees.filter(function(a){ return a!==chk.value; }); applyFilters(); }); });
+        document.querySelectorAll('.modele-chk').forEach(function(chk){ chk.addEventListener('change',function(){ if(this.checked) state.modeles.push(this.value); else state.modeles=state.modeles.filter(function(m){ return m!==chk.value; }); applyFilters(); }); });
  
-        document.getElementById('clearAll').addEventListener('click', function() {
-            state = {dispo: false, prices: [], cat: 'tous', tier: 'tous', trans: 'tous', annees: [], modeles: [], sort: 'default'};
+        document.getElementById('clearAll').addEventListener('click',function(){
+            state={dispo:false,prices:[],cat:'tous',tier:'tous',trans:'tous',annees:[],modeles:[],sort:'default'};
             document.getElementById('dispoToggle').classList.remove('on');
-            document.querySelectorAll('.price-chk').forEach(function(c) { c.checked = false; });
-            document.querySelectorAll('.cat-row').forEach(function(r) { r.classList.toggle('active-cat', r.dataset.cat === 'tous'); });
-            document.querySelectorAll('.tier-radio').forEach(function(r) { r.checked = r.value === 'tous'; });
-            document.querySelectorAll('.trans-radio').forEach(function(r) { r.checked = r.value === 'tous'; });
-            document.querySelectorAll('.annee-chk').forEach(function(c) { c.checked = false; });
-            document.querySelectorAll('.modele-chk').forEach(function(c) { c.checked = false; });
+            document.querySelectorAll('.price-chk').forEach(function(c){ c.checked=false; });
+            document.querySelectorAll('.cat-row').forEach(function(r){ r.classList.toggle('active-cat',r.dataset.cat==='tous'); });
+            document.querySelectorAll('.tier-radio').forEach(function(r){ r.checked=r.value==='tous'; });
+            document.querySelectorAll('.trans-radio').forEach(function(r){ r.checked=r.value==='tous'; });
+            document.querySelectorAll('.annee-chk').forEach(function(c){ c.checked=false; });
+            document.querySelectorAll('.modele-chk').forEach(function(c){ c.checked=false; });
             applyFilters();
         });
  
-        document.querySelectorAll('.fs-header').forEach(function(h) {
-            h.addEventListener('click', function() {
-                var target = h.querySelector('.fs-arrow').dataset.target;
-                var body = document.getElementById(target);
-                var arrow = h.querySelector('.fs-arrow');
-                if (body.classList.contains('collapsed')) { body.classList.remove('collapsed'); arrow.classList.add('open'); }
+        document.querySelectorAll('.fs-header').forEach(function(h){
+            h.addEventListener('click',function(){
+                var target=h.querySelector('.fs-arrow').dataset.target;
+                var body=document.getElementById(target);
+                var arrow=h.querySelector('.fs-arrow');
+                if(body.classList.contains('collapsed')){ body.classList.remove('collapsed'); arrow.classList.add('open'); }
                 else { body.classList.add('collapsed'); arrow.classList.remove('open'); }
             });
         });
  
-        var hbBtn = document.getElementById('hbBtn'), mobB = document.getElementById('mobBack'), mobP = document.getElementById('mobPanel');
- 
-        function openMob() { hbBtn.classList.add('open'); mobP.classList.add('open'); mobB.classList.add('open'); document.body.style.overflow = 'hidden'; }
-        function closeMob() { hbBtn.classList.remove('open'); mobP.classList.remove('open'); mobB.classList.remove('open'); document.body.style.overflow = ''; }
-        hbBtn.addEventListener('click', function() { mobP.classList.contains('open') ? closeMob() : openMob(); });
-        mobB.addEventListener('click', closeMob);
-        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMob(); });
-        (function() {
-            var ls = mobP.querySelectorAll('.ma');
-            new MutationObserver(function() {
-                var o = mobP.classList.contains('open');
-                ls.forEach(function(l, i) { l.style.transitionDelay = o ? (.06 + i * .05) + 's' : '0s'; });
-            }).observe(mobP, {attributes: true, attributeFilter: ['class']});
+        var hbBtn=document.getElementById('hbBtn'),mobB=document.getElementById('mobBack'),mobP=document.getElementById('mobPanel');
+        function openMob(){ hbBtn.classList.add('open'); mobP.classList.add('open'); mobB.classList.add('open'); document.body.style.overflow='hidden'; }
+        function closeMob(){ hbBtn.classList.remove('open'); mobP.classList.remove('open'); mobB.classList.remove('open'); document.body.style.overflow=''; }
+        hbBtn.addEventListener('click',function(){ mobP.classList.contains('open')?closeMob():openMob(); });
+        mobB.addEventListener('click',closeMob);
+        document.addEventListener('keydown',function(e){ if(e.key==='Escape') closeMob(); });
+        (function(){
+            var ls=mobP.querySelectorAll('.ma');
+            new MutationObserver(function(){
+                var o=mobP.classList.contains('open');
+                ls.forEach(function(l,i){ l.style.transitionDelay=o?(.06+i*.05)+'s':'0s'; });
+            }).observe(mobP,{attributes:true,attributeFilter:['class']});
         })();
  
-        var obs = new IntersectionObserver(function(es) {
-            es.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } });
-        }, {threshold: .08});
-        document.querySelectorAll('.reveal').forEach(function(r) { obs.observe(r); });
+        var obs=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); obs.unobserve(e.target); } }); },{threshold:.08});
+        document.querySelectorAll('.reveal').forEach(function(r){ obs.observe(r); });
  
         updateCounts();
         applyFilters();
     </script>
 </body>
- 
 </html>
