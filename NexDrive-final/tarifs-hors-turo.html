@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -59,7 +58,6 @@
         .mpn.open .mpf{opacity:1;transform:translateY(0)}
         .mf{font-size:.68rem;color:rgba(255,255,255,.25);text-align:center}
  
-        /* ── Platform switcher ── */
         .platform-switcher{display:grid;grid-template-columns:1fr 1fr;gap:8px}
         .sidebar .platform-switcher{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid rgba(0,0,0,.12)}
         .fleet-platform-mobile{display:none}
@@ -280,8 +278,12 @@
  
     <!-- Platform switcher mobile (sticky sous la nav) -->
     <div class="fleet-platform-mobile" aria-label="Plateforme">
-        <a class="ptab" data-platform="turo" href="vehicules.html"><span class="ptab-dot"></span> Turo</a>
-        <a class="ptab active" data-platform="hors-turo" href="tarifs-hors-turo.html"><span class="ptab-dot"></span> Hors Turo</a>
+        <a class="ptab" data-platform="turo" href="vehicules.html"
+           onclick="event.preventDefault();window.location.assign('vehicules.html')">
+           <span class="ptab-dot"></span> Turo</a>
+        <a class="ptab active" data-platform="hors-turo" href="tarifs-hors-turo.html"
+           onclick="event.preventDefault();window.location.assign('tarifs-hors-turo.html')">
+           <span class="ptab-dot"></span> Hors Turo</a>
     </div>
  
     <div class="mbd" id="mobBack"></div>
@@ -329,8 +331,12 @@
         <aside class="sidebar">
             <!-- Platform switcher sidebar -->
             <div class="platform-switcher">
-                <a class="ptab" data-platform="turo" href="vehicules.html"><span class="ptab-dot"></span> Turo</a>
-                <a class="ptab active" data-platform="hors-turo" href="tarifs-hors-turo.html"><span class="ptab-dot"></span> Hors Turo</a>
+                <a class="ptab" data-platform="turo" href="vehicules.html"
+                   onclick="event.preventDefault();window.location.assign('vehicules.html')">
+                   <span class="ptab-dot"></span> Turo</a>
+                <a class="ptab active" data-platform="hors-turo" href="tarifs-hors-turo.html"
+                   onclick="event.preventDefault();window.location.assign('tarifs-hors-turo.html')">
+                   <span class="ptab-dot"></span> Hors Turo</a>
             </div>
  
             <div class="sidebar-header">
@@ -532,6 +538,13 @@
         document.querySelectorAll('.reveal').forEach(function(r){obs.observe(r);});
  
         renderGrid();
+    </script>
+ 
+    <!-- Fix anti-bfcache -->
+    <script>
+        window.addEventListener('pageshow', function(e) {
+            if (e.persisted) window.location.reload();
+        });
     </script>
 </body>
 </html>
